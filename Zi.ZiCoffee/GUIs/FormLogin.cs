@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zi.DataAccessLayer.DAOs;
 using Zi.DataTransferLayer.DTOs;
+using Zi.ZiCoffee.Engines.TempleSetting;
 using Zi.ZiCoffee.Engines.Theme;
 using Zi.ZiCoffee.Engines.Validations;
 
@@ -50,6 +51,7 @@ namespace Zi.ZiCoffee.GUIs
         public Image PasswordIcon { get; set; }
         public Image ShowPasswordIcon { get; set; }
         public Image HidePasswordIcon { get; set; }
+        public TempleSetting Temple { get; set; }
         #endregion
 
         #region Attributes
@@ -67,6 +69,7 @@ namespace Zi.ZiCoffee.GUIs
         {
             //Áp dụng bo góc cho form
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Temple = new TempleSetting();
             LoadSetting();
             lbUsernameValidator.Visible = false;
             lbPasswordValidator.Visible = false;
@@ -84,7 +87,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingTheme()
         {
-            if(Properties.Settings.Default.IsDarkTheme)
+            if(Temple.IsDarkTheme)
             {
                 new DarkTheme().SetTheme();
                 picUsername.Image = UsernameIcon = Properties.Resources.ZiWhiteUser;
@@ -92,7 +95,7 @@ namespace Zi.ZiCoffee.GUIs
                 picShowPassword.Image = ShowPasswordIcon = Properties.Resources.ZiWhiteShowPass;
                 HidePasswordIcon = Properties.Resources.ZiWhiteHidePass;
             }
-            else if(Properties.Settings.Default.IsLightTheme)
+            else if(Temple.IsLightTheme)
             {
                 new LightTheme().SetTheme();
                 picUsername.Image = UsernameIcon = Properties.Resources.ZiBlackUser;
@@ -130,7 +133,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingAudio()
         {
-            if (Properties.Settings.Default.IsAppearance)
+            if (Temple.IsAppearance)
             {
                 StreamInit = Properties.Resources.open;
             }
@@ -139,7 +142,7 @@ namespace Zi.ZiCoffee.GUIs
                 StreamInit = null;
             }
 
-            if (Properties.Settings.Default.IsClick)
+            if (Temple.IsClick)
             {
                 StreamClick = Properties.Resources.clickOK;
             }
@@ -160,7 +163,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingLanguage()
         {
-            string cultureName = Properties.Settings.Default.CultureName; 
+            string cultureName = Temple.CultureName; 
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             ResourceManager rm = new ResourceManager("Zi.ZiCoffee.Engines.Lang.ResourceLang", typeof(FormLogin).Assembly);
         }
@@ -270,7 +273,7 @@ namespace Zi.ZiCoffee.GUIs
         {
             if (MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "Thông báo", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
             {
-                if (Properties.Settings.Default.IsBye)
+                if (Temple.IsBye)
                 {
                     SayBye();
                 }

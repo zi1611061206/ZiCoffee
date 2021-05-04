@@ -55,10 +55,6 @@ namespace Zi.ZiCoffee.GUIs
 
         public FormOrder(Table choosingTable, Account currentAccount)
         {
-            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
-            LocalFormat.CurrencySymbol = Properties.Settings.Default.currencySymbol;
-            LocalFormat.CurrencyPositivePattern = 3;
-            LocalFormat.CurrencyDecimalDigits = 0;
 
             InitializeComponent();
             this.ChoosingTable = choosingTable;
@@ -69,11 +65,18 @@ namespace Zi.ZiCoffee.GUIs
         {
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
 
+            Temple = new TempleSetting();
+            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            LocalFormat.CurrencySymbol = Temple.CurrencySymbol;
+            LocalFormat.CurrencyPositivePattern = 3;
+            LocalFormat.CurrencyDecimalDigits = 0;
+
             pnlCart.Hide();
             txbTotal.Clear();
             lbCartAmount.Text = "0";
             lsvCart.Items.Clear();
             btnCartConfirm.Enabled = false;
+            ctxbSearch.ZiTextBox.Text = Properties.Resources.SearchTextDefault;
 
             LoadSetting();
             LoadCategories();
@@ -116,7 +119,6 @@ namespace Zi.ZiCoffee.GUIs
 
         private void LoadServices(DataTable services)
         {
-            Temple = new TempleSetting();
             fpnlServices.Controls.Clear();
             foreach (DataRow row in services.Rows)
             {
@@ -331,7 +333,7 @@ namespace Zi.ZiCoffee.GUIs
         private void SettingAudio()
         {
             // Âm thanh khởi tạo
-            if (Properties.Settings.Default.IsAppearance)
+            if (Temple.IsAppearance)
             {
                 StreamOpen = Properties.Resources.open;
             }
@@ -350,7 +352,7 @@ namespace Zi.ZiCoffee.GUIs
             }
 
             // Âm thanh Click chuột
-            if (Properties.Settings.Default.IsClick)
+            if (Temple.IsClick)
             {
                 StreamClick = Properties.Resources.clickOK;
             }
@@ -376,6 +378,11 @@ namespace Zi.ZiCoffee.GUIs
             btnCancel.BackColor
                 = btnCartConfirm.BackColor
                 = Properties.Settings.Default.ButtonBackBorder;
+            ctxbSearch.BackColor 
+                = ctxbSearch.ZiTextBox.BackColor
+                = Properties.Settings.Default.MainBack;
+            ctxbSearch.ZiBorderColor = Properties.Settings.Default.ButtonBackNoBorder;
+            txbTotal.BackColor = Properties.Settings.Default.ReadOnlyTextBoxBack;
 
             // ForeColor
             (this as Form).ForeColor
@@ -385,11 +392,16 @@ namespace Zi.ZiCoffee.GUIs
             btnCancel.ForeColor
                 = btnCartConfirm.ForeColor
                 = Properties.Settings.Default.ButtonForeBorder;
+            ctxbSearch.ZiLabel.ForeColor
+                = ctxbSearch.ZiTextBox.ForeColor
+                = Properties.Settings.Default.MainFore;
+            ctxbSearch.ZiValidate.ForeColor = Properties.Settings.Default.ErrorFore;
+            txbTotal.ForeColor = Properties.Settings.Default.ReadOnlyTextBoxFore;
         }
 
         private void SettingLanguage()
         {
-            string cultureName = Properties.Settings.Default.CultureName;
+            string cultureName = Temple.CultureName;
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             ResourceManager rm = new ResourceManager("Zi.ZiCoffee.Engines.Lang.ResourceLang", typeof(FormOrder).Assembly);
         }
@@ -487,6 +499,14 @@ namespace Zi.ZiCoffee.GUIs
             {
                 btnCartConfirm.Enabled = true;
             }    
+        }
+
+        private void CtxbSearch_ZiClick(object sender, EventArgs e)
+        {
+            if(ctxbSearch.ZiTextBox.Text.Equals(Properties.Resources.SearchTextDefault))
+            {
+                ctxbSearch.ZiTextBox.Clear();
+            }
         }
     }
 }

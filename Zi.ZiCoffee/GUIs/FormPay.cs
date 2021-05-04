@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zi.DataTransferLayer.DTOs;
+using Zi.ZiCoffee.Engines.TempleSetting;
 
 namespace Zi.ZiCoffee.GUIs
 {
@@ -45,14 +46,10 @@ namespace Zi.ZiCoffee.GUIs
         public Table ChoosingTable { get; set; }
         public Stream StreamOpen { get; set; }
         public Stream StreamClick { get; set; }
+        public TempleSetting Temple { get; set; }
         #endregion
         public FormPay(Table choosingTable)
         {
-            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
-            LocalFormat.CurrencySymbol = Properties.Settings.Default.currencySymbol;
-            LocalFormat.CurrencyPositivePattern = 3;
-            LocalFormat.CurrencyDecimalDigits = 0;
-
             InitializeComponent();
             this.ChoosingTable = choosingTable;
         }
@@ -60,6 +57,13 @@ namespace Zi.ZiCoffee.GUIs
         private void FormPay_Load(object sender, EventArgs e)
         {
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+
+            Temple = new TempleSetting();
+            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            LocalFormat.CurrencySymbol = Properties.Settings.Default.CurrencySymbol;
+            LocalFormat.CurrencyPositivePattern = 3;
+            LocalFormat.CurrencyDecimalDigits = 0;
+
             LoadSetting();
         }
 

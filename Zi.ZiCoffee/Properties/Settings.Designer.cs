@@ -107,187 +107,6 @@ namespace Zi.ZiCoffee.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ZiTechDev Chuyên cung cấp các giải pháp và phát triển phần mềm.")]
-        public string companyIntroduce {
-            get {
-                return ((string)(this["companyIntroduce"]));
-            }
-            set {
-                this["companyIntroduce"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("21Bis Điện Biên Phủ - Phường 25 - Quận Bình Thạnh - Thành phố Hồ Chí Minh - Việt " +
-            "Nam")]
-        public string companyAddress {
-            get {
-                return ((string)(this["companyAddress"]));
-            }
-            set {
-                this["companyAddress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("21Bis Điện Biên Phủ - Phường 25")]
-        public string companyAddressBill1 {
-            get {
-                return ((string)(this["companyAddressBill1"]));
-            }
-            set {
-                this["companyAddressBill1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(+84) 943 144 178")]
-        public string companyPhone1 {
-            get {
-                return ((string)(this["companyPhone1"]));
-            }
-            set {
-                this["companyPhone1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("(+84) 382 663 470")]
-        public string companyPhone2 {
-            get {
-                return ((string)(this["companyPhone2"]));
-            }
-            set {
-                this["companyPhone2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("zitech.dev@gmail.com")]
-        public string companyEmail1 {
-            get {
-                return ((string)(this["companyEmail1"]));
-            }
-            set {
-                this["companyEmail1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("sotayvaodoi@gmail.com")]
-        public string companyEmail2 {
-            get {
-                return ((string)(this["companyEmail2"]));
-            }
-            set {
-                this["companyEmail2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7410 852 9630 000 - Nguyễn Ngọc Hiếu - Chi nhánh TechComBank Bình Thạnh")]
-        public string companyBank1 {
-            get {
-                return ((string)(this["companyBank1"]));
-            }
-            set {
-                this["companyBank1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string companyBank2 {
-            get {
-                return ((string)(this["companyBank2"]));
-            }
-            set {
-                this["companyBank2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/zitech.dev/")]
-        public string linkFacebook {
-            get {
-                return ((string)(this["linkFacebook"]));
-            }
-            set {
-                this["linkFacebook"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://www.youtube.com/channel/UCwmKzLFHfs79flAnrHRptdA")]
-        public string linkYoutube {
-            get {
-                return ((string)(this["linkYoutube"]));
-            }
-            set {
-                this["linkYoutube"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://zitechdev.com/")]
-        public string linkWebsite {
-            get {
-                return ((string)(this["linkWebsite"]));
-            }
-            set {
-                this["linkWebsite"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string linkInstagram {
-            get {
-                return ((string)(this["linkInstagram"]));
-            }
-            set {
-                this["linkInstagram"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string linkGooglePlus {
-            get {
-                return ((string)(this["linkGooglePlus"]));
-            }
-            set {
-                this["linkGooglePlus"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string ipAdress {
-            get {
-                return ((string)(this["ipAdress"]));
-            }
-            set {
-                this["ipAdress"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("163")]
         public int ServiceItemWidth {
             get {
@@ -396,13 +215,13 @@ namespace Zi.ZiCoffee.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("VND")]
-        public string currencySymbol {
+        [global::System.Configuration.DefaultSettingValueAttribute("VNĐ")]
+        public string CurrencySymbol {
             get {
-                return ((string)(this["currencySymbol"]));
+                return ((string)(this["CurrencySymbol"]));
             }
             set {
-                this["currencySymbol"] = value;
+                this["CurrencySymbol"] = value;
             }
         }
         
@@ -799,6 +618,28 @@ namespace Zi.ZiCoffee.Properties {
             }
             set {
                 this["SplashId"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color ReadOnlyTextBoxBack {
+            get {
+                return ((global::System.Drawing.Color)(this["ReadOnlyTextBoxBack"]));
+            }
+            set {
+                this["ReadOnlyTextBoxBack"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Drawing.Color ReadOnlyTextBoxFore {
+            get {
+                return ((global::System.Drawing.Color)(this["ReadOnlyTextBoxFore"]));
+            }
+            set {
+                this["ReadOnlyTextBoxFore"] = value;
             }
         }
     }

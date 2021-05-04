@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zi.DataTransferLayer.Enums;
+using Zi.ZiCoffee.Engines.Compare;
 using Zi.ZiCoffee.Engines.TempleSetting;
 using Zi.ZiCoffee.GUIs.CustomControls;
 
@@ -58,10 +59,11 @@ namespace Zi.ZiCoffee.GUIs
         private void FormSetting_Load(object sender, EventArgs e)
         {
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            pnlObjectModifier.Hide();
-            LoadSetting();
             Temple = new TempleSetting();
             TempleCompare = new TempleSetting();
+            pnlObjectModifier.Hide();
+            btnSave.Enabled = false;
+            LoadSetting();
             LoadContent();
         }
 
@@ -76,8 +78,8 @@ namespace Zi.ZiCoffee.GUIs
         private void LoadLanguageSelector()
         {
             List<CultureDetail> cultures = new List<CultureDetail>() {
-                new CultureDetail(Properties.Resources.vi, "vi-VN", "Tiếng Việt"),
-                new CultureDetail(Properties.Resources.en, "en-US", "Tiếng Anh")
+                new CultureDetail(Properties.Resources.vi, "vi-VN", "Tiếng Việt", "VNĐ"),
+                new CultureDetail(Properties.Resources.en, "en-US", "Tiếng Anh", "USD")
             };
 
             foreach(var item in cultures.Select((value, index) => (value, index)))
@@ -87,7 +89,7 @@ namespace Zi.ZiCoffee.GUIs
                     Name = "item" + item.index,
                     Text = item.value.LanguageName,
                     Image = item.value.FlagIcon,
-                    Tag = item.value.CultureChar
+                    Tag = item.value
                 };
                 menuItem.Click += MenuItem_Click;
                 cmsLanguage.Items.Add(menuItem);
@@ -103,7 +105,9 @@ namespace Zi.ZiCoffee.GUIs
         {
             ToolStripMenuItem menuItem = sender as ToolStripMenuItem;
             picFlag.Image = menuItem.Image;
-            Temple.CultureName = menuItem.Tag.ToString();
+            Temple.CultureName = (menuItem.Tag as CultureDetail).CultureChar.ToString();
+            Temple.CurrencySymbol = (menuItem.Tag as CultureDetail).CurrencySymbol.ToString();
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void LoadSoundChecker()
@@ -146,7 +150,7 @@ namespace Zi.ZiCoffee.GUIs
         private void SettingAudio()
         {
             // Âm thanh khởi tạo
-            if (Properties.Settings.Default.IsAppearance)
+            if (Temple.IsAppearance)
             {
                 StreamOpen = Properties.Resources.open;
             }
@@ -165,7 +169,7 @@ namespace Zi.ZiCoffee.GUIs
             }
 
             // Âm thanh Click chuột
-            if (Properties.Settings.Default.IsClick)
+            if (Temple.IsClick)
             {
                 StreamClick = Properties.Resources.clickOK;
             }
@@ -177,7 +181,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingLanguage()
         {
-            string cultureName = Properties.Settings.Default.CultureName;
+            string cultureName = Temple.CultureName;
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             ResourceManager rm = new ResourceManager("Zi.ZiCoffee.Engines.Lang.ResourceLang", typeof(FormSetting).Assembly);
         }
@@ -289,6 +293,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.IsLightTheme = true;
                 Temple.IsDarkTheme = false;
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void AllCheckBoxSound_MouseHover(object sender, EventArgs e)
@@ -370,6 +375,7 @@ namespace Zi.ZiCoffee.GUIs
                 default:
                     break;
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void AllButton_MouseDown(object sender, MouseEventArgs e)
@@ -670,6 +676,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.ServiceItemWidth = (int)nudWidth.Value;
                 DrawServiceSample(tp);
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void NudHeight_ValueChanged(object sender, EventArgs e)
@@ -685,6 +692,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.ServiceItemHeigh = (int)nudHeight.Value;
                 DrawServiceSample(tp);
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void PnlOnBackColor_BackColorChanged(object sender, EventArgs e)
@@ -700,6 +708,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.ServiceItemEnabledBack = pnlOnBackColor.BackColor;
                 DrawServiceSample(tp);
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void PnlOffBackColor_BackColorChanged(object sender, EventArgs e)
@@ -715,6 +724,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.ServiceItemDisabledBack = pnlOffBackColor.BackColor;
                 DrawServiceSample(tp);
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void PnlMainFore_BackColorChanged(object sender, EventArgs e)
@@ -730,6 +740,7 @@ namespace Zi.ZiCoffee.GUIs
                 Temple.ServiceItemNameFore = pnlMainFore.BackColor;
                 DrawServiceSample(tp);
             }
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void PnlSubFore_BackColorChanged(object sender, EventArgs e)
@@ -737,6 +748,7 @@ namespace Zi.ZiCoffee.GUIs
             TabPage tp = pnlObjectModifier.Tag as TabPage;
             Temple.ServiceItemPriceFore = pnlSubFore.BackColor;
             DrawServiceSample(tp);
+            btnSave.Enabled = ObjectCompare.Instance.IsModified(Temple, TempleCompare);
         }
 
         private void PnlOnBackColor_Click(object sender, EventArgs e)

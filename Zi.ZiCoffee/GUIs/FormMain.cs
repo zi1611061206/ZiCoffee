@@ -27,6 +27,7 @@ using Zi.DataAccessLayer.DAOs;
 using Zi.DataTransferLayer.Enums;
 using Zi.DataAccessLayer.DAOs.Join;
 using DataTransferLayer.Enums;
+using Zi.ZiCoffee.Engines.TempleSetting;
 
 namespace Zi.ZiCoffee.GUIs
 {
@@ -47,15 +48,11 @@ namespace Zi.ZiCoffee.GUIs
         public Stream StreamClick { get; set; }
         public NumberFormatInfo LocalFormat { get; set; }
         public int CurrentTabIndex { get; set; } //Khu vực đang được hiển thị & sử dụng, mặc định = 0 là tất cả
+        public TempleSetting Temple { get; set; }
         #endregion
 
         public FormMain(Account account, Employee employee)
         {
-            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
-            LocalFormat.CurrencySymbol = Properties.Settings.Default.currencySymbol;
-            LocalFormat.CurrencyPositivePattern = 3;
-            LocalFormat.CurrencyDecimalDigits = 0;
-
             InitializeComponent();
 
             Thread thread = new Thread(new ThreadStart(RunSplash));
@@ -107,7 +104,13 @@ namespace Zi.ZiCoffee.GUIs
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.IsGreeting)
+            Temple = new TempleSetting();
+            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            LocalFormat.CurrencySymbol = Temple.CurrencySymbol;
+            LocalFormat.CurrencyPositivePattern = 3;
+            LocalFormat.CurrencyDecimalDigits = 0;
+
+            if (Temple.IsGreeting)
             {
                 SayWelcome();
             }
@@ -121,6 +124,7 @@ namespace Zi.ZiCoffee.GUIs
             pnlShortcutDropdown.Hide();
             picCollapse.Hide();
             picExtend.Show();
+            btnPay.Enabled = cbtnSubPay.Enabled = false;
 
             Size size = cbtnAccount.Size;
             size.Width = 179;
@@ -242,7 +246,7 @@ namespace Zi.ZiCoffee.GUIs
         {
             string textButton = table.TableName + Environment.NewLine;
             string textTooltip = table.TableName + " hiện đang ";
-            Color statusColor = Properties.Settings.Default.TableItemTempBack;
+            Color statusColor = Temple.TableItemTempBack;
             switch (table.UsedStatus)
             {
                 case TableStatus.Available:
@@ -252,17 +256,17 @@ namespace Zi.ZiCoffee.GUIs
                 case TableStatus.NotAvailable:
                     textButton += "Đang sử dụng";
                     textTooltip += "được sử dụng";
-                    statusColor = Properties.Settings.Default.TableItemUsingBack;
+                    statusColor = Temple.TableItemUsingBack;
                     break;
                 default: break;
             }
             ItemCornerButton btnTable = new ItemCornerButton()
             {
-                Width = Properties.Settings.Default.TableItemWidth,
-                Height = Properties.Settings.Default.TableItemHeigh,
+                Width = Temple.TableItemWidth,
+                Height = Temple.TableItemHeigh,
                 Text = textButton,
                 BackColor = statusColor,
-                ForeColor = Properties.Settings.Default.TableItemFore,
+                ForeColor = Temple.TableItemFore,
                 FlatStyle = FlatStyle.Flat,
                 TabStop = false,
                 Tag = table
@@ -321,6 +325,14 @@ namespace Zi.ZiCoffee.GUIs
                 else
                     listViewItem.BackColor = Properties.Settings.Default.HighlightEffectBack;
             }
+            if(lsvBill.Items.Count > 0)
+            {
+                btnPay.Enabled = cbtnSubPay.Enabled = true;
+            }
+            else
+            {
+                btnPay.Enabled = cbtnSubPay.Enabled = false;
+            }
         }
 
         private void AllButton_MouseDown(object sender, MouseEventArgs e)
@@ -355,7 +367,7 @@ namespace Zi.ZiCoffee.GUIs
         private void SettingAudio()
         {
             // Âm thanh khởi tạo
-            if (Properties.Settings.Default.IsAppearance)
+            if (Temple.IsAppearance)
             {
                 StreamOpen = Properties.Resources.open;
             }
@@ -374,7 +386,7 @@ namespace Zi.ZiCoffee.GUIs
             }
 
             // Âm thanh Click chuột
-            if (Properties.Settings.Default.IsClick)
+            if (Temple.IsClick)
             {
                 StreamClick = Properties.Resources.clickOK;
             }
@@ -384,7 +396,7 @@ namespace Zi.ZiCoffee.GUIs
             }
 
             // Âm thanh nền
-            if (Properties.Settings.Default.IsSoundTrack)
+            if (Temple.IsSoundTrack)
             {
                 string RunningPath = AppDomain.CurrentDomain.BaseDirectory;
                 SoundTrackPath = string.Format("{0}Resources\\{1}", Path.GetFullPath(Path.Combine(RunningPath, @"..\..\")), "AnhTaBoEmRoiSoundtrack.wav");
@@ -473,7 +485,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingLanguage()
         {
-            string cultureName = Properties.Settings.Default.CultureName;
+            string cultureName = Temple.CultureName;
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             ResourceManager rm = new ResourceManager("Zi.ZiCoffee.Engines.Lang.ResourceLang", typeof(FormMain).Assembly);
         }

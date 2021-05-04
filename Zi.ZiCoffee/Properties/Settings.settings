@@ -27,51 +27,6 @@
     <Setting Name="IsNotification" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="companyIntroduce" Type="System.String" Scope="User">
-      <Value Profile="(Default)">ZiTechDev Chuyên cung cấp các giải pháp và phát triển phần mềm.</Value>
-    </Setting>
-    <Setting Name="companyAddress" Type="System.String" Scope="User">
-      <Value Profile="(Default)">21Bis Điện Biên Phủ - Phường 25 - Quận Bình Thạnh - Thành phố Hồ Chí Minh - Việt Nam</Value>
-    </Setting>
-    <Setting Name="companyAddressBill1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">21Bis Điện Biên Phủ - Phường 25</Value>
-    </Setting>
-    <Setting Name="companyPhone1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">(+84) 943 144 178</Value>
-    </Setting>
-    <Setting Name="companyPhone2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">(+84) 382 663 470</Value>
-    </Setting>
-    <Setting Name="companyEmail1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">zitech.dev@gmail.com</Value>
-    </Setting>
-    <Setting Name="companyEmail2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">sotayvaodoi@gmail.com</Value>
-    </Setting>
-    <Setting Name="companyBank1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">7410 852 9630 000 - Nguyễn Ngọc Hiếu - Chi nhánh TechComBank Bình Thạnh</Value>
-    </Setting>
-    <Setting Name="companyBank2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="linkFacebook" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.facebook.com/zitech.dev/</Value>
-    </Setting>
-    <Setting Name="linkYoutube" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://www.youtube.com/channel/UCwmKzLFHfs79flAnrHRptdA</Value>
-    </Setting>
-    <Setting Name="linkWebsite" Type="System.String" Scope="User">
-      <Value Profile="(Default)">https://zitechdev.com/</Value>
-    </Setting>
-    <Setting Name="linkInstagram" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="linkGooglePlus" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="ipAdress" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="ServiceItemWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">163</Value>
     </Setting>
@@ -99,8 +54,8 @@
     <Setting Name="companyAddressBill2" Type="System.String" Scope="User">
       <Value Profile="(Default)">Q.Bình Thạnh - TP.HCM - Việt Nam</Value>
     </Setting>
-    <Setting Name="currencySymbol" Type="System.String" Scope="User">
-      <Value Profile="(Default)">VND</Value>
+    <Setting Name="CurrencySymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VNĐ</Value>
     </Setting>
     <Setting Name="CultureName" Type="System.String" Scope="User">
       <Value Profile="(Default)">vi-VN</Value>
@@ -206,6 +161,12 @@
     </Setting>
     <Setting Name="SplashId" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="ReadOnlyTextBoxBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReadOnlyTextBoxFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

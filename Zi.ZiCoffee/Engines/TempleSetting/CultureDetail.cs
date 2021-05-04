@@ -12,12 +12,14 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
         public Image FlagIcon { get; set; }
         public string CultureChar { get; set; }
         public string LanguageName { get; set; }
+        public string CurrencySymbol { get; set; }
 
-        public CultureDetail(Image flagIcon, string cultureChar, string languageName)
+        public CultureDetail(Image flagIcon, string cultureChar, string languageName, string currencySymbol)
         {
             FlagIcon = flagIcon;
             CultureChar = cultureChar;
             LanguageName = languageName;
+            CurrencySymbol = currencySymbol;
         }
     }
 }

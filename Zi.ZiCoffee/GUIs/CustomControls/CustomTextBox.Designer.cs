@@ -70,6 +70,8 @@ namespace Zi.ZiCoffee.GUIs.CustomControls
             this.txbTextContent.Size = new System.Drawing.Size(532, 23);
             this.txbTextContent.TabIndex = 0;
             this.txbTextContent.Text = "Text";
+            this.txbTextContent.Click += new System.EventHandler(this.TxbTextContent_Click);
+            this.txbTextContent.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTextContent_KeyPress);
             // 
             // pnlBottom
             // 
@@ -129,7 +131,7 @@ namespace Zi.ZiCoffee.GUIs.CustomControls
             this.lbValidator.TabIndex = 0;
             this.lbValidator.Text = "Lỗi nhập liệu";
             // 
-            // CustomTextBoxItem
+            // CustomTextBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -140,7 +142,7 @@ namespace Zi.ZiCoffee.GUIs.CustomControls
             this.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Black;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "CustomTextBoxItem";
+            this.Name = "CustomTextBox";
             this.Size = new System.Drawing.Size(556, 85);
             this.pnlGroupBox.ResumeLayout(false);
             this.pnlGroupBox.PerformLayout();

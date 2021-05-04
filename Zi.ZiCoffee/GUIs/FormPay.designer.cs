@@ -626,7 +626,7 @@
             this.lbVoucherEnter.TabIndex = 0;
             this.lbVoucherEnter.Text = "Nhập mã Voucher / Coupon:";
             // 
-            // formPay
+            // FormPay
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -644,7 +644,7 @@
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "formPay";
+            this.Name = "FormPay";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.FormPay_Load);

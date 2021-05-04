@@ -16,6 +16,7 @@ using System.Windows.Forms;
 using Zi.DataAccessLayer.DAOs;
 using Zi.DataTransferLayer.DTOs;
 using Zi.ZiCoffee.Engines.Converter;
+using Zi.ZiCoffee.Engines.TempleSetting;
 using Zi.ZiCoffee.Engines.Validations;
 
 namespace Zi.ZiCoffee.GUIs
@@ -47,6 +48,7 @@ namespace Zi.ZiCoffee.GUIs
         public Stream StreamClick { get; set; }
         public Account CurrentAccount { get; set; }
         public Employee CurrentEmployee { get; set; }
+        public TempleSetting Temple { get; set; }
         #endregion
 
         public FormProfile(Account account, Employee employee)
@@ -60,7 +62,7 @@ namespace Zi.ZiCoffee.GUIs
         private void FormProfile_Load(object sender, EventArgs e)
         {
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
-            
+            Temple = new TempleSetting();
             LoadSetting();
             LoadDetail();
 
@@ -106,7 +108,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingAudio()
         {
-            if (Properties.Settings.Default.IsAppearance)
+            if (Temple.IsAppearance)
             {
                 StreamOpen = Properties.Resources.open;
             }
@@ -124,7 +126,7 @@ namespace Zi.ZiCoffee.GUIs
                 sound.Play();
             }
 
-            if (Properties.Settings.Default.IsClick)
+            if (Temple.IsClick)
             {
                 StreamClick = Properties.Resources.clickOK;
             }
@@ -213,7 +215,7 @@ namespace Zi.ZiCoffee.GUIs
 
         private void SettingLanguage()
         {
-            string cultureName = Properties.Settings.Default.CultureName;
+            string cultureName = Temple.CultureName;
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             ResourceManager rm = new ResourceManager("Zi.ZiCoffee.Engines.Lang.ResourceLang", typeof(FormProfile).Assembly);
         }

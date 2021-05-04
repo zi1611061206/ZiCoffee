@@ -88,7 +88,7 @@
   <ItemGroup>
     <Compile Include="Engines\Converter\DataTypeConverter.cs" />
     <Compile Include="Engines\TempleSetting\CultureDetail.cs" />
-    <Compile Include="Engines\TempleSetting\ObjectCompare.cs" />
+    <Compile Include="Engines\Compare\ObjectCompare.cs" />
     <Compile Include="Engines\TempleSetting\TempleSetting.cs" />
     <Compile Include="Engines\Theme\LightTheme.cs" />
     <Compile Include="Engines\Theme\DarkTheme.cs" />
@@ -646,13 +646,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Engines\Chater\" />
+    <Folder Include="Engines\Chatter\" />
     <Folder Include="Engines\Filters\" />
     <Folder Include="Engines\Logger\" />
     <Folder Include="Engines\Notifications\" />
     <Folder Include="Engines\OnlineLauncher\" />
     <Folder Include="Engines\Paginitions\" />
+    <Folder Include="Engines\Recommend\" />
     <Folder Include="Engines\SearchEngines\" />
+    <Folder Include="Engines\Sorter\" />
     <Folder Include="Engines\VirtualAssistant\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

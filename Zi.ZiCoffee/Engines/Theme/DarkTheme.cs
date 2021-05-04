@@ -35,6 +35,8 @@ namespace Zi.ZiCoffee.Engines.Theme
         public Color WinStateBack { get; set; }
         // Màu nền chung hiệu ứng highlight
         public Color HighlightEffectBack { get; set; }
+        // Màu nền ReadOnly TextBox
+        public Color ReadOnlyTextBoxBack { get; set; }
         #endregion
 
         #region ForeColor Attributes
@@ -57,6 +59,8 @@ namespace Zi.ZiCoffee.Engines.Theme
         public Color ErrorFore { get; set; }
         // Màu chữ cảnh báo
         public Color WarningFore { get; set; }
+        // Màu chữ ReadOnly TextBox
+        public Color ReadOnlyTextBoxFore { get; set; }
         #endregion
 
         public DarkTheme()
@@ -77,6 +81,8 @@ namespace Zi.ZiCoffee.Engines.Theme
             MaximizeBack = Color.FromArgb(255, 204, 0);
             CloseBack = Color.Red;
 
+            ReadOnlyTextBoxBack = SystemColors.ActiveCaption;
+
             MainFore = Color.White;
             HFFore = Color.White;
             PopupFore = Color.FromArgb(34, 36, 49);
@@ -88,6 +94,8 @@ namespace Zi.ZiCoffee.Engines.Theme
             SuccessFore = Color.FromArgb(0, 153, 51);
             ErrorFore = Color.Red;
             WarningFore = Color.FromArgb(255, 204, 0);
+
+            ReadOnlyTextBoxFore = Color.Blue;
         }
 
         public void SetTheme()
@@ -108,6 +116,8 @@ namespace Zi.ZiCoffee.Engines.Theme
             Properties.Settings.Default.MaximizeBack = MaximizeBack;
             Properties.Settings.Default.CloseBack = CloseBack;
 
+            Properties.Settings.Default.ReadOnlyTextBoxBack = ReadOnlyTextBoxBack;
+
             Properties.Settings.Default.MainFore = MainFore;
             Properties.Settings.Default.HFFore = HFFore;
             Properties.Settings.Default.PopupFore = PopupFore;
@@ -119,6 +129,8 @@ namespace Zi.ZiCoffee.Engines.Theme
             Properties.Settings.Default.SuccessFore = SuccessFore;
             Properties.Settings.Default.ErrorFore = ErrorFore;
             Properties.Settings.Default.WarningFore = WarningFore;
+
+            Properties.Settings.Default.ReadOnlyTextBoxFore = ReadOnlyTextBoxFore;
         }
     }
 }

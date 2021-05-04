@@ -13,9 +13,22 @@ namespace Zi.ZiCoffee.GUIs.CustomControls
 {
     public partial class CustomTextBox : UserControl
     {
+        public event EventHandler ZiClick;
+        public event EventHandler ZiKeyPress;
+
         public CustomTextBox()
         {
             InitializeComponent();
+        }
+
+        public virtual void TxbTextContent_Click(object sender, EventArgs e)
+        {
+            ZiClick?.Invoke(this, e);
+        }
+
+        public virtual void TxbTextContent_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            ZiKeyPress?.Invoke(this, e);
         }
 
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
@@ -47,21 +60,21 @@ namespace Zi.ZiCoffee.GUIs.CustomControls
 
         #region Design Attributes
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Label ZiLabel { get { return this.lbLabel; } set { value = this.lbLabel; } }
+        public Label ZiLabel { get { return lbLabel; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Panel ZiPanel { get { return this.pnlGroupBox; } set { value = this.pnlGroupBox; } }
+        public Panel ZiPanel { get { return pnlGroupBox; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public TextBox ZiTextBox { get { return this.txbTextContent; } set { value = this.txbTextContent; } }
+        public TextBox ZiTextBox { get { return txbTextContent; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Label ZiValidate { get { return this.lbValidator; } set { value = this.lbValidator; } }
+        public Label ZiValidate { get { return lbValidator; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Panel ZiTop { get { return this.pnlTop; } set { value = this.pnlTop; } }
+        public Panel ZiTop { get { return pnlTop; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Panel ZiBottom { get { return this.pnlBottom; } set { value = this.pnlBottom; } }
+        public Panel ZiBottom { get { return pnlBottom; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Panel ZiLeft { get { return this.pnlLeft; } set { value = this.pnlLeft; } }
+        public Panel ZiLeft { get { return pnlLeft; } set { } }
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Content)]
-        public Panel ZiRight { get { return this.pnlRight; } set { value = this.pnlRight; } }
+        public Panel ZiRight { get { return pnlRight; } set { } }
         #endregion
     }
 }

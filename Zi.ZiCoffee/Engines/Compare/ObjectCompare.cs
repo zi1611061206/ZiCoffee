@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.ZiCoffee.Engines.TempleSetting
+namespace Zi.ZiCoffee.Engines.Compare
 {
     public class ObjectCompare
     {
@@ -20,7 +20,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
         private ObjectCompare() { }
         #endregion
 
-        public bool IsModified(TempleSetting modifyObj, TempleSetting sourceObj)
+        public bool IsModified(object modifyObj, object sourceObj)
         {
             foreach (var prop1 in modifyObj.GetType().GetProperties())
             {

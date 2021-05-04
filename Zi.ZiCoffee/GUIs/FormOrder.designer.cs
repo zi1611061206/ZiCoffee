@@ -61,7 +61,6 @@
             // pnlFormOptions
             // 
             this.pnlFormOptions.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFormOptions.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlFormOptions.Controls.Add(this.lbCartAmount);
             this.pnlFormOptions.Controls.Add(this.txbTotal);
             this.pnlFormOptions.Controls.Add(this.picViewCart);
@@ -80,7 +79,7 @@
             this.lbCartAmount.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCartAmount.ForeColor = System.Drawing.Color.White;
             this.lbCartAmount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbCartAmount.Location = new System.Drawing.Point(765, 11);
+            this.lbCartAmount.Location = new System.Drawing.Point(767, 13);
             this.lbCartAmount.Name = "lbCartAmount";
             this.lbCartAmount.Size = new System.Drawing.Size(90, 35);
             this.lbCartAmount.TabIndex = 0;
@@ -96,7 +95,7 @@
             this.txbTotal.Cursor = System.Windows.Forms.Cursors.No;
             this.txbTotal.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTotal.ForeColor = System.Drawing.Color.Red;
-            this.txbTotal.Location = new System.Drawing.Point(495, 12);
+            this.txbTotal.Location = new System.Drawing.Point(497, 14);
             this.txbTotal.Name = "txbTotal";
             this.txbTotal.ReadOnly = true;
             this.txbTotal.Size = new System.Drawing.Size(223, 33);
@@ -112,7 +111,7 @@
             this.picViewCart.Cursor = System.Windows.Forms.Cursors.Hand;
             this.picViewCart.Image = ((System.Drawing.Image)(resources.GetObject("picViewCart.Image")));
             this.picViewCart.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.picViewCart.Location = new System.Drawing.Point(724, 11);
+            this.picViewCart.Location = new System.Drawing.Point(726, 13);
             this.picViewCart.Name = "picViewCart";
             this.picViewCart.Size = new System.Drawing.Size(35, 35);
             this.picViewCart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -131,7 +130,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnCancel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCancel.Location = new System.Drawing.Point(1037, 11);
+            this.btnCancel.Location = new System.Drawing.Point(1039, 13);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(170, 35);
             this.btnCancel.TabIndex = 3;
@@ -149,7 +148,7 @@
             this.btnCartConfirm.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
             this.btnCartConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.btnCartConfirm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCartConfirm.Location = new System.Drawing.Point(861, 11);
+            this.btnCartConfirm.Location = new System.Drawing.Point(863, 13);
             this.btnCartConfirm.Name = "btnCartConfirm";
             this.btnCartConfirm.Size = new System.Drawing.Size(170, 35);
             this.btnCartConfirm.TabIndex = 2;
@@ -279,7 +278,6 @@
             // fpnlCategories
             // 
             this.fpnlCategories.BackColor = System.Drawing.Color.Transparent;
-            this.fpnlCategories.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.fpnlCategories.Dock = System.Windows.Forms.DockStyle.Left;
             this.fpnlCategories.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.fpnlCategories.Location = new System.Drawing.Point(0, 35);
@@ -362,7 +360,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ctxbSearch.ZiTextBox.BackColor = System.Drawing.Color.White;
             this.ctxbSearch.ZiTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.ctxbSearch.ZiTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ctxbSearch.ZiTextBox.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ctxbSearch.ZiTextBox.ForeColor = System.Drawing.Color.Black;
             this.ctxbSearch.ZiTextBox.Location = new System.Drawing.Point(9, 18);
             this.ctxbSearch.ZiTextBox.Multiline = true;
@@ -392,6 +390,7 @@
             this.ctxbSearch.ZiValidate.TabIndex = 0;
             this.ctxbSearch.ZiValidate.Text = "Lỗi tìm kiếm";
             this.ctxbSearch.ZiValidate.Visible = false;
+            this.ctxbSearch.ZiClick += new System.EventHandler(this.CtxbSearch_ZiClick);
             // 
             // FormOrder
             // 

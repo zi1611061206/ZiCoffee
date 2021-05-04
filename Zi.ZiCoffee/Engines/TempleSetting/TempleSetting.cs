@@ -25,6 +25,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
         public bool IsNotification { get; set; }
         // Language
         public string CultureName { get; set; }
+        public string CurrencySymbol { get; set; }
         // Table
         public int TableItemWidth { get; set; }
         public int TableItemHeigh { get; set; }
@@ -71,6 +72,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
         public void GetCurrentLanguage()
         {
             CultureName = Properties.Settings.Default.CultureName;
+            CurrencySymbol = Properties.Settings.Default.CurrencySymbol;
         }
 
         public void GetCurrentSound()
@@ -108,6 +110,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
             Properties.Settings.Default.IsAppearance = IsAppearance;
             Properties.Settings.Default.IsNotification = IsNotification;
             Properties.Settings.Default.CultureName = CultureName;
+            Properties.Settings.Default.CurrencySymbol = CurrencySymbol;
             Properties.Settings.Default.TableItemWidth = TableItemWidth;
             Properties.Settings.Default.TableItemHeigh = TableItemHeigh;
             Properties.Settings.Default.TableItemTempBack = TableItemTempBack;
@@ -119,6 +122,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
             Properties.Settings.Default.ServiceItemDisabledBack = ServiceItemDisabledBack;
             Properties.Settings.Default.ServiceItemNameFore = ServiceItemNameFore;
             Properties.Settings.Default.ServiceItemPriceFore = ServiceItemPriceFore;
+            Properties.Settings.Default.Save();
             return true;
         }
 
@@ -143,6 +147,7 @@ namespace Zi.ZiCoffee.Engines.TempleSetting
             Properties.Settings.Default.IsNotification = true;
 
             Properties.Settings.Default.CultureName = "vi-VN";
+            Properties.Settings.Default.CurrencySymbol = "VNĐ";
 
             Properties.Settings.Default.TableItemWidth = 133;
             Properties.Settings.Default.TableItemHeigh = 133;
