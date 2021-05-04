@@ -1,0 +1,659 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{02B306EC-DFCF-4644-9296-DAED592B961F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Zi.ZiCoffee</RootNamespace>
+    <AssemblyName>Zi.ZiCoffee</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>Zi.ZiCoffee.Program</StartupObject>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1449.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Windows.Forms.DataVisualization.Design" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Engines\Converter\DataTypeConverter.cs" />
+    <Compile Include="Engines\TempleSetting\CultureDetail.cs" />
+    <Compile Include="Engines\TempleSetting\ObjectCompare.cs" />
+    <Compile Include="Engines\TempleSetting\TempleSetting.cs" />
+    <Compile Include="Engines\Theme\LightTheme.cs" />
+    <Compile Include="Engines\Theme\DarkTheme.cs" />
+    <Compile Include="GUIs\CustomControls\CustomTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\CustomTextBox.Designer.cs">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\CustomSquareIconButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\CustomSquareIconButton.Designer.cs">
+      <DependentUpon>CustomSquareIconButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\ItemCornerButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\ItemCornerPanel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\ItemCornerPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\CustomRoundIconButton.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\CustomRoundIconButton.Designer.cs">
+      <DependentUpon>CustomRoundIconButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\CustomControls\ItemRoundPicture.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormOrder.designer.cs">
+      <DependentUpon>FormOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormPay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormPay.designer.cs">
+      <DependentUpon>FormPay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormSetting.designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormSplash3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormSplash3.designer.cs">
+      <DependentUpon>FormSplash3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormMain.designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormProfile.designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormSplash.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormSplash.Designer.cs">
+      <DependentUpon>FormSplash.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormSplash2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormSplash2.Designer.cs">
+      <DependentUpon>FormSplash2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Engines\Lang\ResourceLang.Designer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Settings.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Engines\Validations\ChangePasswordValidator.cs" />
+    <Compile Include="Engines\Validations\LoginValidator.cs" />
+    <EmbeddedResource Include="GUIs\CustomControls\CustomTextBox.resx">
+      <DependentUpon>CustomTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\CustomControls\CustomSquareIconButton.resx">
+      <DependentUpon>CustomSquareIconButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\CustomControls\CustomRoundIconButton.resx">
+      <DependentUpon>CustomRoundIconButton.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormOrder.resx">
+      <DependentUpon>FormOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormPay.resx">
+      <DependentUpon>FormPay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormSplash3.resx">
+      <DependentUpon>FormSplash3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormMain.kl-GL.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormMain.vi-VN.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormMain.vi.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormSplash.resx">
+      <DependentUpon>FormSplash.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormSplash2.resx">
+      <DependentUpon>FormSplash2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Engines\Lang\ResourceLang.en-US.resx" />
+    <EmbeddedResource Include="Engines\Lang\ResourceLang.resx" />
+    <EmbeddedResource Include="Engines\Lang\ResourceLang.vi-VN.resx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accountclue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\accountwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\address.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\b4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bank.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bartender2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bellblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BlueCart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btndelete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnedit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnnew.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\btnreload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calculatorwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\categorywhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\closewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\contactwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drinkswhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\drop-down-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\email.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\en.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\facebook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fb.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fullscreenwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\funnel.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\g+.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\google-plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\information.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\initialize.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\instagram.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\internetwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left-chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoinmain.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logoutwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\login1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\managerblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\managerwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\maximizeWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\menuwhite1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microphoneblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\microphonegreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimizeWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minimum.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\new-file1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no_image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Noavatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\normal-screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\paint-brush %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\password1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\play-next-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\positionwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\preparetionwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\previous-track.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\printerwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profilewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\phone.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\reload.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\remove-button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\revenuewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-chevron.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\robotblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\robotgreen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchblack.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\searchwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\settings1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shortcutblue.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\shortcutwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\staffwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\supplierwhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\support.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\table1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tablewhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\vi.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\whitecart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\www.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtube.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\youtubev.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zi.DataAccessLayer\Zi.DataAccessLayer.csproj">
+      <Project>{2b862ff3-3cf3-40cc-8fc3-2c33820b1c08}</Project>
+      <Name>Zi.DataAccessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Zi.DataTransferLayer\Zi.DataTransferLayer.csproj">
+      <Project>{8d890f87-8e67-430a-a496-d65442440c01}</Project>
+      <Name>Zi.DataTransferLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AnhTaBoEmRoiSoundtrack.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clickError.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clickOK.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\intro.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LangQuenChieuThuSoundtrack.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\open.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\talk.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unnamed1.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\unnamed2.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\businessman.png" />
+    <None Include="Resources\settings2.png" />
+    <None Include="Resources\maze.png" />
+    <None Include="Resources\resume.png" />
+    <None Include="Resources\logout.png" />
+    <None Include="Resources\refresh.png" />
+    <None Include="Resources\right.png" />
+    <None Include="Resources\left1.png" />
+    <None Include="Resources\minimize.png" />
+    <None Include="Resources\collapsing.png" />
+    <None Include="Resources\full-screen.png" />
+    <None Include="Resources\close2.png" />
+    <None Include="Resources\minimize1.png" />
+    <None Include="Resources\ZiBlackLock.png" />
+    <None Include="Resources\ZiWhiteHidePass.png" />
+    <None Include="Resources\ZiBlackHidePass.png" />
+    <None Include="Resources\ZiWhiteShowPass.png" />
+    <None Include="Resources\ZiBlackShowPass.png" />
+    <None Include="Resources\ZiEffectUser.png" />
+    <None Include="Resources\ZiWhiteUser.png" />
+    <None Include="Resources\ZiBlackUser.png" />
+    <None Include="Resources\ZiEffectLock.png" />
+    <None Include="Resources\ZiWhiteLock.png" />
+    <None Include="Resources\ZiBlueGroupBox.png" />
+    <None Include="Resources\ZiBlueGrBox.png" />
+    <None Include="Resources\ZiSplashBackground.png" />
+    <None Include="Resources\ZiSplashBackground2.png" />
+    <None Include="Resources\ZiSplashBackground3.png" />
+    <None Include="Resources\ZiSplashBackground4.png" />
+    <None Include="Resources\ZiSplashBackground5.png" />
+    <None Include="Resources\ZiDarkThemeSample.PNG" />
+    <None Include="Resources\ZiDarkThemeSample1.PNG" />
+    <None Include="Resources\ZiLightThemeSample.PNG" />
+    <None Include="Resources\businessman1.png" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engines\Chater\" />
+    <Folder Include="Engines\Filters\" />
+    <Folder Include="Engines\Logger\" />
+    <Folder Include="Engines\Notifications\" />
+    <Folder Include="Engines\OnlineLauncher\" />
+    <Folder Include="Engines\Paginitions\" />
+    <Folder Include="Engines\SearchEngines\" />
+    <Folder Include="Engines\VirtualAssistant\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

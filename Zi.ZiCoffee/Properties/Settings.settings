@@ -1,0 +1,211 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Zi.ZiCoffee.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="QLCFConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=.\sqlexpress;Initial Catalog=QLCF;Integrated Security=True&lt;/ConnectionString&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=.\sqlexpress;Initial Catalog=QLCF;Integrated Security=True</Value>
+    </Setting>
+    <Setting Name="IsGreeting" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsBye" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsSoundTrack" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsClick" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsAppearance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="IsNotification" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="companyIntroduce" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ZiTechDev Chuyên cung cấp các giải pháp và phát triển phần mềm.</Value>
+    </Setting>
+    <Setting Name="companyAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">21Bis Điện Biên Phủ - Phường 25 - Quận Bình Thạnh - Thành phố Hồ Chí Minh - Việt Nam</Value>
+    </Setting>
+    <Setting Name="companyAddressBill1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">21Bis Điện Biên Phủ - Phường 25</Value>
+    </Setting>
+    <Setting Name="companyPhone1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(+84) 943 144 178</Value>
+    </Setting>
+    <Setting Name="companyPhone2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(+84) 382 663 470</Value>
+    </Setting>
+    <Setting Name="companyEmail1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zitech.dev@gmail.com</Value>
+    </Setting>
+    <Setting Name="companyEmail2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">sotayvaodoi@gmail.com</Value>
+    </Setting>
+    <Setting Name="companyBank1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">7410 852 9630 000 - Nguyễn Ngọc Hiếu - Chi nhánh TechComBank Bình Thạnh</Value>
+    </Setting>
+    <Setting Name="companyBank2" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="linkFacebook" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.facebook.com/zitech.dev/</Value>
+    </Setting>
+    <Setting Name="linkYoutube" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.youtube.com/channel/UCwmKzLFHfs79flAnrHRptdA</Value>
+    </Setting>
+    <Setting Name="linkWebsite" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://zitechdev.com/</Value>
+    </Setting>
+    <Setting Name="linkInstagram" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="linkGooglePlus" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ipAdress" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServiceItemWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">163</Value>
+    </Setting>
+    <Setting Name="ServiceItemHeigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">210</Value>
+    </Setting>
+    <Setting Name="TableItemWidth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">133</Value>
+    </Setting>
+    <Setting Name="TableItemHeigh" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">133</Value>
+    </Setting>
+    <Setting Name="SpeakerVolumn" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="SpeakerRate" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Goodbye" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Goodbye, See you later!</Value>
+    </Setting>
+    <Setting Name="Welcome" Type="System.String" Scope="User">
+      <Value Profile="(Default)">"Welcome to Coffee Shop Managerment. How are you ,today?"</Value>
+    </Setting>
+    <Setting Name="companyAddressBill2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Q.Bình Thạnh - TP.HCM - Việt Nam</Value>
+    </Setting>
+    <Setting Name="currencySymbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)">VND</Value>
+    </Setting>
+    <Setting Name="CultureName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">vi-VN</Value>
+    </Setting>
+    <Setting Name="MainBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HFBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PopupBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ContentBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ButtonBackNoBorder" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DisabledBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MainFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HFFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="PopupFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ContentFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ButtonForeNoBorder" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SuccessFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ErrorFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WarningFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IsDarkTheme" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MinimizeBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="MaximizeBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CloseBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="IsLightTheme" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ButtonBackBorder" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ButtonForeBorder" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WinStateBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="HighlightEffectBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DisabledFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ButtonBackNavHover" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ButtonBackBlueHover" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TableItemTempBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 168, 255</Value>
+    </Setting>
+    <Setting Name="TableItemFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="ServiceItemEnabledBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Yellow</Value>
+    </Setting>
+    <Setting Name="ServiceItemNameFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Green</Value>
+    </Setting>
+    <Setting Name="TableItemUsingBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Orange</Value>
+    </Setting>
+    <Setting Name="ServiceItemDisabledBack" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gray</Value>
+    </Setting>
+    <Setting Name="ServiceItemPriceFore" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="SplashId" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

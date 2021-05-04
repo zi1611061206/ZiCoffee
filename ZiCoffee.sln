@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.ZiCoffee", "Zi.ZiCoffee\Zi.ZiCoffee.csproj", "{02B306EC-DFCF-4644-9296-DAED592B961F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.DatabaseGeneration", "Zi.DatabaseGeneration\Zi.DatabaseGeneration.csproj", "{CAB75FF8-4620-4346-81E7-64044AE36870}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.DataAccessLayer", "Zi.DataAccessLayer\Zi.DataAccessLayer.csproj", "{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.DataTransferLayer", "Zi.DataTransferLayer\Zi.DataTransferLayer.csproj", "{8D890F87-8E67-430A-A496-D65442440C01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. DataComunicator", "2. DataComunicator", "{9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. DataManager", "1. DataManager", "{2EE16CCE-F301-4A63-80EE-EE8F5B7D2EF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. UserInterface", "3. UserInterface", "{80E99F62-5C89-4609-8424-E1E965EB0C71}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{02B306EC-DFCF-4644-9296-DAED592B961F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02B306EC-DFCF-4644-9296-DAED592B961F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02B306EC-DFCF-4644-9296-DAED592B961F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02B306EC-DFCF-4644-9296-DAED592B961F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CAB75FF8-4620-4346-81E7-64044AE36870}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CAB75FF8-4620-4346-81E7-64044AE36870}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CAB75FF8-4620-4346-81E7-64044AE36870}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CAB75FF8-4620-4346-81E7-64044AE36870}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D890F87-8E67-430A-A496-D65442440C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D890F87-8E67-430A-A496-D65442440C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D890F87-8E67-430A-A496-D65442440C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D890F87-8E67-430A-A496-D65442440C01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02B306EC-DFCF-4644-9296-DAED592B961F} = {80E99F62-5C89-4609-8424-E1E965EB0C71}
+		{CAB75FF8-4620-4346-81E7-64044AE36870} = {2EE16CCE-F301-4A63-80EE-EE8F5B7D2EF3}
+		{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08} = {9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}
+		{8D890F87-8E67-430A-A496-D65442440C01} = {9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8762CEC3-14F3-4185-8C48-289E6603B93D}
+	EndGlobalSection
+EndGlobal
