@@ -9,28 +9,25 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class StockReceiptNote
     {
-        private int noteId;
-        private int supplierId;
-        private DateTime createdDate;
-
-        public int NoteId { get => noteId; set => noteId = value; }
-        public int SupplierId { get => supplierId; set => supplierId = value; }
-        public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
+        public int NoteId { get; set; }
+        public int SupplierId { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public StockReceiptNote(int noteId, int supplierId, DateTime createdDate)
         {
-            this.NoteId = noteId;
-            this.SupplierId = supplierId;
-            this.CreatedDate = createdDate;
+            NoteId = noteId;
+            SupplierId = supplierId;
+            CreatedDate = createdDate;
         }
 
         public StockReceiptNote(DataRow row)
         {
-            this.NoteId = (int)row["MaPhieu"];
-            this.SupplierId = (int)row["MaNhaCungCap"];
-            DateTime result;
-            if (DateTime.TryParse(row["Ngay"].ToString(), out result))
-                this.CreatedDate = result;
+            NoteId = (int)row["MaPhieu"];
+            SupplierId = (int)row["MaNhaCungCap"];
+            if (DateTime.TryParse(row["Ngay"].ToString(), out DateTime result))
+            {
+                CreatedDate = result;
+            }
         }
     }
 }

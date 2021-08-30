@@ -10,26 +10,22 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class DiscountNote
     {
-        private int discountNoteId;
-        private int programId;
-        private DiscountNoteStatus status;
-
-        public int DiscountNoteId { get => discountNoteId; set => discountNoteId = value; }
-        public int ProgramId { get => programId; set => programId = value; }
-        public DiscountNoteStatus Status { get => status; set => status = value; }
+        public int DiscountNoteId { get; set; }
+        public int ProgramId { get; set; }
+        public DiscountNoteStatus Status { get; set; }
 
         public DiscountNote(int discountNoteId, int programId, DiscountNoteStatus status)
         {
-            this.DiscountNoteId = discountNoteId;
-            this.ProgramId = programId;
-            this.Status = status;
+            DiscountNoteId = discountNoteId;
+            ProgramId = programId;
+            Status = status;
         }
 
         public DiscountNote(DataRow row)
         {
-            this.DiscountNoteId = (int)row["MaPhieu"];
-            this.ProgramId = (int)row["MaChuongTrinh"];
-            this.Status = (DiscountNoteStatus)Enum.Parse(typeof(DiscountNoteStatus), row["TrangThai"].ToString(), true);
+            DiscountNoteId = (int)row["MaPhieu"];
+            ProgramId = (int)row["MaChuongTrinh"];
+            Status = (DiscountNoteStatus)Enum.Parse(typeof(DiscountNoteStatus), row["TrangThai"].ToString(), true);
         }
     }
 }

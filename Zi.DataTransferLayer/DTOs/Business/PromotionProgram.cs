@@ -9,23 +9,14 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class PromotionProgram
     {
-        private int promotionProgramId;
-        private string content;
-        private float value;
-        private DateTime createdDate;
-        private DateTime startDate;
-        private DateTime endDate;
-        private float minimumCondition;
-        private int typeId;
-
-        public int PromotionProgramId { get => promotionProgramId; set => promotionProgramId = value; }
-        public string Content { get => content; set => content = value; }
-        public float Value { get => value; set => this.value = value; }
-        public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
-        public DateTime StartDate { get => startDate; set => startDate = value; }
-        public DateTime EndDate { get => endDate; set => endDate = value; }
-        public float MinimumCondition { get => minimumCondition; set => minimumCondition = value; }
-        public int TypeId { get => typeId; set => typeId = value; }
+        public int PromotionProgramId { get; set; }
+        public string Content { get; set; }
+        public float Value { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public float MinimumCondition { get; set; }
+        public int TypeId { get; set; }
 
         public PromotionProgram(int promotionProgramId, string content, float value, DateTime createdDate, DateTime startDate, DateTime endDate, float minimumCondition, int typeId)
         {
@@ -44,15 +35,18 @@ namespace Zi.DataTransferLayer.DTOs
             PromotionProgramId = (int)row["MaChuongTrinh"];
             Content = row["NoiDung"].ToString();
             Value = float.Parse(row["GiaTri"].ToString());
-            DateTime result;
-            if (DateTime.TryParse(row["NgayLap"].ToString(), out result))
+            if (DateTime.TryParse(row["NgayLap"].ToString(), out DateTime result))
+            {
                 CreatedDate = result;
-            DateTime result1;
-            if (DateTime.TryParse(row["NgayBatDau"].ToString(), out result1))
+            }
+            if (DateTime.TryParse(row["NgayBatDau"].ToString(), out DateTime result1))
+            {
                 StartDate = result1;
-            DateTime result2;
-            if (DateTime.TryParse(row["NgayKetThuc"].ToString(), out result2))
+            }
+            if (DateTime.TryParse(row["NgayKetThuc"].ToString(), out DateTime result2))
+            {
                 EndDate = result2;
+            }
             MinimumCondition = float.Parse(row["DieuKienToiThieu"].ToString());
             TypeId = (int)row["MaLoai"];
         }

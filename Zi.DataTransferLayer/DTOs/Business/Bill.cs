@@ -10,25 +10,15 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Bill
     {
-        private int billId;
-        private DateTime createdDate;
-        private BillStatus payStatus;
-        private float realPay;
-        private float vat;
-        private int discountNoteId;
-        private int promotionProgramId;
-        private float total;
-        private float afterVAT;
-
-        public int BillId { get => billId; set => billId = value; }
-        public DateTime CreatedDate { get => createdDate; set => createdDate = value; }
-        public BillStatus PayStatus { get => payStatus; set => payStatus = value; }
-        public float RealPay { get => realPay; set => realPay = value; }
-        public float Vat { get => vat; set => vat = value; }
-        public int DiscountNoteId { get => discountNoteId; set => discountNoteId = value; }
-        public int PromotionProgramId { get => promotionProgramId; set => promotionProgramId = value; }
-        public float Total { get => total; set => total = value; }
-        public float AfterVAT { get => afterVAT; set => afterVAT = value; }
+        public int BillId { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public BillStatus PayStatus { get; set; }
+        public float RealPay { get; set; }
+        public float Vat { get; set; }
+        public int DiscountNoteId { get; set; }
+        public int PromotionProgramId { get; set; }
+        public float Total { get; set; }
+        public float AfterVAT { get; set; }
 
         public Bill()
         {
@@ -37,42 +27,43 @@ namespace Zi.DataTransferLayer.DTOs
 
         public Bill(int billId, DateTime createdDate, BillStatus payStatus, float realPay, float vat, int discountNoteId, int promotionProgramId, float total, float afterVAT)
         {
-            this.BillId = billId;
-            this.CreatedDate = createdDate;
-            this.PayStatus = payStatus;
-            this.RealPay = realPay;
-            this.Vat = vat;
-            this.DiscountNoteId = discountNoteId;
-            this.PromotionProgramId = promotionProgramId;
-            this.Total = total;
-            this.AfterVAT = afterVAT;
+            BillId = billId;
+            CreatedDate = createdDate;
+            PayStatus = payStatus;
+            RealPay = realPay;
+            Vat = vat;
+            DiscountNoteId = discountNoteId;
+            PromotionProgramId = promotionProgramId;
+            Total = total;
+            AfterVAT = afterVAT;
         }
 
         public Bill(DataRow row)
         {
-            this.BillId = (int)row["MaHoaDon"];
-            DateTime result;
-            if (DateTime.TryParse(row["NgayLap"].ToString(), out result))
-                this.CreatedDate = result;
+            BillId = (int)row["MaHoaDon"];
+            if (DateTime.TryParse(row["NgayLap"].ToString(), out DateTime result))
+            {
+                CreatedDate = result;
+            }
             int status = Convert.ToInt32(row["TrangThaiThanhToan"]);
-            this.PayStatus = (BillStatus) status;
-            this.RealPay = float.Parse(row["ThucThu"].ToString());
-            this.Vat = float.Parse(row["Vat"].ToString());
+            PayStatus = (BillStatus) status;
+            RealPay = float.Parse(row["ThucThu"].ToString());
+            Vat = float.Parse(row["Vat"].ToString());
 
             string noteId = row["MaPhieuGiamGia"].ToString();
-            if (!String.IsNullOrEmpty(noteId))
+            if (!string.IsNullOrEmpty(noteId))
             {
-                this.DiscountNoteId = (int)row["MaPhieuGiamGia"];
+                DiscountNoteId = (int)row["MaPhieuGiamGia"];
             }
 
             string programId = row["MaChuongTrinhKhuyenMai"].ToString();
-            if (!String.IsNullOrEmpty(programId))
+            if (!string.IsNullOrEmpty(programId))
             {
-                this.PromotionProgramId = (int)row["MaChuongTrinhKhuyenMai"];
+                PromotionProgramId = (int)row["MaChuongTrinhKhuyenMai"];
             }
 
-            this.Total = float.Parse(row["ThanhTien"].ToString());
-            this.AfterVAT = float.Parse(row["GiaTriSauThue"].ToString());
+            Total = float.Parse(row["ThanhTien"].ToString());
+            AfterVAT = float.Parse(row["GiaTriSauThue"].ToString());
         }
     }
 }

@@ -9,11 +9,8 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Area
     {
-        private int areaId;
-        private string areaName;
-
-        public int AreaId { get => areaId; set => areaId = value; }
-        public string AreaName { get => areaName; set => areaName = value; }
+        public int AreaId { get; set; }
+        public string AreaName { get; set; }
 
         public Area(int areaId, string areaName)
         {

@@ -9,13 +9,9 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class BartenderRecipe
     {
-        private int serviceId;
-        private int materialId;
-        private float quantity;
-
-        public int ServiceId { get => serviceId; set => serviceId = value; }
-        public int MaterialId { get => materialId; set => materialId = value; }
-        public float Quantity { get => quantity; set => quantity = value; }
+        public int ServiceId { get; set; }
+        public int MaterialId { get; set; }
+        public float Quantity { get; set; }
 
         public BartenderRecipe(int serviceId, int materialId, float quantity)
         {

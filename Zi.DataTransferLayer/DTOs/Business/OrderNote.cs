@@ -9,15 +9,10 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class OrderNote
     {
-        private int orderNoteId;
-        private int tableId;
-        private int billId;
-        private string username;
-
-        public int OrderNoteId { get => orderNoteId; set => orderNoteId = value; }
-        public int TableId { get => tableId; set => tableId = value; }
-        public int BillId { get => billId; set => billId = value; }
-        public string Username { get => username; set => username = value; }
+        public int OrderNoteId { get; set; }
+        public int TableId { get; set; }
+        public int BillId { get; set; }
+        public string Username { get; set; }
 
         public OrderNote(int tableId, int billId, string username)
         {

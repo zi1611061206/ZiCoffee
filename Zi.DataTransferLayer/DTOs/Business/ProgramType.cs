@@ -9,11 +9,8 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class ProgramType
     {
-        private int typeId;
-        private string typeName;
-
-        public int TypeId { get => typeId; set => typeId = value; }
-        public string TypeName { get => typeName; set => typeName = value; }
+        public int TypeId { get; set; }
+        public string TypeName { get; set; }
 
         public ProgramType(int typeId, string typeName)
         {

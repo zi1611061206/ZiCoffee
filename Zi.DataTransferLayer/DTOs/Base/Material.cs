@@ -9,30 +9,25 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Material
     {
-        private int materialId;
-        private string materialName;
-        private int stockAmount;
-        private string unit;
-
-        public int MaterialId { get => materialId; set => materialId = value; }
-        public string MaterialName { get => materialName; set => materialName = value; }
-        public int StockAmount { get => stockAmount; set => stockAmount = value; }
-        public string Unit { get => unit; set => unit = value; }
+        public int MaterialId { get; set; }
+        public string MaterialName { get; set; }
+        public int StockAmount { get; set; }
+        public string Unit { get; set; }
 
         public Material(int materialId, string materialName, int stockAmount, string unit)
         {
-            this.MaterialId = materialId;
-            this.MaterialName = materialName;
-            this.StockAmount = stockAmount;
-            this.Unit = unit;
+            MaterialId = materialId;
+            MaterialName = materialName;
+            StockAmount = stockAmount;
+            Unit = unit;
         }
 
         public Material(DataRow row)
         {
-            materialId = (int)row["MaNguyenLieu"];
-            materialName = row["TenNguyenLieu"].ToString();
-            stockAmount = (int)row["SoLuongTon"];
-            unit = row["DonViTinh"].ToString();
+            MaterialId = (int)row["MaNguyenLieu"];
+            MaterialName = row["TenNguyenLieu"].ToString();
+            StockAmount = (int)row["SoLuongTon"];
+            Unit = row["DonViTinh"].ToString();
         }
     }
 }

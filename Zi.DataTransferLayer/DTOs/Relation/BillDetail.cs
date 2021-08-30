@@ -9,29 +9,24 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class BillDetail
     {
-        private int billId;
-        private int serviceId;
-        private int amount;
-        private float total;
-
-        public int BillId { get => billId; set => billId = value; }
-        public int ServiceId { get => serviceId; set => serviceId = value; }
-        public int Amount { get => amount; set => amount = value; }
-        public float Total { get => total; set => total = value; }
+        public int BillId { get; set; }
+        public int ServiceId { get; set; }
+        public int Amount { get; set; }
+        public float Total { get; set; }
 
         public BillDetail(int billId, int serviceId, int amount)
         {
-            this.BillId = billId;
-            this.ServiceId = serviceId;
-            this.Amount = amount;
+            BillId = billId;
+            ServiceId = serviceId;
+            Amount = amount;
         }
 
         public BillDetail(int billId, int serviceId, int amount, float total)
         {
-            this.BillId = billId;
-            this.ServiceId = serviceId;
-            this.Amount = amount;
-            this.Total = total;
+            BillId = billId;
+            ServiceId = serviceId;
+            Amount = amount;
+            Total = total;
         }
 
         public BillDetail(DataRow row)

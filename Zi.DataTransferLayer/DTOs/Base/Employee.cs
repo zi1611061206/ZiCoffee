@@ -6,45 +6,33 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Employee
     {
-        private int employeeId;
-        private string firstName;
-        private string middleName;
-        private string lastName;
-        private string employeeAddress;
-        private string employeePhone;
-        private DateTime dateOfBirth;
-        private GenderType sex;
-        private string citizenId;
-        private byte[] avatar;
-        private int positionId;
+        public int EmployeeId { get; set; }
+        public string FirstName { get; set; }
+        public string MiddleName { get; set; }
+        public string LastName { get; set; }
+        public string EmployeeAddress { get; set; }
+        public string EmployeePhone { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public GenderType Sex { get; set; }
+        public string CitizenId { get; set; }
+        public byte[] Avatar { get; set; }
+        public int PositionId { get; set; }
 
-        public int EmployeeId { get => employeeId; set => employeeId = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public string MiddleName { get => middleName; set => middleName = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string EmployeeAddress { get => employeeAddress; set => employeeAddress = value; }
-        public string EmployeePhone { get => employeePhone; set => employeePhone = value; }
-        public DateTime DateOfBirth { get => dateOfBirth; set => dateOfBirth = value; }
-        public GenderType Sex { get => sex; set => sex = value; }
-        public string CitizenId { get => citizenId; set => citizenId = value; }
-        public byte[] Avatar { get => avatar; set => avatar = value; }
-        public int PositionId { get => positionId; set => positionId = value; }
-
-        public string fullInfo => $"{employeeId} - {firstName} {middleName} {lastName} - {citizenId}";
+        public string FullInfo { get { return $"{EmployeeId} - {FirstName} {MiddleName} {LastName} - {CitizenId}"; } }
 
         public Employee(int employeeId, string firstName, string middleName, string lastName, string employeeAddress, string employeePhone, DateTime dateOfBirth, GenderType sex, string citizenId, byte[] avatar, int positionId)
         {
-            this.EmployeeId = employeeId;
-            this.FirstName = firstName;
-            this.MiddleName = middleName;
-            this.LastName = lastName;
-            this.EmployeeAddress = employeeAddress;
-            this.EmployeePhone = employeePhone;
-            this.DateOfBirth = dateOfBirth;
-            this.Sex = sex;
-            this.CitizenId = citizenId;
-            this.Avatar = avatar;
-            this.PositionId = positionId;
+            EmployeeId = employeeId;
+            FirstName = firstName;
+            MiddleName = middleName;
+            LastName = lastName;
+            EmployeeAddress = employeeAddress;
+            EmployeePhone = employeePhone;
+            DateOfBirth = dateOfBirth;
+            Sex = sex;
+            CitizenId = citizenId;
+            Avatar = avatar;
+            PositionId = positionId;
         }
 
         public Employee(DataRow row)
@@ -55,11 +43,12 @@ namespace Zi.DataTransferLayer.DTOs
             LastName = row["Ten"].ToString();
             EmployeeAddress = row["DiaChi"].ToString();
             EmployeePhone = row["SoDienThoai"].ToString();
-            DateTime result;
-            if (DateTime.TryParse(row["NgaySinh"].ToString(), out result))
+            if (DateTime.TryParse(row["NgaySinh"].ToString(), out DateTime result))
+            {
                 DateOfBirth = result;
+            }
             int gender = Convert.ToInt32(row["GioiTinh"]);
-            Sex = (GenderType) gender;
+            Sex = (GenderType)gender;
             CitizenId = row["ChungMinhNhanDan"].ToString();
             Avatar = (byte[])row["AnhDaiDien"];
             PositionId = (int)row["MaChucVu"];

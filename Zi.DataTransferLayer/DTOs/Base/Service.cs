@@ -10,21 +10,13 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Service
     {
-        private int serviceId;
-        private int categoryId;
-        private string serviceName;
-        private byte[] image;
-        private float price;
-        private ServiceStatus usedStatus;
-        private string description;
-
-        public int ServiceId { get => serviceId; set => serviceId = value; }
-        public int CategoryId { get => categoryId; set => categoryId = value; }
-        public string ServiceName { get => serviceName; set => serviceName = value; }
-        public byte[] Image { get => image; set => image = value; }
-        public float Price { get => price; set => price = value; }
-        public ServiceStatus UsedStatus { get => usedStatus; set => usedStatus = value; }
-        public string Description { get => description; set => description = value; }
+        public int ServiceId { get; set; }
+        public int CategoryId { get; set; }
+        public string ServiceName { get; set; }
+        public byte[] Image { get; set; }
+        public float Price { get; set; }
+        public ServiceStatus UsedStatus { get; set; }
+        public string Description { get; set; }
 
         public Service(int serviceId, int categoryId, string serviceName, byte[] image, float price, ServiceStatus usedStatus, string description)
         {

@@ -10,24 +10,19 @@ namespace Zi.DataTransferLayer.DTOs
 {
     public class Table
     {
-        private int tableId;
-        private int areaId;
-        private string tableName;
-        private TableStatus usedStatus;
+        public int TableId { get; set; }
+        public int AreaId { get; set; }
+        public string TableName { get; set; }
+        public TableStatus UsedStatus { get; set; }
 
-        public int TableId { get => tableId; set => tableId = value; }
-        public int AreaId { get => areaId; set => areaId = value; }
-        public string TableName { get => tableName; set => tableName = value; }
-        public TableStatus UsedStatus { get => usedStatus; set => usedStatus = value; }
-
-        public string fullName => $"{TableName} - khu vực: {AreaId}";
+        public string FullName { get { return $"{TableName} - khu vực: {AreaId}"; } }
 
         public Table(int tableId, int areaId, string tableName, TableStatus usedStatus)
         {
-            this.TableId = tableId;
-            this.AreaId = areaId;
-            this.TableName = tableName;
-            this.UsedStatus = usedStatus;
+            TableId = tableId;
+            AreaId = areaId;
+            TableName = tableName;
+            UsedStatus = usedStatus;
         }
 
         public Table(DataRow row)
