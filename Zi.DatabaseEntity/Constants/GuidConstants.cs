@@ -232,5 +232,20 @@ namespace Zi.DatabaseEntity.Constants
         public const string MaterialId31 = "C7AFFBD2-7A9D-44B5-90DF-268D2D0B97D6";
         public const string MaterialId32 = "20DFF57A-7759-4211-B33D-A93A8C578713";
         #endregion
+
+        #region // Promotion Type Id List
+        public const string PromotionTypeId1 = "B873B926-164C-43C5-9727-202D31B95BBE";
+        public const string PromotionTypeId2 = "2EB07D47-3D78-4293-B70B-3041672D3F59";
+        public const string PromotionTypeId3 = "5AF6ADF1-EEBB-4B84-8FAB-3AC67E13052A";
+        public const string PromotionTypeId4 = "E76B45E7-F455-43F8-A462-390747BB2388";
+        public const string PromotionTypeId5 = "900E14E3-72B1-4329-AB56-329587CC623A";
+        #endregion
+
+        #region // Promotion Id List
+        public const string PromotionId1 = "AF5458B3-9BE0-4F53-A291-5979F95A194E";
+        public const string PromotionId2 = "FBBCBF49-7575-44FF-A59A-3B45F03570E4";
+        public const string PromotionId3 = "B37A46B3-7BDD-4FE0-B3CA-F19921F87B12";
+        public const string PromotionId4 = "33F609D1-D99E-4568-8AE2-6CD6777DFF80";
+        #endregion
     }
 }

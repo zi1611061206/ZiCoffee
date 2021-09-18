@@ -115,9 +115,12 @@
     <Compile Include="Seeders\CategorySeeder.cs" />
     <Compile Include="Seeders\MaterialSeeder.cs" />
     <Compile Include="Seeders\ProductSeeder.cs" />
+    <Compile Include="Seeders\PromotionSeeder.cs" />
+    <Compile Include="Seeders\PromotionTypeSeeder.cs" />
     <Compile Include="Seeders\RoleSeeder.cs" />
     <Compile Include="Seeders\SupplierSeeder.cs" />
     <Compile Include="Seeders\TableSeeder.cs" />
+    <Compile Include="Seeders\UserRoleSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
     <Compile Include="ZiDbContext.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

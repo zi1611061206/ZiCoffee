@@ -23,6 +23,20 @@
             try
             {
                 new UserSeeder(context);
+                new RoleSeeder(context);
+                new UserRoleSeeder(context);
+
+                new AreaSeeder(context);
+                new TableSeeder(context);
+
+                new CategorySeeder(context);
+                new ProductSeeder(context);
+
+                new SupplierSeeder(context);
+                new MaterialSeeder(context);
+
+                new PromotionTypeSeeder(context);
+                new PromotionSeeder(context);
                 base.Seed(context);
             }
             catch (DbEntityValidationException e)
