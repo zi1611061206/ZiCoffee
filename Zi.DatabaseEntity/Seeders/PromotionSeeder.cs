@@ -18,7 +18,7 @@ namespace Zi.DatabaseEntity.Seeders
             #region // Discount
             promotions.Add(new Promotion() { 
                 PromotionId = Guid.Parse(GuidConstants.PromotionId1),
-                Description = DateTime.Now.Month + " Sale",
+                Description = DateTime.Now.ToString("MMMM") + " Sale",
                 IsActived = PromotionActived.NotActivated,
                 IsAutoApply = PromotionAutoApply.Auto,
                 IsPercent = PromotionPercent.Percent,
@@ -88,7 +88,7 @@ namespace Zi.DatabaseEntity.Seeders
             string codeList = string.Empty;
             for(int i = 0; i < quantity; i++)
             {
-                string guidString = new Guid().ToString().Replace("-", "");
+                string guidString = Guid.NewGuid().ToString().Replace("-", "");
                 if (i != quantity - 1)
                 {
                     codeList += guidString + ",";
