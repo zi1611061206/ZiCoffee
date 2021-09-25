@@ -10,7 +10,7 @@ namespace Zi.DatabaseEntity.Entities
     {
         public Guid AreaId { get; set; }
         public string Name { get; set; }
-        public Guid? ParentId { get; set; }
+        public string ParentId { get; set; }
 
         //FK 1-n
         public ICollection<Table> Tables { get; set; }
