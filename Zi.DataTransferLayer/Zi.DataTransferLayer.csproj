@@ -46,29 +46,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\Base\Account.cs" />
-    <Compile Include="DTOs\Base\Area.cs" />
-    <Compile Include="DTOs\Relation\BartenderRecipe.cs" />
-    <Compile Include="DTOs\Business\Bill.cs" />
-    <Compile Include="DTOs\Relation\BillDetail.cs" />
-    <Compile Include="DTOs\Base\Category.cs" />
-    <Compile Include="DTOs\Business\DiscountNote.cs" />
-    <Compile Include="DTOs\Relation\StockReceiptDetail.cs" />
-    <Compile Include="DTOs\Business\StockReceiptNote.cs" />
-    <Compile Include="DTOs\Business\OrderNote.cs" />
-    <Compile Include="DTOs\Business\ProgramType.cs" />
-    <Compile Include="DTOs\Business\PromotionProgram.cs" />
-    <Compile Include="DTOs\Base\Service.cs" />
-    <Compile Include="DTOs\Base\Employee.cs" />
-    <Compile Include="DTOs\Base\Material.cs" />
-    <Compile Include="DTOs\Base\Position.cs" />
-    <Compile Include="DTOs\Base\Supplier.cs" />
-    <Compile Include="DTOs\Base\Table.cs" />
-    <Compile Include="Enums\BillStatus.cs" />
-    <Compile Include="Enums\DiscountNoteStatus.cs" />
-    <Compile Include="Enums\GenderType.cs" />
-    <Compile Include="Enums\ServiceStatus.cs" />
-    <Compile Include="Enums\TableStatus.cs" />
+    <Compile Include="DTOs\AreaObj.cs" />
+    <Compile Include="DTOs\BillObj.cs" />
+    <Compile Include="DTOs\CategoryObj.cs" />
+    <Compile Include="DTOs\EventObj.cs" />
+    <Compile Include="DTOs\MaterialObj.cs" />
+    <Compile Include="DTOs\ProductObj.cs" />
+    <Compile Include="DTOs\PromotionObj.cs" />
+    <Compile Include="DTOs\PromotionTypeObj.cs" />
+    <Compile Include="DTOs\ReceiptObj.cs" />
+    <Compile Include="DTOs\RecipeObj.cs" />
+    <Compile Include="DTOs\RoleObj.cs" />
+    <Compile Include="DTOs\SupplierObj.cs" />
+    <Compile Include="DTOs\TableObj.cs" />
+    <Compile Include="DTOs\UserObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -96,5 +87,12 @@
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zi.DatabaseEntity\Zi.DatabaseEntity.csproj">
+      <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
+      <Name>Zi.DatabaseEntity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
