@@ -21,7 +21,9 @@ namespace Zi.DatabaseEntity.Configurators
                 .IsUnicode(true)
                 .HasMaxLength(50);
             Property(x => x.ParentId)
-                .HasColumnType("UNIQUEIDENTIFIER");
+                .IsRequired()
+                .IsUnicode(false)
+                .HasMaxLength(50);
         }
     }
 }

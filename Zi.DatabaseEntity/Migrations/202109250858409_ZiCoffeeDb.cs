@@ -14,7 +14,7 @@
                     {
                         AreaId = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
-                        ParentId = c.Guid(),
+                        ParentId = c.String(nullable: false, maxLength: 50, unicode: false),
                     })
                 .PrimaryKey(t => t.AreaId);
             
@@ -24,7 +24,7 @@
                     {
                         TableId = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
-                        Status = c.Int(nullable: false, defaultValue: (int) TableStatus.Ready),
+                        Status = c.Int(nullable: false, defaultValue: (int)TableStatus.Ready),
                         AreaId = c.Guid(nullable: false),
                     })
                 .PrimaryKey(t => t.TableId)
@@ -41,7 +41,7 @@
                         Vat = c.Single(nullable: false, defaultValue: 0),
                         AfterVat = c.Single(nullable: false),
                         RealPay = c.Single(nullable: false),
-                        Status = c.Int(nullable: false, defaultValue: (int) BillStatus.UnPay),
+                        Status = c.Int(nullable: false, defaultValue: (int)BillStatus.UnPay),
                         LastedModify = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                         UserId = c.Guid(nullable: false),
                         TableId = c.Guid(nullable: false),
@@ -74,7 +74,7 @@
                         ProductId = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Description = c.String(),
-                        Status = c.Int(nullable: false, defaultValue: (int) ProductStatus.Availabled),
+                        Status = c.Int(nullable: false, defaultValue: (int)ProductStatus.Availabled),
                         Thumnail = c.Binary(nullable: false),
                         Price = c.Single(nullable: false, defaultValue: 0),
                         PromotionVulue = c.Single(nullable: false, defaultValue: 0),
@@ -91,8 +91,8 @@
                         CategoryId = c.Guid(nullable: false),
                         Name = c.String(nullable: false, maxLength: 50),
                         Description = c.String(),
-                        Status = c.Int(nullable: false, defaultValue: (int) CategoryStatus.Availabled),
-                        ParentId = c.Guid(),
+                        Status = c.Int(nullable: false, defaultValue: (int)CategoryStatus.Availabled),
+                        ParentId = c.String(nullable: false, maxLength: 50, unicode: false),
                     })
                 .PrimaryKey(t => t.CategoryId);
             
@@ -191,9 +191,9 @@
                     {
                         PromotionId = c.Guid(nullable: false),
                         Description = c.String(),
-                        IsActived = c.Int(nullable: false, defaultValue: (int) PromotionActived.NotActivated),
-                        IsAutoApply = c.Int(nullable: false, defaultValue: (int) PromotionAutoApply.Manual),
-                        IsPercent = c.Int(nullable: false, defaultValue: (int) PromotionPercent.Normal),
+                        IsActived = c.Int(nullable: false, defaultValue: (int)PromotionActived.NotActivated),
+                        IsAutoApply = c.Int(nullable: false, defaultValue: (int)PromotionAutoApply.Manual),
+                        IsPercent = c.Int(nullable: false, defaultValue: (int)PromotionPercent.Normal),
                         Value = c.Single(nullable: false, defaultValue: 1),
                         StartTime = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                         EndTime = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
@@ -227,10 +227,10 @@
                         DisplayName = c.String(nullable: false, maxLength: 50),
                         PhoneNumber = c.String(nullable: false, maxLength: 11, unicode: false),
                         Email = c.String(nullable: false, maxLength: 50, unicode: false),
-                        DateOfBirth = c.DateTime(nullable: false, precision: 7, storeType: "datetime2"),
+                        DateOfBirth = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                         CreatedDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                         PasswordHash = c.String(nullable: false, maxLength: 100, unicode: false),
-                        Gender = c.Int(nullable: false, defaultValue: (int) Genders.Male),
+                        Gender = c.Int(nullable: false, defaultValue: (int)Genders.Male),
                         Avatar = c.Binary(nullable: false),
                         CitizenId = c.String(maxLength: 15, unicode: false),
                         Address = c.String(nullable: false, maxLength: 100),

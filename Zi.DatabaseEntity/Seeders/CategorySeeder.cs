@@ -20,7 +20,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Coffees",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -28,7 +28,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Milks",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -36,7 +36,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Teas",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -44,7 +44,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "MilkShakes",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -52,7 +52,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Juices",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -60,7 +60,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Fruits",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -68,7 +68,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Bottled Waters",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -76,7 +76,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Cakes",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -84,7 +84,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Smoothies",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -92,7 +92,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Creams",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -100,7 +100,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Sodas",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
             categories.Add(new Category()
             {
@@ -108,7 +108,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Other Services",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Empty
+                ParentId = string.Empty
             });
 
             #region // Coffee's children
@@ -118,7 +118,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Traditional Coffee",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Parse(GuidConstants.CategoryIdCoffee)
+                ParentId = GuidConstants.CategoryIdCoffee
             });
             categories.Add(new Category()
             {
@@ -126,7 +126,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Name = "Other Coffee",
                 Description = string.Empty,
                 Status = CategoryStatus.Availabled,
-                ParentId = Guid.Parse(GuidConstants.CategoryIdCoffee)
+                ParentId = GuidConstants.CategoryIdCoffee
             });
             #endregion
 
