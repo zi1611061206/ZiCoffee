@@ -18,7 +18,7 @@ namespace DataTransferLayer.DTOs
         {
             AreaId = Guid.NewGuid();
             Name = name;
-            ParentId = Guid.Empty;
+            ParentId = string.Empty;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace DataTransferLayer.DTOs
         /// </summary>
         /// <param name="name"></param>
         /// <param name="parentId"></param>
-        public AreaObj(string name, Guid parentId)
+        public AreaObj(string name, string parentId)
         {
             AreaId = Guid.NewGuid();
             Name = name;
@@ -41,7 +41,7 @@ namespace DataTransferLayer.DTOs
         {
             AreaId = Guid.Parse(row["AreaId"].ToString());
             Name = row["Name"].ToString();
-            ParentId = Guid.Parse(row["ParentId"].ToString());
+            ParentId = row["ParentId"].ToString();
         }
     }
 }

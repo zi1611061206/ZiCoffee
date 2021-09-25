@@ -23,7 +23,7 @@ namespace DataTransferLayer.DTOs
             Description = row["Description"].ToString();
             int categoryStatus = (int)row["Status"];
             Status = (CategoryStatus) categoryStatus;
-            ParentId = Guid.Parse(row["ParentId"].ToString());
+            ParentId = row["ParentId"].ToString();
         }
     }
 }
