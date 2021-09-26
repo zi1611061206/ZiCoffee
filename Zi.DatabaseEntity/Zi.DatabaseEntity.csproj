@@ -108,9 +108,9 @@
     <Compile Include="Enumerators\PromotionAutoApply.cs" />
     <Compile Include="Enumerators\PromotionPercent.cs" />
     <Compile Include="Enumerators\TableStatus.cs" />
-    <Compile Include="Migrations\202109250858409_ZiCoffeeDb.cs" />
-    <Compile Include="Migrations\202109250858409_ZiCoffeeDb.designer.cs">
-      <DependentUpon>202109250858409_ZiCoffeeDb.cs</DependentUpon>
+    <Compile Include="Migrations\202109262108237_ZiCoffeeDb.cs" />
+    <Compile Include="Migrations\202109262108237_ZiCoffeeDb.designer.cs">
+      <DependentUpon>202109262108237_ZiCoffeeDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -127,8 +127,8 @@
     <Compile Include="Seeders\UserRoleSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
     <Compile Include="ZiDbContext.cs" />
-    <EmbeddedResource Include="Migrations\202109250858409_ZiCoffeeDb.resx">
-      <DependentUpon>202109250858409_ZiCoffeeDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202109262108237_ZiCoffeeDb.resx">
+      <DependentUpon>202109262108237_ZiCoffeeDb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

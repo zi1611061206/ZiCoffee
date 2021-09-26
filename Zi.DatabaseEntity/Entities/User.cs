@@ -33,7 +33,7 @@ namespace Zi.DatabaseEntity.Entities
         //FK 1-n (m-n)
         public ICollection<UserRole> UserRoles { get; set; }
 
-        //FK 1-n (m-n)
+        //FK 1-n
         public ICollection<Log> Logs { get; set; }
     }
 }

@@ -13,9 +13,9 @@ namespace Zi.DatabaseEntity
     {
         public ZiDbContext() : base("ZiDbConnectionString")
         {
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ZiDbContext>()); 
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<ZiDbContext>());
             //Database.SetInitializer<ZiDbContext>(new CreateDatabaseIfNotExists<ZiDbContext>());
-            //Database.SetInitializer<ZiDbContext>(new DropCreateDatabaseAlways<ZiDbContext>()); 
+            //Database.SetInitializer<ZiDbContext>(new DropCreateDatabaseAlways<ZiDbContext>());
             //Database.SetInitializer<ZiDbContext>(new ZiDbInitializer());
         }
 

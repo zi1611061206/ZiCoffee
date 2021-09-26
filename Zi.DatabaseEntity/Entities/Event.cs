@@ -12,7 +12,7 @@ namespace Zi.DatabaseEntity.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
-        //FK 1-n (m-n)
+        //FK 1-n
         public ICollection<Log> Logs { get; set; }
     }
 }
