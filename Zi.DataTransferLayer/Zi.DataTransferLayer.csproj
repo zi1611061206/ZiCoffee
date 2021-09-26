@@ -64,7 +64,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RelationshipDTOs\BillDetailObj.cs" />
     <Compile Include="RelationshipDTOs\DiscountDetailObj.cs" />
-    <Compile Include="RelationshipDTOs\LogObj.cs" />
+    <Compile Include="DTOs\LogObj.cs" />
     <Compile Include="RelationshipDTOs\ReceiptDetailObj.cs" />
     <Compile Include="RelationshipDTOs\RecipeDetailObj.cs" />
     <Compile Include="RelationshipDTOs\UserRoleObj.cs" />
