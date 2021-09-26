@@ -11,18 +11,25 @@ namespace DataTransferLayer.DTOs
 {
     public class CategoryObj : Category
     {
-        public CategoryObj()
+        public CategoryObj(string name)
         {
             CategoryId = Guid.NewGuid();
+            Description = string.Empty;
+            Status = CategoryStatus.Availabled;
+            ParentId = string.Empty;
+            Name = name;
         }
 
+        /// <summary>
+        /// Mapping data to CategoryObj
+        /// </summary>
+        /// <param name="row"></param>
         public CategoryObj(DataRow row)
         {
             CategoryId = Guid.Parse(row["CategoryId"].ToString());
             Name = row["Name"].ToString();
             Description = row["Description"].ToString();
-            int categoryStatus = (int)row["Status"];
-            Status = (CategoryStatus) categoryStatus;
+            Status = (CategoryStatus)row["Status"];
             ParentId = row["ParentId"].ToString();
         }
     }

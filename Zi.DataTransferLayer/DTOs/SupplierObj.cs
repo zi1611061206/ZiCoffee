@@ -10,11 +10,19 @@ namespace DataTransferLayer.DTOs
 {
     public class SupplierObj : Supplier
     {
-        public SupplierObj()
+        public SupplierObj(string name)
         {
             SupplierId = Guid.NewGuid();
+            Address = string.Empty;
+            PhoneNumber = string.Empty;
+            Email = string.Empty;
+            Name = name;
         }
 
+        /// <summary>
+        /// Mapping data to SupplierObj
+        /// </summary>
+        /// <param name="row"></param>
         public SupplierObj(DataRow row)
         {
             SupplierId = Guid.Parse(row["SupplierId"].ToString());

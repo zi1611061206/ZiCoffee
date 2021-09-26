@@ -13,11 +13,42 @@ namespace DataTransferLayer.DTOs
     {
         public string FullName { get { return FirstName + " " + MiddleName + " " + LastName; } }
 
-        public UserObj()
+        public UserObj(
+            string firstName,
+            string middleName,
+            string lastName,
+            string username,
+            string displayName,
+            string phoneNumber,
+            string email,
+            DateTime dateOfBirth,
+            byte[] avatar,
+            string address,
+            string salt,
+            string passwordHash)
         {
             UserId = Guid.NewGuid();
+            FirstName = firstName;
+            MiddleName = middleName;
+            LastName = lastName;
+            Username = username;
+            DisplayName = string.IsNullOrEmpty(displayName) ? username : displayName;
+            PhoneNumber = phoneNumber;
+            Email = email;
+            DateOfBirth = dateOfBirth;
+            Gender = Genders.Male;
+            Avatar = avatar;
+            CitizenId = string.Empty;
+            Address = address;
+            Salt = salt;
+            PasswordHash = passwordHash;
         }
 
+
+        /// <summary>
+        /// Mapping data to UserObj
+        /// </summary>
+        /// <param name="row"></param>
         public UserObj(DataRow row)
         {
             UserId = Guid.Parse(row["UserId"].ToString());
@@ -37,8 +68,7 @@ namespace DataTransferLayer.DTOs
                 CreatedDate = result2;
             }
             PasswordHash = row["PasswordHash"].ToString();
-            int genderType = (int)row["Gender"];
-            Gender = (Genders)genderType;
+            Gender = (Genders)row["Gender"];
             Avatar = (byte[])row["Avatar"];
             CitizenId = row["CitizenId"].ToString();
             Address = row["Address"].ToString();

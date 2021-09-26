@@ -11,11 +11,25 @@ namespace DataTransferLayer.DTOs
 {
     public class PromotionObj : Promotion
     {
-        public PromotionObj()
+        public PromotionObj(DateTime startTime, DateTime endTime, Guid promotionTypeId)
         {
             PromotionId = Guid.NewGuid();
+            Description = string.Empty;
+            IsActived = PromotionActived.NotActivated;
+            IsAutoApply = PromotionAutoApply.Manual;
+            IsPercent = PromotionPercent.Normal;
+            Value = 1;
+            MinValue = 0;
+            CodeList = string.Empty;
+            StartTime = startTime;
+            EndTime = endTime;
+            PromotionTypeId = promotionTypeId;
         }
 
+        /// <summary>
+        /// Mapping data to PromotionObj
+        /// </summary>
+        /// <param name="row"></param>
         public PromotionObj(DataRow row)
         {
             PromotionId = Guid.Parse(row["PromotionId"].ToString());

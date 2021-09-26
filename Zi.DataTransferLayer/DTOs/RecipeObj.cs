@@ -10,11 +10,17 @@ namespace DataTransferLayer.DTOs
 {
     public class RecipeObj : Recipe
     {
-        public RecipeObj()
+        public RecipeObj(Guid productId)
         {
             RecipeId = Guid.NewGuid();
+            Guide = string.Empty;
+            ProductId = productId;
         }
 
+        /// <summary>
+        /// Mapping data to RecipeObj
+        /// </summary>
+        /// <param name="row"></param>
         public RecipeObj(DataRow row)
         {
             RecipeId = Guid.Parse(row["RecipeId"].ToString());
