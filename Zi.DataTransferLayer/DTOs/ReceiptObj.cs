@@ -10,11 +10,16 @@ namespace DataTransferLayer.DTOs
 {
     public class ReceiptObj : Receipt
     {
-        public ReceiptObj()
+        public ReceiptObj(Guid supplierId)
         {
             ReceiptId = Guid.NewGuid();
+            SupplierId = supplierId;
         }
 
+        /// <summary>
+        /// Mapping data to ReceiptObj
+        /// </summary>
+        /// <param name="row"></param>
         public ReceiptObj(DataRow row)
         {
             ReceiptId = Guid.Parse(row["ReceiptId"].ToString());

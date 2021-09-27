@@ -8,11 +8,12 @@ namespace Zi.DatabaseEntity.Entities
 {
     public class Log
     {
+        public Guid LogId { get; set; }
         public Guid UserId { get; set; }
         public Guid EventId { get; set; }
         public DateTime Time { get; set; }
 
-        //FK m-n
+        //FK n-1
         public User User { get; set; }
         public Event Event { get; set; }
     }

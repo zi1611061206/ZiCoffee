@@ -21,7 +21,6 @@ namespace Zi.DatabaseEntity.Configurators
                 .IsUnicode(true)
                 .HasMaxLength(50);
             Property(x => x.Description)
-                .IsRequired()
                 .IsUnicode(true)
                 .IsMaxLength();
         }

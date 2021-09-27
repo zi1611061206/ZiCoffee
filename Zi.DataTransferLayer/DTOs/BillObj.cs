@@ -11,11 +11,22 @@ namespace DataTransferLayer.DTOs
 {
     public class BillObj : Bill
     {
-        public BillObj()
+        public BillObj(Guid userId, Guid tableId)
         {
             BillId = Guid.NewGuid();
+            Total = 0;
+            Vat = 0;
+            AfterVat = 0;
+            RealPay = 0;
+            Status = BillStatus.UnPay;
+            UserId = userId;
+            TableId = tableId;
         }
 
+        /// <summary>
+        /// Mapping data to BillObj
+        /// </summary>
+        /// <param name="row"></param>
         public BillObj(DataRow row)
         {
             BillId = Guid.Parse(row["BillId"].ToString());

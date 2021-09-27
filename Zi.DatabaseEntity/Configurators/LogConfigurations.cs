@@ -13,7 +13,7 @@ namespace Zi.DatabaseEntity.Configurators
         public LogConfigurations()
         {
             ToTable("Logs");
-            HasKey(x => new { x.UserId, x.EventId });
+            HasKey(x => x.LogId);
             Property(x => x.UserId)
                 .IsRequired()
                 .HasColumnType("UNIQUEIDENTIFIER");

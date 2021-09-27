@@ -10,27 +10,11 @@ namespace DataTransferLayer.DTOs
 {
     public class AreaObj : Area
     {
-        /// <summary>
-        /// A new area without ParentId
-        /// </summary>
-        /// <param name="name"></param>
         public AreaObj(string name)
         {
             AreaId = Guid.NewGuid();
+            ParentId = string.Empty;
             Name = name;
-            ParentId = Guid.Empty;
-        }
-
-        /// <summary>
-        /// A new area with ParentId
-        /// </summary>
-        /// <param name="name"></param>
-        /// <param name="parentId"></param>
-        public AreaObj(string name, Guid parentId)
-        {
-            AreaId = Guid.NewGuid();
-            Name = name;
-            ParentId = parentId;
         }
 
         /// <summary>
@@ -41,7 +25,7 @@ namespace DataTransferLayer.DTOs
         {
             AreaId = Guid.Parse(row["AreaId"].ToString());
             Name = row["Name"].ToString();
-            ParentId = Guid.Parse(row["ParentId"].ToString());
+            ParentId = row["ParentId"].ToString();
         }
     }
 }

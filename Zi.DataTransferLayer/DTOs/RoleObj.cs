@@ -10,11 +10,17 @@ namespace DataTransferLayer.DTOs
 {
     public class RoleObj : Role
     {
-        public RoleObj()
+        public RoleObj(string name)
         {
             RoleId = Guid.NewGuid();
+            Description = string.Empty;
+            Name = name;
         }
 
+        /// <summary>
+        /// Mapping data to RoleObj
+        /// </summary>
+        /// <param name="row"></param>
         public RoleObj(DataRow row)
         {
             RoleId = Guid.Parse(row["RoleId"].ToString());

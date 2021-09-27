@@ -10,11 +10,17 @@ namespace DataTransferLayer.DTOs
 {
     public class EventObj : Event
     {
-        public EventObj()
+        public EventObj(string name)
         {
             EventId = Guid.NewGuid();
+            Description = string.Empty;
+            Name = name;
         }
 
+        /// <summary>
+        /// Mapping data to EventObj
+        /// </summary>
+        /// <param name="row"></param>
         public EventObj(DataRow row)
         {
             EventId = Guid.Parse(row["EventId"].ToString());
