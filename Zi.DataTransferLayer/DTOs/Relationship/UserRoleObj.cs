@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zi.DatabaseEntity.Entities;
 
-namespace DataTransferLayer.RelationshipDTOs
+namespace DataTransferLayer.DTOs.Relationship
 {
     public class UserRoleObj : UserRole
     {
