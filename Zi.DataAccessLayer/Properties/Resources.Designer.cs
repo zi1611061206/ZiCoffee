@@ -61,11 +61,11 @@ namespace Zi.DataAccessLayer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Data Source=.\sqlexpress;Initial Catalog=QLCF;Integrated Security=True.
+        ///   Looks up a localized string similar to Data Source=.\sqlexpress;Initial Catalog=ZiCoffee;Integrated Security=True.
         /// </summary>
-        internal static string connectionStrDefault {
+        internal static string SqlConnectionString {
             get {
-                return ResourceManager.GetString("connectionStrDefault", resourceCulture);
+                return ResourceManager.GetString("SqlConnectionString", resourceCulture);
             }
         }
     }
