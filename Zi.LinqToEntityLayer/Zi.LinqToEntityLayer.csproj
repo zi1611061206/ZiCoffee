@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FAF6BEAA-A223-4A24-9260-0DC06CFEFB1D}</ProjectGuid>
+    <ProjectGuid>{0E896123-5412-4A67-8612-2F592715797B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Zi.LinqToEntityLayer</RootNamespace>
     <AssemblyName>Zi.LinqToEntityLayer</AssemblyName>
