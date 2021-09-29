@@ -19,6 +19,7 @@ namespace Zi.DatabaseEntity
             //Database.SetInitializer<ZiDbContext>(new ZiDbInitializer());
         }
 
+        #region Declare entities
         public DbSet<Area> Areas { get; set; }
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -40,9 +41,11 @@ namespace Zi.DatabaseEntity
         public DbSet<ReceiptDetail> ReceiptDetails { get; set; }
         public DbSet<RecipeDetail> RecipeDetails { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
+        #endregion
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            #region Add configurations for entities
             modelBuilder.Configurations.Add(new UserConfigurations());
             modelBuilder.Configurations.Add(new RoleConfigurations());
             modelBuilder.Configurations.Add(new CategoryConfigurations());
@@ -66,6 +69,7 @@ namespace Zi.DatabaseEntity
             modelBuilder.Configurations.Add(new DiscountDetailConfigurations());
 
             modelBuilder.Configurations.Add(new UserRoleConfigurations());
+            #endregion
         }
     }
 }
