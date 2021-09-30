@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -13,13 +12,13 @@ using Zi.LinqToEntityLayer.Services.Interfaces;
 
 namespace Zi.LinqToEntityLayer.Services
 {
-    public class AreaService : IAreaService
+    public class RoleService : IRoleService
     {
-        public async Task<bool> AddArea(Area area)
+        public async Task<bool> AddRole(Role role)
         {
             using (var context = new ZiDbContext())
             {
-                context.Areas.Add(area);
+                context.Roles.Add(role);
                 if (await context.SaveChangesAsync() <= 0)
                 {
                     return false;
@@ -28,12 +27,12 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public async Task<bool> DeleteArea(Guid areaId)
+        public async Task<bool> DeleteRole(Guid roleId)
         {
             using (var context = new ZiDbContext())
             {
-                var area = await context.Areas.FindAsync(areaId);
-                context.Areas.Remove(area);
+                var role = await context.Roles.FindAsync(roleId);
+                context.Roles.Remove(role);
                 if (await context.SaveChangesAsync() <= 0)
                 {
                     return false;
@@ -42,24 +41,24 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Area> GetAreas(AreaFilter filter)
+        public Paginator<Role> GetRoles(RoleFilter filter)
         {
             using (var context = new ZiDbContext())
             {
-                var query = context.Areas;
+                var query = context.Roles;
                 query = GettingBy(query, filter);
-                query = Filtering(query, filter);
+                // query = Filtering(query, filter);
                 query = Searching(query, filter);
                 query = Paging(query, filter);
                 query = Sorting(query, filter);
                 // Mapping data
-                var data = query.Select(x => new Area()
+                var data = query.Select(x => new Role()
                 {
-                    AreaId = x.AreaId,
+                    RoleId = x.RoleId,
                     Name = x.Name,
-                    ParentId = x.ParentId
+                    Description = x.Description
                 });
-                var result = new Paginator<Area>()
+                var result = new Paginator<Role>()
                 {
                     TotalRecords = data.Count(),
                     PageSize = filter.PageSize,
@@ -71,52 +70,43 @@ namespace Zi.LinqToEntityLayer.Services
         }
 
         #region Engines
-        private DbSet<Area> GettingBy(DbSet<Area> query, AreaFilter filter)
+        private DbSet<Role> GettingBy(DbSet<Role> query, RoleFilter filter)
         {
-            if (filter.AreaId.CompareTo(Guid.Empty)!=0)
+            if (filter.RoleId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.AreaId.CompareTo(filter.AreaId)==0);
+                query.Where(x => x.RoleId.CompareTo(filter.RoleId) == 0);
             }
             return query;
         }
 
-        private DbSet<Area> Filtering(DbSet<Area> query, AreaFilter filter)
-        {
-            if (!string.IsNullOrEmpty(filter.ParentId))
-            {
-                query.Where(x => x.ParentId.Equals(filter.ParentId));
-            }
-            return query;
-        }
-
-        private DbSet<Area> Searching(DbSet<Area> query, AreaFilter filter)
+        private DbSet<Role> Searching(DbSet<Role> query, RoleFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.AreaId.ToString().Contains(filter.Keyword) ||
+                    query.Where(x => x.RoleId.ToString().Contains(filter.Keyword) ||
                         x.Name.ToString().Contains(filter.Keyword) ||
-                        x.ParentId.ToString().Contains(filter.Keyword));
+                        x.Description.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.AreaId.ToString().Equals(filter.Keyword) ||
+                    query.Where(x => x.RoleId.ToString().Equals(filter.Keyword) ||
                         x.Name.ToString().Equals(filter.Keyword) ||
-                        x.ParentId.ToString().Equals(filter.Keyword));
+                        x.Description.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private DbSet<Area> Paging(DbSet<Area> query, AreaFilter filter)
+        private DbSet<Role> Paging(DbSet<Role> query, RoleFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
             query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private DbSet<Area> Sorting(DbSet<Area> query, AreaFilter filter)
+        private DbSet<Role> Sorting(DbSet<Role> query, RoleFilter filter)
         {
             if (filter.IsAscending)
             {
@@ -130,13 +120,13 @@ namespace Zi.LinqToEntityLayer.Services
         }
         #endregion
 
-        public async Task<bool> UpdateArea(Area area)
+        public async Task<bool> UpdateRole(Role role)
         {
             using (var context = new ZiDbContext())
             {
-                var data = await context.Areas.FindAsync(area.AreaId);
-                data.Name = area.Name;
-                data.ParentId = area.ParentId;
+                var data = await context.Roles.FindAsync(role.RoleId);
+                data.Name = role.Name;
+                data.Description = role.Description;
                 if (await context.SaveChangesAsync() <= 0)
                 {
                     return false;

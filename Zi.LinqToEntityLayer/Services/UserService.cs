@@ -32,7 +32,7 @@ namespace Zi.LinqToEntityLayer.Services
         {
             using (var context = new ZiDbContext())
             {
-                User user = await context.Users.FindAsync(userId);
+                var user = await context.Users.FindAsync(userId);
                 context.Users.Remove(user);
                 if (await context.SaveChangesAsync() <= 0)
                 {
@@ -173,7 +173,7 @@ namespace Zi.LinqToEntityLayer.Services
         {
             using (var context = new ZiDbContext())
             {
-                User data = await context.Users.FindAsync(user.UserId);
+                var data = await context.Users.FindAsync(user.UserId);
                 //data.UserId = user.UserId;
                 data.FirstName = user.FirstName;
                 data.MiddleName = user.MiddleName;
@@ -202,7 +202,7 @@ namespace Zi.LinqToEntityLayer.Services
         {
             using (var context = new ZiDbContext())
             {
-                User data = await context.Users.FindAsync(userId);
+                var data = await context.Users.FindAsync(userId);
                 Tuple<string, string> encryptor = Encryptor.Instance.HashPassword(password);
                 data.Salt = encryptor.Item1;
                 data.PasswordHash = encryptor.Item2;
@@ -218,7 +218,7 @@ namespace Zi.LinqToEntityLayer.Services
         {
             using (var context = new ZiDbContext())
             {
-                User data = await context.Users.FindAsync(userId);
+                var data = await context.Users.FindAsync(userId);
                 if (string.IsNullOrEmpty(avatarPath))
                 {
                     data.Avatar = ImageEncoder.Instance.EncryptDefaultAvatar();
