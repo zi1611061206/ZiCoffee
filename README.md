@@ -16,3 +16,4 @@
 ### Can I set unique for properties EF6 (Anotation & FluentAPI) - IsUnique()?
 ### What is "UniqueIdentifier" Sql data type mean?
 ### Why I use VARBINARY(MAX) type instead of IMAGE type for Avatar & Thumnail properties?
+### What is the minimum version of framework to use Tuple type (return multi value)?

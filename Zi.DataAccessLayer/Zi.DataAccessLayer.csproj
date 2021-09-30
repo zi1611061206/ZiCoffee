@@ -82,8 +82,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DAOs\" />
-    <Folder Include="Interfaces\" />
+    <Folder Include="DAOs\Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
