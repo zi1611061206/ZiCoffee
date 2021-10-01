@@ -64,6 +64,7 @@
     <Compile Include="Engines\Filters\AreaFilter.cs" />
     <Compile Include="Engines\Filters\CategoryFilter.cs" />
     <Compile Include="Engines\Filters\EventFilter.cs" />
+    <Compile Include="Engines\Filters\LogFilter.cs" />
     <Compile Include="Engines\Filters\MaterialFilter.cs" />
     <Compile Include="Engines\Filters\ProductFilter.cs" />
     <Compile Include="Engines\Filters\PromotionFilter.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Services\Interfaces\IAreaService.cs" />
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
+    <Compile Include="Services\Interfaces\ILogService.cs" />
     <Compile Include="Services\Interfaces\IMaterialService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\Interfaces\IPromotionService.cs" />
@@ -94,6 +96,7 @@
     <Compile Include="Services\Interfaces\ITableService.cs" />
     <Compile Include="Services\Interfaces\IUserRoleService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\MaterialService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\PromotionService.cs" />
