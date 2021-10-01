@@ -98,14 +98,14 @@ namespace Zi.LinqToEntityLayer.Services
             if (filter.DateOfBirthFrom.HasValue && filter.DateOfBirthTo.HasValue)
             {
                 query.Where(
-                    x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) > 0
-                    && x.DateOfBirth.CompareTo(filter.DateOfBirthTo) < 0);
+                    x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) >= 0
+                    && x.DateOfBirth.CompareTo(filter.DateOfBirthTo) <= 0);
             }
             if (filter.CreatedDateFrom.HasValue && filter.CreatedDateTo.HasValue)
             {
                 query.Where(
-                    x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) > 0
-                    && x.CreatedDate.CompareTo(filter.CreatedDateTo) < 0);
+                    x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0
+                    && x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
             if (filter.Gender.HasValue)
             {
