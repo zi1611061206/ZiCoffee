@@ -9,10 +9,10 @@ using Zi.LinqToEntityLayer.Engines.Paginators;
 
 namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
-    public interface IUserRoleService
+    public interface IDiscountDetailService
     {
-        Paginator<UserRole> GetUserRoles(UserRoleFilter filter);
-        Task<bool> AddUserRole(UserRole userRole);
-        Task<bool> DeleteUserRole(Guid userId, Guid roleId);
+        Paginator<DiscountDetail> GetDiscountDetails(DiscountDetailFilter filter);
+        Task<bool> AddDiscountDetail(DiscountDetail discountDetail);
+        Task<bool> DeleteDiscountDetail(Guid billId, Guid promotionId);
     }
 }

@@ -12,13 +12,13 @@ using Zi.LinqToEntityLayer.Services.Interfaces;
 
 namespace Zi.LinqToEntityLayer.Services
 {
-    public class UserRoleService : IUserRoleService
+    public class DiscountDetailService : IDiscountDetailService
     {
-        public async Task<bool> AddUserRole(UserRole userRole)
+        public async Task<bool> AddDiscountDetail(DiscountDetail discountDetail)
         {
             using (var context = new ZiDbContext())
             {
-                context.UserRoles.Add(userRole);
+                context.DiscountDetails.Add(discountDetail);
                 if (await context.SaveChangesAsync() <= 0)
                 {
                     return false;
@@ -27,14 +27,14 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public async Task<bool> DeleteUserRole(Guid userId, Guid roleId)
+        public async Task<bool> DeleteDiscountDetail(Guid billId, Guid promotionId)
         {
             using (var context = new ZiDbContext())
             {
-                var userRole = (from ur in context.UserRoles
-                               where ur.UserId.CompareTo(userId) == 0 && ur.RoleId.CompareTo(roleId) == 0
-                               select ur).First();
-                context.UserRoles.Remove(userRole);
+                var discountDetail = (from dd in context.DiscountDetails
+                                where dd.BillId.CompareTo(billId) == 0 && dd.PromotionId.CompareTo(promotionId) == 0
+                                select dd).First();
+                context.DiscountDetails.Remove(discountDetail);
                 if (await context.SaveChangesAsync() <= 0)
                 {
                     return false;
@@ -43,23 +43,23 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<UserRole> GetUserRoles(UserRoleFilter filter)
+        public Paginator<DiscountDetail> GetDiscountDetails(DiscountDetailFilter filter)
         {
             using (var context = new ZiDbContext())
             {
-                var query = context.UserRoles;
+                var query = context.DiscountDetails;
                 query = GettingBy(query, filter);
                 //query = Filtering(query, filter);
                 query = Searching(query, filter);
                 query = Paging(query, filter);
                 //query = Sorting(query, filter);
                 // Mapping data
-                var data = query.Select(x => new UserRole()
+                var data = query.Select(x => new DiscountDetail()
                 {
-                    UserId = x.UserId,
-                    RoleId = x.RoleId
+                    BillId = x.BillId,
+                    PromotionId = x.PromotionId
                 });
-                var result = new Paginator<UserRole>()
+                var result = new Paginator<DiscountDetail>()
                 {
                     TotalRecords = data.Count(),
                     PageSize = filter.PageSize,
@@ -71,38 +71,38 @@ namespace Zi.LinqToEntityLayer.Services
         }
 
         #region Engines
-        private DbSet<UserRole> GettingBy(DbSet<UserRole> query, UserRoleFilter filter)
+        private DbSet<DiscountDetail> GettingBy(DbSet<DiscountDetail> query, DiscountDetailFilter filter)
         {
-            if (filter.UserId.CompareTo(Guid.Empty) != 0)
+            if (filter.BillId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
+                query.Where(x => x.BillId.CompareTo(filter.BillId) == 0);
             }
-            if (filter.RoleId.CompareTo(Guid.Empty) != 0)
+            if (filter.PromotionId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.RoleId.CompareTo(filter.RoleId) == 0);
+                query.Where(x => x.PromotionId.CompareTo(filter.PromotionId) == 0);
             }
             return query;
         }
 
-        private DbSet<UserRole> Searching(DbSet<UserRole> query, UserRoleFilter filter)
+        private DbSet<DiscountDetail> Searching(DbSet<DiscountDetail> query, DiscountDetailFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.UserId.ToString().Contains(filter.Keyword) ||
-                        x.RoleId.ToString().Contains(filter.Keyword));
+                    query.Where(x => x.BillId.ToString().Contains(filter.Keyword) ||
+                        x.PromotionId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.UserId.ToString().Equals(filter.Keyword) ||
-                        x.RoleId.ToString().Equals(filter.Keyword));
+                    query.Where(x => x.BillId.ToString().Equals(filter.Keyword) ||
+                        x.PromotionId.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private DbSet<UserRole> Paging(DbSet<UserRole> query, UserRoleFilter filter)
+        private DbSet<DiscountDetail> Paging(DbSet<DiscountDetail> query, DiscountDetailFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
             query.Skip(firstIndexOfPage).Take(filter.PageSize);

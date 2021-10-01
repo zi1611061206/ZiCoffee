@@ -64,6 +64,7 @@
     <Compile Include="Engines\Filters\AreaFilter.cs" />
     <Compile Include="Engines\Filters\BillFilter.cs" />
     <Compile Include="Engines\Filters\CategoryFilter.cs" />
+    <Compile Include="Engines\Filters\DiscountDetailFilter.cs" />
     <Compile Include="Engines\Filters\EventFilter.cs" />
     <Compile Include="Engines\Filters\LogFilter.cs" />
     <Compile Include="Engines\Filters\MaterialFilter.cs" />
@@ -86,10 +87,12 @@
     <Compile Include="Services\AreaService.cs" />
     <Compile Include="Services\BillService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\DiscountDetailService.cs" />
     <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\Interfaces\IAreaService.cs" />
     <Compile Include="Services\Interfaces\IBillService.cs" />
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
+    <Compile Include="Services\Interfaces\IDiscountDetailService.cs" />
     <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\Interfaces\ILogService.cs" />
     <Compile Include="Services\Interfaces\IMaterialService.cs" />
