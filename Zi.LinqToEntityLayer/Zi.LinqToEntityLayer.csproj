@@ -59,8 +59,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engines\Comparers\ObjectComparer.cs" />
     <Compile Include="Engines\Encoders\Encryptor.cs" />
-    <Compile Include="Engines\Encoders\ImageEncoder.cs" />
+    <Compile Include="Engines\Convertors\DataTypeConvertor.cs" />
     <Compile Include="Engines\Filters\AreaFilter.cs" />
     <Compile Include="Engines\Filters\BillDetailFilter.cs" />
     <Compile Include="Engines\Filters\BillFilter.cs" />
@@ -162,6 +163,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Engines\Translators\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

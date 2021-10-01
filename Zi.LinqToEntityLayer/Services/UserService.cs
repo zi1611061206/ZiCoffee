@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Zi.DatabaseEntity;
 using Zi.DatabaseEntity.Entities;
+using Zi.LinqToEntityLayer.Engines.Convertors;
 using Zi.LinqToEntityLayer.Engines.Encoders;
 using Zi.LinqToEntityLayer.Engines.Filters;
 using Zi.LinqToEntityLayer.Engines.Paginators;
@@ -221,11 +222,11 @@ namespace Zi.LinqToEntityLayer.Services
                 var data = await context.Users.FindAsync(userId);
                 if (string.IsNullOrEmpty(avatarPath))
                 {
-                    data.Avatar = ImageEncoder.Instance.EncryptDefaultAvatar();
+                    data.Avatar = DataTypeConvertor.Instance.EncryptDefaultAvatar();
                 }
                 else
                 {
-                    data.Avatar = ImageEncoder.Instance.GetImageFromBytes(avatarPath);
+                    data.Avatar = DataTypeConvertor.Instance.GetImageFromBytes(avatarPath);
                 }
                 if (await context.SaveChangesAsync() <= 0)
                 {

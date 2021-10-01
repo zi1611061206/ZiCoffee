@@ -6,18 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.LinqToEntityLayer.Engines.Encoders
+namespace Zi.LinqToEntityLayer.Engines.Convertors
 {
-    public class ImageEncoder
+    public class DataTypeConvertor
     {
         #region Instance
-        private static ImageEncoder instance;
-        public static ImageEncoder Instance
+        private static DataTypeConvertor instance;
+        public static DataTypeConvertor Instance
         {
-            get { if (instance == null) instance = new ImageEncoder(); return instance; }
+            get { if (instance == null) instance = new DataTypeConvertor(); return instance; }
             private set { instance = value; }
         }
-        private ImageEncoder() { }
+        private DataTypeConvertor() { }
         #endregion
 
         private const string noAvatar = @"\Resources\NoAvatar.jpg";
