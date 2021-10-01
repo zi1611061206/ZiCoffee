@@ -52,7 +52,7 @@ namespace Zi.LinqToEntityLayer.Services
                 //query = Filtering(query, filter);
                 query = Searching(query, filter);
                 query = Paging(query, filter);
-                //query = Sorting(query, filter);
+                query = Sorting(query, filter);
                 // Mapping data
                 var data = query.Select(x => new DiscountDetail()
                 {
@@ -106,6 +106,19 @@ namespace Zi.LinqToEntityLayer.Services
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
             query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            return query;
+        }
+
+        private DbSet<DiscountDetail> Sorting(DbSet<DiscountDetail> query, DiscountDetailFilter filter)
+        {
+            if (filter.IsAscending)
+            {
+                query.OrderBy(x => x.BillId);
+            }
+            else
+            {
+                query.OrderByDescending(x => x.BillId);
+            }
             return query;
         }
         #endregion

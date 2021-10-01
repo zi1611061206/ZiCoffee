@@ -52,7 +52,7 @@ namespace Zi.LinqToEntityLayer.Services
                 //query = Filtering(query, filter);
                 query = Searching(query, filter);
                 query = Paging(query, filter);
-                //query = Sorting(query, filter);
+                query = Sorting(query, filter);
                 // Mapping data
                 var data = query.Select(x => new UserRole()
                 {
@@ -106,6 +106,19 @@ namespace Zi.LinqToEntityLayer.Services
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
             query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            return query;
+        }
+
+        private DbSet<UserRole> Sorting(DbSet<UserRole> query, UserRoleFilter filter)
+        {
+            if (filter.IsAscending)
+            {
+                query.OrderBy(x => x.UserId);
+            }
+            else
+            {
+                query.OrderByDescending(x => x.UserId);
+            }
             return query;
         }
         #endregion
