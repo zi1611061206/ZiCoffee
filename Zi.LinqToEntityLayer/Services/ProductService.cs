@@ -91,14 +91,14 @@ namespace Zi.LinqToEntityLayer.Services
                 query.Where(x => x.Status.CompareTo(filter.Status) == 0);
             }
             query.Where(x => x.Price >= filter.PriceMin);
-            if (filter.PriceMax != 0)
+            if (filter.PriceMax > filter.PriceMin)
             {
-                query.Where(x => x.Price >= filter.PriceMax);
+                query.Where(x => x.Price <= filter.PriceMax);
             }
             query.Where(x => x.PromotionVulue >= filter.PromotionVulueMin);
-            if (filter.PromotionVulueMax != 0)
+            if (filter.PromotionVulueMax > filter.PriceMin)
             {
-                query.Where(x => x.PromotionVulue >= filter.PromotionVulueMax);
+                query.Where(x => x.PromotionVulue <= filter.PromotionVulueMax);
             }
             if (filter.CategoryId.CompareTo(Guid.Empty)!=0)
             {
