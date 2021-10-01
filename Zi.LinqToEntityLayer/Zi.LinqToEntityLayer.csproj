@@ -69,6 +69,7 @@
     <Compile Include="Engines\Filters\SupplierFilter.cs" />
     <Compile Include="Engines\Filters\TableFilter.cs" />
     <Compile Include="Engines\Filters\UserFilter.cs" />
+    <Compile Include="Engines\Filters\UserRoleFilter.cs" />
     <Compile Include="Engines\Paginators\Paginator.cs" />
     <Compile Include="Engines\Paginators\PaginatorConfiguration.cs" />
     <Compile Include="Engines\Searchers\Searcher.cs" />
@@ -84,12 +85,14 @@
     <Compile Include="Services\Interfaces\IRoleService.cs" />
     <Compile Include="Services\Interfaces\ISupplierService.cs" />
     <Compile Include="Services\Interfaces\ITableService.cs" />
+    <Compile Include="Services\Interfaces\IUserRoleService.cs" />
     <Compile Include="Services\Interfaces\IUserService.cs" />
     <Compile Include="Services\MaterialService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\RoleService.cs" />
     <Compile Include="Services\SupplierService.cs" />
     <Compile Include="Services\TableService.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
     <Compile Include="Services\UserService.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
