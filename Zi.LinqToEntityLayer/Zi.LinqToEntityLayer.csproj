@@ -63,6 +63,7 @@
     <Compile Include="Engines\Encoders\ImageEncoder.cs" />
     <Compile Include="Engines\Filters\AreaFilter.cs" />
     <Compile Include="Engines\Filters\CategoryFilter.cs" />
+    <Compile Include="Engines\Filters\EventFilter.cs" />
     <Compile Include="Engines\Filters\MaterialFilter.cs" />
     <Compile Include="Engines\Filters\ProductFilter.cs" />
     <Compile Include="Engines\Filters\PromotionFilter.cs" />
@@ -80,8 +81,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AreaService.cs" />
     <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\EventService.cs" />
     <Compile Include="Services\Interfaces\IAreaService.cs" />
     <Compile Include="Services\Interfaces\ICategoryService.cs" />
+    <Compile Include="Services\Interfaces\IEventService.cs" />
     <Compile Include="Services\Interfaces\IMaterialService.cs" />
     <Compile Include="Services\Interfaces\IProductService.cs" />
     <Compile Include="Services\Interfaces\IPromotionService.cs" />
