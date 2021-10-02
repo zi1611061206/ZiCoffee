@@ -14,14 +14,17 @@
             AutomaticMigrationsEnabled = false;
         }
 
+        /// <summary>
+        /// This method will be called after migrating to the latest version.
+        /// You can use the DbSet<T>.AddOrUpdate() helper extension method
+        /// to avoid creating duplicate seed data.
+        /// </summary>
+        /// <param name="context"></param>
         protected override void Seed(ZiDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method
-            //  to avoid creating duplicate seed data.
             try
             {
+                #region Add data seeder
                 new UserSeeder(context);
                 new RoleSeeder(context);
                 new UserRoleSeeder(context);
@@ -38,6 +41,7 @@
                 new PromotionTypeSeeder(context);
                 new PromotionSeeder(context);
                 base.Seed(context);
+                #endregion
             }
             catch (DbEntityValidationException e)
             {

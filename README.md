@@ -16,3 +16,12 @@
 ### Can I set unique for properties EF6 (Anotation & FluentAPI) - IsUnique()?
 ### What is "UniqueIdentifier" Sql data type mean?
 ### Why I use VARBINARY(MAX) type instead of IMAGE type for Avatar & Thumnail properties?
+### What is the minimum version of framework to use Tuple type (return multi value)?
+### Linq Compare methods (by data type - without null)?
+ - CompareTo: Guid, DateTime, EnumTypes
+ - Equals: String
+ - Operators: Others
+### Linq Compare methods (by data type - with null)?
+ - HasValue: DateTime?, EnumTypes?
+ - IsNullOrEmpty: String
+ - Operators: Others

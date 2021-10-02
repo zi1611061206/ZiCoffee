@@ -53,13 +53,11 @@ namespace Zi.DatabaseEntity.Configurators
                 .IsRequired()
                 .HasColumnType("DATETIME2");
             Property(x => x.PasswordHash)
-                .IsRequired()
                 .IsUnicode(false)
                 .HasMaxLength(100);
             Property(x => x.Gender)
                 .IsRequired();
             Property(x => x.Avatar)
-                .IsRequired()
                 .HasColumnType("VARBINARY(MAX)");
             Property(x => x.CitizenId)
                 .IsUnicode(false)
@@ -69,7 +67,6 @@ namespace Zi.DatabaseEntity.Configurators
                 .IsUnicode(true)
                 .HasMaxLength(100);
             Property(x => x.Salt)
-                .IsRequired()
                 .IsUnicode(false)
                 .HasMaxLength(50);
         }
