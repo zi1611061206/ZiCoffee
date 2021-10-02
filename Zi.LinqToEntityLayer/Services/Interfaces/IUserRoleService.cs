@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IUserRoleService
     {
-        Paginator<UserRole> GetUserRoles(UserRoleFilter filter);
+        Task<Paginator<UserRole>> GetUserRoles(UserRoleFilter filter);
         Task<bool> AddUserRole(UserRole userRole);
         Task<bool> DeleteUserRole(Guid userId, Guid roleId);
     }
