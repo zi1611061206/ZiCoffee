@@ -14,7 +14,7 @@
                 {
                     AreaId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    ParentId = c.String(nullable: false, maxLength: 50, unicode: false, defaultValue: string.Empty),
+                    ParentId = c.String(nullable: false, maxLength: 50, unicode: false),
                 })
                 .PrimaryKey(t => t.AreaId);
 
@@ -73,7 +73,7 @@
                 {
                     ProductId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                     Status = c.Int(nullable: false, defaultValue: (int)ProductStatus.Availabled),
                     Thumnail = c.Binary(nullable: false),
                     Price = c.Single(nullable: false, defaultValue: 0),
@@ -90,9 +90,9 @@
                 {
                     CategoryId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                     Status = c.Int(nullable: false, defaultValue: (int)CategoryStatus.Availabled),
-                    ParentId = c.String(nullable: false, maxLength: 50, unicode: false, defaultValue: string.Empty),
+                    ParentId = c.String(nullable: false, maxLength: 50, unicode: false),
                 })
                 .PrimaryKey(t => t.CategoryId);
 
@@ -190,7 +190,7 @@
                 c => new
                 {
                     PromotionId = c.Guid(nullable: false),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                     IsActived = c.Int(nullable: false, defaultValue: (int)PromotionActived.NotActivated),
                     IsAutoApply = c.Int(nullable: false, defaultValue: (int)PromotionAutoApply.Manual),
                     IsPercent = c.Int(nullable: false, defaultValue: (int)PromotionPercent.Normal),
@@ -211,7 +211,7 @@
                 {
                     PromotionTypeId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                 })
                 .PrimaryKey(t => t.PromotionTypeId);
 
@@ -259,7 +259,7 @@
                 {
                     EventId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                 })
                 .PrimaryKey(t => t.EventId);
 
@@ -282,7 +282,7 @@
                 {
                     RoleId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
-                    Description = c.String(defaultValue: string.Empty),
+                    Description = c.String(),
                 })
                 .PrimaryKey(t => t.RoleId);
 
