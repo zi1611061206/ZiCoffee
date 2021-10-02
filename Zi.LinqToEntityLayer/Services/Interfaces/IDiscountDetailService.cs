@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IDiscountDetailService
     {
-        Paginator<DiscountDetail> GetDiscountDetails(DiscountDetailFilter filter);
+        Task<Paginator<DiscountDetail>> GetDiscountDetails(DiscountDetailFilter filter);
         Task<bool> AddDiscountDetail(DiscountDetail discountDetail);
         Task<bool> DeleteDiscountDetail(Guid billId, Guid promotionId);
     }

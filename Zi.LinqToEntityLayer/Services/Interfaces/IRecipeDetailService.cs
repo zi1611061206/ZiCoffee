@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IRecipeDetailService
     {
-        Paginator<RecipeDetail> GetRecipeDetails(RecipeDetailFilter filter);
+        Task<Paginator<RecipeDetail>> GetRecipeDetails(RecipeDetailFilter filter);
         Task<bool> AddRecipeDetail(RecipeDetail recipeDetail);
         Task<bool> UpdateRecipeDetail(RecipeDetail recipeDetail);
         Task<bool> DeleteRecipeDetail(Guid recipeId, Guid materialId);

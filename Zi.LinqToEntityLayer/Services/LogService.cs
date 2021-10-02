@@ -41,16 +41,16 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Log> GetLogs(LogFilter filter)
+        public async Task<Paginator<Log>> GetLogs(LogFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Logs;
-                query = GettingBy(query, filter);
-                query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Filtering(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new Log()
                 {
@@ -61,10 +61,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<Log>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }
@@ -90,11 +90,10 @@ namespace Zi.LinqToEntityLayer.Services
             {
                 query.Where(x => x.EventId.CompareTo(filter.EventId) == 0);
             }
-            if (filter.TimeFrom.HasValue && filter.TimeTo.HasValue)
+            query.Where(x => x.Time.CompareTo(filter.TimeFrom) >= 0);
+            if (DateTime.Compare(filter.TimeTo, filter.TimeFrom) > 0)
             {
-                query.Where(
-                    x => x.Time.CompareTo(filter.TimeFrom) >= 0
-                    && x.Time.CompareTo(filter.TimeTo) <= 0);
+                query.Where(x => x.Time.CompareTo(filter.TimeTo) <= 0);
             }
             return query;
         }

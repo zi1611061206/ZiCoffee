@@ -42,16 +42,16 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Area> GetAreas(AreaFilter filter)
+        public async Task<Paginator<Area>> GetAreas(AreaFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Areas;
-                query = GettingBy(query, filter);
-                query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Filtering(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new Area()
                 {
@@ -61,10 +61,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<Area>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }
@@ -73,9 +73,9 @@ namespace Zi.LinqToEntityLayer.Services
         #region Engines
         private DbSet<Area> GettingBy(DbSet<Area> query, AreaFilter filter)
         {
-            if (filter.AreaId.CompareTo(Guid.Empty)!=0)
+            if (filter.AreaId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.AreaId.CompareTo(filter.AreaId)==0);
+                query.Where(x => x.AreaId.CompareTo(filter.AreaId) == 0);
             }
             return query;
         }

@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface ILogService
     {
-        Paginator<Log> GetLogs(LogFilter filter);
+        Task<Paginator<Log>> GetLogs(LogFilter filter);
         Task<bool> AddLog(Log log);
         Task<bool> UpdateLog(Log log);
         Task<bool> DeleteLog(Guid logId);

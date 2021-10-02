@@ -41,16 +41,15 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Event> GetEvents(EventFilter filter)
+        public async Task<Paginator<Event>> GetEvents(EventFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Events;
-                query = GettingBy(query, filter);
-                //query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new Event()
                 {
@@ -60,16 +59,14 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<Event>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }
         }
-
-
 
         #region Engines
         private DbSet<Event> GettingBy(DbSet<Event> query, EventFilter filter)

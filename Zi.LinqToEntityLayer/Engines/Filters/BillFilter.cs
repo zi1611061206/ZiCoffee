@@ -11,8 +11,8 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
     public class BillFilter : PaginatorConfiguration
     {
         public Guid BillId { get; set; }
-        public DateTime? CreatedDateFrom { get; set; }
-        public DateTime? CreatedDateTo { get; set; }
+        public DateTime CreatedDateFrom { get; set; }
+        public DateTime CreatedDateTo { get; set; }
         public float TotalMin { get; set; }
         public float TotalMax { get; set; }
         public float VatMin { get; set; }
@@ -22,8 +22,8 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
         public float RealPayMin { get; set; }
         public float RealPayMax { get; set; }
         public BillStatus? Status { get; set; }
-        public DateTime? LastedModifyFrom { get; set; }
-        public DateTime? LastedModifyTo { get; set; }
+        public DateTime LastedModifyFrom { get; set; }
+        public DateTime LastedModifyTo { get; set; }
         public Guid UserId { get; set; }
         public Guid TableId { get; set; }
 

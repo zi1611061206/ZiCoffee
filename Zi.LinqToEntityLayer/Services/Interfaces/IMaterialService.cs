@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IMaterialService
     {
-        Paginator<Material> GetMaterials(MaterialFilter filter);
+        Task<Paginator<Material>> GetMaterials(MaterialFilter filter);
         Task<bool> AddMaterial(Material material);
         Task<bool> UpdateMaterial(Material material);
         Task<bool> DeleteMaterial(Guid materialId);

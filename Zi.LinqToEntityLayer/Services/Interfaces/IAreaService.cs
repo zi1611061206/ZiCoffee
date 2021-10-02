@@ -12,7 +12,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IAreaService
     {
-        Paginator<Area> GetAreas(AreaFilter filter);
+        Task<Paginator<Area>> GetAreas(AreaFilter filter);
         Task<bool> AddArea(Area area);
         Task<bool> UpdateArea(Area area);
         Task<bool> DeleteArea(Guid areaId);

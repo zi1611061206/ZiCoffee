@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface ITableService
     {
-        Paginator<Table> GetTables(TableFilter filter);
+        Task<Paginator<Table>> GetTables(TableFilter filter);
         Task<bool> AddTable(Table table);
         Task<bool> UpdateTable(Table table);
         Task<bool> DeleteTable(Guid tableId);

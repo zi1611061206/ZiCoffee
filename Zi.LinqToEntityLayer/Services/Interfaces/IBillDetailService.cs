@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IBillDetailService
     {
-        Paginator<BillDetail> GetBillDetails(BillDetailFilter filter);
+        Task<Paginator<BillDetail>> GetBillDetails(BillDetailFilter filter);
         Task<bool> AddBillDetail(BillDetail billDetail);
         Task<bool> UpdateBillDetail(BillDetail billDetail);
         Task<bool> DeleteBillDetail(Guid billId, Guid productId);

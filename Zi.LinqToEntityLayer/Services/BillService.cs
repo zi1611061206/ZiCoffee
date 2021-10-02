@@ -41,16 +41,16 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Bill> GetBills(BillFilter filter)
+        public async Task<Paginator<Bill>> GetBills(BillFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Bills;
-                query = GettingBy(query, filter);
-                query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Filtering(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new Bill()
                 {
@@ -67,10 +67,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<Bill>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }
@@ -88,11 +88,10 @@ namespace Zi.LinqToEntityLayer.Services
 
         private DbSet<Bill> Filtering(DbSet<Bill> query, BillFilter filter)
         {
-            if (filter.CreatedDateFrom.HasValue && filter.CreatedDateTo.HasValue)
+            query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
+            if (DateTime.Compare(filter.LastedModifyTo, filter.LastedModifyFrom) > 0)
             {
-                query.Where(
-                    x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0
-                    && x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
+                query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
             query.Where(x => x.Total >= filter.TotalMin);
             if (filter.TotalMax > filter.TotalMin)
@@ -118,11 +117,10 @@ namespace Zi.LinqToEntityLayer.Services
             {
                 query.Where(x => x.Status.CompareTo(filter.Status) == 0);
             }
-            if (filter.LastedModifyFrom.HasValue && filter.LastedModifyTo.HasValue)
+            query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyFrom) >= 0);
+            if (DateTime.Compare(filter.LastedModifyTo, filter.LastedModifyFrom) > 0)
             {
-                query.Where(
-                    x => x.LastedModify.CompareTo(filter.LastedModifyFrom) >= 0
-                    && x.LastedModify.CompareTo(filter.LastedModifyTo) <= 0);
+                query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyTo) <= 0);
             }
             if (filter.UserId.CompareTo(Guid.Empty) != 0)
             {

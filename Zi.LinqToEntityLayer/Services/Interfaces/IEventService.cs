@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IEventService
     {
-        Paginator<Event> GetEvents(EventFilter filter);
+        Task<Paginator<Event>> GetEvents(EventFilter filter);
         Task<bool> AddEvent(Event e);
         Task<bool> UpdateEvent(Event e);
         Task<bool> DeleteEvent(Guid eventId);

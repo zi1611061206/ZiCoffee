@@ -32,8 +32,8 @@ namespace Zi.LinqToEntityLayer.Services
             using (var context = new ZiDbContext())
             {
                 var userRole = (from ur in context.UserRoles
-                               where ur.UserId.CompareTo(userId) == 0 && ur.RoleId.CompareTo(roleId) == 0
-                               select ur).First();
+                                where ur.UserId.CompareTo(userId) == 0 && ur.RoleId.CompareTo(roleId) == 0
+                                select ur).First();
                 context.UserRoles.Remove(userRole);
                 if (await context.SaveChangesAsync() <= 0)
                 {
@@ -43,16 +43,15 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<UserRole> GetUserRoles(UserRoleFilter filter)
+        public async Task<Paginator<UserRole>> GetUserRoles(UserRoleFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.UserRoles;
-                query = GettingBy(query, filter);
-                //query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new UserRole()
                 {
@@ -61,10 +60,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<UserRole>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }

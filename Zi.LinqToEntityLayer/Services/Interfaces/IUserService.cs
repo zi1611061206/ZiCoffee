@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IUserService
     {
-        Paginator<User> GetUsers(UserFilter filter);
+        Task<Paginator<User>> GetUsers(UserFilter filter);
         Task<bool> AddUser(User user);
         Task<bool> UpdateUser(User user);
         Task<bool> DeleteUser(Guid userId);

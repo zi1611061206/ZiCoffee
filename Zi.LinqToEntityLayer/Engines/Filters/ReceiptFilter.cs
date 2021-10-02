@@ -10,8 +10,8 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
     public class ReceiptFilter : PaginatorConfiguration
     {
         public Guid ReceiptId { get; set; }
-        public DateTime? CreatedDateFrom { get; set; }
-        public DateTime? CreatedDateTo { get; set; }
+        public DateTime CreatedDateFrom { get; set; }
+        public DateTime CreatedDateTo { get; set; }
         public Guid SupplierId { get; set; }
 
         public ReceiptFilter()

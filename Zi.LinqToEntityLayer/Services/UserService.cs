@@ -43,16 +43,16 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<User> GetUsers(UserFilter filter)
+        public async Task<Paginator<User>> GetUsers(UserFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Users;
-                query = GettingBy(query, filter);
-                query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Filtering(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Use to mapping data
                 var data = query.Select(x => new User()
                 {
@@ -75,10 +75,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<User>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }
@@ -96,17 +96,15 @@ namespace Zi.LinqToEntityLayer.Services
 
         private DbSet<User> Filtering(DbSet<User> query, UserFilter filter)
         {
-            if (filter.DateOfBirthFrom.HasValue && filter.DateOfBirthTo.HasValue)
+            query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) >= 0);
+            if (DateTime.Compare(filter.DateOfBirthTo, filter.DateOfBirthFrom) > 0)
             {
-                query.Where(
-                    x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) >= 0
-                    && x.DateOfBirth.CompareTo(filter.DateOfBirthTo) <= 0);
+                query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthTo) <= 0);
             }
-            if (filter.CreatedDateFrom.HasValue && filter.CreatedDateTo.HasValue)
+            query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
+            if (DateTime.Compare(filter.CreatedDateTo, filter.CreatedDateFrom) > 0)
             {
-                query.Where(
-                    x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0
-                    && x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
+                query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
             if (filter.Gender.HasValue)
             {

@@ -41,16 +41,15 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<Role> GetRoles(RoleFilter filter)
+        public async Task<Paginator<Role>> GetRoles(RoleFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.Roles;
-                query = GettingBy(query, filter);
-                // query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new Role()
                 {
@@ -60,10 +59,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<Role>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }

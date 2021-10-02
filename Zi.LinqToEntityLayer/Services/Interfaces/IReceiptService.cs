@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IReceiptService
     {
-        Paginator<Receipt> GetReceipts(ReceiptFilter filter);
+        Task<Paginator<Receipt>> GetReceipts(ReceiptFilter filter);
         Task<bool> AddReceipt(Receipt receipt);
         Task<bool> UpdateReceipt(Receipt receipt);
         Task<bool> DeleteReceipt(Guid receiptId);

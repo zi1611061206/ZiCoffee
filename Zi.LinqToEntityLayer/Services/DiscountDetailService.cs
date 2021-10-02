@@ -32,8 +32,8 @@ namespace Zi.LinqToEntityLayer.Services
             using (var context = new ZiDbContext())
             {
                 var discountDetail = (from dd in context.DiscountDetails
-                                where dd.BillId.CompareTo(billId) == 0 && dd.PromotionId.CompareTo(promotionId) == 0
-                                select dd).First();
+                                      where dd.BillId.CompareTo(billId) == 0 && dd.PromotionId.CompareTo(promotionId) == 0
+                                      select dd).First();
                 context.DiscountDetails.Remove(discountDetail);
                 if (await context.SaveChangesAsync() <= 0)
                 {
@@ -43,16 +43,15 @@ namespace Zi.LinqToEntityLayer.Services
             }
         }
 
-        public Paginator<DiscountDetail> GetDiscountDetails(DiscountDetailFilter filter)
+        public async Task<Paginator<DiscountDetail>> GetDiscountDetails(DiscountDetailFilter filter)
         {
             using (var context = new ZiDbContext())
             {
                 var query = context.DiscountDetails;
-                query = GettingBy(query, filter);
-                //query = Filtering(query, filter);
-                query = Searching(query, filter);
-                query = Paging(query, filter);
-                query = Sorting(query, filter);
+                query = await query.CountAsync() > 0 ? GettingBy(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Searching(query, filter) : query;
+                query = await query.CountAsync() > filter.PageSize ? Paging(query, filter) : query;
+                query = await query.CountAsync() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
                 var data = query.Select(x => new DiscountDetail()
                 {
@@ -61,10 +60,10 @@ namespace Zi.LinqToEntityLayer.Services
                 });
                 var result = new Paginator<DiscountDetail>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = await data.CountAsync(),
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
-                    Item = data.ToList()
+                    Item = await data.ToListAsync()
                 };
                 return result;
             }

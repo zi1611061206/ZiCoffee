@@ -12,8 +12,8 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
         public Guid LogId { get; set; }
         public Guid UserId { get; set; }
         public Guid EventId { get; set; }
-        public DateTime? TimeFrom { get; set; }
-        public DateTime? TimeTo { get; set; }
+        public DateTime TimeFrom { get; set; }
+        public DateTime TimeTo { get; set; }
 
         public LogFilter()
         {

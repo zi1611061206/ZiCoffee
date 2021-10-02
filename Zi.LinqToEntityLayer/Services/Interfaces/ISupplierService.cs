@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface ISupplierService
     {
-        Paginator<Supplier> GetSuppliers(SupplierFilter filter);
+        Task<Paginator<Supplier>> GetSuppliers(SupplierFilter filter);
         Task<bool> AddSupplier(Supplier supplier);
         Task<bool> UpdateSupplier(Supplier supplier);
         Task<bool> DeleteSupplier(Guid supplierId);

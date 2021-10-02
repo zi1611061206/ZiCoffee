@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IPromotionTypeService
     {
-        Paginator<PromotionType> GetAreaPromotionTypes(PromotionTypeFilter filter);
+        Task<Paginator<PromotionType>> GetAreaPromotionTypes(PromotionTypeFilter filter);
         Task<bool> AddPromotionType(PromotionType promotionType);
         Task<bool> UpdatePromotionType(PromotionType promotionType);
         Task<bool> DeletePromotionType(Guid promotionTypeId);

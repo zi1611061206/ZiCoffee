@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface IProductService
     {
-        Paginator<Product> GetProducts(ProductFilter filter);
+        Task<Paginator<Product>> GetProducts(ProductFilter filter);
         Task<bool> AddProduct(Product product);
         Task<bool> UpdateProduct(Product product);
         Task<bool> DeleteProduct(Guid productId);

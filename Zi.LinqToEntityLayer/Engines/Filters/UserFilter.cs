@@ -11,10 +11,10 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
     public class UserFilter : PaginatorConfiguration
     {
         public Guid UserId { get; set; }
-        public DateTime? DateOfBirthFrom { get; set; }
-        public DateTime? DateOfBirthTo { get; set; }
-        public DateTime? CreatedDateFrom { get; set; }
-        public DateTime? CreatedDateTo { get; set; }
+        public DateTime DateOfBirthFrom { get; set; }
+        public DateTime DateOfBirthTo { get; set; }
+        public DateTime CreatedDateFrom { get; set; }
+        public DateTime CreatedDateTo { get; set; }
         public Genders? Gender { get; set; }
 
         public UserFilter()

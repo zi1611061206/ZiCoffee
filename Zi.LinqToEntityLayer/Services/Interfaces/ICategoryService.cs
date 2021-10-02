@@ -11,7 +11,7 @@ namespace Zi.LinqToEntityLayer.Services.Interfaces
 {
     public interface ICategoryService
     {
-        Paginator<Category> GetCategories(CategoryFilter filter);
+        Task<Paginator<Category>> GetCategories(CategoryFilter filter);
         Task<bool> AddCategory(Category category);
         Task<bool> UpdateCategory(Category category);
         Task<bool> DeleteCategory(Guid categoryId);
