@@ -19,16 +19,14 @@ namespace Zi.DatabaseEntity.Configurators
             Property(x => x.CreatedDate)
                 .IsRequired()
                 .HasColumnType("DATETIME2");
-            //Property(x => x.Total)
-            //    .IsRequired();
+            Property(x => x.Total)
+                .IsRequired();
             Property(x => x.Vat)
                 .IsRequired();
-            //Property(x => x.AfterVat)
-            //    .IsRequired();
-            //Property(x => x.RealPay)
-            //    .IsRequired();
-            //Property(x => x.Total)
-            //    .IsRequired();
+            Property(x => x.AfterVat)
+                .IsRequired();
+            Property(x => x.RealPay)
+                .IsRequired();
             Property(x => x.Status)
                 .IsRequired();
             Property(x => x.LastedModify)

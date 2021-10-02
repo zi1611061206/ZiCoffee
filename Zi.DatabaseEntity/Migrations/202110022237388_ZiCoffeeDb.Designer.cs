@@ -13,7 +13,7 @@ namespace Zi.DatabaseEntity.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202109262108237_ZiCoffeeDb"; }
+            get { return "202110022237388_ZiCoffeeDb"; }
         }
         
         string IMigrationMetadata.Source

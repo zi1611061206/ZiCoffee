@@ -37,10 +37,10 @@
                 {
                     BillId = c.Guid(nullable: false),
                     CreatedDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
-                    Total = c.Single(nullable: false),
+                    Total = c.Single(nullable: false, defaultValue: 0),
                     Vat = c.Single(nullable: false, defaultValue: 0),
-                    AfterVat = c.Single(nullable: false),
-                    RealPay = c.Single(nullable: false),
+                    AfterVat = c.Single(nullable: false, defaultValue: 0),
+                    RealPay = c.Single(nullable: false, defaultValue: 0),
                     Status = c.Int(nullable: false, defaultValue: (int)BillStatus.UnPay),
                     LastedModify = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                     UserId = c.Guid(nullable: false),
@@ -229,12 +229,12 @@
                     Email = c.String(nullable: false, maxLength: 50, unicode: false),
                     DateOfBirth = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                     CreatedDate = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
-                    PasswordHash = c.String(nullable: false, maxLength: 100, unicode: false),
+                    PasswordHash = c.String(maxLength: 100, unicode: false),
                     Gender = c.Int(nullable: false, defaultValue: (int)Genders.Male),
-                    Avatar = c.Binary(nullable: false),
+                    Avatar = c.Binary(),
                     CitizenId = c.String(maxLength: 15, unicode: false),
                     Address = c.String(nullable: false, maxLength: 100),
-                    Salt = c.String(nullable: false, maxLength: 50, unicode: false),
+                    Salt = c.String(maxLength: 50, unicode: false),
                 })
                 .PrimaryKey(t => t.UserId);
 
