@@ -541,16 +541,6 @@
     <None Include="Resources\youtubev.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zi.DataAccessLayer\Zi.DataAccessLayer.csproj">
-      <Project>{2b862ff3-3cf3-40cc-8fc3-2c33820b1c08}</Project>
-      <Name>Zi.DataAccessLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Zi.DataTransferLayer\Zi.DataTransferLayer.csproj">
-      <Project>{8d890f87-8e67-430a-a496-d65442440c01}</Project>
-      <Name>Zi.DataTransferLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\AnhTaBoEmRoiSoundtrack.wav" />
   </ItemGroup>
   <ItemGroup>

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2B862FF3-3CF3-40CC-8FC3-2C33820B1C08}</ProjectGuid>
+    <ProjectGuid>{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Zi.DataAccessLayer</RootNamespace>
-    <AssemblyName>Zi.DataAccessLayer</AssemblyName>
+    <RootNamespace>Zi.ThreeLayer</RootNamespace>
+    <AssemblyName>Zi.ThreeLayer</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,6 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DTOs\AreaObj.cs" />
+    <Compile Include="DTOs\BillObj.cs" />
+    <Compile Include="DTOs\CategoryObj.cs" />
+    <Compile Include="DTOs\EventObj.cs" />
+    <Compile Include="DTOs\LogObj.cs" />
+    <Compile Include="DTOs\MaterialObj.cs" />
+    <Compile Include="DTOs\ProductObj.cs" />
+    <Compile Include="DTOs\PromotionObj.cs" />
+    <Compile Include="DTOs\PromotionTypeObj.cs" />
+    <Compile Include="DTOs\ReceiptObj.cs" />
+    <Compile Include="DTOs\RecipeObj.cs" />
+    <Compile Include="DTOs\Relationship\BillDetailObj.cs" />
+    <Compile Include="DTOs\Relationship\DiscountDetailObj.cs" />
+    <Compile Include="DTOs\Relationship\ReceiptDetailObj.cs" />
+    <Compile Include="DTOs\Relationship\RecipeDetailObj.cs" />
+    <Compile Include="DTOs\Relationship\UserRoleObj.cs" />
+    <Compile Include="DTOs\RoleObj.cs" />
+    <Compile Include="DTOs\SupplierObj.cs" />
+    <Compile Include="DTOs\TableObj.cs" />
+    <Compile Include="DTOs\UserObj.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\SqlDataProvider.cs" />
@@ -71,6 +91,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zi.DatabaseEntity\Zi.DatabaseEntity.csproj">
+      <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
+      <Name>Zi.DatabaseEntity</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DAOs\Interfaces\" />
