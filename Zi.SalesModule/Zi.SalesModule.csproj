@@ -5,10 +5,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0E896123-5412-4A67-8612-2F592715797B}</ProjectGuid>
+    <ProjectGuid>{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Zi.LinqToEntityLayer</RootNamespace>
-    <AssemblyName>Zi.LinqToEntityLayer</AssemblyName>
+    <RootNamespace>Zi.SalesModule</RootNamespace>
+    <AssemblyName>Zi.SalesModule</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -36,18 +36,19 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
-      <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
-    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FontAwesome.Sharp, Version=5.15.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FontAwesome.Sharp.5.15.3\lib\net472\FontAwesome.Sharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Speech" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -59,75 +60,78 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Engines\Comparers\ObjectComparer.cs" />
-    <Compile Include="Engines\Encoders\Encryptor.cs" />
-    <Compile Include="Engines\Convertors\DataTypeConvertor.cs" />
-    <Compile Include="Engines\Filters\AreaFilter.cs" />
-    <Compile Include="Engines\Filters\BillDetailFilter.cs" />
-    <Compile Include="Engines\Filters\BillFilter.cs" />
-    <Compile Include="Engines\Filters\CategoryFilter.cs" />
-    <Compile Include="Engines\Filters\DiscountDetailFilter.cs" />
-    <Compile Include="Engines\Filters\EventFilter.cs" />
-    <Compile Include="Engines\Filters\LogFilter.cs" />
-    <Compile Include="Engines\Filters\MaterialFilter.cs" />
-    <Compile Include="Engines\Filters\ProductFilter.cs" />
-    <Compile Include="Engines\Filters\PromotionFilter.cs" />
-    <Compile Include="Engines\Filters\PromotionTypeFilter.cs" />
-    <Compile Include="Engines\Filters\ReceiptDetailFilter.cs" />
-    <Compile Include="Engines\Filters\ReceiptFilter.cs" />
-    <Compile Include="Engines\Filters\RecipeDetailFilter.cs" />
-    <Compile Include="Engines\Filters\RecipeFilter.cs" />
-    <Compile Include="Engines\Filters\RoleFilter.cs" />
-    <Compile Include="Engines\Filters\SupplierFilter.cs" />
-    <Compile Include="Engines\Filters\TableFilter.cs" />
-    <Compile Include="Engines\Filters\UserFilter.cs" />
-    <Compile Include="Engines\Filters\UserRoleFilter.cs" />
-    <Compile Include="Engines\Paginators\Paginator.cs" />
-    <Compile Include="Engines\Paginators\PaginatorConfiguration.cs" />
-    <Compile Include="Engines\Searchers\Searcher.cs" />
-    <Compile Include="Engines\Sorters\Sorter.cs" />
+    <Compile Include="CustomControls\GroupTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\GroupTextBox.Designer.cs">
+      <DependentUpon>GroupTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\PasswordTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PasswordTextBox.Designer.cs">
+      <DependentUpon>PasswordTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormCashier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormCashier.Designer.cs">
+      <DependentUpon>FormCashier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormCheckout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormCheckout.Designer.cs">
+      <DependentUpon>FormCheckout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormManager.Designer.cs">
+      <DependentUpon>FormManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormService.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormService.Designer.cs">
+      <DependentUpon>FormService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormSetting.Designer.cs">
+      <DependentUpon>FormSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormStart.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormStart.Designer.cs">
+      <DependentUpon>FormStart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormStocker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormStocker.Designer.cs">
+      <DependentUpon>FormStocker.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AreaService.cs" />
-    <Compile Include="Services\BillDetailService.cs" />
-    <Compile Include="Services\BillService.cs" />
-    <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\DiscountDetailService.cs" />
-    <Compile Include="Services\EventService.cs" />
-    <Compile Include="Services\Interfaces\IAreaService.cs" />
-    <Compile Include="Services\Interfaces\IBillDetailService.cs" />
-    <Compile Include="Services\Interfaces\IBillService.cs" />
-    <Compile Include="Services\Interfaces\ICategoryService.cs" />
-    <Compile Include="Services\Interfaces\IDiscountDetailService.cs" />
-    <Compile Include="Services\Interfaces\IEventService.cs" />
-    <Compile Include="Services\Interfaces\ILogService.cs" />
-    <Compile Include="Services\Interfaces\IMaterialService.cs" />
-    <Compile Include="Services\Interfaces\IProductService.cs" />
-    <Compile Include="Services\Interfaces\IPromotionService.cs" />
-    <Compile Include="Services\Interfaces\IPromotionTypeService.cs" />
-    <Compile Include="Services\Interfaces\IReceiptDetailService.cs" />
-    <Compile Include="Services\Interfaces\IReceiptService.cs" />
-    <Compile Include="Services\Interfaces\IRecipeDetailService.cs" />
-    <Compile Include="Services\Interfaces\IRecipeService.cs" />
-    <Compile Include="Services\Interfaces\IRoleService.cs" />
-    <Compile Include="Services\Interfaces\ISupplierService.cs" />
-    <Compile Include="Services\Interfaces\ITableService.cs" />
-    <Compile Include="Services\Interfaces\IUserRoleService.cs" />
-    <Compile Include="Services\Interfaces\IUserService.cs" />
-    <Compile Include="Services\LogService.cs" />
-    <Compile Include="Services\MaterialService.cs" />
-    <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\PromotionService.cs" />
-    <Compile Include="Services\PromotionTypeService.cs" />
-    <Compile Include="Services\ReceiptDetailService.cs" />
-    <Compile Include="Services\ReceiptService.cs" />
-    <Compile Include="Services\RecipeDetailService.cs" />
-    <Compile Include="Services\RecipeService.cs" />
-    <Compile Include="Services\RoleService.cs" />
-    <Compile Include="Services\SupplierService.cs" />
-    <Compile Include="Services\TableService.cs" />
-    <Compile Include="Services\UserRoleService.cs" />
-    <Compile Include="Services\UserService.cs" />
+    <Compile Include="Validators\LoginValidator.cs" />
+    <EmbeddedResource Include="CustomControls\GroupTextBox.resx">
+      <DependentUpon>GroupTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CustomControls\PasswordTextBox.resx">
+      <DependentUpon>PasswordTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -157,14 +161,14 @@
       <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
       <Name>Zi.DatabaseEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zi.LinqToEntityLayer\Zi.LinqToEntityLayer.csproj">
+      <Project>{0e896123-5412-4a67-8612-2f592715797b}</Project>
+      <Name>Zi.LinqToEntityLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\NoAvatar.jpg" />
+    <None Include="Resources\zi-logo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\NoImage.png" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

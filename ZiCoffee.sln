@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.LinqToEntityLayer", "Zi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.ThreeLayer", "Zi.ThreeLayer\Zi.ThreeLayer.csproj", "{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zi.SalesModule", "Zi.SalesModule\Zi.SalesModule.csproj", "{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +66,7 @@ Global
 		{4F0A3CEC-E41D-4132-9DD7-CC7623F4FA23} = {9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}
 		{0E896123-5412-4A67-8612-2F592715797B} = {9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}
 		{7B8BC208-7FAB-4BAA-9E36-45F760C14AE3} = {9C9C33CB-E1AB-489F-B9CB-4696194AB2CD}
+		{C6F9B5A9-179B-4202-924A-D3FD0F27E1CF} = {80E99F62-5C89-4609-8424-E1E965EB0C71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8762CEC3-14F3-4185-8C48-289E6603B93D}

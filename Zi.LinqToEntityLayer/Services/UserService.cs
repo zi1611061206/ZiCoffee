@@ -91,6 +91,10 @@ namespace Zi.LinqToEntityLayer.Services
             {
                 query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
             }
+            if (string.IsNullOrEmpty(filter.Username))
+            {
+                query.Where(x => x.Username.Equals(filter.Username));
+            }
             return query;
         }
 

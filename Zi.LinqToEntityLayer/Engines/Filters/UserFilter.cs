@@ -11,6 +11,7 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
     public class UserFilter : PaginatorConfiguration
     {
         public Guid UserId { get; set; }
+        public string Username { get; set; }
         public DateTime DateOfBirthFrom { get; set; }
         public DateTime DateOfBirthTo { get; set; }
         public DateTime CreatedDateFrom { get; set; }
@@ -20,6 +21,7 @@ namespace Zi.LinqToEntityLayer.Engines.Filters
         public UserFilter()
         {
             UserId = Guid.Empty;
+            Username = string.Empty;
             DateOfBirthFrom = DateTime.MinValue;
             DateOfBirthTo = DateTime.MaxValue;
             CreatedDateFrom = DateTime.MinValue;
