@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6072AC39-8AAD-4083-A6E6-913F9A48CC55}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Zi.LinqSqlLayer</RootNamespace>
+    <AssemblyName>Zi.LinqSqlLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BCrypt.Net, Version=0.1.4141.31969, Culture=neutral, PublicKeyToken=f3bc8f8c31beeb49, processorArchitecture=MSIL">
+      <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTOs\AreaDTO.cs" />
+    <Compile Include="DTOs\BillDTO.cs" />
+    <Compile Include="DTOs\CategoryDTO.cs" />
+    <Compile Include="DTOs\EventDTO.cs" />
+    <Compile Include="DTOs\LogDTO.cs" />
+    <Compile Include="DTOs\MaterialDTO.cs" />
+    <Compile Include="DTOs\ProductDTO.cs" />
+    <Compile Include="DTOs\PromotionDTO.cs" />
+    <Compile Include="DTOs\PromotionTypeDTO.cs" />
+    <Compile Include="DTOs\ReceiptDTO.cs" />
+    <Compile Include="DTOs\RecipeDTO.cs" />
+    <Compile Include="DTOs\Relationship\BillDetailDTO.cs" />
+    <Compile Include="DTOs\Relationship\DiscountDetailDTO.cs" />
+    <Compile Include="DTOs\Relationship\ReceiptDetailDTO.cs" />
+    <Compile Include="DTOs\Relationship\RecipeDetailDTO.cs" />
+    <Compile Include="DTOs\Relationship\UserRoleDTO.cs" />
+    <Compile Include="DTOs\RoleDTO.cs" />
+    <Compile Include="DTOs\SupplierDTO.cs" />
+    <Compile Include="DTOs\TableDTO.cs" />
+    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="Engines\Comparers\ObjectComparer.cs" />
+    <Compile Include="Engines\Convertors\DataTypeConvertor.cs" />
+    <Compile Include="Engines\Encoders\Encryptor.cs" />
+    <Compile Include="Engines\Filters\AreaFilter.cs" />
+    <Compile Include="Engines\Filters\BillDetailFilter.cs" />
+    <Compile Include="Engines\Filters\BillFilter.cs" />
+    <Compile Include="Engines\Filters\CategoryFilter.cs" />
+    <Compile Include="Engines\Filters\DiscountDetailFilter.cs" />
+    <Compile Include="Engines\Filters\EventFilter.cs" />
+    <Compile Include="Engines\Filters\LogFilter.cs" />
+    <Compile Include="Engines\Filters\MaterialFilter.cs" />
+    <Compile Include="Engines\Filters\ProductFilter.cs" />
+    <Compile Include="Engines\Filters\PromotionFilter.cs" />
+    <Compile Include="Engines\Filters\PromotionTypeFilter.cs" />
+    <Compile Include="Engines\Filters\ReceiptDetailFilter.cs" />
+    <Compile Include="Engines\Filters\ReceiptFilter.cs" />
+    <Compile Include="Engines\Filters\RecipeDetailFilter.cs" />
+    <Compile Include="Engines\Filters\RecipeFilter.cs" />
+    <Compile Include="Engines\Filters\RoleFilter.cs" />
+    <Compile Include="Engines\Filters\SupplierFilter.cs" />
+    <Compile Include="Engines\Filters\TableFilter.cs" />
+    <Compile Include="Engines\Filters\UserFilter.cs" />
+    <Compile Include="Engines\Filters\UserRoleFilter.cs" />
+    <Compile Include="Engines\Paginators\Paginator.cs" />
+    <Compile Include="Engines\Paginators\PaginatorConfiguration.cs" />
+    <Compile Include="Engines\Searchers\Searcher.cs" />
+    <Compile Include="Engines\Sorters\Sorter.cs" />
+    <Compile Include="Enumerators\BillStatus.cs" />
+    <Compile Include="Enumerators\CategoryStatus.cs" />
+    <Compile Include="Enumerators\Genders.cs" />
+    <Compile Include="Enumerators\ProductStatus.cs" />
+    <Compile Include="Enumerators\PromotionActived.cs" />
+    <Compile Include="Enumerators\PromotionAutoApply.cs" />
+    <Compile Include="Enumerators\PromotionPercent.cs" />
+    <Compile Include="Enumerators\TableStatus.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\LinqToSql\ZiCoffee.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZiCoffee.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\ThreeLayers\SqlDataProvider.cs" />
+    <Compile Include="Services\AreaService.cs" />
+    <Compile Include="Services\BillDetailService.cs" />
+    <Compile Include="Services\BillService.cs" />
+    <Compile Include="Services\CategoryService.cs" />
+    <Compile Include="Services\DiscountDetailService.cs" />
+    <Compile Include="Services\EventService.cs" />
+    <Compile Include="Services\Interfaces\IAreaService.cs" />
+    <Compile Include="Services\Interfaces\IBillDetailService.cs" />
+    <Compile Include="Services\Interfaces\IBillService.cs" />
+    <Compile Include="Services\Interfaces\ICategoryService.cs" />
+    <Compile Include="Services\Interfaces\IDiscountDetailService.cs" />
+    <Compile Include="Services\Interfaces\IEventService.cs" />
+    <Compile Include="Services\Interfaces\ILogService.cs" />
+    <Compile Include="Services\Interfaces\IMaterialService.cs" />
+    <Compile Include="Services\Interfaces\IProductService.cs" />
+    <Compile Include="Services\Interfaces\IPromotionService.cs" />
+    <Compile Include="Services\Interfaces\IPromotionTypeService.cs" />
+    <Compile Include="Services\Interfaces\IReceiptDetailService.cs" />
+    <Compile Include="Services\Interfaces\IReceiptService.cs" />
+    <Compile Include="Services\Interfaces\IRecipeDetailService.cs" />
+    <Compile Include="Services\Interfaces\IRecipeService.cs" />
+    <Compile Include="Services\Interfaces\IRoleService.cs" />
+    <Compile Include="Services\Interfaces\ISupplierService.cs" />
+    <Compile Include="Services\Interfaces\ITableService.cs" />
+    <Compile Include="Services\Interfaces\IUserRoleService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\LogService.cs" />
+    <Compile Include="Services\MaterialService.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\PromotionService.cs" />
+    <Compile Include="Services\PromotionTypeService.cs" />
+    <Compile Include="Services\ReceiptDetailService.cs" />
+    <Compile Include="Services\ReceiptService.cs" />
+    <Compile Include="Services\RecipeDetailService.cs" />
+    <Compile Include="Services\RecipeService.cs" />
+    <Compile Include="Services\RoleService.cs" />
+    <Compile Include="Services\SupplierService.cs" />
+    <Compile Include="Services\TableService.cs" />
+    <Compile Include="Services\UserRoleService.cs" />
+    <Compile Include="Services\UserService.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Providers\LinqToSql\ZiCoffee.dbml.layout">
+      <DependentUpon>ZiCoffee.dbml</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Providers\LinqToSql\ZiCoffee.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>ZiCoffee.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoAvatar.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\ADONET\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
