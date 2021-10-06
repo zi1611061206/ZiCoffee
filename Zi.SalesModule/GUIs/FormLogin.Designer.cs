@@ -732,9 +732,11 @@ namespace Zi.SalesModule.GUIs
             // 
             // FormLogin
             // 
+            this.AcceptButton = this.ibtnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(47)))));
+            this.CancelButton = this.ibtnExit;
             this.ClientSize = new System.Drawing.Size(500, 650);
             this.Controls.Add(this.pnlButton);
             this.Controls.Add(this.pnlPassword);

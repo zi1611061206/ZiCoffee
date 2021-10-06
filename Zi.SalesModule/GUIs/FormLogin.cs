@@ -1,16 +1,10 @@
 ﻿using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Zi.LinqToEntityLayer.Services;
+using Zi.LinqSqlLayer.DAOs;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -216,6 +210,8 @@ namespace Zi.SalesModule.GUIs
             //Account account = AccountImpl.Instance.GetAccountByUsername(username);
             //Employee employee = EmployeeImpl.Instance.GetEmployeeById(account.EmployeeId);
             //AccessSuccess(account, employee);
+            Tuple<bool, object> a = UserService.Instance.CheckPassword(username, password, "en-US");
+            MessageBox.Show(a.Item2.ToString());
         }
 
         //private void AccessSuccess(Account account, Employee employee)

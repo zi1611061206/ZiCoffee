@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Entities;
-using Zi.LinqToEntityLayer.Engines.Filters;
-using Zi.LinqToEntityLayer.Services;
-using Zi.LinqToEntityLayer.Services.Interfaces;
+﻿using Zi.LinqSqlLayer.DAOs;
+using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.SalesModule.GUIs;
 
 namespace Zi.SalesModule.Validators

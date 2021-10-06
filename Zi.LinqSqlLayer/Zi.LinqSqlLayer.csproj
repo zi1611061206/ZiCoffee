@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -37,6 +39,7 @@
       <HintPath>..\packages\BCrypt.Net.0.1.0\lib\net35\BCrypt.Net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
@@ -50,26 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTOs\AreaDTO.cs" />
-    <Compile Include="DTOs\BillDTO.cs" />
-    <Compile Include="DTOs\CategoryDTO.cs" />
-    <Compile Include="DTOs\EventDTO.cs" />
-    <Compile Include="DTOs\LogDTO.cs" />
-    <Compile Include="DTOs\MaterialDTO.cs" />
-    <Compile Include="DTOs\ProductDTO.cs" />
-    <Compile Include="DTOs\PromotionDTO.cs" />
-    <Compile Include="DTOs\PromotionTypeDTO.cs" />
-    <Compile Include="DTOs\ReceiptDTO.cs" />
-    <Compile Include="DTOs\RecipeDTO.cs" />
-    <Compile Include="DTOs\Relationship\BillDetailDTO.cs" />
-    <Compile Include="DTOs\Relationship\DiscountDetailDTO.cs" />
-    <Compile Include="DTOs\Relationship\ReceiptDetailDTO.cs" />
-    <Compile Include="DTOs\Relationship\RecipeDetailDTO.cs" />
-    <Compile Include="DTOs\Relationship\UserRoleDTO.cs" />
-    <Compile Include="DTOs\RoleDTO.cs" />
-    <Compile Include="DTOs\SupplierDTO.cs" />
-    <Compile Include="DTOs\TableDTO.cs" />
-    <Compile Include="DTOs\UserDTO.cs" />
+    <Compile Include="DTOs\AreaModel.cs" />
+    <Compile Include="DTOs\Relationship\BillDetailModel.cs" />
+    <Compile Include="DTOs\BillModel.cs" />
+    <Compile Include="DTOs\CategoryModel.cs" />
+    <Compile Include="DTOs\EventModel.cs" />
+    <Compile Include="DTOs\LogModel.cs" />
+    <Compile Include="DTOs\MaterialModel.cs" />
+    <Compile Include="DTOs\ProductModel.cs" />
+    <Compile Include="DTOs\PromotionModel.cs" />
+    <Compile Include="DTOs\PromotionTypeModel.cs" />
+    <Compile Include="DTOs\ReceiptModel.cs" />
+    <Compile Include="DTOs\RecipeModel.cs" />
+    <Compile Include="DTOs\Relationship\DiscountDetailModel.cs" />
+    <Compile Include="DTOs\Relationship\ReceiptDetailModel.cs" />
+    <Compile Include="DTOs\Relationship\RecipeDetailModel.cs" />
+    <Compile Include="DTOs\Relationship\UserRoleModel.cs" />
+    <Compile Include="DTOs\RoleModel.cs" />
+    <Compile Include="DTOs\SupplierModel.cs" />
+    <Compile Include="DTOs\TableModel.cs" />
+    <Compile Include="DTOs\UserModel.cs" />
     <Compile Include="Engines\Comparers\ObjectComparer.cs" />
     <Compile Include="Engines\Convertors\DataTypeConvertor.cs" />
     <Compile Include="Engines\Encoders\Encryptor.cs" />
@@ -113,46 +116,51 @@
       <DependentUpon>ZiCoffee.dbml</DependentUpon>
     </Compile>
     <Compile Include="Providers\ThreeLayers\SqlDataProvider.cs" />
-    <Compile Include="Services\AreaService.cs" />
-    <Compile Include="Services\BillDetailService.cs" />
-    <Compile Include="Services\BillService.cs" />
-    <Compile Include="Services\CategoryService.cs" />
-    <Compile Include="Services\DiscountDetailService.cs" />
-    <Compile Include="Services\EventService.cs" />
-    <Compile Include="Services\Interfaces\IAreaService.cs" />
-    <Compile Include="Services\Interfaces\IBillDetailService.cs" />
-    <Compile Include="Services\Interfaces\IBillService.cs" />
-    <Compile Include="Services\Interfaces\ICategoryService.cs" />
-    <Compile Include="Services\Interfaces\IDiscountDetailService.cs" />
-    <Compile Include="Services\Interfaces\IEventService.cs" />
-    <Compile Include="Services\Interfaces\ILogService.cs" />
-    <Compile Include="Services\Interfaces\IMaterialService.cs" />
-    <Compile Include="Services\Interfaces\IProductService.cs" />
-    <Compile Include="Services\Interfaces\IPromotionService.cs" />
-    <Compile Include="Services\Interfaces\IPromotionTypeService.cs" />
-    <Compile Include="Services\Interfaces\IReceiptDetailService.cs" />
-    <Compile Include="Services\Interfaces\IReceiptService.cs" />
-    <Compile Include="Services\Interfaces\IRecipeDetailService.cs" />
-    <Compile Include="Services\Interfaces\IRecipeService.cs" />
-    <Compile Include="Services\Interfaces\IRoleService.cs" />
-    <Compile Include="Services\Interfaces\ISupplierService.cs" />
-    <Compile Include="Services\Interfaces\ITableService.cs" />
-    <Compile Include="Services\Interfaces\IUserRoleService.cs" />
-    <Compile Include="Services\Interfaces\IUserService.cs" />
-    <Compile Include="Services\LogService.cs" />
-    <Compile Include="Services\MaterialService.cs" />
-    <Compile Include="Services\ProductService.cs" />
-    <Compile Include="Services\PromotionService.cs" />
-    <Compile Include="Services\PromotionTypeService.cs" />
-    <Compile Include="Services\ReceiptDetailService.cs" />
-    <Compile Include="Services\ReceiptService.cs" />
-    <Compile Include="Services\RecipeDetailService.cs" />
-    <Compile Include="Services\RecipeService.cs" />
-    <Compile Include="Services\RoleService.cs" />
-    <Compile Include="Services\SupplierService.cs" />
-    <Compile Include="Services\TableService.cs" />
-    <Compile Include="Services\UserRoleService.cs" />
-    <Compile Include="Services\UserService.cs" />
+    <Compile Include="DAOs\AreaService.cs" />
+    <Compile Include="DAOs\BillDetailService.cs" />
+    <Compile Include="DAOs\BillService.cs" />
+    <Compile Include="DAOs\CategoryService.cs" />
+    <Compile Include="DAOs\DiscountDetailService.cs" />
+    <Compile Include="DAOs\EventService.cs" />
+    <Compile Include="DAOs\Interfaces\IAreaService.cs" />
+    <Compile Include="DAOs\Interfaces\IBillDetailService.cs" />
+    <Compile Include="DAOs\Interfaces\IBillService.cs" />
+    <Compile Include="DAOs\Interfaces\ICategoryService.cs" />
+    <Compile Include="DAOs\Interfaces\IDiscountDetailService.cs" />
+    <Compile Include="DAOs\Interfaces\IEventService.cs" />
+    <Compile Include="DAOs\Interfaces\ILogService.cs" />
+    <Compile Include="DAOs\Interfaces\IMaterialService.cs" />
+    <Compile Include="DAOs\Interfaces\IProductService.cs" />
+    <Compile Include="DAOs\Interfaces\IPromotionService.cs" />
+    <Compile Include="DAOs\Interfaces\IPromotionTypeService.cs" />
+    <Compile Include="DAOs\Interfaces\IReceiptDetailService.cs" />
+    <Compile Include="DAOs\Interfaces\IReceiptService.cs" />
+    <Compile Include="DAOs\Interfaces\IRecipeDetailService.cs" />
+    <Compile Include="DAOs\Interfaces\IRecipeService.cs" />
+    <Compile Include="DAOs\Interfaces\IRoleService.cs" />
+    <Compile Include="DAOs\Interfaces\ISupplierService.cs" />
+    <Compile Include="DAOs\Interfaces\ITableService.cs" />
+    <Compile Include="DAOs\Interfaces\IUserRoleService.cs" />
+    <Compile Include="DAOs\Interfaces\IUserService.cs" />
+    <Compile Include="DAOs\LogService.cs" />
+    <Compile Include="DAOs\MaterialService.cs" />
+    <Compile Include="DAOs\ProductService.cs" />
+    <Compile Include="DAOs\PromotionService.cs" />
+    <Compile Include="DAOs\PromotionTypeService.cs" />
+    <Compile Include="DAOs\ReceiptDetailService.cs" />
+    <Compile Include="DAOs\ReceiptService.cs" />
+    <Compile Include="DAOs\RecipeDetailService.cs" />
+    <Compile Include="DAOs\RecipeService.cs" />
+    <Compile Include="DAOs\RoleService.cs" />
+    <Compile Include="DAOs\SupplierService.cs" />
+    <Compile Include="DAOs\TableService.cs" />
+    <Compile Include="DAOs\UserRoleService.cs" />
+    <Compile Include="DAOs\UserService.cs" />
+    <Compile Include="Engines\Translators\MsgResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MsgResource.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -163,6 +171,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Engines\Translators\MsgResource.en-US.resx" />
+    <EmbeddedResource Include="Engines\Translators\MsgResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MsgResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Engines\Translators\MsgResource.vi-VN.resx" />
     <None Include="Providers\LinqToSql\ZiCoffee.dbml.layout">
       <DependentUpon>ZiCoffee.dbml</DependentUpon>
     </None>
@@ -193,9 +207,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Providers\ADONET\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

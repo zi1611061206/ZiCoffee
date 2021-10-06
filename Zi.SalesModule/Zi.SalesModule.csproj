@@ -161,9 +161,9 @@
       <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
       <Name>Zi.DatabaseEntity</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Zi.LinqToEntityLayer\Zi.LinqToEntityLayer.csproj">
-      <Project>{0e896123-5412-4a67-8612-2f592715797b}</Project>
-      <Name>Zi.LinqToEntityLayer</Name>
+    <ProjectReference Include="..\Zi.LinqSqlLayer\Zi.LinqSqlLayer.csproj">
+      <Project>{6072ac39-8aad-4083-a6e6-913f9a48cc55}</Project>
+      <Name>Zi.LinqSqlLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
