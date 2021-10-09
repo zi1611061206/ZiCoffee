@@ -1,16 +1,18 @@
 ﻿using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
+using System.Globalization;
+using System.IO;
+using System.Media;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Speech.Synthesis;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Zi.LinqToEntityLayer.Services;
+using Zi.LinqSqlLayer.DAOs;
+using Zi.LinqSqlLayer.DTOs;
+using Zi.LinqSqlLayer.Engines.Filters;
+using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.SalesModule.Validators;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -36,18 +38,14 @@ namespace Zi.SalesModule.GUIs
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
         #endregion
 
-        #region Setting
-        public Color BackgroundColor { get; set; } = Color.FromArgb(10, 25, 47);
-        public Color TextColor { get; set; } = Color.FromArgb(255, 255, 255);
-        public Color IconColor { get; set; } = Color.FromArgb(79, 202, 178);
-        public Color BorderColor { get; set; } = Color.FromArgb(79, 202, 178);
-        public Color BaseHoverColor { get; set; } = Color.FromArgb(135, 208, 250);
-        public string ExitingMsg { get; set; } = "Are you sure you want to exit the program?";
-        public string AlertMsgTitle { get; set; } = "Alert";
-        public string Goodbye { get; set; } = "Goodbye, see you again.";
-        public bool AllowSayBye { get; set; } = true;
-        public int VoiceBotVolumn { get; set; } = 100;
-        public int VoiceBotSpeakerRate { get; set; } = 0;
+        #region Attribites
+        public string CultureName { get; set; }
+        public ResourceManager InterfaceRm { get; set; }
+        public string MsgExit { get; set; }
+        public string TitleAlert { get; set; } 
+        public string SentenceBye { get; set; }
+        public Stream InitStream { get; set; }
+        public Stream ClickStream { get; set; }
         #endregion
 
         public FormLogin()
@@ -60,6 +58,87 @@ namespace Zi.SalesModule.GUIs
             // Apply Rounded Corners for form
             Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             LoadIcon();
+            LoadSetting();
+        }
+
+        private void LoadSetting()
+        {
+            SetStaticText();
+            SetColor();
+            SetAudio();
+        }
+
+        private void SetColor()
+        {
+            BackColor
+                = txbUsernameInput.BackColor
+                = txbPasswordInput.BackColor
+                = Properties.Settings.Default.BackgroundColor;
+            ipicClose.IconColor
+                = ipicMinimize.IconColor
+                = ipicFacebookIcon.IconColor
+                = ipicGoogleIcon.IconColor
+                = ipicUsernameStartIcon.IconColor
+                = ipicPasswordStartIcon.IconColor
+                = ipicPasswordEndIcon.IconColor
+            = Properties.Settings.Default.IconColor;
+            ibtnLogin.ForeColor
+                = ibtnExit.ForeColor
+                = pnlUsernameBorderLeft.BackColor
+                = pnlUsernameBorderBottom.BackColor
+            = Properties.Settings.Default.BorderColor;
+            txbUsernameInput.ForeColor
+                = txbPasswordInput.ForeColor
+                = lbCopyright.ForeColor
+            = Properties.Settings.Default.TextColor;
+        }
+
+        private void SetAudio()
+        {
+            if (Properties.Settings.Default.AllowInitSound)
+            {
+                InitStream = Properties.Resources.Init;
+            }
+            else
+            {
+                InitStream = null;
+            }
+
+            if (Properties.Settings.Default.AllowClickSound)
+            {
+                ClickStream = Properties.Resources.Click;
+            }
+            else
+            {
+                ClickStream = null;
+            }
+
+            if (InitStream != null)
+            {
+                SoundPlayer sound = new SoundPlayer
+                {
+                    Stream = InitStream
+                };
+                sound.Play();
+            }
+        }
+
+        private void SetStaticText()
+        {
+            CultureName = Properties.Settings.Default.CultureName;
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(CultureName);
+            string BaseName = "Zi.SalesModule.Lang.LoginResource";
+            InterfaceRm = new ResourceManager(BaseName, typeof(FormLogin).Assembly);
+            
+            txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", culture);
+            txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", culture);
+            ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", culture);
+            ibtnExit.Text = InterfaceRm.GetString("BtnExit", culture);
+            lbCopyright.Text = InterfaceRm.GetString("LbCopyright", culture);
+
+            TitleAlert = InterfaceRm.GetString("TitleAlert", culture);
+            MsgExit = InterfaceRm.GetString("MsgExit", culture);
+            SentenceBye = InterfaceRm.GetString("SentenceBye", culture);
         }
 
         private void LoadIcon()
@@ -95,7 +174,7 @@ namespace Zi.SalesModule.GUIs
                     ipic.IconColor = Color.FromArgb(24, 119, 242);
                     break;
                 default:
-                    ipic.IconColor = BaseHoverColor;
+                    ipic.IconColor = Properties.Settings.Default.BaseHoverColor;
                     break;
             }
         }
@@ -103,7 +182,7 @@ namespace Zi.SalesModule.GUIs
         private void Ipic_MouseLeave(object sender, EventArgs e)
         {
             var ipic = sender as IconPictureBox;
-            ipic.IconColor = IconColor;
+            ipic.IconColor = Properties.Settings.Default.IconColor;
         }
 
         private void ipicPasswordEndIcon_Click(object sender, EventArgs e)
@@ -127,37 +206,37 @@ namespace Zi.SalesModule.GUIs
             {
                 txb.SelectAll();
                 lbUsernameError.Text = string.Empty;
-                ipicUsernameStartIcon.IconColor = BaseHoverColor;
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
                 pnlUsernameBorderLeft.BackColor
                     = pnlUsernameBorderBottom.BackColor
                     = pnlUsernameBorderRight.BackColor
                     = pnlUsernameBorderTop.BackColor
-                    = BaseHoverColor;
+                    = Properties.Settings.Default.BaseHoverColor;
 
-                ipicPasswordStartIcon.IconColor = IconColor;
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.IconColor;
                 pnlPasswordBorderLeft.BackColor
                     = pnlPasswordBorderBottom.BackColor
                     = pnlPasswordBorderRight.BackColor
                     = pnlPasswordBorderTop.BackColor
-                    = BorderColor;
+                    = Properties.Settings.Default.BorderColor;
             }
             else if(txb.Name.Equals("txbPasswordInput"))
             {
                 txb.Clear();
                 lbPasswordError.Text = string.Empty;
-                ipicPasswordStartIcon.IconColor = BaseHoverColor;
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
                 pnlPasswordBorderLeft.BackColor
                     = pnlPasswordBorderBottom.BackColor
                     = pnlPasswordBorderRight.BackColor
                     = pnlPasswordBorderTop.BackColor
-                    = BaseHoverColor;
+                    = Properties.Settings.Default.BaseHoverColor;
 
-                ipicUsernameStartIcon.IconColor = IconColor;
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.IconColor;
                 pnlUsernameBorderLeft.BackColor
                     = pnlUsernameBorderBottom.BackColor
                     = pnlUsernameBorderRight.BackColor
                     = pnlUsernameBorderTop.BackColor
-                    = BorderColor;
+                    = Properties.Settings.Default.BorderColor;
             }
         }
 
@@ -178,9 +257,9 @@ namespace Zi.SalesModule.GUIs
 
         private void Exit()
         {
-            if (MessageBox.Show(ExitingMsg, AlertMsgTitle, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+            if (MessageBox.Show(MsgExit, TitleAlert, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
             {
-                if (AllowSayBye)
+                if (Properties.Settings.Default.AllowSayBye)
                 {
                     SayBye();
                 }
@@ -193,11 +272,11 @@ namespace Zi.SalesModule.GUIs
         {
             SpeechSynthesizer speaker = new SpeechSynthesizer
             {
-                Volume = VoiceBotVolumn,
-                Rate = VoiceBotSpeakerRate
+                Volume = Properties.Settings.Default.VoiceBotVolumn,
+                Rate = Properties.Settings.Default.VoiceBotSpeakerRate
             };
             speaker.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Child);
-            speaker.Speak(Goodbye);
+            speaker.Speak(SentenceBye);
         }
 
         private void ibtnLogin_Click(object sender, EventArgs e)
@@ -209,32 +288,45 @@ namespace Zi.SalesModule.GUIs
         {
             string username = txbUsernameInput.Text.Trim();
             string password = txbPasswordInput.Text.Trim();
-            //if (!LoginValidator.Instance.IsValid(this, username, password))
-            //{
-            //    return;
-            //}
-            //Account account = AccountImpl.Instance.GetAccountByUsername(username);
-            //Employee employee = EmployeeImpl.Instance.GetEmployeeById(account.EmployeeId);
-            //AccessSuccess(account, employee);
+            if (!LoginValidator.Instance.IsValid(this, username, password))
+            {
+                return;
+            }
+            UserFilter filter = new UserFilter();
+            filter.Username = username;
+            var user = ((Paginator<UserModel>)UserService.Instance.Read(filter, CultureName).Item2).Item[0];
+            AccessSuccess(user);
         }
 
-        //private void AccessSuccess(Account account, Employee employee)
-        //{
-        //    FormMain f = new FormMain(account, employee);
-        //    this.Hide();
-        //    f.ShowDialog();
-        //    try
-        //    {
-        //        txbPassword.Clear();
-        //        txbPassword.UseSystemPasswordChar = true;
-        //        picShowPassword.Image = ShowPasswordIcon;
-        //        LoadSetting();
-        //        this.Show();
-        //    }
-        //    catch
-        //    {
-        //        return;
-        //    }
-        //}
+        private void AccessSuccess(UserModel user)
+        {
+            FormCashier f = new FormCashier(user);
+            Hide();
+            f.ShowDialog();
+            try
+            {
+                txbPasswordInput.Clear();
+                txbPasswordInput.UseSystemPasswordChar = true;
+                ipicPasswordEndIcon.IconChar = IconChar.Eye;
+                LoadSetting();
+                Show();
+            }
+            catch
+            {
+                return;
+            }
+        }
+
+        private void allButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && ClickStream != null)
+            {
+                SoundPlayer sound = new SoundPlayer();
+                ClickStream.Position = 0;
+                sound.Stream = null;
+                sound.Stream = ClickStream;
+                sound.Play();
+            }
+        }
     }
 }
