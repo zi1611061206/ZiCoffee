@@ -584,6 +584,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicPasswordEndIcon.TabIndex = 0;
             this.ipicPasswordEndIcon.TabStop = false;
             this.ipicPasswordEndIcon.Click += new System.EventHandler(this.ipicPasswordEndIcon_Click);
+            this.ipicPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
             this.ipicPasswordEndIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicPasswordEndIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -710,6 +711,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnExit.Text = "Exit";
             this.ibtnExit.UseVisualStyleBackColor = false;
             this.ibtnExit.Click += new System.EventHandler(this.ibtnExit_Click);
+            this.ibtnExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
             // 
             // ibtnLogin
             // 
@@ -729,6 +731,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnLogin.Text = "Login";
             this.ibtnLogin.UseVisualStyleBackColor = false;
             this.ibtnLogin.Click += new System.EventHandler(this.ibtnLogin_Click);
+            this.ibtnLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
             // 
             // FormLogin
             // 

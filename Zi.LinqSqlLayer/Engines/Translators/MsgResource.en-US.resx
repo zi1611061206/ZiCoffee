@@ -117,16 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExistedCitizenId" xml:space="preserve">
+    <value>This ID of citizen is existed.</value>
+  </data>
+  <data name="ExistedUsername" xml:space="preserve">
+    <value>This username is existed.</value>
+  </data>
   <data name="FailedCreate" xml:space="preserve">
-    <value>Failed Create.</value>
+    <value>Created Fail.</value>
   </data>
   <data name="FailedDelete" xml:space="preserve">
-    <value>Failed Delete.</value>
+    <value>Deleted Fail.</value>
   </data>
   <data name="FailedUpdate" xml:space="preserve">
-    <value>Failed Update.</value>
+    <value>Updated Fail.</value>
+  </data>
+  <data name="NotExistedUsername" xml:space="preserve">
+    <value>This username is not existed.</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Can not found</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Password is wrong.</value>
   </data>
 </root>

@@ -328,7 +328,7 @@ namespace Zi.LinqSqlLayer.DAOs
             }
         }
 
-        public Tuple<bool, object> CheckPassword(string username, string password, string cultureName)
+        public Tuple<bool, object> ExistedUsername(string username, string cultureName)
         {
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
@@ -338,13 +338,41 @@ namespace Zi.LinqSqlLayer.DAOs
                     .FirstOrDefault();
                 if (user == null)
                 {
-                    return new Tuple<bool, object>(false, Rm.GetString("NotFound", culture) + " " + username);
+                    return new Tuple<bool, object>(false, Rm.GetString("NotExistedUsername", culture));
                 }
+                return new Tuple<bool, object>(true, Rm.GetString("ExistedUsername", culture));
+            }
+        }
+
+        public Tuple<bool, object> MatchedPassword(string username, string password, string cultureName)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
+            using (var context = new ZiCoffeeDataContext())
+            {
+                var user = context.Users
+                    .Where(x => x.Username.Equals(username))
+                    .FirstOrDefault();
                 if (!Encryptor.Instance.IsMatchedPassword(password, user.PasswordHash))
+                {
+                    return new Tuple<bool, object>(false, Rm.GetString("WrongPassword", culture));
+                }
+                return new Tuple<bool, object>(true, null);
+            }
+        }
+
+        public Tuple<bool, object> ExistedCitizenId(string citizenId, string cultureName)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
+            using (var context = new ZiCoffeeDataContext())
+            {
+                var user = context.Users
+                    .Where(x => x.CitizenId.Equals(citizenId))
+                    .FirstOrDefault();
+                if (user == null)
                 {
                     return new Tuple<bool, object>(false, null);
                 }
-                return new Tuple<bool, object>(true, null);
+                return new Tuple<bool, object>(true, Rm.GetString("ExistedCitizenId", culture));
             }
         }
     }

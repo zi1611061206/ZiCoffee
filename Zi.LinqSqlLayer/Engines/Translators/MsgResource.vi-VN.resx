@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ExistedCitizenId" xml:space="preserve">
+    <value>Số căn cước công dân này đã tồn tại.</value>
+  </data>
+  <data name="ExistedUsername" xml:space="preserve">
+    <value>Tên đăng nhập này đã tồn tại.</value>
+  </data>
   <data name="FailedCreate" xml:space="preserve">
     <value>Tạo mới thất bại.</value>
   </data>
@@ -126,7 +132,13 @@
   <data name="FailedUpdate" xml:space="preserve">
     <value>Cập nhật thất bại.</value>
   </data>
+  <data name="NotExistedUsername" xml:space="preserve">
+    <value>Tên đăng nhập không tồn tại.</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>Không tìm thấy</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Mật khẩu không đúng.</value>
   </data>
 </root>

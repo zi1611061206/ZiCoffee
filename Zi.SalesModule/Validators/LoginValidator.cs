@@ -1,5 +1,7 @@
-﻿using Zi.LinqSqlLayer.DAOs;
-using Zi.LinqSqlLayer.Engines.Filters;
+﻿using System;
+using System.Globalization;
+using System.Resources;
+using Zi.LinqSqlLayer.DAOs;
 using Zi.SalesModule.GUIs;
 
 namespace Zi.SalesModule.Validators
@@ -13,7 +15,16 @@ namespace Zi.SalesModule.Validators
             get { if (instance == null) instance = new LoginValidator(); return instance; }
             private set { instance = value; }
         }
-        private LoginValidator() { }
+        public string CultureName { get; set; }
+        public ResourceManager ValidateRm { get; set; }
+        public CultureInfo Culture { get; set; }
+        private LoginValidator() 
+        {
+            CultureName = Properties.Settings.Default.CultureName;
+            Culture = CultureInfo.CreateSpecificCulture(CultureName);
+            string BaseName = "Zi.SalesModule.Lang.ValidateResource";
+            ValidateRm = new ResourceManager(BaseName, typeof(LoginValidator).Assembly);
+        }
         #endregion
 
         public bool IsValid(FormLogin form, string username, string password)
@@ -26,20 +37,19 @@ namespace Zi.SalesModule.Validators
         private bool CheckValidInfo(FormLogin form, string username, string password)
         {
             bool allCondition = true;
-
-            //UserFilter filter = new UserFilter();
-            //filter.Username = username;
-            //var user = UserService.Instance.GetUsers(filter);
-            //if (user.Result != null)
-            //{
-            //    form.lbUsernameError.Text = "Tài khoản này không tồn tại";
-            //    allCondition = false;
-            //}
-            //if (!UserService.Instance.CheckPassword(username, password).Result)
-            //{
-            //    form.lbPasswordError.Text = "Mật khẩu không đúng";
-            //    allCondition = false;
-            //}
+            Tuple<bool, object> existedUsername = UserService.Instance.ExistedUsername(username, CultureName);
+            if (!existedUsername.Item1)
+            {
+                form.lbUsernameError.Text = existedUsername.Item2.ToString();
+                allCondition = false;
+                return allCondition;
+            }
+            Tuple<bool, object> matchedPassword = UserService.Instance.MatchedPassword(username, password, CultureName);
+            if (!matchedPassword.Item1)
+            {
+                form.lbPasswordError.Text = matchedPassword.Item2.ToString();
+                allCondition = false;
+            }
             return allCondition;
         }
 
@@ -48,12 +58,12 @@ namespace Zi.SalesModule.Validators
             bool allCondition = true;
             if (string.IsNullOrEmpty(username))
             {
-                form.lbUsernameError.Text = "Không thể để trống";
+                form.lbUsernameError.Text = ValidateRm.GetString("NotBlank", Culture);
                 allCondition = false;
             }
             if (string.IsNullOrEmpty(password))
             {
-                form.lbPasswordError.Text = "Không thể để trống";
+                form.lbPasswordError.Text = ValidateRm.GetString("NotBlank", Culture);
                 allCondition = false;
             }
             return allCondition;

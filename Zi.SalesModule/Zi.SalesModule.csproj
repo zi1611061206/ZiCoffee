@@ -120,6 +120,16 @@
     <Compile Include="GUIs\FormStocker.Designer.cs">
       <DependentUpon>FormStocker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lang\LoginResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LoginResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang\ValidateResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidateResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
@@ -132,6 +142,18 @@
     <EmbeddedResource Include="GUIs\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lang\LoginResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\LoginResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>LoginResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\LoginResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\ValidateResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\ValidateResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ValidateResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ValidateResource.vi-VN.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -168,6 +190,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\zi-logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Error.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Init.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Intro.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LangQuenChieuThuSoundtrack.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Listening.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Click.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
