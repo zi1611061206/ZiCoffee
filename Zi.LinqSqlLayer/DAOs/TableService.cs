@@ -207,5 +207,18 @@ namespace Zi.LinqSqlLayer.DAOs
                 return new Tuple<bool, object>(true, null);
             }
         }
+
+        public Tuple<int, int, int, int> CountTable()
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                var query = context.Tables;
+                var totalTable = query.Count();
+                var readyTable = query.Where(x => x.Status.Equals(TableStatus.Ready)).Count();
+                var usingTable = query.Where(x => x.Status.Equals(TableStatus.Using)).Count();
+                var pendingTable = query.Where(x => x.Status.Equals(TableStatus.Pending)).Count();
+                return new Tuple<int, int, int, int>(totalTable, readyTable, usingTable, pendingTable);
+            }
+        }
     }
 }

@@ -37,55 +37,43 @@ namespace Zi.SalesModule.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10, 25, 47")]
-        public global::System.Drawing.Color BackgroundColor {
+        [global::System.Configuration.DefaultSettingValueAttribute("Gainsboro")]
+        public global::System.Drawing.Color BaseTextColor {
             get {
-                return ((global::System.Drawing.Color)(this["BackgroundColor"]));
+                return ((global::System.Drawing.Color)(this["BaseTextColor"]));
             }
             set {
-                this["BackgroundColor"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("White")]
-        public global::System.Drawing.Color TextColor {
-            get {
-                return ((global::System.Drawing.Color)(this["TextColor"]));
-            }
-            set {
-                this["TextColor"] = value;
+                this["BaseTextColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("79, 202, 178")]
-        public global::System.Drawing.Color IconColor {
+        public global::System.Drawing.Color BaseIconColor {
             get {
-                return ((global::System.Drawing.Color)(this["IconColor"]));
+                return ((global::System.Drawing.Color)(this["BaseIconColor"]));
             }
             set {
-                this["IconColor"] = value;
+                this["BaseIconColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("79, 202, 178")]
-        public global::System.Drawing.Color BorderColor {
+        public global::System.Drawing.Color BaseBorderColor {
             get {
-                return ((global::System.Drawing.Color)(this["BorderColor"]));
+                return ((global::System.Drawing.Color)(this["BaseBorderColor"]));
             }
             set {
-                this["BorderColor"] = value;
+                this["BaseBorderColor"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("135, 208, 250")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4, 119, 250")]
         public global::System.Drawing.Color BaseHoverColor {
             get {
                 return ((global::System.Drawing.Color)(this["BaseHoverColor"]));
@@ -152,6 +140,150 @@ namespace Zi.SalesModule.Properties {
             }
             set {
                 this["AllowClickSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Red")]
+        public global::System.Drawing.Color ErrorTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ErrorTextColor"]));
+            }
+            set {
+                this["ErrorTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 192, 0")]
+        public global::System.Drawing.Color SuccessTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["SuccessTextColor"]));
+            }
+            set {
+                this["SuccessTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("255, 128, 0")]
+        public global::System.Drawing.Color WarningTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["WarningTextColor"]));
+            }
+            set {
+                this["WarningTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Aqua")]
+        public global::System.Drawing.Color InfoTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["InfoTextColor"]));
+            }
+            set {
+                this["InfoTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 61, 74")]
+        public global::System.Drawing.Color HeaderBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["HeaderBackColor"]));
+            }
+            set {
+                this["HeaderBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 61, 74")]
+        public global::System.Drawing.Color FooterBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["FooterBackColor"]));
+            }
+            set {
+                this["FooterBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 61, 74")]
+        public global::System.Drawing.Color LeftSideBarBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["LeftSideBarBackColor"]));
+            }
+            set {
+                this["LeftSideBarBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 61, 74")]
+        public global::System.Drawing.Color RightSideBarBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["RightSideBarBackColor"]));
+            }
+            set {
+                this["RightSideBarBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("38, 49, 61")]
+        public global::System.Drawing.Color BodyBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BodyBackColor"]));
+            }
+            set {
+                this["BodyBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Silver")]
+        public global::System.Drawing.Color BlurTextColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BlurTextColor"]));
+            }
+            set {
+                this["BlurTextColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowSoundtrack {
+            get {
+                return ((bool)(this["AllowSoundtrack"]));
+            }
+            set {
+                this["AllowSoundtrack"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LangQuenChieuThuSoundtrack.wav")]
+        public string SoundtrackFileName {
+            get {
+                return ((string)(this["SoundtrackFileName"]));
+            }
+            set {
+                this["SoundtrackFileName"] = value;
             }
         }
     }

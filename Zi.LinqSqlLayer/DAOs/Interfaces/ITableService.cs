@@ -66,5 +66,17 @@ namespace Zi.LinqSqlLayer.DAOs.Interfaces
         /// <param name="cultureName"></param>
         /// <returns></returns>
         Tuple<bool, object> Delete(Guid tableId, string cultureName);
+
+        /// <summary>
+        /// This method count table by each status.
+        /// <para>RETURNS</para>
+        /// <para>The method returns a tuple of 4 items:</para>
+        /// <para>- Item1 (int) total table.</para>
+        /// <para>- Item2 (int) ready table.</para>
+        /// <para>- Item3 (int) using table.</para>
+        /// <para>- Item4 (int) pending table.</para>
+        /// </summary>
+        /// <returns></returns>
+        Tuple<int, int, int, int> CountTable();
     }
 }

@@ -5,20 +5,17 @@
     <Setting Name="CultureName" Type="System.String" Scope="User">
       <Value Profile="(Default)">en-US</Value>
     </Setting>
-    <Setting Name="BackgroundColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">10, 25, 47</Value>
+    <Setting Name="BaseTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Gainsboro</Value>
     </Setting>
-    <Setting Name="TextColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">White</Value>
-    </Setting>
-    <Setting Name="IconColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="BaseIconColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">79, 202, 178</Value>
     </Setting>
-    <Setting Name="BorderColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="BaseBorderColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">79, 202, 178</Value>
     </Setting>
     <Setting Name="BaseHoverColor" Type="System.Drawing.Color" Scope="User">
-      <Value Profile="(Default)">135, 208, 250</Value>
+      <Value Profile="(Default)">4, 119, 250</Value>
     </Setting>
     <Setting Name="AllowSayBye" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -34,6 +31,42 @@
     </Setting>
     <Setting Name="AllowClickSound" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ErrorTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Red</Value>
+    </Setting>
+    <Setting Name="SuccessTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">0, 192, 0</Value>
+    </Setting>
+    <Setting Name="WarningTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">255, 128, 0</Value>
+    </Setting>
+    <Setting Name="InfoTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Aqua</Value>
+    </Setting>
+    <Setting Name="HeaderBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 61, 74</Value>
+    </Setting>
+    <Setting Name="FooterBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 61, 74</Value>
+    </Setting>
+    <Setting Name="LeftSideBarBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 61, 74</Value>
+    </Setting>
+    <Setting Name="RightSideBarBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 61, 74</Value>
+    </Setting>
+    <Setting Name="BodyBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">38, 49, 61</Value>
+    </Setting>
+    <Setting Name="BlurTextColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Silver</Value>
+    </Setting>
+    <Setting Name="AllowSoundtrack" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SoundtrackFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">LangQuenChieuThuSoundtrack.wav</Value>
     </Setting>
   </Settings>
 </SettingsFile>

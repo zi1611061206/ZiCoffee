@@ -41,9 +41,7 @@ namespace Zi.SalesModule.GUIs
         #region Attribites
         public string CultureName { get; set; }
         public ResourceManager InterfaceRm { get; set; }
-        public string MsgExit { get; set; }
-        public string TitleAlert { get; set; } 
-        public string SentenceBye { get; set; }
+        public CultureInfo Culture { get; set; }
         public Stream InitStream { get; set; }
         public Stream ClickStream { get; set; }
         #endregion
@@ -56,9 +54,74 @@ namespace Zi.SalesModule.GUIs
         private void FormLogin_Load(object sender, EventArgs e)
         {
             // Apply Rounded Corners for form
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             LoadIcon();
             LoadSetting();
+            ActiveControl = txbUsernameInput;
+            txbUsernameInput.GotFocus += TxbInput_Focus;
+            txbPasswordInput.GotFocus += TxbInput_Focus;
+            txbUsernameInput.LostFocus += TxbInput_UnFocus;
+            txbPasswordInput.LostFocus += TxbInput_UnFocus;
+        }
+
+        private void TxbInput_UnFocus(object sender, EventArgs e)
+        {
+            var txb = sender as TextBox;
+            TurnOffHighLight(txb);
+        }
+
+        private void TurnOffHighLight(TextBox txb)
+        {
+            if (txb.Name.Equals("txbPasswordInput"))
+            {
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
+                pnlPasswordBorderLeft.BackColor
+                    = pnlPasswordBorderBottom.BackColor
+                    = pnlPasswordBorderRight.BackColor
+                    = pnlPasswordBorderTop.BackColor
+                    = Properties.Settings.Default.BaseBorderColor;
+            }
+            else if (txb.Name.Equals("txbUsernameInput"))
+            {
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
+                pnlUsernameBorderLeft.BackColor
+                    = pnlUsernameBorderBottom.BackColor
+                    = pnlUsernameBorderRight.BackColor
+                    = pnlUsernameBorderTop.BackColor
+                    = Properties.Settings.Default.BaseBorderColor;
+            }
+        }
+
+        private void TxbInput_Focus(object sender, EventArgs e)
+        {
+            var txb = sender as TextBox;
+            TurnOnHighLight(txb);
+        }
+
+        private void TurnOnHighLight(TextBox txb)
+        {
+            if (txb.Name.Equals("txbUsernameInput"))
+            {
+                txb.SelectAll();
+                lbUsernameError.Text = string.Empty;
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
+                pnlUsernameBorderLeft.BackColor
+                    = pnlUsernameBorderBottom.BackColor
+                    = pnlUsernameBorderRight.BackColor
+                    = pnlUsernameBorderTop.BackColor
+                    = Properties.Settings.Default.BaseHoverColor;
+            }
+            else if (txb.Name.Equals("txbPasswordInput"))
+            {
+                txb.Clear();
+                lbPasswordError.Text = string.Empty;
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
+                pnlPasswordBorderLeft.BackColor
+                    = pnlPasswordBorderBottom.BackColor
+                    = pnlPasswordBorderRight.BackColor
+                    = pnlPasswordBorderTop.BackColor
+                    = Properties.Settings.Default.BaseHoverColor;
+            }
         }
 
         private void LoadSetting()
@@ -70,27 +133,40 @@ namespace Zi.SalesModule.GUIs
 
         private void SetColor()
         {
+            // Body Header Footer
             BackColor
                 = txbUsernameInput.BackColor
                 = txbPasswordInput.BackColor
-                = Properties.Settings.Default.BackgroundColor;
+                = Properties.Settings.Default.BodyBackColor;
+            // Icon
             ipicClose.IconColor
                 = ipicMinimize.IconColor
                 = ipicFacebookIcon.IconColor
                 = ipicGoogleIcon.IconColor
                 = ipicUsernameStartIcon.IconColor
+                = ipicUsernameEndIcon.IconColor
                 = ipicPasswordStartIcon.IconColor
                 = ipicPasswordEndIcon.IconColor
-            = Properties.Settings.Default.IconColor;
+                = Properties.Settings.Default.BaseIconColor;
+            // Button (Border + Text)
             ibtnLogin.ForeColor
                 = ibtnExit.ForeColor
-                = pnlUsernameBorderLeft.BackColor
-                = pnlUsernameBorderBottom.BackColor
-            = Properties.Settings.Default.BorderColor;
+                = Properties.Settings.Default.BaseBorderColor;
+            // Text
             txbUsernameInput.ForeColor
                 = txbPasswordInput.ForeColor
-                = lbCopyright.ForeColor
-            = Properties.Settings.Default.TextColor;
+                = Properties.Settings.Default.BaseTextColor;
+            lbCopyright.ForeColor = Properties.Settings.Default.BlurTextColor;
+            // TextBox Border
+            pnlUsernameBorderLeft.BackColor
+                = pnlPasswordBorderLeft.BackColor
+                = pnlUsernameBorderBottom.BackColor
+                = pnlPasswordBorderBottom.BackColor
+                = pnlUsernameBorderTop.BackColor
+                = pnlPasswordBorderTop.BackColor
+                = pnlUsernameBorderRight.BackColor
+                = pnlPasswordBorderRight.BackColor
+                = Properties.Settings.Default.BaseBorderColor;
         }
 
         private void SetAudio()
@@ -126,19 +202,15 @@ namespace Zi.SalesModule.GUIs
         private void SetStaticText()
         {
             CultureName = Properties.Settings.Default.CultureName;
-            CultureInfo culture = CultureInfo.CreateSpecificCulture(CultureName);
+            Culture = CultureInfo.CreateSpecificCulture(CultureName);
             string BaseName = "Zi.SalesModule.Lang.LoginResource";
             InterfaceRm = new ResourceManager(BaseName, typeof(FormLogin).Assembly);
             
-            txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", culture);
-            txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", culture);
-            ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", culture);
-            ibtnExit.Text = InterfaceRm.GetString("BtnExit", culture);
-            lbCopyright.Text = InterfaceRm.GetString("LbCopyright", culture);
-
-            TitleAlert = InterfaceRm.GetString("TitleAlert", culture);
-            MsgExit = InterfaceRm.GetString("MsgExit", culture);
-            SentenceBye = InterfaceRm.GetString("SentenceBye", culture);
+            txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", Culture);
+            txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", Culture);
+            ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);
+            ibtnExit.Text = InterfaceRm.GetString("BtnExit", Culture);
+            lbCopyright.Text = InterfaceRm.GetString("LbCopyright", Culture);
         }
 
         private void LoadIcon()
@@ -165,7 +237,10 @@ namespace Zi.SalesModule.GUIs
             switch (ipic.Name)
             {
                 case "ipicClose":
-                    ipic.IconColor = Color.FromArgb(255, 0, 0);
+                    ipic.IconColor = Properties.Settings.Default.ErrorTextColor;
+                    break;
+                case "ipicMinimize":
+                    ipic.IconColor = Properties.Settings.Default.InfoTextColor;
                     break;
                 case "ipicGoogleIcon":
                     ipic.IconColor = Color.FromArgb(255, 0, 0);
@@ -182,11 +257,12 @@ namespace Zi.SalesModule.GUIs
         private void Ipic_MouseLeave(object sender, EventArgs e)
         {
             var ipic = sender as IconPictureBox;
-            ipic.IconColor = Properties.Settings.Default.IconColor;
+            ipic.IconColor = Properties.Settings.Default.BaseIconColor;
         }
 
-        private void ipicPasswordEndIcon_Click(object sender, EventArgs e)
+        private void IpicPasswordEndIcon_Click(object sender, EventArgs e)
         {
+            string txt = txbPasswordInput.Text;
             if (txbPasswordInput.UseSystemPasswordChar == true)
             {
                 txbPasswordInput.UseSystemPasswordChar = false;
@@ -197,67 +273,29 @@ namespace Zi.SalesModule.GUIs
                 txbPasswordInput.UseSystemPasswordChar = true;
                 ipicPasswordEndIcon.IconChar = IconChar.Eye;
             }
+            txbPasswordInput.Text = txt;
         }
 
-        private void TxbInput_Click(object sender, EventArgs e)
-        {
-            var txb = sender as TextBox;
-            if (txb.Name.Equals("txbUsernameInput"))
-            {
-                txb.SelectAll();
-                lbUsernameError.Text = string.Empty;
-                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
-                pnlUsernameBorderLeft.BackColor
-                    = pnlUsernameBorderBottom.BackColor
-                    = pnlUsernameBorderRight.BackColor
-                    = pnlUsernameBorderTop.BackColor
-                    = Properties.Settings.Default.BaseHoverColor;
-
-                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.IconColor;
-                pnlPasswordBorderLeft.BackColor
-                    = pnlPasswordBorderBottom.BackColor
-                    = pnlPasswordBorderRight.BackColor
-                    = pnlPasswordBorderTop.BackColor
-                    = Properties.Settings.Default.BorderColor;
-            }
-            else if(txb.Name.Equals("txbPasswordInput"))
-            {
-                txb.Clear();
-                lbPasswordError.Text = string.Empty;
-                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
-                pnlPasswordBorderLeft.BackColor
-                    = pnlPasswordBorderBottom.BackColor
-                    = pnlPasswordBorderRight.BackColor
-                    = pnlPasswordBorderTop.BackColor
-                    = Properties.Settings.Default.BaseHoverColor;
-
-                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.IconColor;
-                pnlUsernameBorderLeft.BackColor
-                    = pnlUsernameBorderBottom.BackColor
-                    = pnlUsernameBorderRight.BackColor
-                    = pnlUsernameBorderTop.BackColor
-                    = Properties.Settings.Default.BorderColor;
-            }
-        }
-
-        private void ipicMinimize_Click(object sender, EventArgs e)
+        private void IpicMinimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
         }
 
-        private void ipicClose_Click(object sender, EventArgs e)
+        private void IpicClose_Click(object sender, EventArgs e)
         {
             Exit();
         }
 
-        private void ibtnExit_Click(object sender, EventArgs e)
+        private void IbtnExit_Click(object sender, EventArgs e)
         {
             Exit();
         }
 
         private void Exit()
         {
-            if (MessageBox.Show(MsgExit, TitleAlert, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+            string msgExit = InterfaceRm.GetString("MsgExit", Culture);
+            string titleAlert = InterfaceRm.GetString("TitleAlert", Culture);
+            if (MessageBox.Show(msgExit, titleAlert, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
             {
                 if (Properties.Settings.Default.AllowSayBye)
                 {
@@ -276,10 +314,10 @@ namespace Zi.SalesModule.GUIs
                 Rate = Properties.Settings.Default.VoiceBotSpeakerRate
             };
             speaker.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Child);
-            speaker.Speak(SentenceBye);
+            speaker.Speak(InterfaceRm.GetString("SentenceBye", Culture));
         }
 
-        private void ibtnLogin_Click(object sender, EventArgs e)
+        private void IbtnLogin_Click(object sender, EventArgs e)
         {
             Login();
         }
@@ -317,7 +355,7 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void allButton_MouseDown(object sender, MouseEventArgs e)
+        private void AllButton_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left && ClickStream != null)
             {
@@ -327,6 +365,16 @@ namespace Zi.SalesModule.GUIs
                 sound.Stream = ClickStream;
                 sound.Play();
             }
+        }
+
+        private void Ibtn_MouseHover(object sender, EventArgs e)
+        {
+            (sender as Button).ForeColor = Properties.Settings.Default.BaseHoverColor;
+        }
+
+        private void Ibtn_MouseLeave(object sender, EventArgs e)
+        {
+            (sender as Button).ForeColor = Properties.Settings.Default.BaseBorderColor;
         }
     }
 }

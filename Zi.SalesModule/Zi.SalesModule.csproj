@@ -120,6 +120,11 @@
     <Compile Include="GUIs\FormStocker.Designer.cs">
       <DependentUpon>FormStocker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lang\CashierResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CashierResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Lang\LoginResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -139,9 +144,18 @@
     <EmbeddedResource Include="CustomControls\PasswordTextBox.resx">
       <DependentUpon>PasswordTextBox.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormCashier.resx">
+      <DependentUpon>FormCashier.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Lang\CashierResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\CashierResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>CashierResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\CashierResource.en-US.resx" />
     <EmbeddedResource Include="Lang\LoginResource.en-US.resx" />
     <EmbeddedResource Include="Lang\LoginResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -208,6 +222,46 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Click.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxWMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="WMPLib">
+      <Guid>{6BF52A50-394A-11D3-B153-00C04F79FAA6}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LogOut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Profile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\View.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Setting.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Table.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -24,7 +24,7 @@ namespace Zi.LinqSqlLayer.Engines.Convertors
             string startupPath = Directory.GetCurrentDirectory();
             string projectDirectory = Directory.GetParent(startupPath).Parent.FullName;
             string imagePath = projectDirectory + noAvatar;
-            return GetImageFromBytes(imagePath);
+            return GetBytesFromImage(imagePath);
         }
 
         public byte[] EncryptDefaultImage()
@@ -32,10 +32,10 @@ namespace Zi.LinqSqlLayer.Engines.Convertors
             string startupPath = Directory.GetCurrentDirectory();
             string projectDirectory = Directory.GetParent(startupPath).Parent.FullName;
             string imagePath = projectDirectory + noImage;
-            return GetImageFromBytes(imagePath);
+            return GetBytesFromImage(imagePath);
         }
 
-        public byte[] GetImageFromBytes(string imagePath)
+        public byte[] GetBytesFromImage(string imagePath)
         {
             FileStream fs = new FileStream(imagePath, FileMode.Open, FileAccess.Read);
             byte[] binaryArray = new byte[fs.Length];
@@ -44,7 +44,7 @@ namespace Zi.LinqSqlLayer.Engines.Convertors
             return binaryArray;
         }
 
-        public Image GetBytesFromImage(byte[] source)
+        public Image GetImageFromBytes(byte[] source)
         {
             MemoryStream memoryStream = new MemoryStream(source);
             return Image.FromStream(memoryStream);

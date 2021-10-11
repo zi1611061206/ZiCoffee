@@ -313,7 +313,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 }
                 else
                 {
-                    user.Avatar = DataTypeConvertor.Instance.GetImageFromBytes(avatarPath);
+                    user.Avatar = DataTypeConvertor.Instance.GetBytesFromImage(avatarPath);
                 }
 
                 try

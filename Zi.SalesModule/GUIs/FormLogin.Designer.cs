@@ -146,7 +146,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicClose.TabIndex = 1;
             this.ipicClose.TabStop = false;
-            this.ipicClose.Click += new System.EventHandler(this.ipicClose_Click);
+            this.ipicClose.Click += new System.EventHandler(this.IpicClose_Click);
             this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -166,7 +166,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicMinimize.TabIndex = 0;
             this.ipicMinimize.TabStop = false;
-            this.ipicMinimize.Click += new System.EventHandler(this.ipicMinimize_Click);
+            this.ipicMinimize.Click += new System.EventHandler(this.IpicMinimize_Click);
             this.ipicMinimize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicMinimize.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -380,7 +380,7 @@ namespace Zi.SalesModule.GUIs
             // 
             // txbUsernameInput
             // 
-            this.txbUsernameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(47)))));
+            this.txbUsernameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.txbUsernameInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbUsernameInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txbUsernameInput.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -392,7 +392,6 @@ namespace Zi.SalesModule.GUIs
             this.txbUsernameInput.Size = new System.Drawing.Size(364, 36);
             this.txbUsernameInput.TabIndex = 1;
             this.txbUsernameInput.Text = "Username";
-            this.txbUsernameInput.Click += new System.EventHandler(this.TxbInput_Click);
             // 
             // pnlUsernameEndIcon
             // 
@@ -544,7 +543,7 @@ namespace Zi.SalesModule.GUIs
             // 
             // txbPasswordInput
             // 
-            this.txbPasswordInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(47)))));
+            this.txbPasswordInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.txbPasswordInput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txbPasswordInput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txbPasswordInput.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -555,7 +554,6 @@ namespace Zi.SalesModule.GUIs
             this.txbPasswordInput.TabIndex = 2;
             this.txbPasswordInput.Text = "Password";
             this.txbPasswordInput.UseSystemPasswordChar = true;
-            this.txbPasswordInput.Click += new System.EventHandler(this.TxbInput_Click);
             // 
             // pnlPasswordEndIcon
             // 
@@ -583,8 +581,8 @@ namespace Zi.SalesModule.GUIs
             this.ipicPasswordEndIcon.Size = new System.Drawing.Size(30, 30);
             this.ipicPasswordEndIcon.TabIndex = 0;
             this.ipicPasswordEndIcon.TabStop = false;
-            this.ipicPasswordEndIcon.Click += new System.EventHandler(this.ipicPasswordEndIcon_Click);
-            this.ipicPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
+            this.ipicPasswordEndIcon.Click += new System.EventHandler(this.IpicPasswordEndIcon_Click);
+            this.ipicPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllButton_MouseDown);
             this.ipicPasswordEndIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicPasswordEndIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -698,6 +696,8 @@ namespace Zi.SalesModule.GUIs
             this.ibtnExit.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ibtnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ibtnExit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ibtnExit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnExit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.ibtnExit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnExit.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ibtnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
@@ -710,14 +710,18 @@ namespace Zi.SalesModule.GUIs
             this.ibtnExit.TabIndex = 4;
             this.ibtnExit.Text = "Exit";
             this.ibtnExit.UseVisualStyleBackColor = false;
-            this.ibtnExit.Click += new System.EventHandler(this.ibtnExit_Click);
-            this.ibtnExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
+            this.ibtnExit.Click += new System.EventHandler(this.IbtnExit_Click);
+            this.ibtnExit.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllButton_MouseDown);
+            this.ibtnExit.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnExit.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // ibtnLogin
             // 
             this.ibtnLogin.BackColor = System.Drawing.Color.Transparent;
             this.ibtnLogin.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ibtnLogin.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ibtnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.ibtnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ibtnLogin.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ibtnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
@@ -730,15 +734,17 @@ namespace Zi.SalesModule.GUIs
             this.ibtnLogin.TabIndex = 3;
             this.ibtnLogin.Text = "Login";
             this.ibtnLogin.UseVisualStyleBackColor = false;
-            this.ibtnLogin.Click += new System.EventHandler(this.ibtnLogin_Click);
-            this.ibtnLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.allButton_MouseDown);
+            this.ibtnLogin.Click += new System.EventHandler(this.IbtnLogin_Click);
+            this.ibtnLogin.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllButton_MouseDown);
+            this.ibtnLogin.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnLogin.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // FormLogin
             // 
             this.AcceptButton = this.ibtnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(25)))), ((int)(((byte)(47)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.CancelButton = this.ibtnExit;
             this.ClientSize = new System.Drawing.Size(500, 650);
             this.Controls.Add(this.pnlButton);
