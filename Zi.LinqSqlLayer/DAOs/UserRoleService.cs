@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -84,7 +82,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.UserRoles;
+                var query = context.UserRoles.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
@@ -111,53 +109,53 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<UserRole> GettingBy(Table<UserRole> query, UserRoleFilter filter)
+        private IQueryable<UserRole> GettingBy(IQueryable<UserRole> query, UserRoleFilter filter)
         {
             if (filter.UserId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
+                query = query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
             }
             if (filter.RoleId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.RoleId.CompareTo(filter.RoleId) == 0);
+                query = query.Where(x => x.RoleId.CompareTo(filter.RoleId) == 0);
             }
             return query;
         }
 
-        private Table<UserRole> Searching(Table<UserRole> query, UserRoleFilter filter)
+        private IQueryable<UserRole> Searching(IQueryable<UserRole> query, UserRoleFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.UserId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.UserId.ToString().Contains(filter.Keyword) ||
                         x.RoleId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.UserId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.UserId.ToString().Equals(filter.Keyword) ||
                         x.RoleId.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private Table<UserRole> Paging(Table<UserRole> query, UserRoleFilter filter)
+        private IQueryable<UserRole> Paging(IQueryable<UserRole> query, UserRoleFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<UserRole> Sorting(Table<UserRole> query, UserRoleFilter filter)
+        private IQueryable<UserRole> Sorting(IQueryable<UserRole> query, UserRoleFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.UserId);
+                query = query.OrderBy(x => x.UserId);
             }
             else
             {
-                query.OrderByDescending(x => x.UserId);
+                query = query.OrderByDescending(x => x.UserId);
             }
             return query;
         }

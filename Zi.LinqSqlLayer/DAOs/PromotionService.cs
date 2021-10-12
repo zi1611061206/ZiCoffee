@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -94,7 +92,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Promotions;
+                var query = context.Promotions.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -131,67 +129,67 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Promotion> GettingBy(Table<Promotion> query, PromotionFilter filter)
+        private IQueryable<Promotion> GettingBy(IQueryable<Promotion> query, PromotionFilter filter)
         {
             if (filter.PromotionId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.PromotionId.CompareTo(filter.PromotionId) == 0);
+                query = query.Where(x => x.PromotionId.CompareTo(filter.PromotionId) == 0);
             }
             return query;
         }
 
-        private Table<Promotion> Filtering(Table<Promotion> query, PromotionFilter filter)
+        private IQueryable<Promotion> Filtering(IQueryable<Promotion> query, PromotionFilter filter)
         {
             if (filter.IsActived.HasValue)
             {
-                query.Where(x => x.IsActived.CompareTo(filter.IsActived) == 0);
+                query = query.Where(x => x.IsActived.CompareTo(filter.IsActived) == 0);
             }
             if (filter.IsAutoApply.HasValue)
             {
-                query.Where(x => x.IsAutoApply.CompareTo(filter.IsAutoApply) == 0);
+                query = query.Where(x => x.IsAutoApply.CompareTo(filter.IsAutoApply) == 0);
             }
             if (filter.IsPercent.HasValue)
             {
-                query.Where(x => x.PromotionId.CompareTo(filter.IsPercent) == 0);
+                query = query.Where(x => x.PromotionId.CompareTo(filter.IsPercent) == 0);
             }
-            query.Where(x => x.Value >= filter.ValueFrom);
+            query = query.Where(x => x.Value >= filter.ValueFrom);
             if (filter.ValueTo > filter.ValueFrom)
             {
-                query.Where(x => x.Value <= filter.ValueTo);
+                query = query.Where(x => x.Value <= filter.ValueTo);
             }
-            query.Where(x => x.MinValue >= filter.MinValueFrom);
+            query = query.Where(x => x.MinValue >= filter.MinValueFrom);
             if (filter.MinValueTo > filter.MinValueFrom)
             {
-                query.Where(x => x.MinValue <= filter.MinValueTo);
+                query = query.Where(x => x.MinValue <= filter.MinValueTo);
             }
             if (filter.StartTimeFilter.HasValue)
             {
-                query.Where(x => x.StartTime.CompareTo(filter.StartTimeFilter) >= 0);
+                query = query.Where(x => x.StartTime.CompareTo(filter.StartTimeFilter) >= 0);
             }
             if (filter.EndTimeFilter.HasValue)
             {
-                query.Where(x => x.EndTime.CompareTo(filter.EndTimeFilter) <= 0);
+                query = query.Where(x => x.EndTime.CompareTo(filter.EndTimeFilter) <= 0);
             }
             if (filter.PromotionTypeId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.PromotionTypeId.CompareTo(filter.PromotionTypeId) == 0);
+                query = query.Where(x => x.PromotionTypeId.CompareTo(filter.PromotionTypeId) == 0);
             }
             return query;
         }
 
-        private Table<Promotion> Searching(Table<Promotion> query, PromotionFilter filter)
+        private IQueryable<Promotion> Searching(IQueryable<Promotion> query, PromotionFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.PromotionId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.PromotionId.ToString().Contains(filter.Keyword) ||
                         x.Description.ToString().Contains(filter.Keyword) ||
                         x.CodeList.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.PromotionId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.PromotionId.ToString().Equals(filter.Keyword) ||
                         x.Description.ToString().Equals(filter.Keyword) ||
                         x.CodeList.ToString().Equals(filter.Keyword));
                 }
@@ -199,22 +197,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Promotion> Paging(Table<Promotion> query, PromotionFilter filter)
+        private IQueryable<Promotion> Paging(IQueryable<Promotion> query, PromotionFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Promotion> Sorting(Table<Promotion> query, PromotionFilter filter)
+        private IQueryable<Promotion> Sorting(IQueryable<Promotion> query, PromotionFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.StartTime);
+                query = query.OrderBy(x => x.StartTime);
             }
             else
             {
-                query.OrderByDescending(x => x.StartTime);
+                query = query.OrderByDescending(x => x.StartTime);
             }
             return query;
         }

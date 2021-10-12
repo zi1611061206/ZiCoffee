@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -85,7 +83,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.PromotionTypes;
+                var query = context.PromotionTypes.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
@@ -113,28 +111,28 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<PromotionType> GettingBy(Table<PromotionType> query, PromotionTypeFilter filter)
+        private IQueryable<PromotionType> GettingBy(IQueryable<PromotionType> query, PromotionTypeFilter filter)
         {
             if (filter.PromotionTypeId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.PromotionTypeId.CompareTo(filter.PromotionTypeId) == 0);
+                query = query.Where(x => x.PromotionTypeId.CompareTo(filter.PromotionTypeId) == 0);
             }
             return query;
         }
 
-        private Table<PromotionType> Searching(Table<PromotionType> query, PromotionTypeFilter filter)
+        private IQueryable<PromotionType> Searching(IQueryable<PromotionType> query, PromotionTypeFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.PromotionTypeId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.PromotionTypeId.ToString().Contains(filter.Keyword) ||
                         x.Name.ToString().Contains(filter.Keyword) ||
                         x.Description.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.PromotionTypeId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.PromotionTypeId.ToString().Equals(filter.Keyword) ||
                         x.Name.ToString().Equals(filter.Keyword) ||
                         x.Description.ToString().Equals(filter.Keyword));
                 }
@@ -142,22 +140,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<PromotionType> Paging(Table<PromotionType> query, PromotionTypeFilter filter)
+        private IQueryable<PromotionType> Paging(IQueryable<PromotionType> query, PromotionTypeFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<PromotionType> Sorting(Table<PromotionType> query, PromotionTypeFilter filter)
+        private IQueryable<PromotionType> Sorting(IQueryable<PromotionType> query, PromotionTypeFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.Name);
+                query = query.OrderBy(x => x.Name);
             }
             else
             {
-                query.OrderByDescending(x => x.Name);
+                query = query.OrderByDescending(x => x.Name);
             }
             return query;
         }

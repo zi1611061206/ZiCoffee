@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -82,7 +80,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.BillDetails;
+                var query = context.BillDetails.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -112,68 +110,68 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<BillDetail> GettingBy(Table<BillDetail> query, BillDetailFilter filter)
+        private IQueryable<BillDetail> GettingBy(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
             if (filter.BillId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.BillId.CompareTo(filter.BillId) == 0);
+                query = query.Where(x => x.BillId.CompareTo(filter.BillId) == 0);
             }
             if (filter.ProductId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.ProductId.CompareTo(filter.ProductId) == 0);
+                query = query.Where(x => x.ProductId.CompareTo(filter.ProductId) == 0);
             }
             return query;
         }
 
-        private Table<BillDetail> Filtering(Table<BillDetail> query, BillDetailFilter filter)
+        private IQueryable<BillDetail> Filtering(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
-            query.Where(x => x.Quantity >= filter.QuantityMin);
+            query = query.Where(x => x.Quantity >= filter.QuantityMin);
             if (filter.QuantityMax > filter.QuantityMin)
             {
-                query.Where(x => x.Quantity <= filter.QuantityMax);
+                query = query.Where(x => x.Quantity <= filter.QuantityMax);
             }
-            query.Where(x => x.IntoMoney >= filter.IntoMoneyMin);
+            query = query.Where(x => x.IntoMoney >= filter.IntoMoneyMin);
             if (filter.IntoMoneyMax > filter.IntoMoneyMin)
             {
-                query.Where(x => x.IntoMoney <= filter.IntoMoneyMax);
+                query = query.Where(x => x.IntoMoney <= filter.IntoMoneyMax);
             }
             return query;
         }
 
-        private Table<BillDetail> Searching(Table<BillDetail> query, BillDetailFilter filter)
+        private IQueryable<BillDetail> Searching(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.BillId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.BillId.ToString().Contains(filter.Keyword) ||
                         x.ProductId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.BillId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.BillId.ToString().Equals(filter.Keyword) ||
                         x.ProductId.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private Table<BillDetail> Paging(Table<BillDetail> query, BillDetailFilter filter)
+        private IQueryable<BillDetail> Paging(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<BillDetail> Sorting(Table<BillDetail> query, BillDetailFilter filter)
+        private IQueryable<BillDetail> Sorting(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.BillId);
+                query = query.OrderBy(x => x.BillId);
             }
             else
             {
-                query.OrderByDescending(x => x.BillId);
+                query = query.OrderByDescending(x => x.BillId);
             }
             return query;
         }

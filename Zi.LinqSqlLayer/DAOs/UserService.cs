@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -97,7 +96,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Users.Where(x=>true);
+                var query = context.Users.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -147,7 +146,7 @@ namespace Zi.LinqSqlLayer.DAOs
             }
             if (!string.IsNullOrEmpty(filter.Username))
             {
-                query = query.Where(x => x.Username == filter.Username);
+                query = query.Where(x => x.Username.Equals(filter.Username));
             }
             return query;
         }

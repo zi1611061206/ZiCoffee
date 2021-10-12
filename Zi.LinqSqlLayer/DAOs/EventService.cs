@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -85,7 +83,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Events;
+                var query = context.Events.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
@@ -113,28 +111,28 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Event> GettingBy(Table<Event> query, EventFilter filter)
+        private IQueryable<Event> GettingBy(IQueryable<Event> query, EventFilter filter)
         {
             if (filter.EventId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.EventId.CompareTo(filter.EventId) == 0);
+                query = query.Where(x => x.EventId.CompareTo(filter.EventId) == 0);
             }
             return query;
         }
 
-        private Table<Event> Searching(Table<Event> query, EventFilter filter)
+        private IQueryable<Event> Searching(IQueryable<Event> query, EventFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.EventId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.EventId.ToString().Contains(filter.Keyword) ||
                         x.Name.ToString().Contains(filter.Keyword) ||
                         x.Description.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.EventId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.EventId.ToString().Equals(filter.Keyword) ||
                         x.Name.ToString().Equals(filter.Keyword) ||
                         x.Description.ToString().Equals(filter.Keyword));
                 }
@@ -142,22 +140,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Event> Paging(Table<Event> query, EventFilter filter)
+        private IQueryable<Event> Paging(IQueryable<Event> query, EventFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Event> Sorting(Table<Event> query, EventFilter filter)
+        private IQueryable<Event> Sorting(IQueryable<Event> query, EventFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.Name);
+                query = query.OrderBy(x => x.Name);
             }
             else
             {
-                query.OrderByDescending(x => x.Name);
+                query = query.OrderByDescending(x => x.Name);
             }
             return query;
         }
