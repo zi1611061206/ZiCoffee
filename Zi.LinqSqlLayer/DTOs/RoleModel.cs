@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using Zi.LinqSqlLayer.Enumerators;
 
 namespace Zi.LinqSqlLayer.DTOs
 {
@@ -8,6 +9,7 @@ namespace Zi.LinqSqlLayer.DTOs
         public Guid RoleId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public AccessLevels AccessLevel { get; set; }
 
         public RoleModel()
         {
@@ -18,6 +20,7 @@ namespace Zi.LinqSqlLayer.DTOs
             RoleId = Guid.NewGuid();
             Description = string.Empty;
             Name = name;
+            AccessLevel = AccessLevels.Manager;
         }
 
         /// <summary>
@@ -29,6 +32,7 @@ namespace Zi.LinqSqlLayer.DTOs
             RoleId = Guid.Parse(row["RoleId"].ToString());
             Name = row["Name"].ToString();
             Description = row["Description"].ToString();
+            AccessLevel = (AccessLevels)row["AccessLevel"];
         }
     }
 }

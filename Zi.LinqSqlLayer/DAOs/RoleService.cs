@@ -6,6 +6,7 @@ using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.LinqSqlLayer.Enumerators;
 using Zi.LinqSqlLayer.Providers.LinqToSql;
 
 namespace Zi.LinqSqlLayer.DAOs
@@ -36,7 +37,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     RoleId = model.RoleId,
                     Name = model.Name,
-                    Description = model.Description
+                    Description = model.Description,
+                    AccessLevel = (int)model.AccessLevel
                 };
                 context.Roles.InsertOnSubmit(role);
 
@@ -85,6 +87,7 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 var query = context.Roles.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
+                query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
@@ -93,7 +96,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     RoleId = x.RoleId,
                     Name = x.Name,
-                    Description = x.Description
+                    Description = x.Description,
+                    AccessLevel = (AccessLevels)x.AccessLevel
                 });
                 var result = new Paginator<RoleModel>()
                 {
@@ -116,6 +120,15 @@ namespace Zi.LinqSqlLayer.DAOs
             if (filter.RoleId.CompareTo(Guid.Empty) != 0)
             {
                 query = query.Where(x => x.RoleId.CompareTo(filter.RoleId) == 0);
+            }
+            return query;
+        }
+
+        private IQueryable<Role> Filtering(IQueryable<Role> query, RoleFilter filter)
+        {
+            if (filter.AccessLevel.HasValue)
+            {
+                query = query.Where(x => x.AccessLevel.CompareTo(filter.AccessLevel) == 0);
             }
             return query;
         }
@@ -175,6 +188,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 }
                 role.Name = model.Name;
                 role.Description = model.Description;
+                role.AccessLevel = (int)model.AccessLevel;
 
                 try
                 {

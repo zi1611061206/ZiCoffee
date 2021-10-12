@@ -23,6 +23,9 @@ namespace Zi.DatabaseEntity.Configurators
             Property(x => x.Time)
                 .IsRequired()
                 .HasColumnType("DATETIME2");
+            Property(x => x.Content)
+                .IsUnicode(true)
+                .IsMaxLength();
 
             //FK
             HasRequired(s => s.User)
