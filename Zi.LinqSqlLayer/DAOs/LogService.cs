@@ -3,7 +3,6 @@ using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -38,7 +37,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     LogId = model.LogId,
                     EventId = model.EventId,
-                    UserId = model.UserId
+                    UserId = model.UserId,
+                    Content = model.Content
                 };
                 context.Logs.InsertOnSubmit(log);
 
@@ -150,12 +150,14 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     query.Where(x => x.LogId.ToString().Contains(filter.Keyword) ||
                         x.UserId.ToString().Contains(filter.Keyword) ||
+                        x.Content.ToString().Contains(filter.Keyword) ||
                         x.EventId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
                     query.Where(x => x.LogId.ToString().Equals(filter.Keyword) ||
                         x.UserId.ToString().Equals(filter.Keyword) ||
+                        x.Content.ToString().Equals(filter.Keyword) ||
                         x.EventId.ToString().Equals(filter.Keyword));
                 }
             }
@@ -198,6 +200,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 log.EventId = model.EventId;
                 log.UserId = model.UserId;
                 log.Time = model.Time;
+                log.Content = model.Content;
 
                 try
                 {

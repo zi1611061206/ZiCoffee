@@ -8,6 +8,7 @@ using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.LinqSqlLayer.Enumerators;
 using Zi.LinqSqlLayer.Providers.LinqToSql;
 
 namespace Zi.LinqSqlLayer.DAOs
@@ -38,7 +39,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     RoleId = model.RoleId,
                     Name = model.Name,
-                    Description = model.Description
+                    Description = model.Description,
+                    AccessLevel = (int)model.AccessLevel
                 };
                 context.Roles.InsertOnSubmit(role);
 
@@ -177,6 +179,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 }
                 role.Name = model.Name;
                 role.Description = model.Description;
+                role.AccessLevel = (int)model.AccessLevel;
 
                 try
                 {

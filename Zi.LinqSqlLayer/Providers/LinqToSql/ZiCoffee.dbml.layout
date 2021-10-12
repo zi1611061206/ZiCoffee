@@ -2,263 +2,263 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 14.5, 24.125" name="ZiCoffee">
   <DataContextMoniker Name="/ZiCoffeeDataContext" />
   <nestedChildShapes>
-    <classShape Id="6cffd98c-8d54-418c-93bc-16fd9ab0cbc9" absoluteBounds="8.75, 4.125, 2, 1.5785953776041666">
+    <classShape Id="06136421-fbe9-428d-a93b-58f5a597c133" absoluteBounds="8.75, 4, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ZiCoffeeDataContext/__MigrationHistory" />
       <nestedChildShapes>
-        <elementListCompartment Id="1e600e97-c7af-4ecc-8b7e-5b56bf538a99" absoluteBounds="8.765, 4.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a5a60275-56ad-4fb2-85c9-d0b366c5f671" absoluteBounds="8.765, 4.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4ecac519-5c4b-4959-a727-60d3585a4222" absoluteBounds="0.75, 3.5, 2, 3.8862125651041666">
+    <classShape Id="307f4d49-27b3-4c98-a2e4-d91353c172f4" absoluteBounds="0.75, 3.5, 2, 3.8862125651041666">
       <DataClassMoniker Name="/ZiCoffeeDataContext/User" />
       <nestedChildShapes>
-        <elementListCompartment Id="4193e163-d0f2-4ff5-9482-e265817ba26d" absoluteBounds="0.765, 3.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a03c4ff2-7dbf-48ca-a3bd-5dcfc2b61dd4" absoluteBounds="0.765, 3.96, 1.9700000000000002, 3.3262125651041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3c7d7d8a-97e8-4193-8619-8957d7294c83" absoluteBounds="1.5, 14.75, 2, 1.3862939453124969">
+    <classShape Id="8a2f4b8e-0c16-4631-9ace-da31b5dafc5d" absoluteBounds="1.5, 14.75, 2, 1.3862939453124987">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Area" />
       <nestedChildShapes>
-        <elementListCompartment Id="8cf5465d-1302-40bc-8c02-ec7644124572" absoluteBounds="1.5150000000000001, 15.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a933bde5-2169-48b1-812d-86ce173eca8a" absoluteBounds="1.5150000000000001, 15.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="3bb8a6e9-7237-4b69-a24a-1f87378ccd4b" absoluteBounds="6.25, 4.625, 2, 1.5785953776041666">
+    <classShape Id="5f64bfd9-a13c-40be-a3dd-242df376e275" absoluteBounds="6.25, 4.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ZiCoffeeDataContext/BillDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="7942c7b6-336f-4d06-8ab3-c586798ccdd3" absoluteBounds="6.265, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8416f995-bcc7-4317-bce8-3763a2168554" absoluteBounds="6.265, 5.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="fbce7d9a-87fb-427d-a6f5-c7f95e0efab2" absoluteBounds="3.5, 7.125, 2, 2.7324039713541666">
+    <classShape Id="833a7133-a2d9-4648-82c0-79d8f288d453" absoluteBounds="3.5, 7.125, 2, 2.7324039713541657">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Bill" />
       <nestedChildShapes>
-        <elementListCompartment Id="e7de356d-33f1-4698-9b8a-c38844029bd2" absoluteBounds="3.515, 7.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="eaf13538-eeff-4177-8437-d8a65a61d331" absoluteBounds="3.515, 7.585, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="4c0a3535-492a-4a93-b9ae-9acca885f3d7" absoluteBounds="0.75, 17.5, 2, 1.7708968098958309">
+    <classShape Id="f092e178-672c-4ac0-b19f-39388fdbf337" absoluteBounds="0.75, 17.5, 2, 1.7708968098958309">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Category" />
       <nestedChildShapes>
-        <elementListCompartment Id="dbbbf9e9-e06a-4a7b-8f2e-910827fe4aa6" absoluteBounds="0.765, 17.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="28b902bf-fe22-4750-b1b1-ac2446de92ae" absoluteBounds="0.765, 17.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="2ddabcb0-8f7a-4416-aa10-10621ebc87fb" absoluteBounds="6.25, 7.875, 2, 1.1939925130208344">
+    <classShape Id="c55ea0f6-f739-440d-8a47-5fb73025ab1a" absoluteBounds="6.25, 7.875, 2, 1.1939925130208335">
       <DataClassMoniker Name="/ZiCoffeeDataContext/DiscountDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="8a034c56-745a-47ce-a70f-8d5540eb7023" absoluteBounds="6.265, 8.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="385b3ee0-7006-458f-be64-d5911409722c" absoluteBounds="6.265, 8.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="bf0773a4-2ba3-4492-80a2-61b995639e8e" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
+    <classShape Id="984ed29c-ddb8-4ac7-ae4f-aa47043fb880" absoluteBounds="0.75, 0.75, 2, 1.3862939453125">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Event" />
       <nestedChildShapes>
-        <elementListCompartment Id="873e0233-13cd-491b-ab16-ff8b36b1ba8a" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="490f9353-6794-45b1-bc61-33da76b8980b" absoluteBounds="0.765, 1.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="dc9c83b1-e4dc-4097-bbca-a0ce9ab29ff0" absoluteBounds="3.5, 1.625, 2, 1.5785953776041668">
+    <classShape Id="ba35d189-2c1f-414f-a536-67b2bcc97470" absoluteBounds="3.5, 1.5, 2, 1.7708968098958331">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Log" />
       <nestedChildShapes>
-        <elementListCompartment Id="6dc30c32-32ef-438d-97c5-28e8381bbc10" absoluteBounds="3.515, 2.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="2ad77846-d3e1-4b53-bb76-f8b411ef44bc" absoluteBounds="3.515, 1.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="0dccf482-72d8-4b2a-b928-cd4c3e4b3dfb" absoluteBounds="6.25, 14.625, 2, 1.5785953776041666">
+    <classShape Id="1f926fed-1e2c-419e-b57e-7ff373fb4916" absoluteBounds="6.25, 14.625, 2, 1.5785953776041684">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Material" />
       <nestedChildShapes>
-        <elementListCompartment Id="83dffcde-bf44-4d4d-a953-b9f056f20ce1" absoluteBounds="6.265, 15.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3150f0a3-8b82-4cae-817d-6c96498c08c9" absoluteBounds="6.265, 15.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="673e8623-b21d-438a-ae06-bed522c6d345" absoluteBounds="3.5, 17.25, 2, 2.3478011067708309">
+    <classShape Id="902eff5e-1a31-4faf-beeb-5caf86424d27" absoluteBounds="3.5, 17.25, 2, 2.3478011067708309">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Product" />
       <nestedChildShapes>
-        <elementListCompartment Id="6fa2a69c-6742-4f9e-89cd-793398558c6b" absoluteBounds="3.515, 17.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="190e06e0-c0be-4206-bff1-124e5e8357b4" absoluteBounds="3.515, 17.71, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="57b0b548-6419-4f42-9303-93d5fb1b2952" absoluteBounds="3.5, 21, 2, 2.9247054036458309">
+    <classShape Id="f43237c6-1823-434e-9054-085239779fce" absoluteBounds="3.5, 21, 2, 2.9247054036458309">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Promotion" />
       <nestedChildShapes>
-        <elementListCompartment Id="dd1c8e16-fb87-40c0-9750-5c1e3ec2bc83" absoluteBounds="3.515, 21.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d4910883-bc86-453a-9e61-5741b22a6d44" absoluteBounds="3.515, 21.46, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="091414fd-5447-44e9-8fc5-a9668ebe7386" absoluteBounds="0.75, 21.75, 2, 1.3862939453125023">
+    <classShape Id="7e037acb-48f1-4fa0-b2c0-314a86fa0c68" absoluteBounds="0.75, 21.75, 2, 1.3862939453125023">
       <DataClassMoniker Name="/ZiCoffeeDataContext/PromotionType" />
       <nestedChildShapes>
-        <elementListCompartment Id="82c5cc74-f880-4156-aee4-361ae8428991" absoluteBounds="0.765, 22.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="d738c8f2-5c0e-459d-b13f-cd1d118a0570" absoluteBounds="0.765, 22.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="387bc7ee-1f5f-40b7-a8ec-5babbf264be2" absoluteBounds="12.25, 8, 2, 1.5785953776041666">
+    <classShape Id="8d89f320-0c6c-4795-a458-b803e8b8fabc" absoluteBounds="12.25, 8, 2, 1.5785953776041657">
       <DataClassMoniker Name="/ZiCoffeeDataContext/ReceiptDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="380df791-0019-47e7-9d18-d4e4dcae0707" absoluteBounds="12.265, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="9d621e62-85cb-4589-bdd5-711cd868b25b" absoluteBounds="12.265, 8.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="6797e574-cbad-4bfb-bb76-caccded7473e" absoluteBounds="9.5, 1.375, 2, 1.3862939453125005">
+    <classShape Id="4b8e403f-7e9b-4afc-ac6c-fecc2905858b" absoluteBounds="9.5, 1.375, 2, 1.3862939453125005">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Receipt" />
       <nestedChildShapes>
-        <elementListCompartment Id="7cf32b4d-b6e2-4c6b-840d-50fb4818caf6" absoluteBounds="9.515, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="953bfe82-ba69-4d3c-88f0-151a7634c02e" absoluteBounds="9.515, 1.835, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="96fea16c-04ef-4ebf-812a-e8a0ddb3cc1e" absoluteBounds="9, 17.75, 2, 1.3862939453125023">
+    <classShape Id="eacd7249-2029-45de-b83d-333605619c05" absoluteBounds="9, 17.75, 2, 1.3862939453125023">
       <DataClassMoniker Name="/ZiCoffeeDataContext/RecipeDetail" />
       <nestedChildShapes>
-        <elementListCompartment Id="bdc44b33-e26f-47e4-96b6-804015fd332a" absoluteBounds="9.015, 18.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="a2eb2797-2e32-4c92-b0f0-80a321da3fe7" absoluteBounds="9.015, 18.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f25181d8-ff2b-42d6-a956-2ea092b16bf9" absoluteBounds="6.25, 17.75, 2, 1.3862939453125023">
+    <classShape Id="188edead-8d35-49a0-9417-b453c5c30b29" absoluteBounds="6.25, 17.75, 2, 1.3862939453125023">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Recipe" />
       <nestedChildShapes>
-        <elementListCompartment Id="a09a50b1-a690-4ddd-aee3-2fdab5f133fe" absoluteBounds="6.265, 18.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ec4d0370-a1bf-46b6-a79d-5155ed1232d6" absoluteBounds="6.265, 18.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="62ae5f5f-0413-40e6-822a-139905da1a83" absoluteBounds="0.75, 8.75, 2, 1.3862939453124987">
+    <classShape Id="a8ed0829-8170-454e-a359-f0f23f9e76c2" absoluteBounds="0.75, 8.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Role" />
       <nestedChildShapes>
-        <elementListCompartment Id="5fc9c01d-778c-4ddc-b55d-f699835b9ba1" absoluteBounds="0.765, 9.21, 1.9700000000000002, 0.8262939453125" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="1541afcf-0dd7-4401-a410-bcfb9eb4f1c5" absoluteBounds="0.765, 9.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5cd2895b-da48-4c90-b9e2-5704a7c3c118" absoluteBounds="6.75, 1.25, 2, 1.7708968098958331">
+    <classShape Id="a6d28bc7-939e-4f80-afa9-fa0a50eb96b1" absoluteBounds="6.75, 1.125, 2, 1.7708968098958331">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Supplier" />
       <nestedChildShapes>
-        <elementListCompartment Id="c3b7fb48-dd5a-48ce-88c0-678065610ee3" absoluteBounds="6.765, 1.71, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="533304eb-8563-4959-bb0b-9b0a9ee715a0" absoluteBounds="6.765, 1.585, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="f41328d7-7696-47aa-bad5-b066c0eb9d46" absoluteBounds="0.75, 11.625, 2, 1.5785953776041666">
+    <classShape Id="da3159b5-201b-4a0d-b37c-0f6fb8b14703" absoluteBounds="0.75, 11.625, 2, 1.5785953776041666">
       <DataClassMoniker Name="/ZiCoffeeDataContext/Table" />
       <nestedChildShapes>
-        <elementListCompartment Id="357f9f06-6a29-456d-9cfc-6966a395b1bb" absoluteBounds="0.765, 12.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="cd8dd431-3ca1-4e45-9a7b-8b3018ffd27d" absoluteBounds="0.765, 12.085, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="391faefc-1633-4fc5-8145-c90c728d36b9" absoluteBounds="3.5, 4.875, 2, 1.1939925130208327">
+    <classShape Id="7fab196f-d0e1-4c03-a369-e52211910518" absoluteBounds="3.5, 4.875, 2, 1.1939925130208344">
       <DataClassMoniker Name="/ZiCoffeeDataContext/UserRole" />
       <nestedChildShapes>
-        <elementListCompartment Id="81b62a2c-31a4-4d7b-a095-6fc6e0258ab8" absoluteBounds="3.515, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="41b3ff4e-8f6f-44c7-9593-a69e8674cc52" absoluteBounds="3.515, 5.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(5.5 : 7.125); (5.875 : 6.75); (5.875 : 5.41429768880208); (6.25 : 5.41429768880208)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Bill/Bill_BillDetail" />
       <nodes>
-        <classShapeMoniker Id="fbce7d9a-87fb-427d-a6f5-c7f95e0efab2" />
-        <classShapeMoniker Id="3bb8a6e9-7237-4b69-a24a-1f87378ccd4b" />
+        <classShapeMoniker Id="833a7133-a2d9-4648-82c0-79d8f288d453" />
+        <classShapeMoniker Id="5f64bfd9-a13c-40be-a3dd-242df376e275" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 7.38621256510417); (3.125 : 7.76121256510417); (3.125 : 6.74846253846154); (3.25357443490112 : 6.87703697336266 : JumpStart); (3.37142556509888 : 6.99488810356042 : JumpEnd); (3.50153746153846 : 7.125)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ZiCoffeeDataContext/User/User_Bill" />
       <nodes>
-        <classShapeMoniker Id="4ecac519-5c4b-4959-a727-60d3585a4222" />
-        <classShapeMoniker Id="fbce7d9a-87fb-427d-a6f5-c7f95e0efab2" />
+        <classShapeMoniker Id="307f4d49-27b3-4c98-a2e4-d91353c172f4" />
+        <classShapeMoniker Id="833a7133-a2d9-4648-82c0-79d8f288d453" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 8.47199625651042); (5.97916666666667 : 8.47199625651042 : JumpStart); (6.14583333333333 : 8.47199625651042 : JumpEnd); (6.25 : 8.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Bill/Bill_DiscountDetail" />
       <nodes>
-        <classShapeMoniker Id="fbce7d9a-87fb-427d-a6f5-c7f95e0efab2" />
-        <classShapeMoniker Id="2ddabcb0-8f7a-4416-aa10-10621ebc87fb" />
+        <classShapeMoniker Id="833a7133-a2d9-4648-82c0-79d8f288d453" />
+        <classShapeMoniker Id="c55ea0f6-f739-440d-8a47-5fb73025ab1a" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 1.88064697265625); (3.5 : 1.88064697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.81814697265625); (3.5 : 1.81814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Event/Event_Log" />
       <nodes>
-        <classShapeMoniker Id="bf0773a4-2ba3-4492-80a2-61b995639e8e" />
-        <classShapeMoniker Id="dc9c83b1-e4dc-4097-bbca-a0ce9ab29ff0" />
+        <classShapeMoniker Id="984ed29c-ddb8-4ac7-ae4f-aa47043fb880" />
+        <classShapeMoniker Id="ba35d189-2c1f-414f-a536-67b2bcc97470" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.5); (3.125 : 3.125); (3.125 : 3.57859537760417); (3.5 : 3.20359537760417)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 3.5); (3.125 : 3.125); (3.125 : 3.64589680989583); (3.5 : 3.27089680989583)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/ZiCoffeeDataContext/User/User_Log" />
       <nodes>
-        <classShapeMoniker Id="4ecac519-5c4b-4959-a727-60d3585a4222" />
-        <classShapeMoniker Id="dc9c83b1-e4dc-4097-bbca-a0ce9ab29ff0" />
+        <classShapeMoniker Id="307f4d49-27b3-4c98-a2e4-d91353c172f4" />
+        <classShapeMoniker Id="ba35d189-2c1f-414f-a536-67b2bcc97470" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 17.3115374615385); (5.81607443490112 : 16.9954630266373 : JumpStart); (5.93392556509888 : 16.8776118964396 : JumpEnd); (6.0625 : 16.7490374615385); (6.0625 : 5.84019853320313); (6.25 : 5.84019853320313)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Product/Product_BillDetail" />
       <nodes>
-        <classShapeMoniker Id="673e8623-b21d-438a-ae06-bed522c6d345" />
-        <classShapeMoniker Id="3bb8a6e9-7237-4b69-a24a-1f87378ccd4b" />
+        <classShapeMoniker Id="902eff5e-1a31-4faf-beeb-5caf86424d27" />
+        <classShapeMoniker Id="5f64bfd9-a13c-40be-a3dd-242df376e275" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 18.3854484049479); (3.5 : 18.3854484049479)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Category/Category_Product" />
       <nodes>
-        <classShapeMoniker Id="4c0a3535-492a-4a93-b9ae-9acca885f3d7" />
-        <classShapeMoniker Id="673e8623-b21d-438a-ae06-bed522c6d345" />
+        <classShapeMoniker Id="f092e178-672c-4ac0-b19f-39388fdbf337" />
+        <classShapeMoniker Id="902eff5e-1a31-4faf-beeb-5caf86424d27" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 21); (5.875 : 20.625); (5.875 : 8.80174638476563); (5.97916666666667 : 8.80174638476563 : JumpStart); (6.14583333333333 : 8.80174638476563 : JumpEnd); (6.25 : 8.80174638476563)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Promotion/Promotion_DiscountDetail" />
       <nodes>
-        <classShapeMoniker Id="57b0b548-6419-4f42-9303-93d5fb1b2952" />
-        <classShapeMoniker Id="2ddabcb0-8f7a-4416-aa10-10621ebc87fb" />
+        <classShapeMoniker Id="f43237c6-1823-434e-9054-085239779fce" />
+        <classShapeMoniker Id="c55ea0f6-f739-440d-8a47-5fb73025ab1a" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 22.4431469726563); (3.5 : 22.4431469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/PromotionType/PromotionType_Promotion" />
       <nodes>
-        <classShapeMoniker Id="091414fd-5447-44e9-8fc5-a9668ebe7386" />
-        <classShapeMoniker Id="57b0b548-6419-4f42-9303-93d5fb1b2952" />
+        <classShapeMoniker Id="7e037acb-48f1-4fa0-b2c0-314a86fa0c68" />
+        <classShapeMoniker Id="f43237c6-1823-434e-9054-085239779fce" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.25 : 15.4142976888021); (13.25 : 15.4142976888021); (13.25 : 9.57859537760417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Material/Material_ReceiptDetail" />
       <nodes>
-        <classShapeMoniker Id="0dccf482-72d8-4b2a-b928-cd4c3e4b3dfb" />
-        <classShapeMoniker Id="387bc7ee-1f5f-40b7-a8ec-5babbf264be2" />
+        <classShapeMoniker Id="1f926fed-1e2c-419e-b57e-7ff373fb4916" />
+        <classShapeMoniker Id="8d89f320-0c6c-4795-a458-b803e8b8fabc" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(11.15625 : 2.7612939453125); (11.15625 : 8.78929768880208); (12.25 : 8.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Receipt/Receipt_ReceiptDetail" />
       <nodes>
-        <classShapeMoniker Id="6797e574-cbad-4bfb-bb76-caccded7473e" />
-        <classShapeMoniker Id="387bc7ee-1f5f-40b7-a8ec-5babbf264be2" />
+        <classShapeMoniker Id="4b8e403f-7e9b-4afc-ac6c-fecc2905858b" />
+        <classShapeMoniker Id="8d89f320-0c6c-4795-a458-b803e8b8fabc" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.25 : 15.8401990332031); (10 : 15.8401990332031); (10 : 17.75)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Material/Material_RecipeDetail" />
       <nodes>
-        <classShapeMoniker Id="0dccf482-72d8-4b2a-b928-cd4c3e4b3dfb" />
-        <classShapeMoniker Id="96fea16c-04ef-4ebf-812a-e8a0ddb3cc1e" />
+        <classShapeMoniker Id="1f926fed-1e2c-419e-b57e-7ff373fb4916" />
+        <classShapeMoniker Id="eacd7249-2029-45de-b83d-333605619c05" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.25 : 18.4431469726563); (9 : 18.4431469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Recipe/Recipe_RecipeDetail" />
       <nodes>
-        <classShapeMoniker Id="f25181d8-ff2b-42d6-a956-2ea092b16bf9" />
-        <classShapeMoniker Id="96fea16c-04ef-4ebf-812a-e8a0ddb3cc1e" />
+        <classShapeMoniker Id="188edead-8d35-49a0-9417-b453c5c30b29" />
+        <classShapeMoniker Id="eacd7249-2029-45de-b83d-333605619c05" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(5.5 : 18.4431469726563); (5.79166666666667 : 18.4431469726563 : JumpStart); (5.95833333333333 : 18.4431469726563 : JumpEnd); (6.25 : 18.4431469726563)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Product/Product_Recipe" />
       <nodes>
-        <classShapeMoniker Id="673e8623-b21d-438a-ae06-bed522c6d345" />
-        <classShapeMoniker Id="f25181d8-ff2b-42d6-a956-2ea092b16bf9" />
+        <classShapeMoniker Id="902eff5e-1a31-4faf-beeb-5caf86424d27" />
+        <classShapeMoniker Id="188edead-8d35-49a0-9417-b453c5c30b29" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(8.75 : 2.06814697265625); (9.5 : 2.06814697265625)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Supplier/Supplier_Receipt" />
       <nodes>
-        <classShapeMoniker Id="5cd2895b-da48-4c90-b9e2-5704a7c3c118" />
-        <classShapeMoniker Id="6797e574-cbad-4bfb-bb76-caccded7473e" />
+        <classShapeMoniker Id="a6d28bc7-939e-4f80-afa9-fa0a50eb96b1" />
+        <classShapeMoniker Id="4b8e403f-7e9b-4afc-ac6c-fecc2905858b" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 12.4142976888021); (4.5 : 12.4142976888021); (4.5 : 9.85740397135417)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Table/Table_Bill" />
       <nodes>
-        <classShapeMoniker Id="f41328d7-7696-47aa-bad5-b066c0eb9d46" />
-        <classShapeMoniker Id="fbce7d9a-87fb-427d-a6f5-c7f95e0efab2" />
+        <classShapeMoniker Id="da3159b5-201b-4a0d-b37c-0f6fb8b14703" />
+        <classShapeMoniker Id="833a7133-a2d9-4648-82c0-79d8f288d453" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.125 : 14.75); (2.125 : 13.2035953776042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Area/Area_Table" />
       <nodes>
-        <classShapeMoniker Id="3c7d7d8a-97e8-4193-8619-8957d7294c83" />
-        <classShapeMoniker Id="f41328d7-7696-47aa-bad5-b066c0eb9d46" />
+        <classShapeMoniker Id="8a2f4b8e-0c16-4631-9ace-da31b5dafc5d" />
+        <classShapeMoniker Id="da3159b5-201b-4a0d-b37c-0f6fb8b14703" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 8.8118490375601); (3.3125 : 8.2493490375601); (3.3125 : 5.47199625651042); (3.5 : 5.47199625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 8.68814281510417); (3.3125 : 8.12564281510417); (3.3125 : 5.47199625651042); (3.5 : 5.47199625651042)]" fixedFrom="NotFixed" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/Role/Role_UserRole" />
       <nodes>
-        <classShapeMoniker Id="62ae5f5f-0413-40e6-822a-139905da1a83" />
-        <classShapeMoniker Id="391faefc-1633-4fc5-8145-c90c728d36b9" />
+        <classShapeMoniker Id="a8ed0829-8170-454e-a359-f0f23f9e76c2" />
+        <classShapeMoniker Id="7fab196f-d0e1-4c03-a369-e52211910518" />
       </nodes>
     </associationConnector>
     <associationConnector edgePoints="[(2.75 : 5.11099812825521); (3.5 : 5.11099812825521)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/ZiCoffeeDataContext/User/User_UserRole" />
       <nodes>
-        <classShapeMoniker Id="4ecac519-5c4b-4959-a727-60d3585a4222" />
-        <classShapeMoniker Id="391faefc-1633-4fc5-8145-c90c728d36b9" />
+        <classShapeMoniker Id="307f4d49-27b3-4c98-a2e4-d91353c172f4" />
+        <classShapeMoniker Id="7fab196f-d0e1-4c03-a369-e52211910518" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

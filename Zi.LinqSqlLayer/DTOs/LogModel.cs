@@ -9,6 +9,7 @@ namespace Zi.LinqSqlLayer.DTOs
         public Guid UserId { get; set; }
         public Guid EventId { get; set; }
         public DateTime Time { get; set; }
+        public string Content { get; set; }
 
         public LogModel()
         {
@@ -19,6 +20,7 @@ namespace Zi.LinqSqlLayer.DTOs
             LogId = Guid.NewGuid();
             UserId = userId;
             EventId = eventId;
+            Content = string.Empty;
         }
 
         /// <summary>
@@ -33,6 +35,7 @@ namespace Zi.LinqSqlLayer.DTOs
             {
                 Time = result;
             }
+            Content = row["Content"].ToString();
         }
     }
 }

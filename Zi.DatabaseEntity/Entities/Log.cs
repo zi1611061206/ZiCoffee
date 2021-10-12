@@ -12,6 +12,7 @@ namespace Zi.DatabaseEntity.Entities
         public Guid UserId { get; set; }
         public Guid EventId { get; set; }
         public DateTime Time { get; set; }
+        public string Content { get; set; }
 
         //FK n-1
         public User User { get; set; }
