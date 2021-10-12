@@ -246,6 +246,7 @@
                     UserId = c.Guid(nullable: false),
                     EventId = c.Guid(nullable: false),
                     Time = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
+                    Content = c.String(),
                 })
                 .PrimaryKey(t => t.LogId)
                 .ForeignKey("dbo.Events", t => t.EventId, cascadeDelete: true)
@@ -283,6 +284,7 @@
                     RoleId = c.Guid(nullable: false),
                     Name = c.String(nullable: false, maxLength: 50),
                     Description = c.String(),
+                    AccessLevel = c.Int(nullable: false, defaultValue: (int)AccessLevels.Manager),
                 })
                 .PrimaryKey(t => t.RoleId);
 

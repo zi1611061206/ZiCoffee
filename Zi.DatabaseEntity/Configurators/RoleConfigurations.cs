@@ -23,6 +23,8 @@ namespace Zi.DatabaseEntity.Configurators
             Property(x => x.Description)
                 .IsUnicode(true)
                 .IsMaxLength();
+            Property(x => x.AccessLevel)
+                .IsRequired();
         }
     }
 }
