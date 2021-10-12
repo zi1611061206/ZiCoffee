@@ -36,7 +36,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     LogId = model.LogId,
                     EventId = model.EventId,
-                    UserId = model.UserId
+                    UserId = model.UserId,
+                    Content = model.Content
                 };
                 context.Logs.InsertOnSubmit(log);
 
@@ -95,7 +96,8 @@ namespace Zi.LinqSqlLayer.DAOs
                     LogId = x.LogId,
                     UserId = x.UserId,
                     EventId = x.EventId,
-                    Time = x.Time
+                    Time = x.Time,
+                    Content = x.Content
                 });
                 var result = new Paginator<LogModel>()
                 {
@@ -148,12 +150,14 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     query = query.Where(x => x.LogId.ToString().Contains(filter.Keyword) ||
                         x.UserId.ToString().Contains(filter.Keyword) ||
+                        x.Content.ToString().Contains(filter.Keyword) ||
                         x.EventId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
                     query = query.Where(x => x.LogId.ToString().Equals(filter.Keyword) ||
                         x.UserId.ToString().Equals(filter.Keyword) ||
+                        x.Content.ToString().Equals(filter.Keyword) ||
                         x.EventId.ToString().Equals(filter.Keyword));
                 }
             }
@@ -196,6 +200,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 log.EventId = model.EventId;
                 log.UserId = model.UserId;
                 log.Time = model.Time;
+                log.Content = model.Content;
 
                 try
                 {

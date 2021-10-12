@@ -100,6 +100,7 @@
     <Compile Include="Engines\Paginators\PaginatorConfiguration.cs" />
     <Compile Include="Engines\Searchers\Searcher.cs" />
     <Compile Include="Engines\Sorters\Sorter.cs" />
+    <Compile Include="Enumerators\AccessLevels.cs" />
     <Compile Include="Enumerators\BillStatus.cs" />
     <Compile Include="Enumerators\CategoryStatus.cs" />
     <Compile Include="Enumerators\Genders.cs" />

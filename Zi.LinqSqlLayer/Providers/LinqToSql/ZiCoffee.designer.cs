@@ -758,7 +758,7 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="VarBinary(MAX)", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Avatar", DbType="VarBinary(MAX)", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Avatar
 		{
 			get
@@ -2210,6 +2210,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 		
 		private System.DateTime _Time;
 		
+		private string _Content;
+		
 		private EntityRef<Event> _Event;
 		
 		private EntityRef<User> _User;
@@ -2226,6 +2228,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
     partial void OnEventIdChanged();
     partial void OnTimeChanging(System.DateTime value);
     partial void OnTimeChanged();
+    partial void OnContentChanging(string value);
+    partial void OnContentChanged();
     #endregion
 		
 		public Log()
@@ -2319,6 +2323,26 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 					this._Time = value;
 					this.SendPropertyChanged("Time");
 					this.OnTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Content", DbType="NVarChar(MAX)")]
+		public string Content
+		{
+			get
+			{
+				return this._Content;
+			}
+			set
+			{
+				if ((this._Content != value))
+				{
+					this.OnContentChanging(value);
+					this.SendPropertyChanging();
+					this._Content = value;
+					this.SendPropertyChanged("Content");
+					this.OnContentChanged();
 				}
 			}
 		}
@@ -4216,6 +4240,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 		
 		private string _Description;
 		
+		private int _AccessLevel;
+		
 		private EntitySet<UserRole> _UserRoles;
 		
     #region Extensibility Method Definitions
@@ -4228,6 +4254,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
     partial void OnNameChanged();
     partial void OnDescriptionChanging(string value);
     partial void OnDescriptionChanged();
+    partial void OnAccessLevelChanging(int value);
+    partial void OnAccessLevelChanged();
     #endregion
 		
 		public Role()
@@ -4292,6 +4320,26 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 					this._Description = value;
 					this.SendPropertyChanged("Description");
 					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AccessLevel", DbType="Int NOT NULL")]
+		public int AccessLevel
+		{
+			get
+			{
+				return this._AccessLevel;
+			}
+			set
+			{
+				if ((this._AccessLevel != value))
+				{
+					this.OnAccessLevelChanging(value);
+					this.SendPropertyChanging();
+					this._AccessLevel = value;
+					this.SendPropertyChanged("AccessLevel");
+					this.OnAccessLevelChanged();
 				}
 			}
 		}
