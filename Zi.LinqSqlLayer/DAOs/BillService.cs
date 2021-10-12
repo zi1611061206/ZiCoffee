@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -91,7 +89,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Bills;
+                var query = context.Bills.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -127,75 +125,75 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Bill> GettingBy(Table<Bill> query, BillFilter filter)
+        private IQueryable<Bill> GettingBy(IQueryable<Bill> query, BillFilter filter)
         {
             if (filter.BillId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.BillId.CompareTo(filter.BillId) == 0);
+                query = query.Where(x => x.BillId.CompareTo(filter.BillId) == 0);
             }
             return query;
         }
 
-        private Table<Bill> Filtering(Table<Bill> query, BillFilter filter)
+        private IQueryable<Bill> Filtering(IQueryable<Bill> query, BillFilter filter)
         {
-            query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
+            query = query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
             if (DateTime.Compare(filter.LastedModifyTo, filter.LastedModifyFrom) > 0)
             {
-                query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
+                query = query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
-            query.Where(x => x.Total >= filter.TotalMin);
+            query = query.Where(x => x.Total >= filter.TotalMin);
             if (filter.TotalMax > filter.TotalMin)
             {
-                query.Where(x => x.Total <= filter.TotalMax);
+                query = query.Where(x => x.Total <= filter.TotalMax);
             }
-            query.Where(x => x.Vat >= filter.VatMin);
+            query = query.Where(x => x.Vat >= filter.VatMin);
             if (filter.VatMax > filter.VatMin)
             {
-                query.Where(x => x.Vat <= filter.VatMax);
+                query = query.Where(x => x.Vat <= filter.VatMax);
             }
-            query.Where(x => x.AfterVat >= filter.AfterVatMin);
+            query = query.Where(x => x.AfterVat >= filter.AfterVatMin);
             if (filter.AfterVatMax > filter.AfterVatMin)
             {
-                query.Where(x => x.AfterVat <= filter.AfterVatMax);
+                query = query.Where(x => x.AfterVat <= filter.AfterVatMax);
             }
-            query.Where(x => x.RealPay >= filter.RealPayMin);
+            query = query.Where(x => x.RealPay >= filter.RealPayMin);
             if (filter.RealPayMax > filter.RealPayMin)
             {
-                query.Where(x => x.RealPay <= filter.RealPayMax);
+                query = query.Where(x => x.RealPay <= filter.RealPayMax);
             }
             if (filter.Status.HasValue)
             {
-                query.Where(x => x.Status.CompareTo(filter.Status) == 0);
+                query = query.Where(x => x.Status.CompareTo(filter.Status) == 0);
             }
-            query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyFrom) >= 0);
+            query = query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyFrom) >= 0);
             if (DateTime.Compare(filter.LastedModifyTo, filter.LastedModifyFrom) > 0)
             {
-                query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyTo) <= 0);
+                query = query.Where(x => x.LastedModify.CompareTo(filter.LastedModifyTo) <= 0);
             }
             if (filter.UserId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
+                query = query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
             }
             if (filter.TableId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.TableId.CompareTo(filter.TableId) == 0);
+                query = query.Where(x => x.TableId.CompareTo(filter.TableId) == 0);
             }
             return query;
         }
 
-        private Table<Bill> Searching(Table<Bill> query, BillFilter filter)
+        private IQueryable<Bill> Searching(IQueryable<Bill> query, BillFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.BillId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.BillId.ToString().Contains(filter.Keyword) ||
                         x.UserId.ToString().Contains(filter.Keyword) ||
                         x.TableId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.BillId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.BillId.ToString().Equals(filter.Keyword) ||
                         x.UserId.ToString().Equals(filter.Keyword) ||
                         x.TableId.ToString().Equals(filter.Keyword));
                 }
@@ -203,22 +201,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Bill> Paging(Table<Bill> query, BillFilter filter)
+        private IQueryable<Bill> Paging(IQueryable<Bill> query, BillFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Bill> Sorting(Table<Bill> query, BillFilter filter)
+        private IQueryable<Bill> Sorting(IQueryable<Bill> query, BillFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.CreatedDate);
+                query = query.OrderBy(x => x.CreatedDate);
             }
             else
             {
-                query.OrderByDescending(x => x.CreatedDate);
+                query = query.OrderByDescending(x => x.CreatedDate);
             }
             return query;
         }

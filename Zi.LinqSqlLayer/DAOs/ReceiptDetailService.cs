@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -86,7 +84,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.ReceiptDetails;
+                var query = context.ReceiptDetails.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -116,68 +114,68 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<ReceiptDetail> GettingBy(Table<ReceiptDetail> query, ReceiptDetailFilter filter)
+        private IQueryable<ReceiptDetail> GettingBy(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
             if (filter.ReceiptId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.ReceiptId.CompareTo(filter.ReceiptId) == 0);
+                query = query.Where(x => x.ReceiptId.CompareTo(filter.ReceiptId) == 0);
             }
             if (filter.MaterialId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.MaterialId.CompareTo(filter.MaterialId) == 0);
+                query = query.Where(x => x.MaterialId.CompareTo(filter.MaterialId) == 0);
             }
             return query;
         }
 
-        private Table<ReceiptDetail> Filtering(Table<ReceiptDetail> query, ReceiptDetailFilter filter)
+        private IQueryable<ReceiptDetail> Filtering(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
-            query.Where(x => x.Quantity >= filter.QuantityMin);
+            query = query.Where(x => x.Quantity >= filter.QuantityMin);
             if (filter.QuantityMax > filter.QuantityMin)
             {
-                query.Where(x => x.Quantity <= filter.QuantityMax);
+                query = query.Where(x => x.Quantity <= filter.QuantityMax);
             }
-            query.Where(x => x.ImportPrice >= filter.ImportPriceMin);
+            query = query.Where(x => x.ImportPrice >= filter.ImportPriceMin);
             if (filter.ImportPriceMax > filter.ImportPriceMin)
             {
-                query.Where(x => x.ImportPrice <= filter.ImportPriceMax);
+                query = query.Where(x => x.ImportPrice <= filter.ImportPriceMax);
             }
             return query;
         }
 
-        private Table<ReceiptDetail> Searching(Table<ReceiptDetail> query, ReceiptDetailFilter filter)
+        private IQueryable<ReceiptDetail> Searching(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.ReceiptId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.ReceiptId.ToString().Contains(filter.Keyword) ||
                         x.MaterialId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.ReceiptId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.ReceiptId.ToString().Equals(filter.Keyword) ||
                         x.MaterialId.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private Table<ReceiptDetail> Paging(Table<ReceiptDetail> query, ReceiptDetailFilter filter)
+        private IQueryable<ReceiptDetail> Paging(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<ReceiptDetail> Sorting(Table<ReceiptDetail> query, ReceiptDetailFilter filter)
+        private IQueryable<ReceiptDetail> Sorting(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.ReceiptId);
+                query = query.OrderBy(x => x.ReceiptId);
             }
             else
             {
-                query.OrderByDescending(x => x.ReceiptId);
+                query = query.OrderByDescending(x => x.ReceiptId);
             }
             return query;
         }

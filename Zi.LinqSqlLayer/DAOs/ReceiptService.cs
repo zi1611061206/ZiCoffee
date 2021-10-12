@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -84,7 +82,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Receipts;
+                var query = context.Receipts.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -113,63 +111,63 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Receipt> GettingBy(Table<Receipt> query, ReceiptFilter filter)
+        private IQueryable<Receipt> GettingBy(IQueryable<Receipt> query, ReceiptFilter filter)
         {
             if (filter.ReceiptId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.ReceiptId.CompareTo(filter.ReceiptId) == 0);
+                query = query.Where(x => x.ReceiptId.CompareTo(filter.ReceiptId) == 0);
             }
             return query;
         }
 
-        private Table<Receipt> Filtering(Table<Receipt> query, ReceiptFilter filter)
+        private IQueryable<Receipt> Filtering(IQueryable<Receipt> query, ReceiptFilter filter)
         {
             if (filter.SupplierId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.SupplierId.CompareTo(filter.SupplierId) == 0);
+                query = query.Where(x => x.SupplierId.CompareTo(filter.SupplierId) == 0);
             }
             query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
             if (DateTime.Compare(filter.CreatedDateTo, filter.CreatedDateFrom) > 0)
             {
-                query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
+                query = query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
             return query;
         }
 
-        private Table<Receipt> Searching(Table<Receipt> query, ReceiptFilter filter)
+        private IQueryable<Receipt> Searching(IQueryable<Receipt> query, ReceiptFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.ReceiptId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.ReceiptId.ToString().Contains(filter.Keyword) ||
                         x.SupplierId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.ReceiptId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.ReceiptId.ToString().Equals(filter.Keyword) ||
                         x.SupplierId.ToString().Equals(filter.Keyword));
                 }
             }
             return query;
         }
 
-        private Table<Receipt> Paging(Table<Receipt> query, ReceiptFilter filter)
+        private IQueryable<Receipt> Paging(IQueryable<Receipt> query, ReceiptFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Receipt> Sorting(Table<Receipt> query, ReceiptFilter filter)
+        private IQueryable<Receipt> Sorting(IQueryable<Receipt> query, ReceiptFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.CreatedDate);
+                query = query.OrderBy(x => x.CreatedDate);
             }
             else
             {
-                query.OrderByDescending(x => x.CreatedDate);
+                query = query.OrderByDescending(x => x.CreatedDate);
             }
             return query;
         }

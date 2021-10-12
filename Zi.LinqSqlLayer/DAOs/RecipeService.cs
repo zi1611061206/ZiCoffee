@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -85,7 +83,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Recipes;
+                var query = context.Recipes.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -114,37 +112,37 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Recipe> GettingBy(Table<Recipe> query, RecipeFilter filter)
+        private IQueryable<Recipe> GettingBy(IQueryable<Recipe> query, RecipeFilter filter)
         {
             if (filter.RecipeId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.RecipeId.CompareTo(filter.RecipeId) == 0);
+                query = query.Where(x => x.RecipeId.CompareTo(filter.RecipeId) == 0);
             }
             return query;
         }
 
-        private Table<Recipe> Filtering(Table<Recipe> query, RecipeFilter filter)
+        private IQueryable<Recipe> Filtering(IQueryable<Recipe> query, RecipeFilter filter)
         {
             if (filter.ProductId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.ProductId.CompareTo(filter.ProductId) == 0);
+                query = query.Where(x => x.ProductId.CompareTo(filter.ProductId) == 0);
             }
             return query;
         }
 
-        private Table<Recipe> Searching(Table<Recipe> query, RecipeFilter filter)
+        private IQueryable<Recipe> Searching(IQueryable<Recipe> query, RecipeFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.RecipeId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.RecipeId.ToString().Contains(filter.Keyword) ||
                         x.ProductId.ToString().Contains(filter.Keyword) ||
                         x.Guide.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.RecipeId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.RecipeId.ToString().Equals(filter.Keyword) ||
                         x.ProductId.ToString().Equals(filter.Keyword) ||
                         x.Guide.ToString().Equals(filter.Keyword));
                 }
@@ -152,22 +150,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Recipe> Paging(Table<Recipe> query, RecipeFilter filter)
+        private IQueryable<Recipe> Paging(IQueryable<Recipe> query, RecipeFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Recipe> Sorting(Table<Recipe> query, RecipeFilter filter)
+        private IQueryable<Recipe> Sorting(IQueryable<Recipe> query, RecipeFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.ProductId);
+                query = query.OrderBy(x => x.ProductId);
             }
             else
             {
-                query.OrderByDescending(x => x.ProductId);
+                query = query.OrderByDescending(x => x.ProductId);
             }
             return query;
         }

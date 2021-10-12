@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -86,7 +84,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Materials;
+                var query = context.Materials.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -116,38 +114,38 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Material> GettingBy(Table<Material> query, MaterialFilter filter)
+        private IQueryable<Material> GettingBy(IQueryable<Material> query, MaterialFilter filter)
         {
             if (filter.MaterialId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.MaterialId.CompareTo(filter.MaterialId) == 0);
+                query = query.Where(x => x.MaterialId.CompareTo(filter.MaterialId) == 0);
             }
             return query;
         }
 
-        private Table<Material> Filtering(Table<Material> query, MaterialFilter filter)
+        private IQueryable<Material> Filtering(IQueryable<Material> query, MaterialFilter filter)
         {
-            query.Where(x => x.Quantity >= filter.QuantityMin);
+            query = query.Where(x => x.Quantity >= filter.QuantityMin);
             if (filter.QuantityMax > filter.QuantityMin)
             {
-                query.Where(x => x.Quantity <= filter.QuantityMax);
+                query = query.Where(x => x.Quantity <= filter.QuantityMax);
             }
             return query;
         }
 
-        private Table<Material> Searching(Table<Material> query, MaterialFilter filter)
+        private IQueryable<Material> Searching(IQueryable<Material> query, MaterialFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.MaterialId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.MaterialId.ToString().Contains(filter.Keyword) ||
                         x.Name.ToString().Contains(filter.Keyword) ||
                         x.Unit.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.MaterialId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.MaterialId.ToString().Equals(filter.Keyword) ||
                         x.Name.ToString().Equals(filter.Keyword) ||
                         x.Unit.ToString().Equals(filter.Keyword));
                 }
@@ -155,22 +153,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Material> Paging(Table<Material> query, MaterialFilter filter)
+        private IQueryable<Material> Paging(IQueryable<Material> query, MaterialFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Material> Sorting(Table<Material> query, MaterialFilter filter)
+        private IQueryable<Material> Sorting(IQueryable<Material> query, MaterialFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.Unit);
+                query = query.OrderBy(x => x.Unit);
             }
             else
             {
-                query.OrderByDescending(x => x.Unit);
+                query = query.OrderByDescending(x => x.Unit);
             }
             return query;
         }

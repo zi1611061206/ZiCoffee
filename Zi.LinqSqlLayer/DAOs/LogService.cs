@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -85,7 +83,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Logs;
+                var query = context.Logs.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -115,46 +113,46 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Log> GettingBy(Table<Log> query, LogFilter filter)
+        private IQueryable<Log> GettingBy(IQueryable<Log> query, LogFilter filter)
         {
             if (filter.LogId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.LogId.CompareTo(filter.LogId) == 0);
+                query = query.Where(x => x.LogId.CompareTo(filter.LogId) == 0);
             }
             return query;
         }
 
-        private Table<Log> Filtering(Table<Log> query, LogFilter filter)
+        private IQueryable<Log> Filtering(IQueryable<Log> query, LogFilter filter)
         {
             if (filter.UserId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
+                query = query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
             }
             if (filter.EventId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.EventId.CompareTo(filter.EventId) == 0);
+                query = query.Where(x => x.EventId.CompareTo(filter.EventId) == 0);
             }
             query.Where(x => x.Time.CompareTo(filter.TimeFrom) >= 0);
             if (DateTime.Compare(filter.TimeTo, filter.TimeFrom) > 0)
             {
-                query.Where(x => x.Time.CompareTo(filter.TimeTo) <= 0);
+                query = query.Where(x => x.Time.CompareTo(filter.TimeTo) <= 0);
             }
             return query;
         }
 
-        private Table<Log> Searching(Table<Log> query, LogFilter filter)
+        private IQueryable<Log> Searching(IQueryable<Log> query, LogFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.LogId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.LogId.ToString().Contains(filter.Keyword) ||
                         x.UserId.ToString().Contains(filter.Keyword) ||
                         x.EventId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.LogId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.LogId.ToString().Equals(filter.Keyword) ||
                         x.UserId.ToString().Equals(filter.Keyword) ||
                         x.EventId.ToString().Equals(filter.Keyword));
                 }
@@ -162,22 +160,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Log> Paging(Table<Log> query, LogFilter filter)
+        private IQueryable<Log> Paging(IQueryable<Log> query, LogFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Log> Sorting(Table<Log> query, LogFilter filter)
+        private IQueryable<Log> Sorting(IQueryable<Log> query, LogFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.Time);
+                query = query.OrderBy(x => x.Time);
             }
             else
             {
-                query.OrderByDescending(x => x.Time);
+                query = query.OrderByDescending(x => x.Time);
             }
             return query;
         }

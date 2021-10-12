@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Data;
-using System.Data.Linq;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
-using System.Threading.Tasks;
 using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
@@ -63,7 +61,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 var area = context.Areas
                     .Where(x => x.AreaId.CompareTo(areaId) == 0)
                     .FirstOrDefault();
-                if(area == null)
+                if (area == null)
                 {
                     return new Tuple<bool, object>(false, Rm.GetString("NotFound", culture) + " " + areaId);
                 }
@@ -73,7 +71,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     context.SubmitChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return new Tuple<bool, object>(false, Rm.GetString("FailedDelete", culture) + ":" + ex.Message);
                 }
@@ -86,7 +84,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Areas;
+                var query = context.Areas.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -106,7 +104,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
                 };
-                if(data.Count() <= 0)
+                if (data.Count() <= 0)
                 {
                     return new Tuple<bool, object>(false, Rm.GetString("NotFound", culture));
                 }
@@ -115,37 +113,37 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<Area> GettingBy(Table<Area> query, AreaFilter filter)
+        private IQueryable<Area> GettingBy(IQueryable<Area> query, AreaFilter filter)
         {
             if (filter.AreaId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.AreaId.CompareTo(filter.AreaId) == 0);
+                query = query.Where(x => x.AreaId.CompareTo(filter.AreaId) == 0);
             }
             return query;
         }
 
-        private Table<Area> Filtering(Table<Area> query, AreaFilter filter)
+        private IQueryable<Area> Filtering(IQueryable<Area> query, AreaFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.ParentId))
             {
-                query.Where(x => x.ParentId.Equals(filter.ParentId));
+                query = query.Where(x => x.ParentId.Equals(filter.ParentId));
             }
             return query;
         }
 
-        private Table<Area> Searching(Table<Area> query, AreaFilter filter)
+        private IQueryable<Area> Searching(IQueryable<Area> query, AreaFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.AreaId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.AreaId.ToString().Contains(filter.Keyword) ||
                         x.Name.ToString().Contains(filter.Keyword) ||
                         x.ParentId.ToString().Contains(filter.Keyword));
                 }
                 else
                 {
-                    query.Where(x => x.AreaId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.AreaId.ToString().Equals(filter.Keyword) ||
                         x.Name.ToString().Equals(filter.Keyword) ||
                         x.ParentId.ToString().Equals(filter.Keyword));
                 }
@@ -153,22 +151,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<Area> Paging(Table<Area> query, AreaFilter filter)
+        private IQueryable<Area> Paging(IQueryable<Area> query, AreaFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<Area> Sorting(Table<Area> query, AreaFilter filter)
+        private IQueryable<Area> Sorting(IQueryable<Area> query, AreaFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.Name);
+                query = query.OrderBy(x => x.Name);
             }
             else
             {
-                query.OrderByDescending(x => x.Name);
+                query = query.OrderByDescending(x => x.Name);
             }
             return query;
         }
@@ -182,7 +180,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 var area = context.Areas
                     .Where(x => x.AreaId.CompareTo(model.AreaId) == 0)
                     .FirstOrDefault();
-                if(area == null)
+                if (area == null)
                 {
                     return new Tuple<bool, object>(false, Rm.GetString("NotFound", culture) + " " + model.AreaId);
                 }
@@ -193,7 +191,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 {
                     context.SubmitChanges();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     return new Tuple<bool, object>(false, Rm.GetString("FailedUpdate", culture) + ":" + ex.Message);
                 }
