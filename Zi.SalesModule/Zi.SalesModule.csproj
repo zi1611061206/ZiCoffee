@@ -78,11 +78,11 @@
     <Compile Include="GUIs\FormCashier.Designer.cs">
       <DependentUpon>FormCashier.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\FormCheckout.cs">
+    <Compile Include="GUIs\FormCheckOut.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\FormCheckout.Designer.cs">
-      <DependentUpon>FormCheckout.cs</DependentUpon>
+    <Compile Include="GUIs\FormCheckOut.Designer.cs">
+      <DependentUpon>FormCheckOut.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\FormLogin.cs">
       <SubType>Form</SubType>
@@ -96,11 +96,17 @@
     <Compile Include="GUIs\FormManager.Designer.cs">
       <DependentUpon>FormManager.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\FormService.cs">
+    <Compile Include="GUIs\FormOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="GUIs\FormService.Designer.cs">
-      <DependentUpon>FormService.cs</DependentUpon>
+    <Compile Include="GUIs\FormOrder.Designer.cs">
+      <DependentUpon>FormOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormProfile.Designer.cs">
+      <DependentUpon>FormProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\FormSetting.cs">
       <SubType>Form</SubType>

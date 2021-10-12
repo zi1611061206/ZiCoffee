@@ -11,14 +11,14 @@ using Zi.LinqSqlLayer.DTOs;
 
 namespace Zi.SalesModule.GUIs
 {
-    public partial class FormCheckOut : Form
+    public partial class FormOrder : Form
     {
         #region Attributes
         public TableModel CurrentTable { get; set; }
         public UserModel CurrentUser { get; set; }
         #endregion
 
-        public FormCheckOut(TableModel currentTable, UserModel currentUser)
+        public FormOrder(TableModel currentTable, UserModel currentUser)
         {
             InitializeComponent();
             CurrentTable = currentTable;

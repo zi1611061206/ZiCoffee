@@ -138,13 +138,13 @@
   <data name="CmsTable" xml:space="preserve">
     <value>Table</value>
   </data>
-  <data name="LbChoosingTable" xml:space="preserve">
-    <value>Selected Table</value>
-  </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
   </data>
-  <data name="LbNoneChoosingTable" xml:space="preserve">
+  <data name="LbCurrentTable" xml:space="preserve">
+    <value>Selected Table</value>
+  </data>
+  <data name="LbNoneCurrentTable" xml:space="preserve">
     <value>No Selected Table</value>
   </data>
   <data name="LbPendingTable" xml:space="preserve">
