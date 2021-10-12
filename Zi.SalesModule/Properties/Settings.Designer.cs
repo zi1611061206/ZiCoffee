@@ -303,5 +303,30 @@ namespace Zi.SalesModule.Properties {
                 this["ManagerRoleId"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/ZI.TECH.DEV.201")]
+        public string DeveloperFacebookLink {
+            get {
+                return ((string)(this["DeveloperFacebookLink"]));
+            }
+            set {
+                this["DeveloperFacebookLink"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mailto:zitech.dev[at]gmail.com?subject=Customer Feedback&bcc=sotayvaodoi[at]gmail" +
+            ".com")]
+        public string DeveloperMailToCmd {
+            get {
+                return ((string)(this["DeveloperMailToCmd"]));
+            }
+            set {
+                this["DeveloperMailToCmd"] = value;
+            }
+        }
     }
 }

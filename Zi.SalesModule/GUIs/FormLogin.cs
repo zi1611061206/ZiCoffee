@@ -1,5 +1,6 @@
 ﻿using FontAwesome.Sharp;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -330,8 +331,10 @@ namespace Zi.SalesModule.GUIs
             {
                 return;
             }
-            UserFilter filter = new UserFilter();
-            filter.Username = username;
+            UserFilter filter = new UserFilter
+            {
+                Username = username
+            };
             var user = ((Paginator<UserModel>)UserService.Instance.Read(filter, CultureName).Item2).Item[0];
             AccessSuccess(user);
         }
@@ -375,6 +378,17 @@ namespace Zi.SalesModule.GUIs
         private void Ibtn_MouseLeave(object sender, EventArgs e)
         {
             (sender as Button).ForeColor = Properties.Settings.Default.BaseBorderColor;
+        }
+
+        private void IpicFacebookIcon_Click(object sender, EventArgs e)
+        {
+            Process.Start(Properties.Settings.Default.DeveloperFacebookLink);
+        }
+
+        private void IpicGoogleIcon_Click(object sender, EventArgs e)
+        {
+            string command = Properties.Settings.Default.DeveloperMailToCmd;
+            Process.Start(command);
         }
     }
 }

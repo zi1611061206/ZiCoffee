@@ -328,6 +328,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicGoogleIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicGoogleIcon.TabIndex = 1;
             this.ipicGoogleIcon.TabStop = false;
+            this.ipicGoogleIcon.Click += new System.EventHandler(this.IpicGoogleIcon_Click);
             this.ipicGoogleIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicGoogleIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -347,6 +348,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicFacebookIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicFacebookIcon.TabIndex = 0;
             this.ipicFacebookIcon.TabStop = false;
+            this.ipicFacebookIcon.Click += new System.EventHandler(this.IpicFacebookIcon_Click);
             this.ipicFacebookIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicFacebookIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
