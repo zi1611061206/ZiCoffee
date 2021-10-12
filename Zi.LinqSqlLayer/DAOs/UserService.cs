@@ -97,7 +97,7 @@ namespace Zi.LinqSqlLayer.DAOs
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
-                var query = context.Users;
+                var query = context.Users.Where(x=>true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
@@ -139,45 +139,45 @@ namespace Zi.LinqSqlLayer.DAOs
         }
 
         #region Engines
-        private Table<User> GettingBy(Table<User> query, UserFilter filter)
+        private IQueryable<User> GettingBy(IQueryable<User> query, UserFilter filter)
         {
             if (filter.UserId.CompareTo(Guid.Empty) != 0)
             {
-                query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
+                query = query.Where(x => x.UserId.CompareTo(filter.UserId) == 0);
             }
-            if (string.IsNullOrEmpty(filter.Username))
+            if (!string.IsNullOrEmpty(filter.Username))
             {
-                query.Where(x => x.Username.Equals(filter.Username));
+                query = query.Where(x => x.Username == filter.Username);
             }
             return query;
         }
 
-        private Table<User> Filtering(Table<User> query, UserFilter filter)
+        private IQueryable<User> Filtering(IQueryable<User> query, UserFilter filter)
         {
-            query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) >= 0);
+            query = query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthFrom) >= 0);
             if (DateTime.Compare(filter.DateOfBirthTo, filter.DateOfBirthFrom) > 0)
             {
-                query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthTo) <= 0);
+                query = query.Where(x => x.DateOfBirth.CompareTo(filter.DateOfBirthTo) <= 0);
             }
-            query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
+            query = query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateFrom) >= 0);
             if (DateTime.Compare(filter.CreatedDateTo, filter.CreatedDateFrom) > 0)
             {
-                query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
+                query = query.Where(x => x.CreatedDate.CompareTo(filter.CreatedDateTo) <= 0);
             }
             if (filter.Gender.HasValue)
             {
-                query.Where(x => x.Gender.CompareTo(filter.Gender) == 0);
+                query = query.Where(x => x.Gender.CompareTo(filter.Gender) == 0);
             }
             return query;
         }
 
-        private Table<User> Searching(Table<User> query, UserFilter filter)
+        private IQueryable<User> Searching(IQueryable<User> query, UserFilter filter)
         {
             if (!string.IsNullOrEmpty(filter.Keyword))
             {
                 if (filter.IsRoughly)
                 {
-                    query.Where(x => x.UserId.ToString().Contains(filter.Keyword) ||
+                    query = query.Where(x => x.UserId.ToString().Contains(filter.Keyword) ||
                         x.FirstName.ToString().Contains(filter.Keyword) ||
                         x.MiddleName.ToString().Contains(filter.Keyword) ||
                         x.LastName.ToString().Contains(filter.Keyword) ||
@@ -190,7 +190,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 }
                 else
                 {
-                    query.Where(x => x.UserId.ToString().Equals(filter.Keyword) ||
+                    query = query.Where(x => x.UserId.ToString().Equals(filter.Keyword) ||
                         x.FirstName.ToString().Equals(filter.Keyword) ||
                         x.MiddleName.ToString().Equals(filter.Keyword) ||
                         x.LastName.ToString().Equals(filter.Keyword) ||
@@ -205,22 +205,22 @@ namespace Zi.LinqSqlLayer.DAOs
             return query;
         }
 
-        private Table<User> Paging(Table<User> query, UserFilter filter)
+        private IQueryable<User> Paging(IQueryable<User> query, UserFilter filter)
         {
             int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
             return query;
         }
 
-        private Table<User> Sorting(Table<User> query, UserFilter filter)
+        private IQueryable<User> Sorting(IQueryable<User> query, UserFilter filter)
         {
             if (filter.IsAscending)
             {
-                query.OrderBy(x => x.CreatedDate);
+                query = query.OrderBy(x => x.CreatedDate);
             }
             else
             {
-                query.OrderByDescending(x => x.CreatedDate);
+                query = query.OrderByDescending(x => x.CreatedDate);
             }
             return query;
         }

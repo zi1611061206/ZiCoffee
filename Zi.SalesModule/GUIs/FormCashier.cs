@@ -10,7 +10,10 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Zi.LinqSqlLayer.DAOs;
 using Zi.LinqSqlLayer.DTOs;
+using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Convertors;
+using Zi.LinqSqlLayer.Engines.Filters;
+using Zi.LinqSqlLayer.Engines.Paginators;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -57,6 +60,18 @@ namespace Zi.SalesModule.GUIs
 
         private void ChangeAccount(UserModel currentUser)
         {
+            UserRoleFilter filter = new UserRoleFilter();
+            filter.UserId = currentUser.UserId;
+            var userRoleReader = UserRoleService.Instance.Read(filter, Properties.Settings.Default.CultureName);
+            var roleId = (userRoleReader.Item2 as Paginator<UserRoleModel>).Item[0].RoleId.ToString();
+            if (Properties.Settings.Default.ManagerRoleId.Contains(roleId))
+            {
+                ibtnManager.Enabled = true;
+            }
+            else
+            {
+                ibtnManager.Enabled = false;
+            }
             ibtnAccount.Text = currentUser.DisplayName;
             picAvatar.Image = DataTypeConvertor.Instance.GetImageFromBytes(currentUser.Avatar);
             ttNote.SetToolTip(picAvatar, currentUser.Username);
