@@ -41,6 +41,9 @@ namespace Zi.SalesModule.GUIs
 
         #region Attribites
         public UserModel CurrentUser { get; set; }
+        public RoleModel CurrentRole { get; set; }
+        public TableModel CurrentTable { get; set; }
+        public AreaModel CurrentArea { get; set; }
         public string CultureName { get; set; }
         public ResourceManager InterfaceRm { get; set; }
         public CultureInfo Culture { get; set; }
@@ -54,17 +57,22 @@ namespace Zi.SalesModule.GUIs
         {
             InitializeComponent();
             CurrentUser = user;
+            CurrentTable = new TableModel()
+            {
+                TableId = Guid.Empty
+            };
+            CurrentArea = new AreaModel()
+            {
+                AreaId = Guid.Empty
+            };
             ChangeAccount(CurrentUser);
             OnResizeMode = false;
         }
 
         private void ChangeAccount(UserModel currentUser)
         {
-            UserRoleFilter filter = new UserRoleFilter();
-            filter.UserId = currentUser.UserId;
-            var userRoleReader = UserRoleService.Instance.Read(filter, Properties.Settings.Default.CultureName);
-            var roleId = (userRoleReader.Item2 as Paginator<UserRoleModel>).Item[0].RoleId.ToString();
-            if (Properties.Settings.Default.ManagerRoleId.Contains(roleId))
+            CurrentRole = GetCurrentRole(currentUser);
+            if (Properties.Settings.Default.ManagerRoleId.Contains(CurrentRole.RoleId.ToString()))
             {
                 ibtnManager.Enabled = true;
             }
@@ -75,6 +83,25 @@ namespace Zi.SalesModule.GUIs
             ibtnAccount.Text = currentUser.DisplayName;
             picAvatar.Image = DataTypeConvertor.Instance.GetImageFromBytes(currentUser.Avatar);
             ttNote.SetToolTip(picAvatar, currentUser.Username);
+        }
+
+        private RoleModel GetCurrentRole(UserModel currentUser)
+        {
+            string cultureName = Properties.Settings.Default.CultureName;
+            UserRoleFilter userRoleFilter = new UserRoleFilter
+            {
+                UserId = currentUser.UserId
+            };
+            var userRoleReader = UserRoleService.Instance.Read(userRoleFilter, cultureName);
+            var roleId = (userRoleReader.Item2 as Paginator<UserRoleModel>).Item[0].RoleId.ToString();
+
+            RoleFilter roleFilter = new RoleFilter
+            {
+                RoleId = Guid.Parse(roleId)
+            };
+            var roleReader = RoleService.Instance.Read(roleFilter, cultureName);
+            var currentRole = (roleReader.Item2 as Paginator<RoleModel>).Item[0];
+            return currentRole;
         }
 
         private void FormCashier_Load(object sender, EventArgs e)
@@ -316,16 +343,31 @@ namespace Zi.SalesModule.GUIs
 
         private void IpicMinimize_Click(object sender, EventArgs e)
         {
+            MinimizeSwitch();
+        }
+
+        private void MinimizeSwitch()
+        {
             WindowState = FormWindowState.Minimized;
         }
 
         private void IpicClose_Click(object sender, EventArgs e)
+        {
+            CloseForm();
+        }
+
+        private void CloseForm()
         {
             axWindowsMediaPlayerSoundtrack.Ctlcontrols.stop();
             Close();
         }
 
         private void IpicMaximize_Click(object sender, EventArgs e)
+        {
+            MaximizeSwitch();
+        }
+
+        private void MaximizeSwitch()
         {
             if (WindowState == FormWindowState.Normal)
             {
@@ -351,21 +393,21 @@ namespace Zi.SalesModule.GUIs
             (sender as Panel).BackColor = Color.Transparent;
         }
 
-        private void LbChoosingTable_Paint(object sender, PaintEventArgs e)
+        private void LbCurrentTable_Paint(object sender, PaintEventArgs e)
         {
             Label lb = sender as Label;
             Brush brush;
             e.Graphics.TranslateTransform(30, 170);
             e.Graphics.RotateTransform(90);
-            if (!string.IsNullOrEmpty(lb.Tag.ToString()))
+            if (CurrentTable.TableId.CompareTo(Guid.Empty)!=0)
             {
                 brush = new SolidBrush(Properties.Settings.Default.SuccessTextColor);
-                e.Graphics.DrawString(InterfaceRm.GetString("LbChoosingTable", Culture) + ": " + lb.Tag.ToString(), lb.Font, brush, 0, 0);
+                e.Graphics.DrawString(InterfaceRm.GetString("LbCurrentTable", Culture) + ": " + CurrentArea.Name + "-" + CurrentTable.Name, lb.Font, brush, 0, 0);
             }
             else
             {
                 brush = new SolidBrush(Properties.Settings.Default.WarningTextColor);
-                e.Graphics.DrawString(InterfaceRm.GetString("LbNoneChoosingTable", Culture), lb.Font, brush, 0, 0);
+                e.Graphics.DrawString(InterfaceRm.GetString("LbNoneCurrentTable", Culture), lb.Font, brush, 0, 0);
             }
         }
 
@@ -543,12 +585,12 @@ namespace Zi.SalesModule.GUIs
             // Set Shortcut Keys
             if (e.Alt && e.KeyCode == Keys.P)
             {
-                ibtnProfile.PerformClick();
+                OpenFormProfile();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.C)
             {
-                //ipicCheckOut
+                OpenFormCheckOut();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.R)
@@ -563,7 +605,7 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.M)
             {
-                //ipicMaximize
+                MaximizeSwitch();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.W)
@@ -573,7 +615,7 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.N)
             {
-                //ipicMinimize
+                MinimizeSwitch();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.Q)
@@ -581,25 +623,181 @@ namespace Zi.SalesModule.GUIs
                 //ipicMoveTable
                 return;
             }
-            if (e.Alt && e.KeyCode == Keys.M)
-            {
-                //ipicNormal
-                return;
-            }
             if (e.Alt && e.KeyCode == Keys.O)
             {
-                //ipicOrder
+                OpenFormOrder();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.S)
             {
-                //ipicSetting
+                OpenFormSetting();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.V)
             {
                 ShowBillPanel();
                 return;
+            }
+        }
+
+        private void IbtnLogOut_Click(object sender, EventArgs e)
+        {
+            CloseForm();
+        }
+
+        private void IbtnProfile_Click(object sender, EventArgs e)
+        {
+            OpenFormProfile();
+        }
+
+        private void OpenFormProfile()
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (FormProfile f = new FormProfile(CurrentUser, CurrentRole))
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.Location = Location;
+                    formBackground.Size = Size;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .80d;
+                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    formBackground.TopMost = true;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    f.Owner = formBackground;
+                    f.ShowDialog();
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+            }
+        }
+
+        private void IpicSetting_Click(object sender, EventArgs e)
+        {
+            OpenFormSetting();
+        }
+
+        private void OpenFormSetting()
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (FormSetting f = new FormSetting())
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.Location = Location;
+                    formBackground.Size = Size;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .80d;
+                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    formBackground.TopMost = true;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    f.Owner = formBackground;
+                    f.ShowDialog();
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+                LoadSetting();
+                //LoadBody();
+            }
+        }
+
+        private void IpicCheckOut_Click(object sender, EventArgs e)
+        {
+            OpenFormCheckOut();
+        }
+
+        private void OpenFormCheckOut()
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (FormCheckOut f = new FormCheckOut(CurrentTable, CurrentUser))
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.Location = Location;
+                    formBackground.Size = Size;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .80d;
+                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    formBackground.TopMost = true;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    f.Owner = formBackground;
+                    f.ShowDialog();
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+                //LoadBody();
+                //Table table = TableImpl.Instance.GetTableById((lsvBill.Tag as Table).TableId);
+                //LoadBill(table);
+            }
+        }
+
+        private void IpicOrder_Click(object sender, EventArgs e)
+        {
+            OpenFormOrder();
+        }
+
+        private void OpenFormOrder()
+        {
+            Form formBackground = new Form();
+            try
+            {
+                using (FormOrder f = new FormOrder(CurrentTable, CurrentUser))
+                {
+                    formBackground.StartPosition = FormStartPosition.Manual;
+                    formBackground.Location = Location;
+                    formBackground.Size = Size;
+                    formBackground.FormBorderStyle = FormBorderStyle.None;
+                    formBackground.Opacity = .80d;
+                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    formBackground.TopMost = true;
+                    formBackground.ShowInTaskbar = false;
+                    formBackground.Show();
+
+                    f.Owner = formBackground;
+                    f.ShowDialog();
+                    formBackground.Dispose();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                formBackground.Dispose();
+                //LoadBody();
+                //Table table = TableImpl.Instance.GetTableById((lsvBill.Tag as Table).TableId);
+                //LoadBill(table);
             }
         }
     }

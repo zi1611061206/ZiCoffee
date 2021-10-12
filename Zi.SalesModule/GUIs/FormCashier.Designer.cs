@@ -40,6 +40,9 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleRight = new System.Windows.Forms.Panel();
             this.pnlTitleLeft = new System.Windows.Forms.Panel();
             this.pnlFooterBar = new System.Windows.Forms.Panel();
+            this.lbVersion = new System.Windows.Forms.Label();
+            this.lbReadyPercent = new System.Windows.Forms.Label();
+            this.lbPending = new System.Windows.Forms.Label();
             this.lbReadyTable = new System.Windows.Forms.Label();
             this.lbUsingTable = new System.Windows.Forms.Label();
             this.lbTotalTable = new System.Windows.Forms.Label();
@@ -58,7 +61,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnShortcutKey = new FontAwesome.Sharp.IconButton();
             this.ibtnManager = new FontAwesome.Sharp.IconButton();
             this.pnlToolBar = new System.Windows.Forms.Panel();
-            this.lbChoosingTable = new System.Windows.Forms.Label();
+            this.lbCurrentTable = new System.Windows.Forms.Label();
             this.ipicViewBill = new FontAwesome.Sharp.IconPictureBox();
             this.ipicOrder = new FontAwesome.Sharp.IconPictureBox();
             this.ipicCheckOut = new FontAwesome.Sharp.IconPictureBox();
@@ -85,9 +88,12 @@ namespace Zi.SalesModule.GUIs
             this.profileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.shortcutEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lbPending = new System.Windows.Forms.Label();
-            this.lbVersion = new System.Windows.Forms.Label();
-            this.lbReadyPercent = new System.Windows.Forms.Label();
+            this.cmsTableDropDown = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.orderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.moveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mergeWithToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).BeginInit();
@@ -109,6 +115,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).BeginInit();
             this.cmsShortcutKeyDropDown.SuspendLayout();
+            this.cmsTableDropDown.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -252,6 +259,45 @@ namespace Zi.SalesModule.GUIs
             this.pnlFooterBar.Name = "pnlFooterBar";
             this.pnlFooterBar.Size = new System.Drawing.Size(1600, 30);
             this.pnlFooterBar.TabIndex = 0;
+            // 
+            // lbVersion
+            // 
+            this.lbVersion.BackColor = System.Drawing.Color.Transparent;
+            this.lbVersion.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbVersion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.ForeColor = System.Drawing.Color.White;
+            this.lbVersion.Location = new System.Drawing.Point(859, 0);
+            this.lbVersion.Name = "lbVersion";
+            this.lbVersion.Size = new System.Drawing.Size(174, 30);
+            this.lbVersion.TabIndex = 0;
+            this.lbVersion.Text = "Version";
+            this.lbVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbReadyPercent
+            // 
+            this.lbReadyPercent.BackColor = System.Drawing.Color.Transparent;
+            this.lbReadyPercent.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbReadyPercent.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbReadyPercent.ForeColor = System.Drawing.Color.Aqua;
+            this.lbReadyPercent.Location = new System.Drawing.Point(664, 0);
+            this.lbReadyPercent.Name = "lbReadyPercent";
+            this.lbReadyPercent.Size = new System.Drawing.Size(195, 30);
+            this.lbReadyPercent.TabIndex = 0;
+            this.lbReadyPercent.Text = "ReadyPercent";
+            this.lbReadyPercent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lbPending
+            // 
+            this.lbPending.BackColor = System.Drawing.Color.Transparent;
+            this.lbPending.Dock = System.Windows.Forms.DockStyle.Left;
+            this.lbPending.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPending.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.lbPending.Location = new System.Drawing.Point(501, 0);
+            this.lbPending.Name = "lbPending";
+            this.lbPending.Size = new System.Drawing.Size(163, 30);
+            this.lbPending.TabIndex = 0;
+            this.lbPending.Text = "PendingTable";
+            this.lbPending.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbReadyTable
             // 
@@ -403,7 +449,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 2183);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 6283);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -433,6 +479,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnLogOut.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnLogOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnLogOut.UseVisualStyleBackColor = false;
+            this.ibtnLogOut.Click += new System.EventHandler(this.IbtnLogOut_Click);
             this.ibtnLogOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ibtnLogOut.MouseLeave += new System.EventHandler(this.BtnNav_MouseLeave);
             this.ibtnLogOut.MouseHover += new System.EventHandler(this.BtnNav_MouseHover);
@@ -461,6 +508,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnProfile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnProfile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnProfile.UseVisualStyleBackColor = false;
+            this.ibtnProfile.Click += new System.EventHandler(this.IbtnProfile_Click);
             this.ibtnProfile.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ibtnProfile.MouseLeave += new System.EventHandler(this.BtnNav_MouseLeave);
             this.ibtnProfile.MouseHover += new System.EventHandler(this.BtnNav_MouseHover);
@@ -556,7 +604,7 @@ namespace Zi.SalesModule.GUIs
             // pnlToolBar
             // 
             this.pnlToolBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
-            this.pnlToolBar.Controls.Add(this.lbChoosingTable);
+            this.pnlToolBar.Controls.Add(this.lbCurrentTable);
             this.pnlToolBar.Controls.Add(this.ipicViewBill);
             this.pnlToolBar.Controls.Add(this.ipicOrder);
             this.pnlToolBar.Controls.Add(this.ipicCheckOut);
@@ -571,19 +619,19 @@ namespace Zi.SalesModule.GUIs
             this.pnlToolBar.Size = new System.Drawing.Size(50, 820);
             this.pnlToolBar.TabIndex = 0;
             // 
-            // lbChoosingTable
+            // lbCurrentTable
             // 
-            this.lbChoosingTable.BackColor = System.Drawing.Color.Transparent;
-            this.lbChoosingTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbChoosingTable.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbChoosingTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbChoosingTable.Location = new System.Drawing.Point(0, 0);
-            this.lbChoosingTable.Name = "lbChoosingTable";
-            this.lbChoosingTable.Size = new System.Drawing.Size(50, 420);
-            this.lbChoosingTable.TabIndex = 0;
-            this.lbChoosingTable.Tag = "";
-            this.lbChoosingTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbChoosingTable.Paint += new System.Windows.Forms.PaintEventHandler(this.LbChoosingTable_Paint);
+            this.lbCurrentTable.BackColor = System.Drawing.Color.Transparent;
+            this.lbCurrentTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbCurrentTable.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCurrentTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.lbCurrentTable.Location = new System.Drawing.Point(0, 0);
+            this.lbCurrentTable.Name = "lbCurrentTable";
+            this.lbCurrentTable.Size = new System.Drawing.Size(50, 420);
+            this.lbCurrentTable.TabIndex = 0;
+            this.lbCurrentTable.Tag = "";
+            this.lbCurrentTable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbCurrentTable.Paint += new System.Windows.Forms.PaintEventHandler(this.LbCurrentTable_Paint);
             // 
             // ipicViewBill
             // 
@@ -621,6 +669,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicOrder.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicOrder.TabIndex = 27;
             this.ipicOrder.TabStop = false;
+            this.ipicOrder.Click += new System.EventHandler(this.IpicOrder_Click);
             this.ipicOrder.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicOrder.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -640,6 +689,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicCheckOut.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicCheckOut.TabIndex = 26;
             this.ipicCheckOut.TabStop = false;
+            this.ipicCheckOut.Click += new System.EventHandler(this.IpicCheckOut_Click);
             this.ipicCheckOut.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicCheckOut.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -735,6 +785,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicSetting.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicSetting.TabIndex = 21;
             this.ipicSetting.TabStop = false;
+            this.ipicSetting.Click += new System.EventHandler(this.IpicSetting_Click);
             this.ipicSetting.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicSetting.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -893,44 +944,49 @@ namespace Zi.SalesModule.GUIs
             this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
             this.shortcutEditorToolStripMenuItem.Text = "ShortcutEditor";
             // 
-            // lbPending
+            // cmsTableDropDown
             // 
-            this.lbPending.BackColor = System.Drawing.Color.Transparent;
-            this.lbPending.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lbPending.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPending.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lbPending.Location = new System.Drawing.Point(501, 0);
-            this.lbPending.Name = "lbPending";
-            this.lbPending.Size = new System.Drawing.Size(163, 30);
-            this.lbPending.TabIndex = 0;
-            this.lbPending.Text = "PendingTable";
-            this.lbPending.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cmsTableDropDown.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmsTableDropDown.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsTableDropDown.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsTableDropDown.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.orderToolStripMenuItem1,
+            this.checkOutToolStripMenuItem1,
+            this.moveToToolStripMenuItem,
+            this.mergeWithToolStripMenuItem,
+            this.lockToolStripMenuItem});
+            this.cmsTableDropDown.Name = "cmsAccountDropDown";
+            this.cmsTableDropDown.Size = new System.Drawing.Size(159, 124);
             // 
-            // lbVersion
+            // orderToolStripMenuItem1
             // 
-            this.lbVersion.BackColor = System.Drawing.Color.Transparent;
-            this.lbVersion.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lbVersion.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.ForeColor = System.Drawing.Color.White;
-            this.lbVersion.Location = new System.Drawing.Point(859, 0);
-            this.lbVersion.Name = "lbVersion";
-            this.lbVersion.Size = new System.Drawing.Size(174, 30);
-            this.lbVersion.TabIndex = 0;
-            this.lbVersion.Text = "Version";
-            this.lbVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.orderToolStripMenuItem1.Name = "orderToolStripMenuItem1";
+            this.orderToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
+            this.orderToolStripMenuItem1.Text = "Order";
             // 
-            // lbReadyPercent
+            // checkOutToolStripMenuItem1
             // 
-            this.lbReadyPercent.BackColor = System.Drawing.Color.Transparent;
-            this.lbReadyPercent.Dock = System.Windows.Forms.DockStyle.Left;
-            this.lbReadyPercent.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbReadyPercent.ForeColor = System.Drawing.Color.Aqua;
-            this.lbReadyPercent.Location = new System.Drawing.Point(664, 0);
-            this.lbReadyPercent.Name = "lbReadyPercent";
-            this.lbReadyPercent.Size = new System.Drawing.Size(195, 30);
-            this.lbReadyPercent.TabIndex = 0;
-            this.lbReadyPercent.Text = "ReadyPercent";
-            this.lbReadyPercent.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.checkOutToolStripMenuItem1.Name = "checkOutToolStripMenuItem1";
+            this.checkOutToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
+            this.checkOutToolStripMenuItem1.Text = "CheckOut";
+            // 
+            // moveToToolStripMenuItem
+            // 
+            this.moveToToolStripMenuItem.Name = "moveToToolStripMenuItem";
+            this.moveToToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.moveToToolStripMenuItem.Text = "MoveTo";
+            // 
+            // mergeWithToolStripMenuItem
+            // 
+            this.mergeWithToolStripMenuItem.Name = "mergeWithToolStripMenuItem";
+            this.mergeWithToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.mergeWithToolStripMenuItem.Text = "MergeWith";
+            // 
+            // lockToolStripMenuItem
+            // 
+            this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
+            this.lockToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.lockToolStripMenuItem.Text = "Lock";
             // 
             // FormCashier
             // 
@@ -979,6 +1035,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).EndInit();
             this.cmsShortcutKeyDropDown.ResumeLayout(false);
+            this.cmsTableDropDown.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1000,7 +1057,7 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbUsingTable;
         private System.Windows.Forms.Panel pnlNavigationBar;
         private System.Windows.Forms.Panel pnlToolBar;
-        private System.Windows.Forms.Label lbChoosingTable;
+        private System.Windows.Forms.Label lbCurrentTable;
         private FontAwesome.Sharp.IconPictureBox ipicViewBill;
         private FontAwesome.Sharp.IconPictureBox ipicOrder;
         private FontAwesome.Sharp.IconPictureBox ipicCheckOut;
@@ -1042,5 +1099,11 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbPending;
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.Label lbReadyPercent;
+        private System.Windows.Forms.ContextMenuStrip cmsTableDropDown;
+        private System.Windows.Forms.ToolStripMenuItem orderToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem moveToToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mergeWithToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
     }
 }

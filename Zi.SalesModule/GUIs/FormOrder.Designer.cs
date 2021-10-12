@@ -1,7 +1,7 @@
 ﻿
 namespace Zi.SalesModule.GUIs
 {
-    partial class FormService
+    partial class FormOrder
     {
         /// <summary>
         /// Required designer variable.
@@ -32,7 +32,7 @@ namespace Zi.SalesModule.GUIs
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormService";
+            this.Text = "FormOrder";
         }
 
         #endregion

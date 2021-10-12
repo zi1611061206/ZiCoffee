@@ -76,5 +76,11 @@
   &lt;string&gt;353692cb-e5dc-4ca3-af81-3f64b019650b&lt;/string&gt;
 &lt;/ArrayOfString&gt;</Value>
     </Setting>
+    <Setting Name="DeveloperFacebookLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.facebook.com/ZI.TECH.DEV.201</Value>
+    </Setting>
+    <Setting Name="DeveloperMailToCmd" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mailto:zitech.dev[at]gmail.com?subject=Customer Feedback&amp;bcc=sotayvaodoi[at]gmail.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
