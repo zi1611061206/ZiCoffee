@@ -1,5 +1,6 @@
 ﻿using FontAwesome.Sharp;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
@@ -14,6 +15,7 @@ using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Convertors;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.LinqSqlLayer.Enumerators;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -72,7 +74,7 @@ namespace Zi.SalesModule.GUIs
         private void ChangeAccount(UserModel currentUser)
         {
             CurrentRole = GetCurrentRole(currentUser);
-            if (Properties.Settings.Default.ManagerRoleId.Contains(CurrentRole.RoleId.ToString()))
+            if (CurrentRole.AccessLevel.CompareTo(AccessLevels.Manager) >= 0)
             {
                 ibtnManager.Enabled = true;
             }
@@ -110,7 +112,9 @@ namespace Zi.SalesModule.GUIs
             Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             pnlResizeNav.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeNav.Width, pnlResizeNav.Height, 20, 20));
             pnlResizeBill.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeBill.Width, pnlResizeBill.Height, 20, 20));
-            pnlTableList.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlTableList.Width, pnlTableList.Height, 20, 20));
+            pnlResizeDivideBody.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeDivideBody.Width, pnlResizeDivideBody.Height, 20, 20));
+            fpnlAreaList.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlAreaList.Width, fpnlAreaList.Height, 20, 20));
+            fpnlTableList.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlTableList.Width, fpnlTableList.Height, 20, 20));
             pnlBill.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlBill.Width, pnlBill.Height, 20, 20));
             picAvatar.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, picAvatar.Width, picAvatar.Height, 50, 50));
             pnlNavigationBar.Width = pnlNavigationBar.MinimumSize.Width;
@@ -124,7 +128,29 @@ namespace Zi.SalesModule.GUIs
             SetColor();
             SetAudio();
             LoadFooter();
-            //LoadTableList();
+            LoadBody();
+        }
+
+        private void LoadBody()
+        {
+            fpnlAreaList.Controls.Clear();
+            AreaFilter areaFilter = new AreaFilter();
+            var areaReader = AreaService.Instance.Read(areaFilter, Properties.Settings.Default.CultureName).Item2 as Paginator<AreaModel>;
+            List<AreaModel> areaList = areaReader.Item;
+            foreach (AreaModel item in areaList)
+            {
+                if (string.IsNullOrEmpty(item.ParentId))
+                {
+                    Button btnArea = new Button()
+                    {
+                        Width = 200,
+                        Height = 100,
+                        FlatStyle = FlatStyle.Flat,
+                        Text = item.Name
+                    };
+                    fpnlAreaList.Controls.Add(btnArea);
+                }
+            }
         }
 
         private void LoadFooter()
@@ -207,8 +233,9 @@ namespace Zi.SalesModule.GUIs
                 = Properties.Settings.Default.RightSideBarBackColor;
             // Body
             BackColor = Properties.Settings.Default.LeftSideBarBackColor;
-            pnlTableList.BackColor = Properties.Settings.Default.BodyBackColor;
             pnlBill.BackColor = Properties.Settings.Default.BodyBackColor;
+            fpnlAreaList.BackColor
+                = fpnlTableList.BackColor = Properties.Settings.Default.BodyBackColor;
             // Icon
             ipicClose.IconColor
                 = ipicMinimize.IconColor
@@ -383,12 +410,12 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void PnlResizeNav_MouseHover(object sender, EventArgs e)
+        private void PnlResize_MouseHover(object sender, EventArgs e)
         {
             (sender as Panel).BackColor = Color.DarkGray;
         }
 
-        private void PnlResizeNav_MouseLeave(object sender, EventArgs e)
+        private void PnlResize_MouseLeave(object sender, EventArgs e)
         {
             (sender as Panel).BackColor = Color.Transparent;
         }
@@ -399,7 +426,7 @@ namespace Zi.SalesModule.GUIs
             Brush brush;
             e.Graphics.TranslateTransform(30, 170);
             e.Graphics.RotateTransform(90);
-            if (CurrentTable.TableId.CompareTo(Guid.Empty)!=0)
+            if (CurrentTable.TableId.CompareTo(Guid.Empty) != 0)
             {
                 brush = new SolidBrush(Properties.Settings.Default.SuccessTextColor);
                 e.Graphics.DrawString(InterfaceRm.GetString("LbCurrentTable", Culture) + ": " + CurrentArea.Name + "-" + CurrentTable.Name, lb.Font, brush, 0, 0);
@@ -495,7 +522,7 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void PnlTableList_SizeChanged(object sender, EventArgs e)
+        private void PnlRoundedCorner_SizeChanged(object sender, EventArgs e)
         {
             Panel pnl = sender as Panel;
             pnl.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnl.Width, pnl.Height, 20, 20));
@@ -798,6 +825,17 @@ namespace Zi.SalesModule.GUIs
                 //LoadBody();
                 //Table table = TableImpl.Instance.GetTableById((lsvBill.Tag as Table).TableId);
                 //LoadBill(table);
+            }
+        }
+
+        private void pnlResizeDivideBody_MouseMove(object sender, MouseEventArgs e)
+        {
+            int y = pnlBody.PointToClient(Cursor.Position).Y;
+            float halfHeight = pnlBody.Height / 2;
+            float quarterHeight = halfHeight / 2;
+            if (OnResizeMode && y < Math.Floor(halfHeight) && y > Math.Floor(quarterHeight))
+            {
+                fpnlAreaList.Height = y;
             }
         }
     }

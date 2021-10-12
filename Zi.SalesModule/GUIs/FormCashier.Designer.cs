@@ -73,7 +73,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlBill = new System.Windows.Forms.Panel();
             this.pnlResizeNav = new System.Windows.Forms.Panel();
             this.pnlResizeBill = new System.Windows.Forms.Panel();
-            this.pnlTableList = new System.Windows.Forms.Panel();
+            this.pnlBody = new System.Windows.Forms.Panel();
+            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlResizeDivideBody = new System.Windows.Forms.Panel();
+            this.fpnlAreaList = new System.Windows.Forms.FlowLayoutPanel();
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
             this.cmsShortcutKeyDropDown = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,6 +117,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMergeTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).BeginInit();
+            this.pnlBody.SuspendLayout();
             this.cmsShortcutKeyDropDown.SuspendLayout();
             this.cmsTableDropDown.SuspendLayout();
             this.SuspendLayout();
@@ -449,7 +453,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 6283);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 9563);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -800,7 +804,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlBill.Size = new System.Drawing.Size(400, 820);
             this.pnlBill.TabIndex = 0;
             this.pnlBill.Visible = false;
-            this.pnlBill.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlBill.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             // 
             // pnlResizeNav
             // 
@@ -811,10 +815,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeNav.Name = "pnlResizeNav";
             this.pnlResizeNav.Size = new System.Drawing.Size(10, 820);
             this.pnlResizeNav.TabIndex = 0;
-            this.pnlResizeNav.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlResizeNav.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeNav.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
-            this.pnlResizeNav.MouseLeave += new System.EventHandler(this.PnlResizeNav_MouseLeave);
-            this.pnlResizeNav.MouseHover += new System.EventHandler(this.PnlResizeNav_MouseHover);
+            this.pnlResizeNav.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeNav.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
             this.pnlResizeNav.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeNav_MouseMove);
             this.pnlResizeNav.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
@@ -827,23 +831,60 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeBill.Name = "pnlResizeBill";
             this.pnlResizeBill.Size = new System.Drawing.Size(10, 820);
             this.pnlResizeBill.TabIndex = 0;
-            this.pnlResizeBill.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlResizeBill.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeBill.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
-            this.pnlResizeBill.MouseLeave += new System.EventHandler(this.PnlResizeNav_MouseLeave);
-            this.pnlResizeBill.MouseHover += new System.EventHandler(this.PnlResizeNav_MouseHover);
+            this.pnlResizeBill.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeBill.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
             this.pnlResizeBill.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeBill_MouseMove);
             this.pnlResizeBill.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
-            // pnlTableList
+            // pnlBody
             // 
-            this.pnlTableList.AutoScroll = true;
-            this.pnlTableList.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTableList.Location = new System.Drawing.Point(260, 50);
-            this.pnlTableList.Name = "pnlTableList";
-            this.pnlTableList.Size = new System.Drawing.Size(880, 820);
-            this.pnlTableList.TabIndex = 0;
-            this.pnlTableList.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlBody.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBody.Controls.Add(this.fpnlTableList);
+            this.pnlBody.Controls.Add(this.pnlResizeDivideBody);
+            this.pnlBody.Controls.Add(this.fpnlAreaList);
+            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBody.Location = new System.Drawing.Point(260, 50);
+            this.pnlBody.Name = "pnlBody";
+            this.pnlBody.Size = new System.Drawing.Size(880, 820);
+            this.pnlBody.TabIndex = 0;
+            // 
+            // fpnlTableList
+            // 
+            this.fpnlTableList.AutoScroll = true;
+            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
+            this.fpnlTableList.Name = "fpnlTableList";
+            this.fpnlTableList.Size = new System.Drawing.Size(880, 642);
+            this.fpnlTableList.TabIndex = 0;
+            this.fpnlTableList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            // 
+            // pnlResizeDivideBody
+            // 
+            this.pnlResizeDivideBody.BackColor = System.Drawing.Color.Transparent;
+            this.pnlResizeDivideBody.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.pnlResizeDivideBody.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlResizeDivideBody.Location = new System.Drawing.Point(0, 168);
+            this.pnlResizeDivideBody.Name = "pnlResizeDivideBody";
+            this.pnlResizeDivideBody.Size = new System.Drawing.Size(880, 10);
+            this.pnlResizeDivideBody.TabIndex = 0;
+            this.pnlResizeDivideBody.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.pnlResizeDivideBody.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
+            this.pnlResizeDivideBody.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeDivideBody.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
+            this.pnlResizeDivideBody.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlResizeDivideBody_MouseMove);
+            this.pnlResizeDivideBody.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
+            // 
+            // fpnlAreaList
+            // 
+            this.fpnlAreaList.AutoScroll = true;
+            this.fpnlAreaList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fpnlAreaList.Location = new System.Drawing.Point(0, 0);
+            this.fpnlAreaList.Name = "fpnlAreaList";
+            this.fpnlAreaList.Size = new System.Drawing.Size(880, 168);
+            this.fpnlAreaList.TabIndex = 0;
+            this.fpnlAreaList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             // 
             // cmsShortcutKeyDropDown
             // 
@@ -994,7 +1035,7 @@ namespace Zi.SalesModule.GUIs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(1600, 900);
-            this.Controls.Add(this.pnlTableList);
+            this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlResizeBill);
             this.Controls.Add(this.pnlResizeNav);
             this.Controls.Add(this.pnlBill);
@@ -1034,6 +1075,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMergeTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).EndInit();
+            this.pnlBody.ResumeLayout(false);
             this.cmsShortcutKeyDropDown.ResumeLayout(false);
             this.cmsTableDropDown.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1069,7 +1111,7 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlBill;
         private System.Windows.Forms.Panel pnlResizeNav;
         private System.Windows.Forms.Panel pnlResizeBill;
-        private System.Windows.Forms.Panel pnlTableList;
+        private System.Windows.Forms.Panel pnlBody;
         private FontAwesome.Sharp.IconButton ibtnManager;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox picLogo;
@@ -1105,5 +1147,8 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.ToolStripMenuItem moveToToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mergeWithToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlResizeDivideBody;
+        private System.Windows.Forms.FlowLayoutPanel fpnlAreaList;
+        private System.Windows.Forms.FlowLayoutPanel fpnlTableList;
     }
 }
