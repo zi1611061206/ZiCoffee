@@ -74,5 +74,14 @@
     <Setting Name="DeveloperMailToCmd" Type="System.String" Scope="User">
       <Value Profile="(Default)">mailto:zitech.dev[at]gmail.com?subject=Customer Feedback&amp;bcc=sotayvaodoi[at]gmail.com</Value>
     </Setting>
+    <Setting Name="TableItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 200</Value>
+    </Setting>
+    <Setting Name="AreaItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 50</Value>
+    </Setting>
+    <Setting Name="ProductItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 400</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

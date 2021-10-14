@@ -311,5 +311,41 @@ namespace Zi.SalesModule.Properties {
                 this["DeveloperMailToCmd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 200")]
+        public global::System.Drawing.Size TableItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["TableItemSize"]));
+            }
+            set {
+                this["TableItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 50")]
+        public global::System.Drawing.Size AreaItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AreaItemSize"]));
+            }
+            set {
+                this["AreaItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
+        public global::System.Drawing.Size ProductItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["ProductItemSize"]));
+            }
+            set {
+                this["ProductItemSize"] = value;
+            }
+        }
     }
 }
