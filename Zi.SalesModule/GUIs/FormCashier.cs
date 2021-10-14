@@ -1583,5 +1583,55 @@ namespace Zi.SalesModule.GUIs
             path.CloseFigure();
             return path;
         }
+
+        private void viewBillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void orderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void shortcutEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loadTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void moveTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void mergeTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lockTableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

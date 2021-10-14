@@ -461,7 +461,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 14483);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 15303);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -962,28 +962,31 @@ namespace Zi.SalesModule.GUIs
             this.toolStripSeparator1,
             this.shortcutEditorToolStripMenuItem});
             this.cmsShortcutKeyDropDown.Name = "cmsAccountDropDown";
-            this.cmsShortcutKeyDropDown.Size = new System.Drawing.Size(187, 192);
+            this.cmsShortcutKeyDropDown.Size = new System.Drawing.Size(215, 220);
             // 
             // viewBillToolStripMenuItem
             // 
             this.viewBillToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.View;
             this.viewBillToolStripMenuItem.Name = "viewBillToolStripMenuItem";
-            this.viewBillToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.viewBillToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.viewBillToolStripMenuItem.Text = "ViewBill";
+            this.viewBillToolStripMenuItem.Click += new System.EventHandler(this.viewBillToolStripMenuItem_Click);
             // 
             // orderToolStripMenuItem
             // 
             this.orderToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Add;
             this.orderToolStripMenuItem.Name = "orderToolStripMenuItem";
-            this.orderToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.orderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.orderToolStripMenuItem.Text = "Order";
+            this.orderToolStripMenuItem.Click += new System.EventHandler(this.orderToolStripMenuItem_Click);
             // 
             // checkOutToolStripMenuItem
             // 
             this.checkOutToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Cart;
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
+            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
             // 
             // tableToolStripMenuItem
             // 
@@ -994,57 +997,64 @@ namespace Zi.SalesModule.GUIs
             this.lockTableToolStripMenuItem});
             this.tableToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Table;
             this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
-            this.tableToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.tableToolStripMenuItem.Text = "Table";
             // 
             // loadTableToolStripMenuItem
             // 
             this.loadTableToolStripMenuItem.Name = "loadTableToolStripMenuItem";
-            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.loadTableToolStripMenuItem.Text = "LoadTable";
+            this.loadTableToolStripMenuItem.Click += new System.EventHandler(this.loadTableToolStripMenuItem_Click);
             // 
             // moveTableToolStripMenuItem
             // 
             this.moveTableToolStripMenuItem.Name = "moveTableToolStripMenuItem";
-            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.moveTableToolStripMenuItem.Text = "MoveTable";
+            this.moveTableToolStripMenuItem.Click += new System.EventHandler(this.moveTableToolStripMenuItem_Click);
             // 
             // mergeTableToolStripMenuItem
             // 
             this.mergeTableToolStripMenuItem.Name = "mergeTableToolStripMenuItem";
-            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.mergeTableToolStripMenuItem.Text = "MergeTable";
+            this.mergeTableToolStripMenuItem.Click += new System.EventHandler(this.mergeTableToolStripMenuItem_Click);
             // 
             // lockTableToolStripMenuItem
             // 
             this.lockTableToolStripMenuItem.Name = "lockTableToolStripMenuItem";
-            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.lockTableToolStripMenuItem.Text = "LockTable";
+            this.lockTableToolStripMenuItem.Click += new System.EventHandler(this.lockTableToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Setting;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // profileToolStripMenuItem
             // 
             this.profileToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Profile;
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.profileToolStripMenuItem.Text = "Profile";
+            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // shortcutEditorToolStripMenuItem
             // 
             this.shortcutEditorToolStripMenuItem.Name = "shortcutEditorToolStripMenuItem";
-            this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.shortcutEditorToolStripMenuItem.Text = "ShortcutEditor";
+            this.shortcutEditorToolStripMenuItem.Click += new System.EventHandler(this.shortcutEditorToolStripMenuItem_Click);
             // 
             // cmsTableDropDown
             // 
