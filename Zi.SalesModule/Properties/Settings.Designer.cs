@@ -289,23 +289,6 @@ namespace Zi.SalesModule.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"<?xml version=""1.0"" encoding=""utf-16""?>
-<ArrayOfString xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns:xsd=""http://www.w3.org/2001/XMLSchema"">
-  <string>2512015c-b463-4fe1-8fd2-c2c33434a6d9</string>
-  <string>111958c7-e6d6-4278-8eb7-e17cc7fd8af5</string>
-  <string>353692cb-e5dc-4ca3-af81-3f64b019650b</string>
-</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection ManagerRoleId {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["ManagerRoleId"]));
-            }
-            set {
-                this["ManagerRoleId"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://www.facebook.com/ZI.TECH.DEV.201")]
         public string DeveloperFacebookLink {
             get {
@@ -326,6 +309,90 @@ namespace Zi.SalesModule.Properties {
             }
             set {
                 this["DeveloperMailToCmd"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 200")]
+        public global::System.Drawing.Size TableItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["TableItemSize"]));
+            }
+            set {
+                this["TableItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 50")]
+        public global::System.Drawing.Size AreaItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AreaItemSize"]));
+            }
+            set {
+                this["AreaItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
+        public global::System.Drawing.Size ProductItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["ProductItemSize"]));
+            }
+            set {
+                this["ProductItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int DropShadowDepth {
+            get {
+                return ((int)(this["DropShadowDepth"]));
+            }
+            set {
+                this["DropShadowDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("28, 39, 49")]
+        public global::System.Drawing.Color ItemBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ItemBackColor"]));
+            }
+            set {
+                this["ItemBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34, 46, 58")]
+        public global::System.Drawing.Color DropShadowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DropShadowColor"]));
+            }
+            set {
+                this["DropShadowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int CornerRadius {
+            get {
+                return ((int)(this["CornerRadius"]));
+            }
+            set {
+                this["CornerRadius"] = value;
             }
         }
     }

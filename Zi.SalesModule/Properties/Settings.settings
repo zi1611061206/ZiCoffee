@@ -68,19 +68,32 @@
     <Setting Name="SoundtrackFileName" Type="System.String" Scope="User">
       <Value Profile="(Default)">LangQuenChieuThuSoundtrack.wav</Value>
     </Setting>
-    <Setting Name="ManagerRoleId" Type="System.Collections.Specialized.StringCollection" Scope="User">
-      <Value Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;string&gt;2512015c-b463-4fe1-8fd2-c2c33434a6d9&lt;/string&gt;
-  &lt;string&gt;111958c7-e6d6-4278-8eb7-e17cc7fd8af5&lt;/string&gt;
-  &lt;string&gt;353692cb-e5dc-4ca3-af81-3f64b019650b&lt;/string&gt;
-&lt;/ArrayOfString&gt;</Value>
-    </Setting>
     <Setting Name="DeveloperFacebookLink" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://www.facebook.com/ZI.TECH.DEV.201</Value>
     </Setting>
     <Setting Name="DeveloperMailToCmd" Type="System.String" Scope="User">
       <Value Profile="(Default)">mailto:zitech.dev[at]gmail.com?subject=Customer Feedback&amp;bcc=sotayvaodoi[at]gmail.com</Value>
+    </Setting>
+    <Setting Name="TableItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 200</Value>
+    </Setting>
+    <Setting Name="AreaItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 50</Value>
+    </Setting>
+    <Setting Name="ProductItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 400</Value>
+    </Setting>
+    <Setting Name="DropShadowDepth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ItemBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">28, 39, 49</Value>
+    </Setting>
+    <Setting Name="DropShadowColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">34, 46, 58</Value>
+    </Setting>
+    <Setting Name="CornerRadius" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
     </Setting>
   </Settings>
 </SettingsFile>

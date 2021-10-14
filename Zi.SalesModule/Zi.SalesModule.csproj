@@ -199,10 +199,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Zi.DatabaseEntity\Zi.DatabaseEntity.csproj">
-      <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
-      <Name>Zi.DatabaseEntity</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Zi.LinqSqlLayer\Zi.LinqSqlLayer.csproj">
       <Project>{6072ac39-8aad-4083-a6e6-913f9a48cc55}</Project>
       <Name>Zi.LinqSqlLayer</Name>

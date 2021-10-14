@@ -126,7 +126,7 @@ namespace Zi.LinqSqlLayer.DAOs
         {
             if (!string.IsNullOrEmpty(filter.ParentId))
             {
-                query = query.Where(x => x.ParentId.Equals(filter.ParentId));
+                query = query.Where(x => x.ParentId.ToLower().Equals(filter.ParentId.ToLower()));
             }
             return query;
         }

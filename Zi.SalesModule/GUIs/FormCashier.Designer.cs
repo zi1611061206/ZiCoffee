@@ -71,9 +71,17 @@ namespace Zi.SalesModule.GUIs
             this.ipicLockTable = new FontAwesome.Sharp.IconPictureBox();
             this.ipicSetting = new FontAwesome.Sharp.IconPictureBox();
             this.pnlBill = new System.Windows.Forms.Panel();
+            this.lsvBillDetail = new System.Windows.Forms.ListView();
+            this.columnHeaderProduct = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderIntoMoney = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlResizeNav = new System.Windows.Forms.Panel();
             this.pnlResizeBill = new System.Windows.Forms.Panel();
-            this.pnlTableList = new System.Windows.Forms.Panel();
+            this.pnlBody = new System.Windows.Forms.Panel();
+            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlResizeDivideBody = new System.Windows.Forms.Panel();
+            this.fpnlAreaList = new System.Windows.Forms.FlowLayoutPanel();
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
             this.cmsShortcutKeyDropDown = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.viewBillToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,11 +97,13 @@ namespace Zi.SalesModule.GUIs
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.shortcutEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsTableDropDown = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.orderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkOutToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.moveToToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mergeWithToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableCheckOutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableMergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmsReadyTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmsUsingTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).BeginInit();
@@ -114,6 +124,8 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMergeTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).BeginInit();
+            this.pnlBill.SuspendLayout();
+            this.pnlBody.SuspendLayout();
             this.cmsShortcutKeyDropDown.SuspendLayout();
             this.cmsTableDropDown.SuspendLayout();
             this.SuspendLayout();
@@ -449,7 +461,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 6283);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 15303);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -623,7 +635,7 @@ namespace Zi.SalesModule.GUIs
             // 
             this.lbCurrentTable.BackColor = System.Drawing.Color.Transparent;
             this.lbCurrentTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbCurrentTable.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCurrentTable.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCurrentTable.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.lbCurrentTable.Location = new System.Drawing.Point(0, 0);
             this.lbCurrentTable.Name = "lbCurrentTable";
@@ -709,6 +721,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicLoadTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicLoadTable.TabIndex = 25;
             this.ipicLoadTable.TabStop = false;
+            this.ipicLoadTable.Click += new System.EventHandler(this.IpicLoadTable_Click);
             this.ipicLoadTable.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicLoadTable.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -728,6 +741,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMoveTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicMoveTable.TabIndex = 24;
             this.ipicMoveTable.TabStop = false;
+            this.ipicMoveTable.Click += new System.EventHandler(this.IpicMoveTable_Click);
             this.ipicMoveTable.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicMoveTable.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -747,6 +761,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMergeTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicMergeTable.TabIndex = 23;
             this.ipicMergeTable.TabStop = false;
+            this.ipicMergeTable.Click += new System.EventHandler(this.IpicMergeTable_Click);
             this.ipicMergeTable.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicMergeTable.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -766,6 +781,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicLockTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicLockTable.TabIndex = 22;
             this.ipicLockTable.TabStop = false;
+            this.ipicLockTable.Click += new System.EventHandler(this.IpicLockTable_Click);
             this.ipicLockTable.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicLockTable.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -793,14 +809,59 @@ namespace Zi.SalesModule.GUIs
             // 
             this.pnlBill.AutoScroll = true;
             this.pnlBill.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
+            this.pnlBill.Controls.Add(this.lsvBillDetail);
             this.pnlBill.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlBill.Location = new System.Drawing.Point(1150, 50);
+            this.pnlBill.Location = new System.Drawing.Point(1050, 50);
             this.pnlBill.MaximumSize = new System.Drawing.Size(700, 0);
             this.pnlBill.Name = "pnlBill";
-            this.pnlBill.Size = new System.Drawing.Size(400, 820);
+            this.pnlBill.Size = new System.Drawing.Size(500, 820);
             this.pnlBill.TabIndex = 0;
             this.pnlBill.Visible = false;
-            this.pnlBill.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlBill.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            // 
+            // lsvBillDetail
+            // 
+            this.lsvBillDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
+            this.lsvBillDetail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lsvBillDetail.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderProduct,
+            this.columnHeaderQuantity,
+            this.columnHeaderPrice,
+            this.columnHeaderIntoMoney});
+            this.lsvBillDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lsvBillDetail.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lsvBillDetail.ForeColor = System.Drawing.Color.Gainsboro;
+            this.lsvBillDetail.FullRowSelect = true;
+            this.lsvBillDetail.HideSelection = false;
+            this.lsvBillDetail.Location = new System.Drawing.Point(0, 0);
+            this.lsvBillDetail.Name = "lsvBillDetail";
+            this.lsvBillDetail.Size = new System.Drawing.Size(500, 820);
+            this.lsvBillDetail.TabIndex = 0;
+            this.lsvBillDetail.UseCompatibleStateImageBehavior = false;
+            this.lsvBillDetail.View = System.Windows.Forms.View.Details;
+            this.lsvBillDetail.SizeChanged += new System.EventHandler(this.LsvBillDetail_SizeChanged);
+            // 
+            // columnHeaderProduct
+            // 
+            this.columnHeaderProduct.Text = "Product";
+            this.columnHeaderProduct.Width = 87;
+            // 
+            // columnHeaderQuantity
+            // 
+            this.columnHeaderQuantity.Text = "Quantity";
+            this.columnHeaderQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeaderQuantity.Width = 93;
+            // 
+            // columnHeaderPrice
+            // 
+            this.columnHeaderPrice.Text = "Price";
+            this.columnHeaderPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeaderIntoMoney
+            // 
+            this.columnHeaderIntoMoney.Text = "IntoMoney";
+            this.columnHeaderIntoMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeaderIntoMoney.Width = 160;
             // 
             // pnlResizeNav
             // 
@@ -811,10 +872,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeNav.Name = "pnlResizeNav";
             this.pnlResizeNav.Size = new System.Drawing.Size(10, 820);
             this.pnlResizeNav.TabIndex = 0;
-            this.pnlResizeNav.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlResizeNav.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeNav.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
-            this.pnlResizeNav.MouseLeave += new System.EventHandler(this.PnlResizeNav_MouseLeave);
-            this.pnlResizeNav.MouseHover += new System.EventHandler(this.PnlResizeNav_MouseHover);
+            this.pnlResizeNav.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeNav.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
             this.pnlResizeNav.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeNav_MouseMove);
             this.pnlResizeNav.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
@@ -823,27 +884,68 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeBill.BackColor = System.Drawing.Color.Transparent;
             this.pnlResizeBill.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.pnlResizeBill.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlResizeBill.Location = new System.Drawing.Point(1140, 50);
+            this.pnlResizeBill.Location = new System.Drawing.Point(1040, 50);
             this.pnlResizeBill.Name = "pnlResizeBill";
             this.pnlResizeBill.Size = new System.Drawing.Size(10, 820);
             this.pnlResizeBill.TabIndex = 0;
-            this.pnlResizeBill.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlResizeBill.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeBill.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
-            this.pnlResizeBill.MouseLeave += new System.EventHandler(this.PnlResizeNav_MouseLeave);
-            this.pnlResizeBill.MouseHover += new System.EventHandler(this.PnlResizeNav_MouseHover);
+            this.pnlResizeBill.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeBill.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
             this.pnlResizeBill.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeBill_MouseMove);
             this.pnlResizeBill.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
-            // pnlTableList
+            // pnlBody
             // 
-            this.pnlTableList.AutoScroll = true;
-            this.pnlTableList.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlTableList.Location = new System.Drawing.Point(260, 50);
-            this.pnlTableList.Name = "pnlTableList";
-            this.pnlTableList.Size = new System.Drawing.Size(880, 820);
-            this.pnlTableList.TabIndex = 0;
-            this.pnlTableList.SizeChanged += new System.EventHandler(this.PnlTableList_SizeChanged);
+            this.pnlBody.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBody.Controls.Add(this.fpnlTableList);
+            this.pnlBody.Controls.Add(this.pnlResizeDivideBody);
+            this.pnlBody.Controls.Add(this.fpnlAreaList);
+            this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBody.Location = new System.Drawing.Point(260, 50);
+            this.pnlBody.Name = "pnlBody";
+            this.pnlBody.Size = new System.Drawing.Size(780, 820);
+            this.pnlBody.TabIndex = 0;
+            // 
+            // fpnlTableList
+            // 
+            this.fpnlTableList.AutoScroll = true;
+            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
+            this.fpnlTableList.Name = "fpnlTableList";
+            this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
+            this.fpnlTableList.Size = new System.Drawing.Size(780, 642);
+            this.fpnlTableList.TabIndex = 0;
+            this.fpnlTableList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
+            // 
+            // pnlResizeDivideBody
+            // 
+            this.pnlResizeDivideBody.BackColor = System.Drawing.Color.Transparent;
+            this.pnlResizeDivideBody.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.pnlResizeDivideBody.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlResizeDivideBody.Location = new System.Drawing.Point(0, 168);
+            this.pnlResizeDivideBody.Name = "pnlResizeDivideBody";
+            this.pnlResizeDivideBody.Size = new System.Drawing.Size(780, 10);
+            this.pnlResizeDivideBody.TabIndex = 0;
+            this.pnlResizeDivideBody.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.pnlResizeDivideBody.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
+            this.pnlResizeDivideBody.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeDivideBody.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
+            this.pnlResizeDivideBody.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeDivideBody_MouseMove);
+            this.pnlResizeDivideBody.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
+            // 
+            // fpnlAreaList
+            // 
+            this.fpnlAreaList.AutoScroll = true;
+            this.fpnlAreaList.Dock = System.Windows.Forms.DockStyle.Top;
+            this.fpnlAreaList.Location = new System.Drawing.Point(0, 0);
+            this.fpnlAreaList.Name = "fpnlAreaList";
+            this.fpnlAreaList.Padding = new System.Windows.Forms.Padding(20);
+            this.fpnlAreaList.Size = new System.Drawing.Size(780, 168);
+            this.fpnlAreaList.TabIndex = 0;
+            this.fpnlAreaList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlAreaList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlAreaList_Paint);
             // 
             // cmsShortcutKeyDropDown
             // 
@@ -860,28 +962,31 @@ namespace Zi.SalesModule.GUIs
             this.toolStripSeparator1,
             this.shortcutEditorToolStripMenuItem});
             this.cmsShortcutKeyDropDown.Name = "cmsAccountDropDown";
-            this.cmsShortcutKeyDropDown.Size = new System.Drawing.Size(187, 192);
+            this.cmsShortcutKeyDropDown.Size = new System.Drawing.Size(215, 220);
             // 
             // viewBillToolStripMenuItem
             // 
             this.viewBillToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.View;
             this.viewBillToolStripMenuItem.Name = "viewBillToolStripMenuItem";
-            this.viewBillToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.viewBillToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.viewBillToolStripMenuItem.Text = "ViewBill";
+            this.viewBillToolStripMenuItem.Click += new System.EventHandler(this.viewBillToolStripMenuItem_Click);
             // 
             // orderToolStripMenuItem
             // 
             this.orderToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Add;
             this.orderToolStripMenuItem.Name = "orderToolStripMenuItem";
-            this.orderToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.orderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.orderToolStripMenuItem.Text = "Order";
+            this.orderToolStripMenuItem.Click += new System.EventHandler(this.orderToolStripMenuItem_Click);
             // 
             // checkOutToolStripMenuItem
             // 
             this.checkOutToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Cart;
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
-            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
+            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
             // 
             // tableToolStripMenuItem
             // 
@@ -892,57 +997,64 @@ namespace Zi.SalesModule.GUIs
             this.lockTableToolStripMenuItem});
             this.tableToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Table;
             this.tableToolStripMenuItem.Name = "tableToolStripMenuItem";
-            this.tableToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.tableToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.tableToolStripMenuItem.Text = "Table";
             // 
             // loadTableToolStripMenuItem
             // 
             this.loadTableToolStripMenuItem.Name = "loadTableToolStripMenuItem";
-            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.loadTableToolStripMenuItem.Text = "LoadTable";
+            this.loadTableToolStripMenuItem.Click += new System.EventHandler(this.loadTableToolStripMenuItem_Click);
             // 
             // moveTableToolStripMenuItem
             // 
             this.moveTableToolStripMenuItem.Name = "moveTableToolStripMenuItem";
-            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.moveTableToolStripMenuItem.Text = "MoveTable";
+            this.moveTableToolStripMenuItem.Click += new System.EventHandler(this.moveTableToolStripMenuItem_Click);
             // 
             // mergeTableToolStripMenuItem
             // 
             this.mergeTableToolStripMenuItem.Name = "mergeTableToolStripMenuItem";
-            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.mergeTableToolStripMenuItem.Text = "MergeTable";
+            this.mergeTableToolStripMenuItem.Click += new System.EventHandler(this.mergeTableToolStripMenuItem_Click);
             // 
             // lockTableToolStripMenuItem
             // 
             this.lockTableToolStripMenuItem.Name = "lockTableToolStripMenuItem";
-            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.lockTableToolStripMenuItem.Text = "LockTable";
+            this.lockTableToolStripMenuItem.Click += new System.EventHandler(this.lockTableToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
             this.settingToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Setting;
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
-            this.settingToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.settingToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.settingToolStripMenuItem.Text = "Setting";
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
             // 
             // profileToolStripMenuItem
             // 
             this.profileToolStripMenuItem.Image = global::Zi.SalesModule.Properties.Resources.Profile;
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
-            this.profileToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.profileToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.profileToolStripMenuItem.Text = "Profile";
+            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(183, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(211, 6);
             // 
             // shortcutEditorToolStripMenuItem
             // 
             this.shortcutEditorToolStripMenuItem.Name = "shortcutEditorToolStripMenuItem";
-            this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.shortcutEditorToolStripMenuItem.Text = "ShortcutEditor";
+            this.shortcutEditorToolStripMenuItem.Click += new System.EventHandler(this.shortcutEditorToolStripMenuItem_Click);
             // 
             // cmsTableDropDown
             // 
@@ -950,43 +1062,63 @@ namespace Zi.SalesModule.GUIs
             this.cmsTableDropDown.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmsTableDropDown.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsTableDropDown.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.orderToolStripMenuItem1,
-            this.checkOutToolStripMenuItem1,
-            this.moveToToolStripMenuItem,
-            this.mergeWithToolStripMenuItem,
-            this.lockToolStripMenuItem});
+            this.tableOrderToolStripMenuItem,
+            this.tableCheckOutToolStripMenuItem,
+            this.tableMoveToolStripMenuItem,
+            this.tableMergeToolStripMenuItem,
+            this.tableLockToolStripMenuItem});
             this.cmsTableDropDown.Name = "cmsAccountDropDown";
             this.cmsTableDropDown.Size = new System.Drawing.Size(159, 124);
+            this.cmsTableDropDown.Opening += new System.ComponentModel.CancelEventHandler(this.CmsTableDropDown_Opening);
             // 
-            // orderToolStripMenuItem1
+            // tableOrderToolStripMenuItem
             // 
-            this.orderToolStripMenuItem1.Name = "orderToolStripMenuItem1";
-            this.orderToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
-            this.orderToolStripMenuItem1.Text = "Order";
+            this.tableOrderToolStripMenuItem.Name = "tableOrderToolStripMenuItem";
+            this.tableOrderToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableOrderToolStripMenuItem.Text = "Order";
+            this.tableOrderToolStripMenuItem.Click += new System.EventHandler(this.TableOrderToolStripMenuItem_Click);
             // 
-            // checkOutToolStripMenuItem1
+            // tableCheckOutToolStripMenuItem
             // 
-            this.checkOutToolStripMenuItem1.Name = "checkOutToolStripMenuItem1";
-            this.checkOutToolStripMenuItem1.Size = new System.Drawing.Size(158, 24);
-            this.checkOutToolStripMenuItem1.Text = "CheckOut";
+            this.tableCheckOutToolStripMenuItem.Name = "tableCheckOutToolStripMenuItem";
+            this.tableCheckOutToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableCheckOutToolStripMenuItem.Text = "CheckOut";
+            this.tableCheckOutToolStripMenuItem.Click += new System.EventHandler(this.TableCheckOutToolStripMenuItem_Click);
             // 
-            // moveToToolStripMenuItem
+            // tableMoveToolStripMenuItem
             // 
-            this.moveToToolStripMenuItem.Name = "moveToToolStripMenuItem";
-            this.moveToToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.moveToToolStripMenuItem.Text = "MoveTo";
+            this.tableMoveToolStripMenuItem.Name = "tableMoveToolStripMenuItem";
+            this.tableMoveToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableMoveToolStripMenuItem.Text = "MoveTo";
             // 
-            // mergeWithToolStripMenuItem
+            // tableMergeToolStripMenuItem
             // 
-            this.mergeWithToolStripMenuItem.Name = "mergeWithToolStripMenuItem";
-            this.mergeWithToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.mergeWithToolStripMenuItem.Text = "MergeWith";
+            this.tableMergeToolStripMenuItem.Name = "tableMergeToolStripMenuItem";
+            this.tableMergeToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableMergeToolStripMenuItem.Text = "MergeWith";
             // 
-            // lockToolStripMenuItem
+            // tableLockToolStripMenuItem
             // 
-            this.lockToolStripMenuItem.Name = "lockToolStripMenuItem";
-            this.lockToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.lockToolStripMenuItem.Text = "Lock";
+            this.tableLockToolStripMenuItem.Name = "tableLockToolStripMenuItem";
+            this.tableLockToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableLockToolStripMenuItem.Text = "Lock";
+            this.tableLockToolStripMenuItem.Click += new System.EventHandler(this.TableLockToolStripMenuItem_Click);
+            // 
+            // cmsReadyTableList
+            // 
+            this.cmsReadyTableList.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmsReadyTableList.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsReadyTableList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsReadyTableList.Name = "cmsAccountDropDown";
+            this.cmsReadyTableList.Size = new System.Drawing.Size(61, 4);
+            // 
+            // cmsUsingTableList
+            // 
+            this.cmsUsingTableList.BackColor = System.Drawing.Color.Gainsboro;
+            this.cmsUsingTableList.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmsUsingTableList.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.cmsUsingTableList.Name = "cmsAccountDropDown";
+            this.cmsUsingTableList.Size = new System.Drawing.Size(61, 4);
             // 
             // FormCashier
             // 
@@ -994,7 +1126,7 @@ namespace Zi.SalesModule.GUIs
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(1600, 900);
-            this.Controls.Add(this.pnlTableList);
+            this.Controls.Add(this.pnlBody);
             this.Controls.Add(this.pnlResizeBill);
             this.Controls.Add(this.pnlResizeNav);
             this.Controls.Add(this.pnlBill);
@@ -1034,6 +1166,8 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMergeTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicLockTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicSetting)).EndInit();
+            this.pnlBill.ResumeLayout(false);
+            this.pnlBody.ResumeLayout(false);
             this.cmsShortcutKeyDropDown.ResumeLayout(false);
             this.cmsTableDropDown.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1069,7 +1203,7 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlBill;
         private System.Windows.Forms.Panel pnlResizeNav;
         private System.Windows.Forms.Panel pnlResizeBill;
-        private System.Windows.Forms.Panel pnlTableList;
+        private System.Windows.Forms.Panel pnlBody;
         private FontAwesome.Sharp.IconButton ibtnManager;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox picLogo;
@@ -1100,10 +1234,20 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbVersion;
         private System.Windows.Forms.Label lbReadyPercent;
         private System.Windows.Forms.ContextMenuStrip cmsTableDropDown;
-        private System.Windows.Forms.ToolStripMenuItem orderToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem checkOutToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem moveToToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mergeWithToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem lockToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableCheckOutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableMoveToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableMergeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tableLockToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlResizeDivideBody;
+        private System.Windows.Forms.FlowLayoutPanel fpnlAreaList;
+        private System.Windows.Forms.FlowLayoutPanel fpnlTableList;
+        private System.Windows.Forms.ListView lsvBillDetail;
+        private System.Windows.Forms.ColumnHeader columnHeaderProduct;
+        private System.Windows.Forms.ColumnHeader columnHeaderQuantity;
+        private System.Windows.Forms.ColumnHeader columnHeaderPrice;
+        private System.Windows.Forms.ColumnHeader columnHeaderIntoMoney;
+        private System.Windows.Forms.ContextMenuStrip cmsReadyTableList;
+        private System.Windows.Forms.ContextMenuStrip cmsUsingTableList;
     }
 }

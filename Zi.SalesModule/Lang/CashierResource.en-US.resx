@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnAllArea" xml:space="preserve">
+    <value>All</value>
+  </data>
+  <data name="BtnArea" xml:space="preserve">
+    <value>Area</value>
+  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
@@ -129,6 +135,9 @@
   <data name="BtnShortcutKey" xml:space="preserve">
     <value>Shortcut Keys</value>
   </data>
+  <data name="BtnTable" xml:space="preserve">
+    <value>Table</value>
+  </data>
   <data name="BtnToggle" xml:space="preserve">
     <value>Navigation Bar</value>
   </data>
@@ -137,6 +146,21 @@
   </data>
   <data name="CmsTable" xml:space="preserve">
     <value>Table</value>
+  </data>
+  <data name="ColumnHeaderIntoMoney" xml:space="preserve">
+    <value>Into Money</value>
+  </data>
+  <data name="ColumnHeaderPrice" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="ColumnHeaderProduct" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="ColumnHeaderQuantity" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="CurrencySymbol" xml:space="preserve">
+    <value>$</value>
   </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
@@ -168,6 +192,9 @@
   <data name="LbVersion" xml:space="preserve">
     <value>Version 4.0.0.0</value>
   </data>
+  <data name="MsgNotFound" xml:space="preserve">
+    <value>Not Found</value>
+  </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Check Out (Alt + C)</value>
   </data>
@@ -178,7 +205,7 @@
     <value>Reload Table List (Alt + R)</value>
   </data>
   <data name="TtLockTable" xml:space="preserve">
-    <value>Lock Table (Alt + L)</value>
+    <value>Lock/UnLock Table (Alt + L)</value>
   </data>
   <data name="TtMaximize" xml:space="preserve">
     <value>Maximize (Alt + M)</value>
@@ -186,11 +213,17 @@
   <data name="TtMergeTable" xml:space="preserve">
     <value>Merge Table (Alt + W)</value>
   </data>
+  <data name="TtMergeWith" xml:space="preserve">
+    <value>Merge With</value>
+  </data>
   <data name="TtMinimize" xml:space="preserve">
     <value>Minimize (Alt + N)</value>
   </data>
   <data name="TtMoveTable" xml:space="preserve">
     <value>Move Table (Alt + Q)</value>
+  </data>
+  <data name="TtMoveTo" xml:space="preserve">
+    <value>Move To</value>
   </data>
   <data name="TtNorrmal" xml:space="preserve">
     <value>Normal (Alt + M)</value>
