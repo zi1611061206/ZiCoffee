@@ -83,5 +83,17 @@
     <Setting Name="ProductItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 400</Value>
     </Setting>
+    <Setting Name="DropShadowDepth" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="ItemBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">28, 39, 49</Value>
+    </Setting>
+    <Setting Name="DropShadowColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">34, 46, 58</Value>
+    </Setting>
+    <Setting Name="CornerRadius" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

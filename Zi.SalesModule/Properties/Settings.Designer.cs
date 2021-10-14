@@ -347,5 +347,53 @@ namespace Zi.SalesModule.Properties {
                 this["ProductItemSize"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int DropShadowDepth {
+            get {
+                return ((int)(this["DropShadowDepth"]));
+            }
+            set {
+                this["DropShadowDepth"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("28, 39, 49")]
+        public global::System.Drawing.Color ItemBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ItemBackColor"]));
+            }
+            set {
+                this["ItemBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("34, 46, 58")]
+        public global::System.Drawing.Color DropShadowColor {
+            get {
+                return ((global::System.Drawing.Color)(this["DropShadowColor"]));
+            }
+            set {
+                this["DropShadowColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public int CornerRadius {
+            get {
+                return ((int)(this["CornerRadius"]));
+            }
+            set {
+                this["CornerRadius"] = value;
+            }
+        }
     }
 }

@@ -224,8 +224,11 @@ namespace Zi.SalesModule.GUIs
                 FlatStyle = FlatStyle.Flat,
                 Text = InterfaceRm.GetString("BtnAllArea", Culture),
                 ForeColor = Properties.Settings.Default.BaseTextColor,
+                BackColor = Properties.Settings.Default.ItemBackColor,
+                Margin = new Padding(10, 10, 10, 10),
                 Tag = new AreaModel()
             };
+            btnAllArea.FlatAppearance.BorderSize = 0;
             btnAllArea.MouseHover += BtnArea_MouseHover;
             btnAllArea.MouseLeave += BtnArea_MouseLeave;
             btnAllArea.MouseDown += AllBtn_MouseDown;
@@ -255,8 +258,11 @@ namespace Zi.SalesModule.GUIs
                     FlatStyle = FlatStyle.Flat,
                     Text = InterfaceRm.GetString("BtnArea", Culture) + " " + item.Name,
                     ForeColor = Properties.Settings.Default.BaseTextColor,
+                    BackColor = Properties.Settings.Default.ItemBackColor,
+                    Margin = new Padding(10, 10, 10, 10),
                     Tag = item
                 };
+                btnArea.FlatAppearance.BorderSize = 0;
                 btnArea.MouseHover += BtnArea_MouseHover;
                 btnArea.MouseLeave += BtnArea_MouseLeave;
                 btnArea.MouseDown += AllBtn_MouseDown;
@@ -264,6 +270,7 @@ namespace Zi.SalesModule.GUIs
                 fpnlAreaList.Controls.Add(btnArea);
             }
             LoadTableList();
+            fpnlAreaList.Invalidate(fpnlAreaList.Region);
         }
 
         private void BtnArea_Click(object sender, EventArgs e)
@@ -346,12 +353,15 @@ namespace Zi.SalesModule.GUIs
                 {
                     Size = Properties.Settings.Default.TableItemSize,
                     FlatStyle = FlatStyle.Flat,
-                    Text = InterfaceRm.GetString("BtnArea", Culture) + " " + item.Name,
+                    Text = InterfaceRm.GetString("BtnTable", Culture) + " " + item.Name,
                     Font = new Font("Arial", 12, FontStyle.Bold),
                     IconChar = IconChar.Chair,
                     TextImageRelation = TextImageRelation.ImageAboveText,
+                    BackColor = Properties.Settings.Default.ItemBackColor,
+                    Margin = new Padding(10, 10, 10, 10),
                     Tag = item
                 };
+                btnTable.FlatAppearance.BorderSize = 0;
                 if (item.Status.CompareTo(TableStatus.Using) == 0)
                 {
                     btnTable.ForeColor = usingColor;
@@ -374,6 +384,7 @@ namespace Zi.SalesModule.GUIs
                 btnTable.MouseDown += BtnTable_MouseDown;
                 btnTable.ContextMenuStrip = cmsTableDropDown;
                 fpnlTableList.Controls.Add(btnTable);
+                fpnlTableList.Invalidate(fpnlTableList.Region);
             }
         }
 
@@ -1208,7 +1219,7 @@ namespace Zi.SalesModule.GUIs
 
         private void OpenFormCheckOut()
         {
-            if(CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
+            if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 // Show Message
                 return;
@@ -1304,10 +1315,10 @@ namespace Zi.SalesModule.GUIs
 
         private void LsvBillDetail_SizeChanged(object sender, EventArgs e)
         {
-            lsvBillDetail.Columns[0].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
             lsvBillDetail.Columns[1].Width = 50;
             lsvBillDetail.Columns[2].Width = 100;
-            lsvBillDetail.Columns[3].AutoResize(ColumnHeaderAutoResizeStyle.HeaderSize);
+            lsvBillDetail.Columns[3].Width = 100;
+            lsvBillDetail.Columns[0].Width = lsvBillDetail.Width - (100 + 100 + 50);
         }
 
         private void IpicMoveTable_Click(object sender, EventArgs e)
@@ -1438,7 +1449,7 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void ipicLockTable_Click(object sender, EventArgs e)
+        private void IpicLockTable_Click(object sender, EventArgs e)
         {
             LockTable();
         }
@@ -1461,19 +1472,116 @@ namespace Zi.SalesModule.GUIs
             lbCurrentTable.Invalidate(lbCurrentTable.Region);
         }
 
-        private void tableLockToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TableLockToolStripMenuItem_Click(object sender, EventArgs e)
         {
             LockTable();
         }
 
-        private void tableOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TableOrderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFormOrder();
         }
 
-        private void tableCheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TableCheckOutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFormCheckOut();
+        }
+
+        private void FpnlAreaList_Paint(object sender, PaintEventArgs e)
+        {
+            FlowLayoutPanel panel = sender as FlowLayoutPanel;
+            Pen pen = new Pen(Properties.Settings.Default.DropShadowColor);
+            using (pen)
+            {
+                foreach (Control btn in panel.Controls)
+                {
+                    int depth = Properties.Settings.Default.DropShadowDepth;
+                    if (btn is IconButton)
+                    {
+                        int w = btn.Width;
+                        int h = btn.Height;
+                        // Draw Bottom Shadow
+                        Point bottomLeftPoint = new Point(btn.Location.X + depth, btn.Location.Y + h);
+                        for (var i = 0; i < depth; i++)
+                        {
+                            e.Graphics.DrawLine(
+                                pen,
+                                bottomLeftPoint.X,
+                                bottomLeftPoint.Y,
+                                bottomLeftPoint.X + w,
+                                bottomLeftPoint.Y);
+                            bottomLeftPoint.Y++;
+                        }
+                        // Draw Right Shadow
+                        Point topRightPoint = new Point(btn.Location.X + w, btn.Location.Y + depth);
+                        for (var i = 0; i < depth; i++)
+                        {
+                            e.Graphics.DrawLine(
+                                pen,
+                                topRightPoint.X,
+                                topRightPoint.Y,
+                                topRightPoint.X,
+                                topRightPoint.Y + h);
+                            topRightPoint.X++;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void FpnlTableList_Paint(object sender, PaintEventArgs e)
+        {
+            FlowLayoutPanel panel = sender as FlowLayoutPanel;
+            Pen pen = new Pen(Properties.Settings.Default.DropShadowColor);
+            using (pen)
+            {
+                foreach (Control btn in panel.Controls)
+                {
+                    int depth = Properties.Settings.Default.DropShadowDepth;
+                    if (btn is IconButton)
+                    {
+                        int w = btn.Width;
+                        int h = btn.Height;
+                        int cornerRadius = Properties.Settings.Default.CornerRadius;
+                        using (GraphicsPath path = RoundedRect(new Rectangle(btn.Location.X + depth, btn.Location.Y + depth, w, h), cornerRadius))
+                        {
+                            e.Graphics.FillPath(new SolidBrush(Properties.Settings.Default.DropShadowColor), path);
+                        }
+                    }
+                }
+            }
+        }
+
+        public static GraphicsPath RoundedRect(Rectangle bounds, int radius)
+        {
+            int diameter = radius * 2;
+            Size size = new Size(diameter, diameter);
+            Rectangle arc = new Rectangle(bounds.Location, size);
+            GraphicsPath path = new GraphicsPath();
+
+            if (radius == 0)
+            {
+                path.AddRectangle(bounds);
+                return path;
+            }
+
+            // top left arc  
+            path.AddArc(arc, 180, 90);
+
+            // top right arc  
+            arc.X = bounds.Right - diameter;
+            path.AddArc(arc, 270, 90);
+
+            // bottom right arc  
+            arc.Y = bounds.Bottom - diameter;
+            path.AddArc(arc, 0, 90);
+
+            // bottom left arc 
+            arc.X = bounds.Left;
+            path.AddArc(arc, 90, 90);
+
+            path.CloseFigure();
+            return path;
         }
     }
 }

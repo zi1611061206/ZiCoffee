@@ -461,7 +461,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 12843);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 14483);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -781,7 +781,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicLockTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicLockTable.TabIndex = 22;
             this.ipicLockTable.TabStop = false;
-            this.ipicLockTable.Click += new System.EventHandler(this.ipicLockTable_Click);
+            this.ipicLockTable.Click += new System.EventHandler(this.IpicLockTable_Click);
             this.ipicLockTable.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicLockTable.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -917,6 +917,7 @@ namespace Zi.SalesModule.GUIs
             this.fpnlTableList.Size = new System.Drawing.Size(780, 642);
             this.fpnlTableList.TabIndex = 0;
             this.fpnlTableList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
             // 
             // pnlResizeDivideBody
             // 
@@ -944,6 +945,7 @@ namespace Zi.SalesModule.GUIs
             this.fpnlAreaList.Size = new System.Drawing.Size(780, 168);
             this.fpnlAreaList.TabIndex = 0;
             this.fpnlAreaList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlAreaList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlAreaList_Paint);
             // 
             // cmsShortcutKeyDropDown
             // 
@@ -1062,16 +1064,16 @@ namespace Zi.SalesModule.GUIs
             // tableOrderToolStripMenuItem
             // 
             this.tableOrderToolStripMenuItem.Name = "tableOrderToolStripMenuItem";
-            this.tableOrderToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.tableOrderToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.tableOrderToolStripMenuItem.Text = "Order";
-            this.tableOrderToolStripMenuItem.Click += new System.EventHandler(this.tableOrderToolStripMenuItem_Click);
+            this.tableOrderToolStripMenuItem.Click += new System.EventHandler(this.TableOrderToolStripMenuItem_Click);
             // 
             // tableCheckOutToolStripMenuItem
             // 
             this.tableCheckOutToolStripMenuItem.Name = "tableCheckOutToolStripMenuItem";
-            this.tableCheckOutToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.tableCheckOutToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.tableCheckOutToolStripMenuItem.Text = "CheckOut";
-            this.tableCheckOutToolStripMenuItem.Click += new System.EventHandler(this.tableCheckOutToolStripMenuItem_Click);
+            this.tableCheckOutToolStripMenuItem.Click += new System.EventHandler(this.TableCheckOutToolStripMenuItem_Click);
             // 
             // tableMoveToolStripMenuItem
             // 
@@ -1088,9 +1090,9 @@ namespace Zi.SalesModule.GUIs
             // tableLockToolStripMenuItem
             // 
             this.tableLockToolStripMenuItem.Name = "tableLockToolStripMenuItem";
-            this.tableLockToolStripMenuItem.Size = new System.Drawing.Size(210, 24);
+            this.tableLockToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
             this.tableLockToolStripMenuItem.Text = "Lock";
-            this.tableLockToolStripMenuItem.Click += new System.EventHandler(this.tableLockToolStripMenuItem_Click);
+            this.tableLockToolStripMenuItem.Click += new System.EventHandler(this.TableLockToolStripMenuItem_Click);
             // 
             // cmsReadyTableList
             // 
