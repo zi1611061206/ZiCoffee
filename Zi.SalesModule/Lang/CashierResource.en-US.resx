@@ -162,6 +162,9 @@
   <data name="CurrencySymbol" xml:space="preserve">
     <value>$</value>
   </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
   </data>
@@ -191,6 +194,15 @@
   </data>
   <data name="LbVersion" xml:space="preserve">
     <value>Version 4.0.0.0</value>
+  </data>
+  <data name="MsgCannotCheckOut" xml:space="preserve">
+    <value>Selected table can not checkout.</value>
+  </data>
+  <data name="MsgCannotOrder" xml:space="preserve">
+    <value>Selected table can not order now.</value>
+  </data>
+  <data name="MsgNoSelectedTable" xml:space="preserve">
+    <value>No tables have been selected yet.</value>
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Not Found</value>
@@ -236,5 +248,8 @@
   </data>
   <data name="TtViewBill" xml:space="preserve">
     <value>View Bill (Alt + V)</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning</value>
   </data>
 </root>

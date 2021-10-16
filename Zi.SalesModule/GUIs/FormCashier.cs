@@ -16,6 +16,7 @@ using Zi.LinqSqlLayer.Engines.Convertors;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
 using Zi.LinqSqlLayer.Enumerators;
+using Zi.SalesModule.CustomControls;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -46,6 +47,8 @@ namespace Zi.SalesModule.GUIs
         public RoleModel CurrentRole { get; set; }
         public TableModel CurrentTable { get; set; }
         public AreaModel CurrentArea { get; set; }
+        public BillModel CurrentBill { get; set; }
+        public List<BillDetailModel> CurrentBillDetail { get; set; }
         public AreaModel AreaContainTable { get; set; }
         public string CultureName { get; set; }
         public ResourceManager InterfaceRm { get; set; }
@@ -55,6 +58,9 @@ namespace Zi.SalesModule.GUIs
         public string SoundtrackPath { get; set; }
         public bool OnResizeMode { get; set; }
         public NumberFormatInfo LocalFormat { get; set; }
+        public string ErrorTitle { get; set; }
+        public string WarningTitle { get; set; }
+        public int AlertTimer { get; set; }
         #endregion
 
         public FormCashier(UserModel user)
@@ -69,9 +75,17 @@ namespace Zi.SalesModule.GUIs
             {
                 AreaId = Guid.Empty
             };
+            CurrentBill = new BillModel()
+            {
+                BillId = Guid.Empty
+            };
+            CurrentBillDetail = new List<BillDetailModel>();
             SetCulture();
             ChangeAccount(CurrentUser);
             OnResizeMode = false;
+            ErrorTitle = InterfaceRm.GetString("ErrorTitle", Culture);
+            WarningTitle = InterfaceRm.GetString("WarningTitle", Culture);
+            AlertTimer = 3000;
         }
 
         private void ChangeAccount(UserModel currentUser)
@@ -174,7 +188,106 @@ namespace Zi.SalesModule.GUIs
 
         private void MergeWithToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Code
+            MergeTable(sender);
+        }
+
+        private void MergeTable(object sender)
+        {
+            // Before
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            TableModel destinationTable = item.Tag as TableModel;
+
+            BillFilter destinationBillFilter = new BillFilter()
+            {
+                TableId = destinationTable.TableId,
+                Status = BillStatus.UnPay
+            };
+            var destinationBillReader = BillService.Instance.Read(destinationBillFilter, CultureName);
+            if (!destinationBillReader.Item1)
+            {
+                FormMessageBox.Show(destinationBillReader.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            BillModel destinationBill = (destinationBillReader.Item2 as Paginator<BillModel>).Item[0];
+
+            BillDetailFilter destinationBillDetailFilter = new BillDetailFilter()
+            {
+                BillId = destinationBill.BillId
+            };
+            var destinationBillDetailReader = BillDetailService.Instance.Read(destinationBillDetailFilter, CultureName);
+            if (!destinationBillDetailReader.Item1)
+            {
+                FormMessageBox.Show(destinationBillDetailReader.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            List<BillDetailModel> destinationBillDetail = (destinationBillDetailReader.Item2 as Paginator<BillDetailModel>).Item;
+
+            CurrentTable.Status = TableStatus.Ready;
+            List<BillDetailModel> notMatchList = new List<BillDetailModel>();
+            float destinationBillTotal = destinationBill.Total;
+            foreach (BillDetailModel source in CurrentBillDetail)
+            {
+                bool isMatched = false;
+                foreach (BillDetailModel destination in destinationBillDetail)
+                {
+                    if (source.ProductId.CompareTo(destination.ProductId) == 0)
+                    {
+                        destination.Quantity += source.Quantity;
+                        destination.IntoMoney += source.IntoMoney;
+                        destinationBillTotal += source.IntoMoney;
+                        isMatched = true;
+                    }
+                }
+                if (!isMatched)
+                {
+                    source.BillId = destinationBill.BillId;
+                    notMatchList.Add(source);
+                    destinationBillTotal += source.IntoMoney;
+                }
+            }
+            destinationBill.Total = destinationBillTotal;
+            // Update
+            var deleter = BillService.Instance.Delete(CurrentBill.BillId, CultureName);
+            if (!deleter.Item1)
+            {
+                FormMessageBox.Show(deleter.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            var updater1 = TableService.Instance.Update(CurrentTable, CultureName);
+            if (!updater1.Item1)
+            {
+                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            foreach (BillDetailModel detailItem in destinationBillDetail)
+            {
+                var updater2 = BillDetailService.Instance.Update(detailItem, CultureName);
+                if (!updater2.Item1)
+                {
+                    FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            foreach (BillDetailModel detailItem in notMatchList)
+            {
+                var creator = BillDetailService.Instance.Create(detailItem, CultureName);
+                if (!creator.Item1)
+                {
+                    FormMessageBox.Show(creator.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                    return;
+                }
+            }
+            var updater3 = BillService.Instance.Update(destinationBill, CultureName);
+            if (!updater3.Item1)
+            {
+                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            // After
+            CurrentTable = new TableModel();
+            LoadTableList();
+            lsvBillDetail.Items.Clear();
+            lbCurrentTable.Invalidate(lbCurrentTable.Region);
         }
 
         private void LoadReadyTableList()
@@ -212,7 +325,41 @@ namespace Zi.SalesModule.GUIs
 
         private void MoveToToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Code
+            MoveTable(sender);
+        }
+
+        private void MoveTable(object sender)
+        {
+            // Before
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            TableModel destinationTable = item.Tag as TableModel;
+            destinationTable.Status = TableStatus.Using;
+            CurrentTable.Status = TableStatus.Ready;
+            CurrentBill.TableId = destinationTable.TableId;
+            // Update
+            var updater1 = BillService.Instance.Update(CurrentBill, CultureName);
+            if (!updater1.Item1)
+            {
+                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            var updater2 = TableService.Instance.Update(CurrentTable, CultureName);
+            if (!updater2.Item1)
+            {
+                FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            var updater3 = TableService.Instance.Update(destinationTable, CultureName);
+            if (!updater3.Item1)
+            {
+                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                return;
+            }
+            // After
+            CurrentTable = new TableModel();
+            LoadTableList();
+            lsvBillDetail.Items.Clear();
+            lbCurrentTable.Invalidate(lbCurrentTable.Region);
         }
 
         private void LoadAreaList()
@@ -349,7 +496,7 @@ namespace Zi.SalesModule.GUIs
 
             foreach (TableModel item in tableList)
             {
-                IconButton btnTable = new IconButton()
+                RoundedIconButton btnTable = new RoundedIconButton()
                 {
                     Size = Properties.Settings.Default.TableItemSize,
                     FlatStyle = FlatStyle.Flat,
@@ -384,13 +531,13 @@ namespace Zi.SalesModule.GUIs
                 btnTable.MouseDown += BtnTable_MouseDown;
                 btnTable.ContextMenuStrip = cmsTableDropDown;
                 fpnlTableList.Controls.Add(btnTable);
-                fpnlTableList.Invalidate(fpnlTableList.Region);
             }
+            fpnlTableList.Invalidate(fpnlTableList.Region);
         }
 
         private void BtnTable_MouseDown(object sender, MouseEventArgs e)
         {
-            IconButton btnTable = sender as IconButton;
+            RoundedIconButton btnTable = sender as RoundedIconButton;
             CurrentTable = btnTable.Tag as TableModel;
             AreaFilter filter = new AreaFilter()
             {
@@ -424,6 +571,7 @@ namespace Zi.SalesModule.GUIs
             if (billReader.Item1)
             {
                 BillModel bill = (billReader.Item2 as Paginator<BillModel>).Item[0];
+                CurrentBill = bill;
 
                 BillDetailFilter billDetailFilter = new BillDetailFilter()
                 {
@@ -434,6 +582,7 @@ namespace Zi.SalesModule.GUIs
                 {
                     int lineCounter = 0;
                     List<BillDetailModel> billDetails = (billDetailReader.Item2 as Paginator<BillDetailModel>).Item;
+                    CurrentBillDetail = billDetails;
                     foreach (BillDetailModel billDetail in billDetails)
                     {
                         ProductFilter productFilter = new ProductFilter()
@@ -504,7 +653,7 @@ namespace Zi.SalesModule.GUIs
                 ipicLockTable.Visible
                     = lockTableToolStripMenuItem.Enabled
                     = tableLockToolStripMenuItem.Enabled
-                    = true;
+                    = CurrentTable.TableId.CompareTo(Guid.Empty) != 0;
             }
         }
 
@@ -1086,12 +1235,12 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.R)
             {
-                //ipicLoadTable
+                ReLoadTable();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.L)
             {
-                //ipicLockTable
+                LockTable();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.M)
@@ -1101,7 +1250,7 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.W)
             {
-                //ipicMergeTable
+                ShowMergeOptions();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.N)
@@ -1111,7 +1260,7 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.Q)
             {
-                //ipicMoveTable
+                ShowMoveOptions();
                 return;
             }
             if (e.Alt && e.KeyCode == Keys.O)
@@ -1221,7 +1370,14 @@ namespace Zi.SalesModule.GUIs
         {
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
-                // Show Message
+                string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                return;
+            }
+            else if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
+            {
+                string msg = InterfaceRm.GetString("MsgCannotCheckOut", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
                 return;
             }
             Form formBackground = new Form();
@@ -1266,7 +1422,14 @@ namespace Zi.SalesModule.GUIs
         {
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
-                // Show Message
+                string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                return;
+            }
+            else if (CurrentTable.Status.CompareTo(TableStatus.Pending) == 0)
+            {
+                string msg = InterfaceRm.GetString("MsgCannotOrder", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
                 return;
             }
             Form formBackground = new Form();
@@ -1329,9 +1492,10 @@ namespace Zi.SalesModule.GUIs
         private void ShowMoveOptions()
         {
             LoadReadyTableList();
-            if (CurrentTable == null)
+            if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
-                // Show Message
+                string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
             }
             else
             {
@@ -1350,9 +1514,10 @@ namespace Zi.SalesModule.GUIs
         {
             cmsUsingTableList.Items.Clear();
             LoadUsingTableList();
-            if (CurrentTable == null)
+            if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
-                // Show Message
+                string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
+                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
             }
             else
             {
@@ -1379,13 +1544,13 @@ namespace Zi.SalesModule.GUIs
 
         private void CmsTableDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            LoadReadyTableDropDownItems();
-            LoadUsingTableDropDownItems();
+            LoadReadyTableDropDownItems(tableMoveToolStripMenuItem);
+            LoadUsingTableDropDownItems(tableMergeToolStripMenuItem);
         }
 
-        private void LoadUsingTableDropDownItems()
+        private void LoadUsingTableDropDownItems(ToolStripMenuItem parentsItem)
         {
-            tableMergeToolStripMenuItem.DropDownItems.Clear();
+            parentsItem.DropDownItems.Clear();
             TableFilter filter = new TableFilter()
             {
                 Status = TableStatus.Using
@@ -1403,7 +1568,7 @@ namespace Zi.SalesModule.GUIs
                         toolStripMenuItem.Tag = item;
                         toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
                         toolStripMenuItem.Click += MergeWithToolStripMenuItem_Click;
-                        tableMergeToolStripMenuItem.DropDownItems.Add(toolStripMenuItem);
+                        parentsItem.DropDownItems.Add(toolStripMenuItem);
                     }
                 }
                 else
@@ -1411,14 +1576,14 @@ namespace Zi.SalesModule.GUIs
                     ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
                     toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
                     toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
-                    tableMergeToolStripMenuItem.DropDownItems.Add(toolStripMenuItem);
+                    parentsItem.DropDownItems.Add(toolStripMenuItem);
                 }
             }
         }
 
-        private void LoadReadyTableDropDownItems()
+        private void LoadReadyTableDropDownItems(ToolStripMenuItem parentsItem)
         {
-            tableMoveToolStripMenuItem.DropDownItems.Clear();
+            parentsItem.DropDownItems.Clear();
             TableFilter filter = new TableFilter()
             {
                 Status = TableStatus.Ready
@@ -1436,7 +1601,7 @@ namespace Zi.SalesModule.GUIs
                         toolStripMenuItem.Tag = item;
                         toolStripMenuItem.ForeColor = Properties.Settings.Default.SuccessTextColor;
                         toolStripMenuItem.Click += MoveToToolStripMenuItem_Click;
-                        tableMoveToolStripMenuItem.DropDownItems.Add(toolStripMenuItem);
+                        parentsItem.DropDownItems.Add(toolStripMenuItem);
                     }
                 }
                 else
@@ -1444,7 +1609,7 @@ namespace Zi.SalesModule.GUIs
                     ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
                     toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
                     toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
-                    tableMoveToolStripMenuItem.DropDownItems.Add(toolStripMenuItem);
+                    parentsItem.DropDownItems.Add(toolStripMenuItem);
                 }
             }
         }
@@ -1538,7 +1703,7 @@ namespace Zi.SalesModule.GUIs
                 foreach (Control btn in panel.Controls)
                 {
                     int depth = Properties.Settings.Default.DropShadowDepth;
-                    if (btn is IconButton)
+                    if (btn is RoundedIconButton)
                     {
                         int w = btn.Width;
                         int h = btn.Height;
@@ -1584,54 +1749,57 @@ namespace Zi.SalesModule.GUIs
             return path;
         }
 
-        private void viewBillToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ViewBillToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowBillPanel();
+        }
+
+        private void OrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormOrder();
+        }
+
+        private void CheckOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormCheckOut();
+        }
+
+        private void SettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormSetting();
+        }
+
+        private void ProfileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFormProfile();
+        }
+
+        private void ShortcutEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void orderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            ReLoadTable();
         }
 
-        private void checkOutToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LockTableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            LockTable();
         }
 
-        private void settingToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Fpnl_SizeChanged(object sender, EventArgs e)
         {
-
+            FlowLayoutPanel fpnl = sender as FlowLayoutPanel;
+            fpnl.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnl.Width, fpnl.Height, 20, 20));
+            fpnl.Invalidate(fpnl.Region);
         }
 
-        private void profileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CmsShortcutKeyDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-
-        }
-
-        private void shortcutEditorToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void loadTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void moveTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mergeTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lockTableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
+            LoadReadyTableDropDownItems(moveTableToolStripMenuItem);
+            LoadUsingTableDropDownItems(mergeTableToolStripMenuItem);
         }
     }
 }
