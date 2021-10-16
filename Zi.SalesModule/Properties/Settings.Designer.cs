@@ -395,5 +395,17 @@ namespace Zi.SalesModule.Properties {
                 this["CornerRadius"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("23, 42, 70")]
+        public global::System.Drawing.Color MsgBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["MsgBackColor"]));
+            }
+            set {
+                this["MsgBackColor"] = value;
+            }
+        }
     }
 }

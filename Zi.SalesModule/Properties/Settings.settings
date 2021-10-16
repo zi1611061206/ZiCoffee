@@ -95,5 +95,8 @@
     <Setting Name="CornerRadius" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
+    <Setting Name="MsgBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">23, 42, 70</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

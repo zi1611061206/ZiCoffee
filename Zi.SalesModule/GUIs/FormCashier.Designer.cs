@@ -461,7 +461,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 15303);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 18583);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -916,7 +916,7 @@ namespace Zi.SalesModule.GUIs
             this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
             this.fpnlTableList.Size = new System.Drawing.Size(780, 642);
             this.fpnlTableList.TabIndex = 0;
-            this.fpnlTableList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlTableList.SizeChanged += new System.EventHandler(this.Fpnl_SizeChanged);
             this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
             // 
             // pnlResizeDivideBody
@@ -944,7 +944,7 @@ namespace Zi.SalesModule.GUIs
             this.fpnlAreaList.Padding = new System.Windows.Forms.Padding(20);
             this.fpnlAreaList.Size = new System.Drawing.Size(780, 168);
             this.fpnlAreaList.TabIndex = 0;
-            this.fpnlAreaList.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.fpnlAreaList.SizeChanged += new System.EventHandler(this.Fpnl_SizeChanged);
             this.fpnlAreaList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlAreaList_Paint);
             // 
             // cmsShortcutKeyDropDown
@@ -963,6 +963,7 @@ namespace Zi.SalesModule.GUIs
             this.shortcutEditorToolStripMenuItem});
             this.cmsShortcutKeyDropDown.Name = "cmsAccountDropDown";
             this.cmsShortcutKeyDropDown.Size = new System.Drawing.Size(215, 220);
+            this.cmsShortcutKeyDropDown.Opening += new System.ComponentModel.CancelEventHandler(this.CmsShortcutKeyDropDown_Opening);
             // 
             // viewBillToolStripMenuItem
             // 
@@ -970,7 +971,7 @@ namespace Zi.SalesModule.GUIs
             this.viewBillToolStripMenuItem.Name = "viewBillToolStripMenuItem";
             this.viewBillToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.viewBillToolStripMenuItem.Text = "ViewBill";
-            this.viewBillToolStripMenuItem.Click += new System.EventHandler(this.viewBillToolStripMenuItem_Click);
+            this.viewBillToolStripMenuItem.Click += new System.EventHandler(this.ViewBillToolStripMenuItem_Click);
             // 
             // orderToolStripMenuItem
             // 
@@ -978,7 +979,7 @@ namespace Zi.SalesModule.GUIs
             this.orderToolStripMenuItem.Name = "orderToolStripMenuItem";
             this.orderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.orderToolStripMenuItem.Text = "Order";
-            this.orderToolStripMenuItem.Click += new System.EventHandler(this.orderToolStripMenuItem_Click);
+            this.orderToolStripMenuItem.Click += new System.EventHandler(this.OrderToolStripMenuItem_Click);
             // 
             // checkOutToolStripMenuItem
             // 
@@ -986,7 +987,7 @@ namespace Zi.SalesModule.GUIs
             this.checkOutToolStripMenuItem.Name = "checkOutToolStripMenuItem";
             this.checkOutToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.checkOutToolStripMenuItem.Text = "CheckOut";
-            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.checkOutToolStripMenuItem_Click);
+            this.checkOutToolStripMenuItem.Click += new System.EventHandler(this.CheckOutToolStripMenuItem_Click);
             // 
             // tableToolStripMenuItem
             // 
@@ -1003,30 +1004,28 @@ namespace Zi.SalesModule.GUIs
             // loadTableToolStripMenuItem
             // 
             this.loadTableToolStripMenuItem.Name = "loadTableToolStripMenuItem";
-            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.loadTableToolStripMenuItem.Text = "LoadTable";
-            this.loadTableToolStripMenuItem.Click += new System.EventHandler(this.loadTableToolStripMenuItem_Click);
+            this.loadTableToolStripMenuItem.Click += new System.EventHandler(this.LoadTableToolStripMenuItem_Click);
             // 
             // moveTableToolStripMenuItem
             // 
             this.moveTableToolStripMenuItem.Name = "moveTableToolStripMenuItem";
-            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.moveTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.moveTableToolStripMenuItem.Text = "MoveTable";
-            this.moveTableToolStripMenuItem.Click += new System.EventHandler(this.moveTableToolStripMenuItem_Click);
             // 
             // mergeTableToolStripMenuItem
             // 
             this.mergeTableToolStripMenuItem.Name = "mergeTableToolStripMenuItem";
-            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.mergeTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.mergeTableToolStripMenuItem.Text = "MergeTable";
-            this.mergeTableToolStripMenuItem.Click += new System.EventHandler(this.mergeTableToolStripMenuItem_Click);
             // 
             // lockTableToolStripMenuItem
             // 
             this.lockTableToolStripMenuItem.Name = "lockTableToolStripMenuItem";
-            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.lockTableToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
             this.lockTableToolStripMenuItem.Text = "LockTable";
-            this.lockTableToolStripMenuItem.Click += new System.EventHandler(this.lockTableToolStripMenuItem_Click);
+            this.lockTableToolStripMenuItem.Click += new System.EventHandler(this.LockTableToolStripMenuItem_Click);
             // 
             // settingToolStripMenuItem
             // 
@@ -1034,7 +1033,7 @@ namespace Zi.SalesModule.GUIs
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.settingToolStripMenuItem.Text = "Setting";
-            this.settingToolStripMenuItem.Click += new System.EventHandler(this.settingToolStripMenuItem_Click);
+            this.settingToolStripMenuItem.Click += new System.EventHandler(this.SettingToolStripMenuItem_Click);
             // 
             // profileToolStripMenuItem
             // 
@@ -1042,7 +1041,7 @@ namespace Zi.SalesModule.GUIs
             this.profileToolStripMenuItem.Name = "profileToolStripMenuItem";
             this.profileToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.profileToolStripMenuItem.Text = "Profile";
-            this.profileToolStripMenuItem.Click += new System.EventHandler(this.profileToolStripMenuItem_Click);
+            this.profileToolStripMenuItem.Click += new System.EventHandler(this.ProfileToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
@@ -1054,7 +1053,7 @@ namespace Zi.SalesModule.GUIs
             this.shortcutEditorToolStripMenuItem.Name = "shortcutEditorToolStripMenuItem";
             this.shortcutEditorToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.shortcutEditorToolStripMenuItem.Text = "ShortcutEditor";
-            this.shortcutEditorToolStripMenuItem.Click += new System.EventHandler(this.shortcutEditorToolStripMenuItem_Click);
+            this.shortcutEditorToolStripMenuItem.Click += new System.EventHandler(this.ShortcutEditorToolStripMenuItem_Click);
             // 
             // cmsTableDropDown
             // 

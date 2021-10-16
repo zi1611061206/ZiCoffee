@@ -72,6 +72,12 @@
     <Compile Include="CustomControls\PasswordTextBox.Designer.cs">
       <DependentUpon>PasswordTextBox.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\RoundedIconButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\RoundedIconButton.Designer.cs">
+      <DependentUpon>RoundedIconButton.cs</DependentUpon>
+    </Compile>
     <Compile Include="GUIs\FormCashier.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,12 @@
     </Compile>
     <Compile Include="GUIs\FormManager.Designer.cs">
       <DependentUpon>FormManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GUIs\FormMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GUIs\FormMessageBox.Designer.cs">
+      <DependentUpon>FormMessageBox.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\FormOrder.cs">
       <SubType>Form</SubType>
@@ -136,6 +148,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LoginResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lang\MessageBoxResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessageBoxResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Lang\ValidateResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,6 +173,9 @@
     <EmbeddedResource Include="GUIs\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormMessageBox.resx">
+      <DependentUpon>FormMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lang\CashierResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\CashierResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -168,6 +188,12 @@
       <LastGenOutput>LoginResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\LoginResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\MessageBoxResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\MessageBoxResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>MessageBoxResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\MessageBoxResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.en-US.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

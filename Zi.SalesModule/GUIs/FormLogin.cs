@@ -206,7 +206,7 @@ namespace Zi.SalesModule.GUIs
             Culture = CultureInfo.CreateSpecificCulture(CultureName);
             string BaseName = "Zi.SalesModule.Lang.LoginResource";
             InterfaceRm = new ResourceManager(BaseName, typeof(FormLogin).Assembly);
-            
+
             txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", Culture);
             txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", Culture);
             ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);
@@ -296,7 +296,8 @@ namespace Zi.SalesModule.GUIs
         {
             string msgExit = InterfaceRm.GetString("MsgExit", Culture);
             string titleAlert = InterfaceRm.GetString("TitleAlert", Culture);
-            if (MessageBox.Show(msgExit, titleAlert, MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.OK)
+            var result = FormMessageBox.Show(msgExit, titleAlert, MessageBoxIcon.Question, MessageBoxButtons.OKCancel);
+            if (result == DialogResult.OK)
             {
                 if (Properties.Settings.Default.AllowSayBye)
                 {
