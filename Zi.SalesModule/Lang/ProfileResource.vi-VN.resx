@@ -117,50 +117,97 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="LogOut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogOut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Lỗi</value>
   </data>
-  <data name="Cart" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Cart.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Female" xml:space="preserve">
+    <value>Nữ</value>
   </data>
-  <data name="Click" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Click.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="IbtnCancel" xml:space="preserve">
+    <value>Hủy</value>
   </data>
-  <data name="Intro" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Intro.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="IbtnClose" xml:space="preserve">
+    <value>Đóng</value>
   </data>
-  <data name="zi-logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zi-logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IbtnSave" xml:space="preserve">
+    <value>Lưu</value>
   </data>
-  <data name="Setting" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Setting.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IpicChangePassword" xml:space="preserve">
+    <value>Đổi mật khẩu</value>
   </data>
-  <data name="Table" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Table.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IpicClose" xml:space="preserve">
+    <value>Đóng</value>
   </data>
-  <data name="Add" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Add.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IpicMinimize" xml:space="preserve">
+    <value>Giảm tối thiểu</value>
   </data>
-  <data name="Error" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Error.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="IpicSalaryTable" xml:space="preserve">
+    <value>Bảng lương</value>
   </data>
-  <data name="View" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\View.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="IpicShowHidePassword" xml:space="preserve">
+    <value>Hiện / Ẩn mật khẩu</value>
   </data>
-  <data name="Init" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Init.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="IpicWorkCalendar" xml:space="preserve">
+    <value>Lịch làm việc</value>
   </data>
-  <data name="Listening" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Listening.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="LbAddress" xml:space="preserve">
+    <value>Địa chỉ</value>
   </data>
-  <data name="Profile" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Profile.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LbCitizenId" xml:space="preserve">
+    <value>Số căn cước công dân</value>
   </data>
-  <data name="LangQuenChieuThuSoundtrack" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LangQuenChieuThuSoundtrack.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="LbConfirmPassword" xml:space="preserve">
+    <value>Xác nhận mật khẩu mới</value>
   </data>
-  <data name="NoAvatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\NoAvatar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LbCreatedDate" xml:space="preserve">
+    <value>Ngày tạo</value>
+  </data>
+  <data name="LbDisplayName" xml:space="preserve">
+    <value>Tên hiển thị</value>
+  </data>
+  <data name="LbDob" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="LbEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LbFullName" xml:space="preserve">
+    <value>Tên đầy dủ</value>
+  </data>
+  <data name="LbGender" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="LbNewPassword" xml:space="preserve">
+    <value>Mật khẩu mới</value>
+  </data>
+  <data name="LbOldPassword" xml:space="preserve">
+    <value>Mật khẩu cũ</value>
+  </data>
+  <data name="LbPhoneNumber" xml:space="preserve">
+    <value>Số điện thoại</value>
+  </data>
+  <data name="LbRole" xml:space="preserve">
+    <value>Vai trò</value>
+  </data>
+  <data name="LbUserId" xml:space="preserve">
+    <value>Mã người dùng</value>
+  </data>
+  <data name="LbUsername" xml:space="preserve">
+    <value>Tên đăng nhập</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Nam</value>
+  </data>
+  <data name="MsgNotAvailable" xml:space="preserve">
+    <value>Chức năng này chưa khả dụng ở thời điểm hiện tại.</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Khác</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Hồ sơ</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Cảnh báo</value>
   </data>
 </root>

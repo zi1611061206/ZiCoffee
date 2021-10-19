@@ -67,7 +67,6 @@ namespace Zi.SalesModule.GUIs
             ipicMessageStatus.Location = new Point(x, y);
             x = (pnlOptions.Width - ipicButton1.Width) / 2;
             y = (pnlOptions.Height - ipicButton1.Height) / 2;
-            ipicButton1.Dock = ipicButton2.Dock = ipicButton3.Dock = DockStyle.None;
             ipicButton1.Location = new Point(x, y - ipicMessageStatus.Height);
             ipicButton2.Location = new Point(x, y);
             ipicButton3.Location = new Point(x, y + ipicMessageStatus.Height);
@@ -84,7 +83,7 @@ namespace Zi.SalesModule.GUIs
             CultureName = Properties.Settings.Default.CultureName;
             Culture = CultureInfo.CreateSpecificCulture(CultureName);
             string BaseName = "Zi.SalesModule.Lang.MessageBoxResource";
-            InterfaceRm = new ResourceManager(BaseName, typeof(FormCashier).Assembly);
+            InterfaceRm = new ResourceManager(BaseName, typeof(FormMessageBox).Assembly);
         }
 
         private void SetColor()

@@ -407,5 +407,17 @@ namespace Zi.SalesModule.Properties {
                 this["MsgBackColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        public int AlertTimer {
+            get {
+                return ((int)(this["AlertTimer"]));
+            }
+            set {
+                this["AlertTimer"] = value;
+            }
+        }
     }
 }

@@ -52,10 +52,10 @@ namespace Zi.SalesModule.GUIs
             InitializeComponent();
         }
 
+        #region Initital
         private void FormLogin_Load(object sender, EventArgs e)
         {
-            // Apply Rounded Corners for form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            DrawRoundedCorner();
             LoadIcon();
             LoadSetting();
             ActiveControl = txbUsernameInput;
@@ -65,71 +65,46 @@ namespace Zi.SalesModule.GUIs
             txbPasswordInput.LostFocus += TxbInput_UnFocus;
         }
 
-        private void TxbInput_UnFocus(object sender, EventArgs e)
+        private void DrawRoundedCorner()
         {
-            var txb = sender as TextBox;
-            TurnOffHighLight(txb);
+            // Apply Rounded Corners for form
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
-        private void TurnOffHighLight(TextBox txb)
+        private void LoadIcon()
         {
-            if (txb.Name.Equals("txbPasswordInput"))
-            {
-                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
-                pnlPasswordBorderLeft.BackColor
-                    = pnlPasswordBorderBottom.BackColor
-                    = pnlPasswordBorderRight.BackColor
-                    = pnlPasswordBorderTop.BackColor
-                    = Properties.Settings.Default.BaseBorderColor;
-            }
-            else if (txb.Name.Equals("txbUsernameInput"))
-            {
-                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
-                pnlUsernameBorderLeft.BackColor
-                    = pnlUsernameBorderBottom.BackColor
-                    = pnlUsernameBorderRight.BackColor
-                    = pnlUsernameBorderTop.BackColor
-                    = Properties.Settings.Default.BaseBorderColor;
-            }
-        }
-
-        private void TxbInput_Focus(object sender, EventArgs e)
-        {
-            var txb = sender as TextBox;
-            TurnOnHighLight(txb);
-        }
-
-        private void TurnOnHighLight(TextBox txb)
-        {
-            if (txb.Name.Equals("txbUsernameInput"))
-            {
-                txb.SelectAll();
-                lbUsernameError.Text = string.Empty;
-                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
-                pnlUsernameBorderLeft.BackColor
-                    = pnlUsernameBorderBottom.BackColor
-                    = pnlUsernameBorderRight.BackColor
-                    = pnlUsernameBorderTop.BackColor
-                    = Properties.Settings.Default.BaseHoverColor;
-            }
-            else if (txb.Name.Equals("txbPasswordInput"))
-            {
-                txb.Clear();
-                lbPasswordError.Text = string.Empty;
-                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
-                pnlPasswordBorderLeft.BackColor
-                    = pnlPasswordBorderBottom.BackColor
-                    = pnlPasswordBorderRight.BackColor
-                    = pnlPasswordBorderTop.BackColor
-                    = Properties.Settings.Default.BaseHoverColor;
-            }
+            ipicClose.IconChar = IconChar.WindowClose;
+            ipicMinimize.IconChar = IconChar.MinusSquare;
+            ipicFacebookIcon.IconChar = IconChar.Facebook;
+            ipicGoogleIcon.IconChar = IconChar.Google;
+            ipicUsernameStartIcon.IconChar = IconChar.User;
+            ipicPasswordStartIcon.IconChar = IconChar.Lock;
+            ipicPasswordEndIcon.IconChar = IconChar.Eye;
         }
 
         private void LoadSetting()
         {
+            SetCulture();
             SetStaticText();
             SetColor();
             SetAudio();
+        }
+
+        private void SetCulture()
+        {
+            CultureName = Properties.Settings.Default.CultureName;
+            Culture = CultureInfo.CreateSpecificCulture(CultureName);
+            string BaseName = "Zi.SalesModule.Lang.LoginResource";
+            InterfaceRm = new ResourceManager(BaseName, typeof(FormLogin).Assembly);
+        }
+
+        private void SetStaticText()
+        {
+            txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", Culture);
+            txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", Culture);
+            ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);
+            ibtnExit.Text = InterfaceRm.GetString("BtnExit", Culture);
+            lbCopyright.Text = InterfaceRm.GetString("LbCopyright", Culture);
         }
 
         private void SetColor()
@@ -199,100 +174,34 @@ namespace Zi.SalesModule.GUIs
                 sound.Play();
             }
         }
+        #endregion
 
-        private void SetStaticText()
-        {
-            CultureName = Properties.Settings.Default.CultureName;
-            Culture = CultureInfo.CreateSpecificCulture(CultureName);
-            string BaseName = "Zi.SalesModule.Lang.LoginResource";
-            InterfaceRm = new ResourceManager(BaseName, typeof(FormLogin).Assembly);
-
-            txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", Culture);
-            txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", Culture);
-            ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);
-            ibtnExit.Text = InterfaceRm.GetString("BtnExit", Culture);
-            lbCopyright.Text = InterfaceRm.GetString("LbCopyright", Culture);
-        }
-
-        private void LoadIcon()
-        {
-            ipicClose.IconChar = IconChar.WindowClose;
-            ipicMinimize.IconChar = IconChar.MinusSquare;
-            ipicFacebookIcon.IconChar = IconChar.Facebook;
-            ipicGoogleIcon.IconChar = IconChar.Google;
-            ipicUsernameStartIcon.IconChar = IconChar.User;
-            ipicPasswordStartIcon.IconChar = IconChar.Lock;
-            ipicPasswordEndIcon.IconChar = IconChar.Eye;
-        }
-
+        #region Effects - Move form by drag and drop
         private void PnlTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            DragAndDropForm();
+        }
+
+        private void DragAndDropForm()
         {
             // Apply form move for pnlTop
             ReleaseCapture();
             SendMessage(Handle, 0x112, 0xf012, 0);
         }
+        #endregion
 
-        private void Ipic_MouseHover(object sender, EventArgs e)
-        {
-            var ipic = sender as IconPictureBox;
-            switch (ipic.Name)
-            {
-                case "ipicClose":
-                    ipic.IconColor = Properties.Settings.Default.ErrorTextColor;
-                    break;
-                case "ipicMinimize":
-                    ipic.IconColor = Properties.Settings.Default.InfoTextColor;
-                    break;
-                case "ipicGoogleIcon":
-                    ipic.IconColor = Color.FromArgb(255, 0, 0);
-                    break;
-                case "ipicFacebookIcon":
-                    ipic.IconColor = Color.FromArgb(24, 119, 242);
-                    break;
-                default:
-                    ipic.IconColor = Properties.Settings.Default.BaseHoverColor;
-                    break;
-            }
-        }
-
-        private void Ipic_MouseLeave(object sender, EventArgs e)
-        {
-            var ipic = sender as IconPictureBox;
-            ipic.IconColor = Properties.Settings.Default.BaseIconColor;
-        }
-
-        private void IpicPasswordEndIcon_Click(object sender, EventArgs e)
-        {
-            string txt = txbPasswordInput.Text;
-            if (txbPasswordInput.UseSystemPasswordChar == true)
-            {
-                txbPasswordInput.UseSystemPasswordChar = false;
-                ipicPasswordEndIcon.IconChar = IconChar.EyeSlash;
-            }
-            else
-            {
-                txbPasswordInput.UseSystemPasswordChar = true;
-                ipicPasswordEndIcon.IconChar = IconChar.Eye;
-            }
-            txbPasswordInput.Text = txt;
-        }
-
-        private void IpicMinimize_Click(object sender, EventArgs e)
-        {
-            WindowState = FormWindowState.Minimized;
-        }
-
+        #region Effects - Windows state switch & Exit application 
         private void IpicClose_Click(object sender, EventArgs e)
         {
-            Exit();
+            ExitApplication();
         }
 
         private void IbtnExit_Click(object sender, EventArgs e)
         {
-            Exit();
+            ExitApplication();
         }
 
-        private void Exit()
+        private void ExitApplication()
         {
             string msgExit = InterfaceRm.GetString("MsgExit", Culture);
             string titleAlert = InterfaceRm.GetString("TitleAlert", Culture);
@@ -319,6 +228,210 @@ namespace Zi.SalesModule.GUIs
             speaker.Speak(InterfaceRm.GetString("SentenceBye", Culture));
         }
 
+        private void IpicMinimize_Click(object sender, EventArgs e)
+        {
+            MinimizeSwitch();
+        }
+
+        private void MinimizeSwitch()
+        {
+            WindowState = FormWindowState.Minimized;
+        }
+        #endregion
+
+        #region Effects - Facebook
+        private void IpicFacebookIcon_Click(object sender, EventArgs e)
+        {
+            GoToFacebookPage();
+        }
+
+        private void GoToFacebookPage()
+        {
+            Process.Start(Properties.Settings.Default.DeveloperFacebookLink);
+        }
+        #endregion
+
+        #region Effects - Google
+        private void IpicGoogleIcon_Click(object sender, EventArgs e)
+        {
+            OpenMailToolWithEmailAddress();
+        }
+
+        private void OpenMailToolWithEmailAddress()
+        {
+            string command = Properties.Settings.Default.DeveloperMailToCmd;
+            Process.Start(command);
+        }
+        #endregion
+
+        #region Effects - Play click sound when button is clicked
+        private void AllButton_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left && ClickStream != null)
+            {
+                PlayClickSound();
+            }
+        }
+
+        private void PlayClickSound()
+        {
+            SoundPlayer sound = new SoundPlayer();
+            ClickStream.Position = 0;
+            sound.Stream = null;
+            sound.Stream = ClickStream;
+            sound.Play();
+        }
+        #endregion
+
+        #region Effects - Turn on/off textbox focus effects 
+        private void TxbInput_Focus(object sender, EventArgs e)
+        {
+            TurnOnHighLight(sender);
+        }
+
+        private void TurnOnHighLight(object sender)
+        {
+            var txb = sender as TextBox;
+            if (txb.Name.Equals("txbUsernameInput"))
+            {
+                txb.SelectAll();
+                lbUsernameError.Text = string.Empty;
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
+                pnlUsernameBorderLeft.BackColor
+                    = pnlUsernameBorderBottom.BackColor
+                    = pnlUsernameBorderRight.BackColor
+                    = pnlUsernameBorderTop.BackColor
+                    = Properties.Settings.Default.BaseHoverColor;
+            }
+            else if (txb.Name.Equals("txbPasswordInput"))
+            {
+                txb.Clear();
+                lbPasswordError.Text = string.Empty;
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseHoverColor;
+                pnlPasswordBorderLeft.BackColor
+                    = pnlPasswordBorderBottom.BackColor
+                    = pnlPasswordBorderRight.BackColor
+                    = pnlPasswordBorderTop.BackColor
+                    = Properties.Settings.Default.BaseHoverColor;
+            }
+        }
+
+        private void TxbInput_UnFocus(object sender, EventArgs e)
+        {
+            TurnOffHighLight(sender);
+        }
+
+        private void TurnOffHighLight(object sender)
+        {
+            var txb = sender as TextBox;
+            if (txb.Name.Equals("txbPasswordInput"))
+            {
+                ipicPasswordStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
+                pnlPasswordBorderLeft.BackColor
+                    = pnlPasswordBorderBottom.BackColor
+                    = pnlPasswordBorderRight.BackColor
+                    = pnlPasswordBorderTop.BackColor
+                    = Properties.Settings.Default.BaseBorderColor;
+            }
+            else if (txb.Name.Equals("txbUsernameInput"))
+            {
+                ipicUsernameStartIcon.IconColor = Properties.Settings.Default.BaseIconColor;
+                pnlUsernameBorderLeft.BackColor
+                    = pnlUsernameBorderBottom.BackColor
+                    = pnlUsernameBorderRight.BackColor
+                    = pnlUsernameBorderTop.BackColor
+                    = Properties.Settings.Default.BaseBorderColor;
+            }
+        }
+        #endregion
+
+        #region Effects - Show/Hide password
+        private void IpicPasswordEndIcon_Click(object sender, EventArgs e)
+        {
+            ShowOrHidePassword();
+        }
+
+        private void ShowOrHidePassword()
+        {
+            string txt = txbPasswordInput.Text;
+            if (txbPasswordInput.UseSystemPasswordChar == true)
+            {
+                txbPasswordInput.UseSystemPasswordChar = false;
+                ipicPasswordEndIcon.IconChar = IconChar.EyeSlash;
+            }
+            else
+            {
+                txbPasswordInput.UseSystemPasswordChar = true;
+                ipicPasswordEndIcon.IconChar = IconChar.Eye;
+            }
+            txbPasswordInput.Text = txt;
+        }
+        #endregion
+
+        #region Effects - Change color of icon when mouse hover/leave
+        private void Ipic_MouseHover(object sender, EventArgs e)
+        {
+            ChangeIconColorToHover(sender);
+        }
+
+        private void ChangeIconColorToHover(object sender)
+        {
+            var ipic = sender as IconPictureBox;
+            switch (ipic.Name)
+            {
+                case "ipicClose":
+                    ipic.IconColor = Properties.Settings.Default.ErrorTextColor;
+                    break;
+                case "ipicMinimize":
+                    ipic.IconColor = Properties.Settings.Default.InfoTextColor;
+                    break;
+                case "ipicGoogleIcon":
+                    ipic.IconColor = Color.FromArgb(255, 0, 0);
+                    break;
+                case "ipicFacebookIcon":
+                    ipic.IconColor = Color.FromArgb(24, 119, 242);
+                    break;
+                default:
+                    ipic.IconColor = Properties.Settings.Default.BaseHoverColor;
+                    break;
+            }
+        }
+
+        private void Ipic_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeIconColorToBase(sender);
+        }
+
+        private void ChangeIconColorToBase(object sender)
+        {
+            var ipic = sender as IconPictureBox;
+            ipic.IconColor = Properties.Settings.Default.BaseIconColor;
+        }
+        #endregion
+
+        #region Effects - Change color of button when mouse hover/leave
+        private void Ibtn_MouseHover(object sender, EventArgs e)
+        {
+            ChangeButtonColorToHover(sender);
+        }
+
+        private void ChangeButtonColorToHover(object sender)
+        {
+            (sender as Button).ForeColor = Properties.Settings.Default.BaseHoverColor;
+        }
+
+        private void Ibtn_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeButtonColorToBase(sender);
+        }
+
+        private void ChangeButtonColorToBase(object sender)
+        {
+            (sender as Button).ForeColor = Properties.Settings.Default.BaseBorderColor;
+        }
+        #endregion
+
+        #region Login
         private void IbtnLogin_Click(object sender, EventArgs e)
         {
             Login();
@@ -358,38 +471,6 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
         }
-
-        private void AllButton_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left && ClickStream != null)
-            {
-                SoundPlayer sound = new SoundPlayer();
-                ClickStream.Position = 0;
-                sound.Stream = null;
-                sound.Stream = ClickStream;
-                sound.Play();
-            }
-        }
-
-        private void Ibtn_MouseHover(object sender, EventArgs e)
-        {
-            (sender as Button).ForeColor = Properties.Settings.Default.BaseHoverColor;
-        }
-
-        private void Ibtn_MouseLeave(object sender, EventArgs e)
-        {
-            (sender as Button).ForeColor = Properties.Settings.Default.BaseBorderColor;
-        }
-
-        private void IpicFacebookIcon_Click(object sender, EventArgs e)
-        {
-            Process.Start(Properties.Settings.Default.DeveloperFacebookLink);
-        }
-
-        private void IpicGoogleIcon_Click(object sender, EventArgs e)
-        {
-            string command = Properties.Settings.Default.DeveloperMailToCmd;
-            Process.Start(command);
-        }
+        #endregion
     }
 }

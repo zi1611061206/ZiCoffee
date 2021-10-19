@@ -222,6 +222,7 @@ namespace Zi.SalesModule.GUIs
             this.Name = "FormMessageBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMessageBox";
+            this.TopMost = true;
             this.pnlIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicMessageStatus)).EndInit();
             this.pnlOptions.ResumeLayout(false);
