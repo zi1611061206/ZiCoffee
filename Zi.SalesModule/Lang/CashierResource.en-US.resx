@@ -204,6 +204,9 @@
   <data name="MsgNoSelectedTable" xml:space="preserve">
     <value>No tables have been selected yet.</value>
   </data>
+  <data name="MsgNotAvailable" xml:space="preserve">
+    <value>This function is not available right now.</value>
+  </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Not Found</value>
   </data>

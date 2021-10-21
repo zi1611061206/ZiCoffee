@@ -1,17 +1,12 @@
 ﻿using FontAwesome.Sharp;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Resources;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Zi.SalesModule.CustomControls;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -53,24 +48,14 @@ namespace Zi.SalesModule.GUIs
         public FormMessageBox()
         {
             InitializeComponent();
-            // Apply Rounded Corners for form
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            DrawRoundedCorner();
             LoadSetting();
         }
 
-        #region Load
-        private void AutoSizing()
+        #region Initial
+        private void DrawRoundedCorner()
         {
-            Size = new Size(Width, pnlTitle.Height + lbContent.Height);
-            int x = (pnlIcon.Width - ipicMessageStatus.Width) / 2;
-            int y = (pnlIcon.Height - ipicMessageStatus.Height) / 2;
-            ipicMessageStatus.Location = new Point(x, y);
-            x = (pnlOptions.Width - ipicButton1.Width) / 2;
-            y = (pnlOptions.Height - ipicButton1.Height) / 2;
-            ipicButton1.Dock = ipicButton2.Dock = ipicButton3.Dock = DockStyle.None;
-            ipicButton1.Location = new Point(x, y - ipicMessageStatus.Height);
-            ipicButton2.Location = new Point(x, y);
-            ipicButton3.Location = new Point(x, y + ipicMessageStatus.Height);
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
         }
 
         private void LoadSetting()
@@ -84,7 +69,7 @@ namespace Zi.SalesModule.GUIs
             CultureName = Properties.Settings.Default.CultureName;
             Culture = CultureInfo.CreateSpecificCulture(CultureName);
             string BaseName = "Zi.SalesModule.Lang.MessageBoxResource";
-            InterfaceRm = new ResourceManager(BaseName, typeof(FormCashier).Assembly);
+            InterfaceRm = new ResourceManager(BaseName, typeof(FormMessageBox).Assembly);
         }
 
         private void SetColor()
@@ -99,7 +84,172 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
-        #region MessageBox Configuration
+        #region Effects - Move form by drag and drop
+        private void LbTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            DragAndDropForm();
+        }
+
+        private void DragAndDropForm()
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+        #endregion
+
+        #region Effects - Auto resize form by content
+        private void AutoSizing()
+        {
+            Size = new Size(Width, pnlTitle.Height + lbContent.Height);
+            int x = (pnlIcon.Width - ipicMessageStatus.Width) / 2;
+            int y = (pnlIcon.Height - ipicMessageStatus.Height) / 2;
+            ipicMessageStatus.Location = new Point(x, y);
+            x = (pnlOptions.Width - ipicButton1.Width) / 2;
+            y = (pnlOptions.Height - ipicButton1.Height) / 2;
+            ipicButton1.Location = new Point(x, y - ipicMessageStatus.Height);
+            ipicButton2.Location = new Point(x, y);
+            ipicButton3.Location = new Point(x, y + ipicMessageStatus.Height);
+        }
+        #endregion
+
+        #region Show Methods
+        public static DialogResult Show(string text, int timer = 0)
+        {
+            formMessageBox = new FormMessageBox();
+            SetMessageBoxTitle(string.Empty);
+            SetMessageBoxContent(text);
+            SetMessageBoxIcon(CustomMessageBoxIcon.None);
+            SetMessageBoxButton(CustomMessageBoxButton.None);
+            SetMessageBoxTimer(timer);
+            formMessageBox.ShowDialog();
+            return result;
+        }
+
+        public static DialogResult Show(string text, string caption, int timer = 0)
+        {
+            formMessageBox = new FormMessageBox();
+            SetMessageBoxTitle(caption);
+            SetMessageBoxContent(text);
+            SetMessageBoxIcon(CustomMessageBoxIcon.None);
+            SetMessageBoxButton(CustomMessageBoxButton.None);
+            SetMessageBoxTimer(timer);
+            formMessageBox.ShowDialog();
+            return result;
+        }
+
+        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, int timer = 0)
+        {
+            formMessageBox = new FormMessageBox();
+            SetMessageBoxTitle(caption);
+            SetMessageBoxContent(text);
+            SetMessageBoxIcon(icon);
+            SetMessageBoxButton(CustomMessageBoxButton.None);
+            SetMessageBoxTimer(timer);
+            formMessageBox.ShowDialog();
+            return result;
+        }
+
+        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, CustomMessageBoxButton buttons, int timer = 0)
+        {
+            formMessageBox = new FormMessageBox();
+            SetMessageBoxTitle(caption);
+            SetMessageBoxContent(text);
+            SetMessageBoxIcon(icon);
+            SetMessageBoxButton(buttons);
+            SetMessageBoxTimer(timer);
+            formMessageBox.ShowDialog();
+            return result;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator, object param)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, string keyword)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, MessageBoxButtons buttons, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, bool displayHelpButton)
+        {
+            return DialogResult.Cancel;
+        }
+        #endregion
+
+        #region Show Methods With Owner
+        private static DialogResult Show(IWin32Window owner, string text)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator, object param)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, string keyword)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
+        {
+            return DialogResult.Cancel;
+        }
+
+        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
+        {
+            return DialogResult.Cancel;
+        }
+        #endregion
+
+        #region MessageBox Configurations
         private static void SetMessageBoxTitle(string caption)
         {
             if (string.IsNullOrEmpty(caption))
@@ -118,33 +268,39 @@ namespace Zi.SalesModule.GUIs
             formMessageBox.AutoSizing();
         }
 
-        private static void SetMessageBoxIcon(MessageBoxIcon icon)
+        private static void SetMessageBoxIcon(CustomMessageBoxIcon icon)
         {
             switch (icon)
             {
-                case MessageBoxIcon.Error: // hand, stop, error = 16
+                case CustomMessageBoxIcon.Error: // hand, stop, error = 16
                     formMessageBox.pnlIcon.Visible = true;
                     formMessageBox.ipicMessageStatus.Visible = true;
                     formMessageBox.ipicMessageStatus.IconChar = IconChar.Bug;
                     formMessageBox.ipicMessageStatus.IconColor = Properties.Settings.Default.ErrorTextColor;
                     break;
-                case MessageBoxIcon.Question: // question = 32
+                case CustomMessageBoxIcon.Question: // question = 32
                     formMessageBox.pnlIcon.Visible = true;
                     formMessageBox.ipicMessageStatus.Visible = true;
                     formMessageBox.ipicMessageStatus.IconChar = IconChar.Question;
                     formMessageBox.ipicMessageStatus.IconColor = Properties.Settings.Default.InfoTextColor;
                     break;
-                case MessageBoxIcon.Warning: // warning, exclamation = 48
+                case CustomMessageBoxIcon.Warning: // warning, exclamation = 48
                     formMessageBox.pnlIcon.Visible = true;
                     formMessageBox.ipicMessageStatus.Visible = true;
                     formMessageBox.ipicMessageStatus.IconChar = IconChar.ExclamationTriangle;
                     formMessageBox.ipicMessageStatus.IconColor = Properties.Settings.Default.WarningTextColor;
                     break;
-                case MessageBoxIcon.Information: // asterisk, information = 64
+                case CustomMessageBoxIcon.Information: // asterisk, information = 64
                     formMessageBox.pnlIcon.Visible = true;
                     formMessageBox.ipicMessageStatus.Visible = true;
                     formMessageBox.ipicMessageStatus.IconChar = IconChar.Info;
                     formMessageBox.ipicMessageStatus.IconColor = Properties.Settings.Default.InfoTextColor;
+                    break;
+                case CustomMessageBoxIcon.Success: // success = 80
+                    formMessageBox.pnlIcon.Visible = true;
+                    formMessageBox.ipicMessageStatus.Visible = true;
+                    formMessageBox.ipicMessageStatus.IconChar = IconChar.CheckCircle;
+                    formMessageBox.ipicMessageStatus.IconColor = Properties.Settings.Default.SuccessTextColor;
                     break;
                 default:
                     formMessageBox.pnlIcon.Visible = false;
@@ -153,11 +309,11 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private static void SetMessageBoxButton(MessageBoxButtons buttons)
+        private static void SetMessageBoxButton(CustomMessageBoxButton buttons)
         {
             switch (buttons)
             {
-                case MessageBoxButtons.YesNo:
+                case CustomMessageBoxButton.YesNo:
                     formMessageBox.pnlOptions.Visible = true;
                     formMessageBox.ipicButton1.Visible = true;
                     formMessageBox.ipicButton1.IconChar = IconChar.Check;
@@ -167,12 +323,12 @@ namespace Zi.SalesModule.GUIs
                     formMessageBox.ipicButton2.IconChar = IconChar.Ban;
                     formMessageBox.ipicButton2.IconColor = Properties.Settings.Default.ErrorTextColor;
                     formMessageBox.ipicButton2.Tag = DialogResult.No;
-                    formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton1, 
+                    formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton1,
                         formMessageBox.InterfaceRm.GetString("Yes", formMessageBox.Culture));
                     formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton2,
                         formMessageBox.InterfaceRm.GetString("No", formMessageBox.Culture));
                     break;
-                case MessageBoxButtons.YesNoCancel:
+                case CustomMessageBoxButton.YesNoCancel:
                     formMessageBox.pnlOptions.Visible = true;
                     formMessageBox.ipicButton1.Visible = true;
                     formMessageBox.ipicButton1.IconChar = IconChar.Check;
@@ -193,7 +349,7 @@ namespace Zi.SalesModule.GUIs
                     formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton3,
                         formMessageBox.InterfaceRm.GetString("Cancel", formMessageBox.Culture));
                     break;
-                case MessageBoxButtons.OKCancel:
+                case CustomMessageBoxButton.OKCancel:
                     formMessageBox.pnlOptions.Visible = true;
                     formMessageBox.ipicButton1.Visible = true;
                     formMessageBox.ipicButton1.IconChar = IconChar.Check;
@@ -208,7 +364,7 @@ namespace Zi.SalesModule.GUIs
                     formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton3,
                         formMessageBox.InterfaceRm.GetString("Cancel", formMessageBox.Culture));
                     break;
-                case MessageBoxButtons.AbortRetryIgnore:
+                case CustomMessageBoxButton.AbortRetryIgnore:
                     formMessageBox.pnlOptions.Visible = true;
                     formMessageBox.ipicButton1.Visible = true;
                     formMessageBox.ipicButton1.IconChar = IconChar.Circle;
@@ -229,169 +385,26 @@ namespace Zi.SalesModule.GUIs
                     formMessageBox.ttNote.SetToolTip(formMessageBox.ipicButton3,
                         formMessageBox.InterfaceRm.GetString("Ignore", formMessageBox.Culture));
                     break;
-                default:
+                case CustomMessageBoxButton.OK:
                     formMessageBox.pnlOptions.Visible = true;
                     formMessageBox.ipicButton1.Visible = true;
                     formMessageBox.ipicButton1.IconChar = IconChar.Check;
                     formMessageBox.ipicButton1.IconColor = Properties.Settings.Default.SuccessTextColor;
                     formMessageBox.ipicButton1.Tag = DialogResult.OK;
                     break;
+                default:
+                    formMessageBox.pnlOptions.Visible = false;
+                    break;
             }
         }
 
         private static void SetMessageBoxTimer(int miliSeconds)
         {
-            if(miliSeconds > 0)
+            if (miliSeconds > 0)
             {
                 formMessageBox.timerAppearence.Interval = miliSeconds;
                 formMessageBox.timerAppearence.Start();
             }
-        }
-        #endregion
-
-        #region Show Methods
-        public static DialogResult Show(string text, int timer = 0)
-        {
-            formMessageBox = new FormMessageBox();
-            SetMessageBoxTitle(string.Empty);
-            SetMessageBoxContent(text);
-            SetMessageBoxIcon(MessageBoxIcon.None);
-            SetMessageBoxButton(MessageBoxButtons.OK);
-            SetMessageBoxTimer(timer);
-            formMessageBox.ShowDialog();
-            return result;
-        }
-
-        public static DialogResult Show(string text, string caption, int timer = 0)
-        {
-            formMessageBox = new FormMessageBox();
-            SetMessageBoxTitle(caption);
-            SetMessageBoxContent(text);
-            SetMessageBoxIcon(MessageBoxIcon.None);
-            SetMessageBoxButton(MessageBoxButtons.OK);
-            SetMessageBoxTimer(timer);
-            formMessageBox.ShowDialog();
-            return result;
-        }
-
-        public static DialogResult Show(string text, string caption, MessageBoxIcon icon, int timer = 0)
-        {
-            formMessageBox = new FormMessageBox();
-            SetMessageBoxTitle(caption);
-            SetMessageBoxContent(text);
-            SetMessageBoxIcon(icon);
-            SetMessageBoxButton(MessageBoxButtons.OK);
-            SetMessageBoxTimer(timer);
-            formMessageBox.ShowDialog();
-            return result;
-        }
-
-        public static DialogResult Show(string text, string caption, MessageBoxIcon icon, MessageBoxButtons buttons, int timer = 0)
-        {
-            formMessageBox = new FormMessageBox();
-            SetMessageBoxTitle(caption);
-            SetMessageBoxContent(text);
-            SetMessageBoxIcon(icon);
-            SetMessageBoxButton(buttons);
-            SetMessageBoxTimer(timer);
-            formMessageBox.ShowDialog();
-            return result;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator, object param)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, string keyword)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, bool displayHelpButton)
-        {
-            return DialogResult.Yes;
-        }
-        #endregion
-
-        #region Show Methods With Owner
-        private static DialogResult Show(IWin32Window owner, string text)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator, object param)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, HelpNavigator navigator)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath, string keyword)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options, string helpFilePath)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton)
-        {
-            return DialogResult.Yes;
-        }
-
-        private static DialogResult Show(IWin32Window owner, string text, string caption, MessageBoxButtons buttons, MessageBoxIcon icon, MessageBoxDefaultButton defaultButton, MessageBoxOptions options)
-        {
-            return DialogResult.Yes;
-        }
-        #endregion
-
-        #region Events
-        private void LbTitle_MouseDown(object sender, MouseEventArgs e)
-        {
-            // Apply form move for pnlTop
-            ReleaseCapture();
-            SendMessage(Handle, 0x112, 0xf012, 0);
         }
 
         private void TimerAppearence_Tick(object sender, EventArgs e)
@@ -413,6 +426,7 @@ namespace Zi.SalesModule.GUIs
                 result = DialogResult.Cancel;
             }
             formMessageBox.Dispose();
+            formMessageBox.timerAppearence.Stop();
         }
         #endregion
     }

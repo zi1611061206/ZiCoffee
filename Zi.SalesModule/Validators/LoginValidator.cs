@@ -15,36 +15,53 @@ namespace Zi.SalesModule.Validators
             get { if (instance == null) instance = new LoginValidator(); return instance; }
             private set { instance = value; }
         }
+        #endregion
+
+        #region Attributes
         public string CultureName { get; set; }
         public ResourceManager ValidateRm { get; set; }
         public CultureInfo Culture { get; set; }
-        private LoginValidator() 
+        private string Username { get; set; }
+        private string Password { get; set; }
+        #endregion
+
+        #region DI
+        private readonly UserService _userService;
+        #endregion
+
+        private LoginValidator()
         {
             CultureName = Properties.Settings.Default.CultureName;
             Culture = CultureInfo.CreateSpecificCulture(CultureName);
             string BaseName = "Zi.SalesModule.Lang.ValidateResource";
             ValidateRm = new ResourceManager(BaseName, typeof(LoginValidator).Assembly);
+
+            _userService = UserService.Instance;
         }
-        #endregion
 
         public bool IsValid(FormLogin form, string username, string password)
         {
+            Username = username;
+            Password = password;
+
             form.lbUsernameError.Text = string.Empty;
             form.lbPasswordError.Text = string.Empty;
-            return CheckBlank(form, username, password) && CheckValidInfo(form, username, password);
+
+            return IsBlank(form)
+                && IsValidInfo(form);
         }
 
-        private bool CheckValidInfo(FormLogin form, string username, string password)
+        private bool IsValidInfo(FormLogin form)
         {
             bool allCondition = true;
-            Tuple<bool, object> existedUsername = UserService.Instance.ExistedUsername(username, CultureName);
+            Tuple<bool, object> existedUsername = _userService.ExistedUsername(Username, CultureName);
             if (!existedUsername.Item1)
             {
                 form.lbUsernameError.Text = existedUsername.Item2.ToString();
                 allCondition = false;
                 return allCondition;
             }
-            Tuple<bool, object> matchedPassword = UserService.Instance.MatchedPassword(username, password, CultureName);
+            Tuple<bool, object> matchedPassword = _userService.MatchedPassword(Username, Password, CultureName);
             if (!matchedPassword.Item1)
             {
                 form.lbPasswordError.Text = matchedPassword.Item2.ToString();
@@ -53,15 +70,15 @@ namespace Zi.SalesModule.Validators
             return allCondition;
         }
 
-        private bool CheckBlank(FormLogin form, string username, string password)
+        private bool IsBlank(FormLogin form)
         {
             bool allCondition = true;
-            if (string.IsNullOrEmpty(username))
+            if (string.IsNullOrEmpty(Username))
             {
                 form.lbUsernameError.Text = ValidateRm.GetString("NotBlank", Culture);
                 allCondition = false;
             }
-            if (string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(Password))
             {
                 form.lbPasswordError.Text = ValidateRm.GetString("NotBlank", Culture);
                 allCondition = false;

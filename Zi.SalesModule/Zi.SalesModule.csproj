@@ -60,18 +60,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomControls\GroupTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomControls\GroupTextBox.Designer.cs">
-      <DependentUpon>GroupTextBox.cs</DependentUpon>
-    </Compile>
-    <Compile Include="CustomControls\PasswordTextBox.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="CustomControls\PasswordTextBox.Designer.cs">
-      <DependentUpon>PasswordTextBox.cs</DependentUpon>
-    </Compile>
+    <Compile Include="CustomControls\CustomMessageBoxButton.cs" />
+    <Compile Include="CustomControls\CustomMessageBoxIcon.cs" />
     <Compile Include="CustomControls\RoundedIconButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -153,6 +143,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MessageBoxResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lang\ProfileResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProfileResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Lang\ValidateResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,13 +155,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\ChangePasswordValidator.cs" />
+    <Compile Include="CustomControls\CharactersCollection.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
-    <EmbeddedResource Include="CustomControls\GroupTextBox.resx">
-      <DependentUpon>GroupTextBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CustomControls\PasswordTextBox.resx">
-      <DependentUpon>PasswordTextBox.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormCashier.resx">
       <DependentUpon>FormCashier.cs</DependentUpon>
     </EmbeddedResource>
@@ -175,6 +166,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormProfile.resx">
+      <DependentUpon>FormProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormStart.resx">
+      <DependentUpon>FormStart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\CashierResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\CashierResource.resx">
@@ -194,6 +191,12 @@
       <LastGenOutput>MessageBoxResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\MessageBoxResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\ProfileResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\ProfileResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ProfileResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ProfileResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.en-US.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -290,6 +293,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Table.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoAvatar.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

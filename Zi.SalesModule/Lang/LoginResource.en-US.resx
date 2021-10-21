@@ -123,6 +123,21 @@
   <data name="BtnLogin" xml:space="preserve">
     <value>Login</value>
   </data>
+  <data name="IpicClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="IpicFacebookIcon" xml:space="preserve">
+    <value>Facebook Page</value>
+  </data>
+  <data name="IpicGoogleIcon" xml:space="preserve">
+    <value>Send Email</value>
+  </data>
+  <data name="IpicMinimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="IpicPasswordEndIcon" xml:space="preserve">
+    <value>Show/Hide Password</value>
+  </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright belongs to ZiTechDev</value>
   </data>

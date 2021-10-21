@@ -123,6 +123,21 @@
   <data name="BtnLogin" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
+  <data name="IpicClose" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="IpicFacebookIcon" xml:space="preserve">
+    <value>Trang Facebook</value>
+  </data>
+  <data name="IpicGoogleIcon" xml:space="preserve">
+    <value>Gửi Email</value>
+  </data>
+  <data name="IpicMinimize" xml:space="preserve">
+    <value>Giảm tối thiểu</value>
+  </data>
+  <data name="IpicPasswordEndIcon" xml:space="preserve">
+    <value>Ẩn/Hiện mật khẩu</value>
+  </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Bản quyền thuộc về ZiTechDev</value>
   </data>
