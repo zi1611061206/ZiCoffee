@@ -204,6 +204,9 @@
   <data name="MsgNoSelectedTable" xml:space="preserve">
     <value>Chưa có bàn nào được chọn.</value>
   </data>
+  <data name="MsgNotAvailable" xml:space="preserve">
+    <value>Chức năng này chưa khả dụng ở thời điểm hiện tại.</value>
+  </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Không tìm thấy</value>
   </data>

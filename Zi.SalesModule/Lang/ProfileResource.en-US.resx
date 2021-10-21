@@ -198,6 +198,9 @@
   <data name="Male" xml:space="preserve">
     <value>Male</value>
   </data>
+  <data name="MsgChangePasswordSuccess" xml:space="preserve">
+    <value>Change password successfully.</value>
+  </data>
   <data name="MsgNotAvailable" xml:space="preserve">
     <value>This function is not available right now.</value>
   </data>

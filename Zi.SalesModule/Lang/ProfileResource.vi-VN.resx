@@ -198,6 +198,9 @@
   <data name="Male" xml:space="preserve">
     <value>Nam</value>
   </data>
+  <data name="MsgChangePasswordSuccess" xml:space="preserve">
+    <value>Thay đổi mật khẩu thành công.</value>
+  </data>
   <data name="MsgNotAvailable" xml:space="preserve">
     <value>Chức năng này chưa khả dụng ở thời điểm hiện tại.</value>
   </data>

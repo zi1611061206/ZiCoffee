@@ -253,7 +253,7 @@ namespace Zi.SalesModule.GUIs
             this.picLogo.Padding = new System.Windows.Forms.Padding(5);
             this.picLogo.Size = new System.Drawing.Size(50, 50);
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 5;
+            this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             this.picLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
             // 
@@ -271,7 +271,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize.Name = "ipicMinimize";
             this.ipicMinimize.Size = new System.Drawing.Size(50, 50);
             this.ipicMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicMinimize.TabIndex = 4;
+            this.ipicMinimize.TabIndex = 0;
             this.ipicMinimize.TabStop = false;
             this.ipicMinimize.Click += new System.EventHandler(this.IpicMinimize_Click);
             this.ipicMinimize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
@@ -291,7 +291,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.Name = "ipicClose";
             this.ipicClose.Size = new System.Drawing.Size(50, 50);
             this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicClose.TabIndex = 2;
+            this.ipicClose.TabIndex = 0;
             this.ipicClose.TabStop = false;
             this.ipicClose.Click += new System.EventHandler(this.IpicClose_Click);
             this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
@@ -446,7 +446,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicWorkCalendar.Name = "ipicWorkCalendar";
             this.ipicWorkCalendar.Size = new System.Drawing.Size(50, 50);
             this.ipicWorkCalendar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicWorkCalendar.TabIndex = 31;
+            this.ipicWorkCalendar.TabIndex = 0;
             this.ipicWorkCalendar.TabStop = false;
             this.ipicWorkCalendar.Click += new System.EventHandler(this.IpicWorkCalendar_Click);
             this.ipicWorkCalendar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
@@ -466,7 +466,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicSalaryTable.Name = "ipicSalaryTable";
             this.ipicSalaryTable.Size = new System.Drawing.Size(50, 50);
             this.ipicSalaryTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicSalaryTable.TabIndex = 30;
+            this.ipicSalaryTable.TabIndex = 0;
             this.ipicSalaryTable.TabStop = false;
             this.ipicSalaryTable.Click += new System.EventHandler(this.IpicSalaryTable_Click);
             this.ipicSalaryTable.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
@@ -486,7 +486,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicChangePassword.Name = "ipicChangePassword";
             this.ipicChangePassword.Size = new System.Drawing.Size(50, 50);
             this.ipicChangePassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicChangePassword.TabIndex = 29;
+            this.ipicChangePassword.TabIndex = 0;
             this.ipicChangePassword.TabStop = false;
             this.ipicChangePassword.Click += new System.EventHandler(this.IpicChangePassword_Click);
             this.ipicChangePassword.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
@@ -539,7 +539,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlChangePasswordOptions.Name = "pnlChangePasswordOptions";
             this.pnlChangePasswordOptions.Padding = new System.Windows.Forms.Padding(0, 15, 0, 5);
             this.pnlChangePasswordOptions.Size = new System.Drawing.Size(360, 80);
-            this.pnlChangePasswordOptions.TabIndex = 0;
+            this.pnlChangePasswordOptions.TabIndex = 4;
             // 
             // ibtnSave
             // 
@@ -562,6 +562,8 @@ namespace Zi.SalesModule.GUIs
             this.ibtnSave.UseVisualStyleBackColor = false;
             this.ibtnSave.Click += new System.EventHandler(this.IbtnSave_Click);
             this.ibtnSave.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnSave.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnSave.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // pnlConfirmPassword
             // 
@@ -573,7 +575,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlConfirmPassword.Location = new System.Drawing.Point(10, 190);
             this.pnlConfirmPassword.Name = "pnlConfirmPassword";
             this.pnlConfirmPassword.Size = new System.Drawing.Size(360, 90);
-            this.pnlConfirmPassword.TabIndex = 0;
+            this.pnlConfirmPassword.TabIndex = 3;
             // 
             // pnlConfirmPasswordCenter
             // 
@@ -587,7 +589,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlConfirmPasswordCenter.Margin = new System.Windows.Forms.Padding(4);
             this.pnlConfirmPasswordCenter.Name = "pnlConfirmPasswordCenter";
             this.pnlConfirmPasswordCenter.Size = new System.Drawing.Size(360, 40);
-            this.pnlConfirmPasswordCenter.TabIndex = 0;
+            this.pnlConfirmPasswordCenter.TabIndex = 3;
             // 
             // txbConfirmPassword
             // 
@@ -629,7 +631,6 @@ namespace Zi.SalesModule.GUIs
             this.ipicConfirmPasswordEndIcon.TabIndex = 0;
             this.ipicConfirmPasswordEndIcon.TabStop = false;
             this.ipicConfirmPasswordEndIcon.Click += new System.EventHandler(this.IpicShowHidePassword_Click);
-            this.ipicConfirmPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ipicConfirmPasswordEndIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicConfirmPasswordEndIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -689,6 +690,7 @@ namespace Zi.SalesModule.GUIs
             this.lbConfirmPasswordError.Size = new System.Drawing.Size(360, 25);
             this.lbConfirmPasswordError.TabIndex = 0;
             this.lbConfirmPasswordError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbConfirmPasswordError.MouseHover += new System.EventHandler(this.LbError_MouseHover);
             // 
             // lbConfirmPassword
             // 
@@ -714,7 +716,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlNewPassword.Location = new System.Drawing.Point(10, 100);
             this.pnlNewPassword.Name = "pnlNewPassword";
             this.pnlNewPassword.Size = new System.Drawing.Size(360, 90);
-            this.pnlNewPassword.TabIndex = 0;
+            this.pnlNewPassword.TabIndex = 2;
             // 
             // pnlNewPasswordCenter
             // 
@@ -728,7 +730,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlNewPasswordCenter.Margin = new System.Windows.Forms.Padding(4);
             this.pnlNewPasswordCenter.Name = "pnlNewPasswordCenter";
             this.pnlNewPasswordCenter.Size = new System.Drawing.Size(360, 40);
-            this.pnlNewPasswordCenter.TabIndex = 0;
+            this.pnlNewPasswordCenter.TabIndex = 2;
             // 
             // txbNewPassword
             // 
@@ -770,7 +772,6 @@ namespace Zi.SalesModule.GUIs
             this.ipicNewPasswordEndIcon.TabIndex = 0;
             this.ipicNewPasswordEndIcon.TabStop = false;
             this.ipicNewPasswordEndIcon.Click += new System.EventHandler(this.IpicShowHidePassword_Click);
-            this.ipicNewPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ipicNewPasswordEndIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicNewPasswordEndIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -830,6 +831,7 @@ namespace Zi.SalesModule.GUIs
             this.lbNewPasswordError.Size = new System.Drawing.Size(360, 25);
             this.lbNewPasswordError.TabIndex = 0;
             this.lbNewPasswordError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbNewPasswordError.MouseHover += new System.EventHandler(this.LbError_MouseHover);
             // 
             // lbNewPassword
             // 
@@ -855,7 +857,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlOldPassword.Location = new System.Drawing.Point(10, 10);
             this.pnlOldPassword.Name = "pnlOldPassword";
             this.pnlOldPassword.Size = new System.Drawing.Size(360, 90);
-            this.pnlOldPassword.TabIndex = 0;
+            this.pnlOldPassword.TabIndex = 1;
             // 
             // pnlOldPasswordCenter
             // 
@@ -869,7 +871,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlOldPasswordCenter.Margin = new System.Windows.Forms.Padding(4);
             this.pnlOldPasswordCenter.Name = "pnlOldPasswordCenter";
             this.pnlOldPasswordCenter.Size = new System.Drawing.Size(360, 40);
-            this.pnlOldPasswordCenter.TabIndex = 0;
+            this.pnlOldPasswordCenter.TabIndex = 1;
             // 
             // txbOldPassword
             // 
@@ -911,7 +913,6 @@ namespace Zi.SalesModule.GUIs
             this.ipicOldPasswordEndIcon.TabIndex = 0;
             this.ipicOldPasswordEndIcon.TabStop = false;
             this.ipicOldPasswordEndIcon.Click += new System.EventHandler(this.IpicShowHidePassword_Click);
-            this.ipicOldPasswordEndIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ipicOldPasswordEndIcon.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicOldPasswordEndIcon.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
@@ -925,7 +926,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlOldPasswordStartIcon.Margin = new System.Windows.Forms.Padding(4);
             this.pnlOldPasswordStartIcon.Name = "pnlOldPasswordStartIcon";
             this.pnlOldPasswordStartIcon.Size = new System.Drawing.Size(36, 38);
-            this.pnlOldPasswordStartIcon.TabIndex = 0;
+            this.pnlOldPasswordStartIcon.TabIndex = 3;
             // 
             // ipicOldPasswordStartIcon
             // 
@@ -971,6 +972,7 @@ namespace Zi.SalesModule.GUIs
             this.lbOldPasswordError.Size = new System.Drawing.Size(360, 25);
             this.lbOldPasswordError.TabIndex = 0;
             this.lbOldPasswordError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbOldPasswordError.MouseHover += new System.EventHandler(this.LbError_MouseHover);
             // 
             // lbOldPassword
             // 
@@ -1066,10 +1068,13 @@ namespace Zi.SalesModule.GUIs
             this.ibtnClose.Name = "ibtnClose";
             this.ibtnClose.Size = new System.Drawing.Size(360, 40);
             this.ibtnClose.TabIndex = 0;
+            this.ibtnClose.TabStop = false;
             this.ibtnClose.Text = "Close";
             this.ibtnClose.UseVisualStyleBackColor = false;
             this.ibtnClose.Click += new System.EventHandler(this.IbtnClose_Click);
             this.ibtnClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnClose.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnClose.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // pnlAddress
             // 
@@ -1110,6 +1115,7 @@ namespace Zi.SalesModule.GUIs
             this.txbAddress.ReadOnly = true;
             this.txbAddress.Size = new System.Drawing.Size(322, 38);
             this.txbAddress.TabIndex = 0;
+            this.txbAddress.TabStop = false;
             this.txbAddress.Text = "Address";
             // 
             // pnlAddressIcon
@@ -1211,6 +1217,7 @@ namespace Zi.SalesModule.GUIs
             this.txbCitizenId.ReadOnly = true;
             this.txbCitizenId.Size = new System.Drawing.Size(322, 38);
             this.txbCitizenId.TabIndex = 0;
+            this.txbCitizenId.TabStop = false;
             this.txbCitizenId.Text = "CitizenId";
             // 
             // pnlCitizenIdIcon
@@ -1312,6 +1319,7 @@ namespace Zi.SalesModule.GUIs
             this.txbGender.ReadOnly = true;
             this.txbGender.Size = new System.Drawing.Size(322, 38);
             this.txbGender.TabIndex = 0;
+            this.txbGender.TabStop = false;
             this.txbGender.Text = "Gender";
             // 
             // pnlGenderIcon
@@ -1413,6 +1421,7 @@ namespace Zi.SalesModule.GUIs
             this.txbDob.ReadOnly = true;
             this.txbDob.Size = new System.Drawing.Size(322, 38);
             this.txbDob.TabIndex = 0;
+            this.txbDob.TabStop = false;
             this.txbDob.Text = "DateOfBirth";
             // 
             // pnlDobIcon
@@ -1514,6 +1523,7 @@ namespace Zi.SalesModule.GUIs
             this.txbEmail.ReadOnly = true;
             this.txbEmail.Size = new System.Drawing.Size(322, 38);
             this.txbEmail.TabIndex = 0;
+            this.txbEmail.TabStop = false;
             this.txbEmail.Text = "Email";
             // 
             // pnlEmailIcon
@@ -1615,6 +1625,7 @@ namespace Zi.SalesModule.GUIs
             this.txbPhoneNumber.ReadOnly = true;
             this.txbPhoneNumber.Size = new System.Drawing.Size(322, 38);
             this.txbPhoneNumber.TabIndex = 0;
+            this.txbPhoneNumber.TabStop = false;
             this.txbPhoneNumber.Text = "PhoneNumber";
             // 
             // pnlPhoneNumberIcon
@@ -1716,6 +1727,7 @@ namespace Zi.SalesModule.GUIs
             this.txbFullName.ReadOnly = true;
             this.txbFullName.Size = new System.Drawing.Size(322, 38);
             this.txbFullName.TabIndex = 0;
+            this.txbFullName.TabStop = false;
             this.txbFullName.Text = "FullName";
             // 
             // pnlFullNameIcon
@@ -1802,7 +1814,6 @@ namespace Zi.SalesModule.GUIs
             this.Name = "FormProfile";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormProfile";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.FormProfile_Load);
             this.pnlTitleBar.ResumeLayout(false);
@@ -1963,6 +1974,10 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlFullNameBorderLeft;
         private System.Windows.Forms.Panel pnlFullNameBorderBottom;
         private System.Windows.Forms.Label lbFullName;
+        private System.Windows.Forms.Panel pnlFormOptions;
+        private FontAwesome.Sharp.IconButton ibtnClose;
+        private System.Windows.Forms.Label lbRole;
+        private System.Windows.Forms.ToolTip ttNote;
         private System.Windows.Forms.Panel pnlOldPassword;
         private System.Windows.Forms.Panel pnlOldPasswordCenter;
         private System.Windows.Forms.TextBox txbOldPassword;
@@ -1998,9 +2013,5 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbConfirmPassword;
         private System.Windows.Forms.Panel pnlChangePasswordOptions;
         private FontAwesome.Sharp.IconButton ibtnSave;
-        private System.Windows.Forms.Panel pnlFormOptions;
-        private FontAwesome.Sharp.IconButton ibtnClose;
-        private System.Windows.Forms.Label lbRole;
-        private System.Windows.Forms.ToolTip ttNote;
     }
 }

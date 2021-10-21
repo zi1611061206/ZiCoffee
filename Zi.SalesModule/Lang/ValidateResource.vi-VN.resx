@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AtLeastOneCommonSpecialChar" xml:space="preserve">
+    <value>Phải chứa ít nhất một ký tự đặc biệt</value>
+  </data>
+  <data name="AtLeastOneLowerCaseChar" xml:space="preserve">
+    <value>Phải chứa ít nhất một ký tự viết thường.</value>
+  </data>
+  <data name="AtLeastOneNumericChar" xml:space="preserve">
+    <value>Phải chứa ít nhất một ký tự số 0-9.</value>
+  </data>
+  <data name="AtLeastOneUpperCaseChar" xml:space="preserve">
+    <value>Phải chứa ít nhất một ký tự viết in.</value>
+  </data>
+  <data name="ConfirmPasswordNotMatched" xml:space="preserve">
+    <value>Mật khẩu xác nhận không khớp.</value>
+  </data>
+  <data name="MinLength" xml:space="preserve">
+    <value>Phải có độ dài tối thiểu</value>
+  </data>
   <data name="NotBlank" xml:space="preserve">
     <value>Trường thông tin này là bắt buộc.</value>
+  </data>
+  <data name="NoUnicodeChar" xml:space="preserve">
+    <value>Không thể chứa ký tự Unicode.</value>
+  </data>
+  <data name="SameAsOldPassword" xml:space="preserve">
+    <value>Phải khác với mật khẩu cũ.</value>
   </data>
 </root>

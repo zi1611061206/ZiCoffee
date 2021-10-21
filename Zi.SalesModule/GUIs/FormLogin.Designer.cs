@@ -29,6 +29,7 @@ namespace Zi.SalesModule.GUIs
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pnlWindowState = new System.Windows.Forms.Panel();
@@ -79,6 +80,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlButton = new System.Windows.Forms.Panel();
             this.ibtnExit = new FontAwesome.Sharp.IconButton();
             this.ibtnLogin = new FontAwesome.Sharp.IconButton();
+            this.ttNote = new System.Windows.Forms.ToolTip(this.components);
             this.pnlTop.SuspendLayout();
             this.pnlWindowState.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
@@ -849,5 +851,6 @@ namespace Zi.SalesModule.GUIs
         private FontAwesome.Sharp.IconButton ibtnLogin;
         public System.Windows.Forms.Label lbUsernameError;
         public System.Windows.Forms.Label lbPasswordError;
+        private System.Windows.Forms.ToolTip ttNote;
     }
 }

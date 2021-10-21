@@ -13,6 +13,7 @@ using Zi.LinqSqlLayer.DAOs;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.SalesModule.CustomControls;
 using Zi.SalesModule.Validators;
 
 namespace Zi.SalesModule.GUIs
@@ -47,9 +48,14 @@ namespace Zi.SalesModule.GUIs
         public Stream ClickStream { get; set; }
         #endregion
 
+        #region DI
+        private readonly UserService _userService;
+        #endregion
+
         public FormLogin()
         {
             InitializeComponent();
+            _userService = UserService.Instance;
         }
 
         #region Initital
@@ -105,6 +111,12 @@ namespace Zi.SalesModule.GUIs
             ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);
             ibtnExit.Text = InterfaceRm.GetString("BtnExit", Culture);
             lbCopyright.Text = InterfaceRm.GetString("LbCopyright", Culture);
+
+            ttNote.SetToolTip(ipicClose, InterfaceRm.GetString("IpicClose", Culture));
+            ttNote.SetToolTip(ipicMinimize, InterfaceRm.GetString("IpicMinimize", Culture));
+            ttNote.SetToolTip(ipicPasswordEndIcon, InterfaceRm.GetString("IpicPasswordEndIcon", Culture));
+            ttNote.SetToolTip(ipicFacebookIcon, InterfaceRm.GetString("IpicFacebookIcon", Culture));
+            ttNote.SetToolTip(ipicGoogleIcon, InterfaceRm.GetString("IpicGoogleIcon", Culture));
         }
 
         private void SetColor()
@@ -204,8 +216,7 @@ namespace Zi.SalesModule.GUIs
         private void ExitApplication()
         {
             string msgExit = InterfaceRm.GetString("MsgExit", Culture);
-            string titleAlert = InterfaceRm.GetString("TitleAlert", Culture);
-            var result = FormMessageBox.Show(msgExit, titleAlert, MessageBoxIcon.Question, MessageBoxButtons.OKCancel);
+            var result = FormMessageBox.Show(msgExit, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.OKCancel);
             if (result == DialogResult.OK)
             {
                 if (Properties.Settings.Default.AllowSayBye)
@@ -449,7 +460,7 @@ namespace Zi.SalesModule.GUIs
             {
                 Username = username
             };
-            var user = ((Paginator<UserModel>)UserService.Instance.Read(filter, CultureName).Item2).Item[0];
+            var user = ((Paginator<UserModel>)_userService.Read(filter, CultureName).Item2).Item[0];
             AccessSuccess(user);
         }
 

@@ -117,7 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AtLeastOneCommonSpecialChar" xml:space="preserve">
+    <value>Must contain at least one special character</value>
+  </data>
+  <data name="AtLeastOneLowerCaseChar" xml:space="preserve">
+    <value>Must contain at least one lowercase character.</value>
+  </data>
+  <data name="AtLeastOneNumericChar" xml:space="preserve">
+    <value>Must contain at least one numeric character 0-9.</value>
+  </data>
+  <data name="AtLeastOneUpperCaseChar" xml:space="preserve">
+    <value>Must contain at least one uppercase character.</value>
+  </data>
+  <data name="ConfirmPasswordNotMatched" xml:space="preserve">
+    <value>Confirmation password does not match.</value>
+  </data>
+  <data name="MinLength" xml:space="preserve">
+    <value>Must have a minimum length</value>
+  </data>
   <data name="NotBlank" xml:space="preserve">
     <value>This field is requied.</value>
+  </data>
+  <data name="NoUnicodeChar" xml:space="preserve">
+    <value>Cannot contain Unicode characters.</value>
+  </data>
+  <data name="SameAsOldPassword" xml:space="preserve">
+    <value>Must be different from the old password.</value>
   </data>
 </root>

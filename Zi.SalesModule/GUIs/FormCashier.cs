@@ -63,10 +63,27 @@ namespace Zi.SalesModule.GUIs
         public int AlertTimer { get; set; }
         #endregion
 
+        #region DI
+        private readonly RoleService _roleService;
+        private readonly AreaService _areaService;
+        private readonly TableService _tableService;
+        private readonly BillService _billService;
+        private readonly BillDetailService _billDetailService;
+        private readonly UserRoleService _userRoleService;
+        private readonly ProductService _productService;
+        #endregion
+
         public FormCashier(UserModel user)
         {
             InitializeComponent();
             CurrentUser = user;
+            _roleService = RoleService.Instance;
+            _areaService = AreaService.Instance;
+            _tableService = TableService.Instance;
+            _billService = BillService.Instance;
+            _billDetailService = BillDetailService.Instance;
+            _userRoleService = UserRoleService.Instance;
+            _productService = ProductService.Instance;
         }
 
         #region Initial
@@ -360,21 +377,21 @@ namespace Zi.SalesModule.GUIs
             {
                 UserId = currentUser.UserId
             };
-            var userRoleReader = UserRoleService.Instance.Read(userRoleFilter, cultureName);
+            var userRoleReader = _userRoleService.Read(userRoleFilter, cultureName);
             var roleId = (userRoleReader.Item2 as Paginator<UserRoleModel>).Item[0].RoleId.ToString();
 
             RoleFilter roleFilter = new RoleFilter
             {
                 RoleId = Guid.Parse(roleId)
             };
-            var roleReader = RoleService.Instance.Read(roleFilter, cultureName);
+            var roleReader = _roleService.Read(roleFilter, cultureName);
             var currentRole = (roleReader.Item2 as Paginator<RoleModel>).Item[0];
             return currentRole;
         }
 
         private void LoadFooter()
         {
-            var tableCounter = TableService.Instance.CountTable();
+            var tableCounter = _tableService.CountTable();
             var readyPercent = tableCounter.Item2 * 100 / tableCounter.Item1;
             lbTotalTable.Text = InterfaceRm.GetString("LbTotalTable", Culture) + ": " + tableCounter.Item1;
             lbReadyTable.Text = InterfaceRm.GetString("LbReadyTable", Culture) + ": " + tableCounter.Item2;
@@ -405,7 +422,7 @@ namespace Zi.SalesModule.GUIs
             CurrentArea = btnAllArea.Tag as AreaModel;
 
             AreaFilter areaFilter = new AreaFilter();
-            var areaReader = AreaService.Instance.Read(areaFilter, CultureName);
+            var areaReader = _areaService.Read(areaFilter, CultureName);
             if (!areaReader.Item1)
             {
                 fpnlAreaList.Controls.Add(new Label()
@@ -532,7 +549,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentArea.AreaId.CompareTo(Guid.Empty) == 0)
             {
                 AreaFilter areaFilter = new AreaFilter();
-                var areaReader = AreaService.Instance.Read(areaFilter, CultureName);
+                var areaReader = _areaService.Read(areaFilter, CultureName);
                 if (areaReader.Item1)
                 {
                     areaBrowseList.AddRange((areaReader.Item2 as Paginator<AreaModel>).Item);
@@ -543,7 +560,7 @@ namespace Zi.SalesModule.GUIs
                 areaBrowseList.Add(CurrentArea);
                 AreaFilter areaFilter = new AreaFilter();
                 areaFilter.ParentId = CurrentArea.AreaId.ToString();
-                var areaReader = AreaService.Instance.Read(areaFilter, CultureName);
+                var areaReader = _areaService.Read(areaFilter, CultureName);
                 if (areaReader.Item1)
                 {
                     areaBrowseList.AddRange((areaReader.Item2 as Paginator<AreaModel>).Item);
@@ -567,7 +584,7 @@ namespace Zi.SalesModule.GUIs
                 {
                     AreaId = item.AreaId
                 };
-                var tableReader = TableService.Instance.Read(tableFilter, CultureName);
+                var tableReader = _tableService.Read(tableFilter, CultureName);
                 if (!tableReader.Item1)
                 {
                     continue;
@@ -637,7 +654,7 @@ namespace Zi.SalesModule.GUIs
             {
                 AreaId = CurrentTable.AreaId
             };
-            var areaReader = AreaService.Instance.Read(filter, CultureName);
+            var areaReader = _areaService.Read(filter, CultureName);
             if (areaReader.Item1)
             {
                 AreaContainTable = (areaReader.Item2 as Paginator<AreaModel>).Item[0];
@@ -661,7 +678,7 @@ namespace Zi.SalesModule.GUIs
                 TableId = CurrentTable.TableId,
                 Status = BillStatus.UnPay
             };
-            var billReader = BillService.Instance.Read(billFilter, CultureName);
+            var billReader = _billService.Read(billFilter, CultureName);
             if (billReader.Item1)
             {
                 BillModel bill = (billReader.Item2 as Paginator<BillModel>).Item[0];
@@ -671,7 +688,7 @@ namespace Zi.SalesModule.GUIs
                 {
                     BillId = bill.BillId
                 };
-                var billDetailReader = BillDetailService.Instance.Read(billDetailFilter, CultureName);
+                var billDetailReader = _billDetailService.Read(billDetailFilter, CultureName);
                 if (billDetailReader.Item1)
                 {
                     int lineCounter = 0;
@@ -683,7 +700,7 @@ namespace Zi.SalesModule.GUIs
                         {
                             ProductId = billDetail.ProductId
                         };
-                        var productReader = ProductService.Instance.Read(productFilter, CultureName);
+                        var productReader = _productService.Read(productFilter, CultureName);
                         if (productReader.Item1)
                         {
                             ProductModel product = (productReader.Item2 as Paginator<ProductModel>).Item[0];
@@ -1213,6 +1230,87 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
+        #region Load ReadyTable and UsingTable for 2 ContextMenuStrips to drop down
+        private void CmsTableDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            LoadReadyTableDropDownItems(tableMoveToolStripMenuItem);
+            LoadUsingTableDropDownItems(tableMergeToolStripMenuItem);
+        }
+
+        private void CmsShortcutKeyDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            LoadReadyTableDropDownItems(moveTableToolStripMenuItem);
+            LoadUsingTableDropDownItems(mergeTableToolStripMenuItem);
+        }
+
+        private void LoadReadyTableDropDownItems(ToolStripMenuItem parentsItem)
+        {
+            parentsItem.DropDownItems.Clear();
+            TableFilter filter = new TableFilter()
+            {
+                Status = TableStatus.Ready
+            };
+            var reader = _tableService.Read(filter, CultureName);
+
+            if (reader.Item1)
+            {
+                List<TableModel> readyTableList = (reader.Item2 as Paginator<TableModel>).Item;
+                if (readyTableList.Count > 0)
+                {
+                    foreach (TableModel item in readyTableList)
+                    {
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+                        toolStripMenuItem.Text = item.Name;
+                        toolStripMenuItem.Tag = item;
+                        toolStripMenuItem.ForeColor = Properties.Settings.Default.SuccessTextColor;
+                        toolStripMenuItem.Click += MoveToReadyTable_Click;
+                        parentsItem.DropDownItems.Add(toolStripMenuItem);
+                    }
+                }
+                else
+                {
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
+                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    parentsItem.DropDownItems.Add(toolStripMenuItem);
+                }
+            }
+        }
+
+        private void LoadUsingTableDropDownItems(ToolStripMenuItem parentsItem)
+        {
+            parentsItem.DropDownItems.Clear();
+            TableFilter filter = new TableFilter()
+            {
+                Status = TableStatus.Using
+            };
+            var reader = _tableService.Read(filter, CultureName);
+            if (reader.Item1)
+            {
+                List<TableModel> usingTableList = (reader.Item2 as Paginator<TableModel>).Item;
+                if (usingTableList.Count > 1)
+                {
+                    foreach (TableModel item in usingTableList)
+                    {
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+                        toolStripMenuItem.Text = item.Name;
+                        toolStripMenuItem.Tag = item;
+                        toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                        toolStripMenuItem.Click += MergeWithUsingTable_Click;
+                        parentsItem.DropDownItems.Add(toolStripMenuItem);
+                    }
+                }
+                else
+                {
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
+                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    parentsItem.DropDownItems.Add(toolStripMenuItem);
+                }
+            }
+        }
+        #endregion
+
         #region Setting
         private void IpicSetting_Click(object sender, EventArgs e)
         {
@@ -1265,13 +1363,13 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
                 return;
             }
             else if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
             {
                 string msg = InterfaceRm.GetString("MsgCannotCheckOut", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
                 return;
             }
 
@@ -1319,13 +1417,13 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
                 return;
             }
             else if (CurrentTable.Status.CompareTo(TableStatus.Pending) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgCannotOrder", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
                 return;
             }
 
@@ -1362,87 +1460,6 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
-        #region Load ReadyTable and UsingTable for 2 ContextMenuStrips to drop down
-        private void CmsTableDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            LoadReadyTableDropDownItems(tableMoveToolStripMenuItem);
-            LoadUsingTableDropDownItems(tableMergeToolStripMenuItem);
-        }
-
-        private void CmsShortcutKeyDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            LoadReadyTableDropDownItems(moveTableToolStripMenuItem);
-            LoadUsingTableDropDownItems(mergeTableToolStripMenuItem);
-        }
-
-        private void LoadReadyTableDropDownItems(ToolStripMenuItem parentsItem)
-        {
-            parentsItem.DropDownItems.Clear();
-            TableFilter filter = new TableFilter()
-            {
-                Status = TableStatus.Ready
-            };
-            var reader = TableService.Instance.Read(filter, CultureName);
-
-            if (reader.Item1)
-            {
-                List<TableModel> readyTableList = (reader.Item2 as Paginator<TableModel>).Item;
-                if (readyTableList.Count > 0)
-                {
-                    foreach (TableModel item in readyTableList)
-                    {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.SuccessTextColor;
-                        toolStripMenuItem.Click += MoveToReadyTable_Click;
-                        parentsItem.DropDownItems.Add(toolStripMenuItem);
-                    }
-                }
-                else
-                {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
-                    parentsItem.DropDownItems.Add(toolStripMenuItem);
-                }
-            }
-        }
-
-        private void LoadUsingTableDropDownItems(ToolStripMenuItem parentsItem)
-        {
-            parentsItem.DropDownItems.Clear();
-            TableFilter filter = new TableFilter()
-            {
-                Status = TableStatus.Using
-            };
-            var reader = TableService.Instance.Read(filter, CultureName);
-            if (reader.Item1)
-            {
-                List<TableModel> usingTableList = (reader.Item2 as Paginator<TableModel>).Item;
-                if (usingTableList.Count > 1)
-                {
-                    foreach (TableModel item in usingTableList)
-                    {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
-                        toolStripMenuItem.Click += MergeWithUsingTable_Click;
-                        parentsItem.DropDownItems.Add(toolStripMenuItem);
-                    }
-                }
-                else
-                {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
-                    parentsItem.DropDownItems.Add(toolStripMenuItem);
-                }
-            }
-        }
-        #endregion
-
         #region Move table
         private void IpicMoveTable_Click(object sender, EventArgs e)
         {
@@ -1455,7 +1472,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
             }
             else
             {
@@ -1472,7 +1489,7 @@ namespace Zi.SalesModule.GUIs
             {
                 Status = TableStatus.Ready
             };
-            var reader = TableService.Instance.Read(filter, CultureName);
+            var reader = _tableService.Read(filter, CultureName);
 
             if (reader.Item1)
             {
@@ -1520,22 +1537,22 @@ namespace Zi.SalesModule.GUIs
 
         private void MoveTableSaveChanged(TableModel destinationTable)
         {
-            var updater1 = BillService.Instance.Update(CurrentBill, CultureName);
+            var updater1 = _billService.Update(CurrentBill, CultureName);
             if (!updater1.Item1)
             {
-                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
-            var updater2 = TableService.Instance.Update(CurrentTable, CultureName);
+            var updater2 = _tableService.Update(CurrentTable, CultureName);
             if (!updater2.Item1)
             {
-                FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
-            var updater3 = TableService.Instance.Update(destinationTable, CultureName);
+            var updater3 = _tableService.Update(destinationTable, CultureName);
             if (!updater3.Item1)
             {
-                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
         }
@@ -1553,7 +1570,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, MessageBoxIcon.Warning, MessageBoxButtons.OK, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
             }
             else
             {
@@ -1570,7 +1587,7 @@ namespace Zi.SalesModule.GUIs
             {
                 Status = TableStatus.Using
             };
-            var reader = TableService.Instance.Read(filter, CultureName);
+            var reader = _tableService.Read(filter, CultureName);
             if (reader.Item1)
             {
                 List<TableModel> usingTableList = (reader.Item2 as Paginator<TableModel>).Item;
@@ -1612,10 +1629,10 @@ namespace Zi.SalesModule.GUIs
                 TableId = destinationTable.TableId,
                 Status = BillStatus.UnPay
             };
-            var destinationBillReader = BillService.Instance.Read(destinationBillFilter, CultureName);
+            var destinationBillReader = _billService.Read(destinationBillFilter, CultureName);
             if (!destinationBillReader.Item1)
             {
-                FormMessageBox.Show(destinationBillReader.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(destinationBillReader.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
             BillModel destinationBill = (destinationBillReader.Item2 as Paginator<BillModel>).Item[0];
@@ -1624,10 +1641,10 @@ namespace Zi.SalesModule.GUIs
             {
                 BillId = destinationBill.BillId
             };
-            var destinationBillDetailReader = BillDetailService.Instance.Read(destinationBillDetailFilter, CultureName);
+            var destinationBillDetailReader = _billDetailService.Read(destinationBillDetailFilter, CultureName);
             if (!destinationBillDetailReader.Item1)
             {
-                FormMessageBox.Show(destinationBillDetailReader.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(destinationBillDetailReader.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
             List<BillDetailModel> destinationBillDetail = (destinationBillDetailReader.Item2 as Paginator<BillDetailModel>).Item;
@@ -1673,10 +1690,10 @@ namespace Zi.SalesModule.GUIs
         {
             foreach (BillDetailModel detailItem in destinationBillDetail)
             {
-                var updater2 = BillDetailService.Instance.Update(detailItem, CultureName);
+                var updater2 = _billDetailService.Update(detailItem, CultureName);
                 if (!updater2.Item1)
                 {
-                    FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                    FormMessageBox.Show(updater2.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                     return;
                 }
             }
@@ -1686,10 +1703,10 @@ namespace Zi.SalesModule.GUIs
         {
             foreach (BillDetailModel detailItem in notMatchList)
             {
-                var creator = BillDetailService.Instance.Create(detailItem, CultureName);
+                var creator = _billDetailService.Create(detailItem, CultureName);
                 if (!creator.Item1)
                 {
-                    FormMessageBox.Show(creator.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                    FormMessageBox.Show(creator.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                     return;
                 }
             }
@@ -1697,30 +1714,30 @@ namespace Zi.SalesModule.GUIs
 
         private void UpdateBillTotalInDestination(BillModel destinationBill)
         {
-            var updater3 = BillService.Instance.Update(destinationBill, CultureName);
+            var updater3 = _billService.Update(destinationBill, CultureName);
             if (!updater3.Item1)
             {
-                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater3.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
         }
 
         private void DeleteBillInOrigin()
         {
-            var deleter = BillService.Instance.Delete(CurrentBill.BillId, CultureName);
+            var deleter = _billService.Delete(CurrentBill.BillId, CultureName);
             if (!deleter.Item1)
             {
-                FormMessageBox.Show(deleter.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(deleter.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
         }
 
         private void UpdateTableStatusInOrigin()
         {
-            var updater1 = TableService.Instance.Update(CurrentTable, CultureName);
+            var updater1 = _tableService.Update(CurrentTable, CultureName);
             if (!updater1.Item1)
             {
-                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater1.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
         }
@@ -1774,24 +1791,24 @@ namespace Zi.SalesModule.GUIs
 
         private void OpenFormProfile()
         {
-            Form formBackground = new Form();
+            //Form formBackground = new Form();
             try
             {
                 using (FormProfile f = new FormProfile(CurrentUser, CurrentRole))
                 {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.Location = Location;
-                    formBackground.Size = Size;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .80d;
-                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    formBackground.TopMost = true;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
+                    //formBackground.StartPosition = FormStartPosition.Manual;
+                    //formBackground.Location = Location;
+                    //formBackground.Size = Size;
+                    //formBackground.FormBorderStyle = FormBorderStyle.None;
+                    //formBackground.Opacity = .80d;
+                    //formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    //formBackground.TopMost = true;
+                    //formBackground.ShowInTaskbar = false;
+                    //formBackground.Show();
 
-                    f.Owner = formBackground;
+                    //f.Owner = formBackground;
                     f.ShowDialog();
-                    formBackground.Dispose();
+                    //formBackground.Dispose();
                 }
             }
             catch (Exception ex)
@@ -1800,7 +1817,7 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                formBackground.Dispose();
+                //formBackground.Dispose();
             }
         }
         #endregion
@@ -1831,10 +1848,10 @@ namespace Zi.SalesModule.GUIs
 
         private void LockTableSaveChanged(TableModel model)
         {
-            var updater = TableService.Instance.Update(model, CultureName);
+            var updater = _tableService.Update(model, CultureName);
             if (!updater.Item1)
             {
-                FormMessageBox.Show(updater.Item2.ToString(), ErrorTitle, MessageBoxIcon.Error, MessageBoxButtons.OK);
+                FormMessageBox.Show(updater.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
                 return;
             }
         }
@@ -1903,12 +1920,23 @@ namespace Zi.SalesModule.GUIs
 
         private void IbtnShortcutKey_Click(object sender, EventArgs e)
         {
+            ShowShortcutKeyContextMenuStrip();
+        }
+
+        private void ShowShortcutKeyContextMenuStrip()
+        {
             cmsShortcutKeyDropDown.Show(ibtnShortcutKey, 0, ibtnShortcutKey.Height);
         }
 
         private void ShortcutEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            OpenShortcutEditor();
+        }
 
+        private void OpenShortcutEditor()
+        {
+            string msg = InterfaceRm.GetString("MsgNotAvailable", Culture);
+            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer);
         }
         #endregion
     }
