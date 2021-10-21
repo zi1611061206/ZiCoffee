@@ -250,7 +250,7 @@
     <value>Cài đặt (Alt + S)</value>
   </data>
   <data name="TtViewBill" xml:space="preserve">
-    <value>Xem hóa đơn (Alt + V)</value>
+    <value>Ẩn/Hiển thị hóa đơn (Alt + V)</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Cảnh báo</value>

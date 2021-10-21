@@ -34,7 +34,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.ipicMinimize = new FontAwesome.Sharp.IconPictureBox();
             this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
             this.pnlTitleRight = new System.Windows.Forms.Panel();
             this.pnlTitleLeft = new System.Windows.Forms.Panel();
@@ -153,7 +152,6 @@ namespace Zi.SalesModule.GUIs
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
             this.pnlInfo.SuspendLayout();
             this.pnlOptions.SuspendLayout();
@@ -219,7 +217,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
             this.pnlTitleBar.Controls.Add(this.lbTitle);
             this.pnlTitleBar.Controls.Add(this.picLogo);
-            this.pnlTitleBar.Controls.Add(this.ipicMinimize);
             this.pnlTitleBar.Controls.Add(this.ipicClose);
             this.pnlTitleBar.Controls.Add(this.pnlTitleRight);
             this.pnlTitleBar.Controls.Add(this.pnlTitleLeft);
@@ -237,7 +234,7 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.Location = new System.Drawing.Point(60, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(1030, 50);
+            this.lbTitle.Size = new System.Drawing.Size(1080, 50);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Title";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -256,26 +253,6 @@ namespace Zi.SalesModule.GUIs
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
             this.picLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
-            // 
-            // ipicMinimize
-            // 
-            this.ipicMinimize.BackColor = System.Drawing.Color.Transparent;
-            this.ipicMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ipicMinimize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ipicMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicMinimize.IconChar = FontAwesome.Sharp.IconChar.Clock;
-            this.ipicMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ipicMinimize.IconSize = 50;
-            this.ipicMinimize.Location = new System.Drawing.Point(1090, 0);
-            this.ipicMinimize.Name = "ipicMinimize";
-            this.ipicMinimize.Size = new System.Drawing.Size(50, 50);
-            this.ipicMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicMinimize.TabIndex = 0;
-            this.ipicMinimize.TabStop = false;
-            this.ipicMinimize.Click += new System.EventHandler(this.IpicMinimize_Click);
-            this.ipicMinimize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
-            this.ipicMinimize.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
             // ipicClose
             // 
@@ -1814,11 +1791,9 @@ namespace Zi.SalesModule.GUIs
             this.Name = "FormProfile";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.FormProfile_Load);
             this.pnlTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
             this.pnlInfo.ResumeLayout(false);
             this.pnlOptions.ResumeLayout(false);
@@ -1896,7 +1871,6 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlTitleBar;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox picLogo;
-        private FontAwesome.Sharp.IconPictureBox ipicMinimize;
         private FontAwesome.Sharp.IconPictureBox ipicClose;
         private System.Windows.Forms.Panel pnlTitleRight;
         private System.Windows.Forms.Panel pnlTitleLeft;

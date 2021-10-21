@@ -250,7 +250,7 @@
     <value>Setting (Alt + S)</value>
   </data>
   <data name="TtViewBill" xml:space="preserve">
-    <value>View Bill (Alt + V)</value>
+    <value>Show/Hide Bill (Alt + V)</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warning</value>

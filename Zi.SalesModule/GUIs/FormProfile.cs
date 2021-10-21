@@ -98,7 +98,6 @@ namespace Zi.SalesModule.GUIs
         private void LoadIcon()
         {
             ipicClose.IconChar = IconChar.WindowClose;
-            ipicMinimize.IconChar = IconChar.MinusSquare;
 
             ipicChangePassword.IconChar = IconChar.Key;
             ipicSalaryTable.IconChar = IconChar.Wallet;
@@ -150,7 +149,6 @@ namespace Zi.SalesModule.GUIs
             WarningTitle = InterfaceRm.GetString("WarningTitle", Culture);
 
             ttNote.SetToolTip(ipicClose, InterfaceRm.GetString("IpicClose", Culture));
-            ttNote.SetToolTip(ipicMinimize, InterfaceRm.GetString("IpicMinimize", Culture));
             ttNote.SetToolTip(ipicChangePassword, InterfaceRm.GetString("IpicChangePassword", Culture));
             ttNote.SetToolTip(ipicSalaryTable, InterfaceRm.GetString("IpicSalaryTable", Culture));
             ttNote.SetToolTip(ipicWorkCalendar, InterfaceRm.GetString("IpicWorkCalendar", Culture));
@@ -237,7 +235,6 @@ namespace Zi.SalesModule.GUIs
                 = Properties.Settings.Default.BaseBorderColor;
 
             ipicClose.IconColor
-                = ipicMinimize.IconColor
                 = ipicChangePassword.IconColor
                 = ipicSalaryTable.IconColor
                 = ipicWorkCalendar.IconColor
@@ -631,9 +628,6 @@ namespace Zi.SalesModule.GUIs
             {
                 case "ipicClose":
                     ipic.IconColor = Properties.Settings.Default.ErrorTextColor;
-                    break;
-                case "ipicMinimize":
-                    ipic.IconColor = Properties.Settings.Default.InfoTextColor;
                     break;
                 default:
                     ipic.IconColor = Properties.Settings.Default.BaseHoverColor;

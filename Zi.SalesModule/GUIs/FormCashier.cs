@@ -226,6 +226,7 @@ namespace Zi.SalesModule.GUIs
             mergeTableToolStripMenuItem.Text = InterfaceRm.GetString("TtMergeTable", Culture);
             lockTableToolStripMenuItem.Text = InterfaceRm.GetString("TtLockTable", Culture);
 
+            tableViewToolStripMenuItem.Text = InterfaceRm.GetString("TtViewBill", Culture);
             tableCheckOutToolStripMenuItem.Text = InterfaceRm.GetString("TtCheckOut", Culture);
             tableLockToolStripMenuItem.Text = InterfaceRm.GetString("TtLockTable", Culture);
             tableMergeToolStripMenuItem.Text = InterfaceRm.GetString("TtMergeWith", Culture);
@@ -732,6 +733,8 @@ namespace Zi.SalesModule.GUIs
         {
             if (lsvBillDetail.Items.Count > 0)
             {
+                viewBillToolStripMenuItem.Enabled 
+                    = tableViewToolStripMenuItem.Enabled = true;
                 ipicCheckOut.Visible
                     = checkOutToolStripMenuItem.Enabled
                     = tableCheckOutToolStripMenuItem.Enabled
@@ -751,6 +754,8 @@ namespace Zi.SalesModule.GUIs
             }
             else
             {
+                viewBillToolStripMenuItem.Enabled 
+                    = tableViewToolStripMenuItem.Enabled = false;
                 ipicCheckOut.Visible
                     = checkOutToolStripMenuItem.Enabled
                     = tableCheckOutToolStripMenuItem.Enabled
