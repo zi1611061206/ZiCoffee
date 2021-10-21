@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Constants;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -16,7 +13,8 @@ namespace Zi.DatabaseEntity.Seeders
             IList<Table> tables = new List<Table>();
 
             #region // G
-            tables.Add(new Table() {
+            tables.Add(new Table()
+            {
                 TableId = Guid.Parse(GuidConstants.TableIdGA1),
                 Name = "Bàn GA1",
                 Status = TableStatus.Ready,

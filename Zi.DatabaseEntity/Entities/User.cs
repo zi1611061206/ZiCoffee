@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Entities
 {

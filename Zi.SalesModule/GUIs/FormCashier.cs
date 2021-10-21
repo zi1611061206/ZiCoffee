@@ -15,8 +15,8 @@ using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Convertors;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
-using Zi.LinqSqlLayer.Enumerators;
 using Zi.SalesModule.CustomControls;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.SalesModule.GUIs
 {
@@ -558,8 +558,10 @@ namespace Zi.SalesModule.GUIs
             else
             {
                 areaBrowseList.Add(CurrentArea);
-                AreaFilter areaFilter = new AreaFilter();
-                areaFilter.ParentId = CurrentArea.AreaId.ToString();
+                AreaFilter areaFilter = new AreaFilter
+                {
+                    ParentId = CurrentArea.AreaId.ToString()
+                };
                 var areaReader = _areaService.Read(areaFilter, CultureName);
                 if (areaReader.Item1)
                 {
@@ -1094,8 +1096,10 @@ namespace Zi.SalesModule.GUIs
 
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
             Brush brush = new SolidBrush(Properties.Settings.Default.BaseBorderColor);
-            Pen pen = new Pen(brush);
-            pen.Width = 7;
+            Pen pen = new Pen(brush)
+            {
+                Width = 7
+            };
             e.Graphics.DrawEllipse(pen, x - 5, y, w - 3, h - 3);
             //e.Graphics.FillEllipse(Brushes.White, x, y, w, h);
         }
@@ -1259,19 +1263,23 @@ namespace Zi.SalesModule.GUIs
                 {
                     foreach (TableModel item in readyTableList)
                     {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.SuccessTextColor;
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                        {
+                            Text = item.Name,
+                            Tag = item,
+                            ForeColor = Properties.Settings.Default.SuccessTextColor
+                        };
                         toolStripMenuItem.Click += MoveToReadyTable_Click;
                         parentsItem.DropDownItems.Add(toolStripMenuItem);
                     }
                 }
                 else
                 {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                    {
+                        Text = InterfaceRm.GetString("MsgNotFound", Culture),
+                        ForeColor = Properties.Settings.Default.ErrorTextColor
+                    };
                     parentsItem.DropDownItems.Add(toolStripMenuItem);
                 }
             }
@@ -1292,19 +1300,23 @@ namespace Zi.SalesModule.GUIs
                 {
                     foreach (TableModel item in usingTableList)
                     {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                        {
+                            Text = item.Name,
+                            Tag = item,
+                            ForeColor = Properties.Settings.Default.ErrorTextColor
+                        };
                         toolStripMenuItem.Click += MergeWithUsingTable_Click;
                         parentsItem.DropDownItems.Add(toolStripMenuItem);
                     }
                 }
                 else
                 {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                    {
+                        Text = InterfaceRm.GetString("MsgNotFound", Culture),
+                        ForeColor = Properties.Settings.Default.ErrorTextColor
+                    };
                     parentsItem.DropDownItems.Add(toolStripMenuItem);
                 }
             }
@@ -1498,19 +1510,23 @@ namespace Zi.SalesModule.GUIs
                 {
                     foreach (TableModel item in readyTableList)
                     {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.SuccessTextColor;
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                        {
+                            Text = item.Name,
+                            Tag = item,
+                            ForeColor = Properties.Settings.Default.SuccessTextColor
+                        };
                         toolStripMenuItem.Click += MoveToReadyTable_Click;
                         cmsReadyTableList.Items.Add(toolStripMenuItem);
                     }
                 }
                 else
                 {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                    {
+                        Text = InterfaceRm.GetString("MsgNotFound", Culture),
+                        ForeColor = Properties.Settings.Default.ErrorTextColor
+                    };
                     cmsReadyTableList.Items.Add(toolStripMenuItem);
                 }
             }
@@ -1595,19 +1611,23 @@ namespace Zi.SalesModule.GUIs
                 {
                     foreach (TableModel item in usingTableList)
                     {
-                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                        toolStripMenuItem.Text = item.Name;
-                        toolStripMenuItem.Tag = item;
-                        toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                        ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                        {
+                            Text = item.Name,
+                            Tag = item,
+                            ForeColor = Properties.Settings.Default.ErrorTextColor
+                        };
                         toolStripMenuItem.Click += MergeWithUsingTable_Click;
                         cmsUsingTableList.Items.Add(toolStripMenuItem);
                     }
                 }
                 else
                 {
-                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
-                    toolStripMenuItem.Text = InterfaceRm.GetString("MsgNotFound", Culture);
-                    toolStripMenuItem.ForeColor = Properties.Settings.Default.ErrorTextColor;
+                    ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem
+                    {
+                        Text = InterfaceRm.GetString("MsgNotFound", Culture),
+                        ForeColor = Properties.Settings.Default.ErrorTextColor
+                    };
                     cmsUsingTableList.Items.Add(toolStripMenuItem);
                 }
             }

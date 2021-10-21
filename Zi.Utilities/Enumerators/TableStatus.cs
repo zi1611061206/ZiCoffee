@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.DatabaseEntity.Enumerators
+namespace Zi.Utilities.Enumerators
 {
-    public enum PromotionPercent
+    public enum TableStatus
     {
-        Normal,
-        Percent
+        Ready,
+        Using,
+        Pending
     }
 }

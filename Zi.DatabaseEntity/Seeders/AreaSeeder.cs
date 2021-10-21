@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
+using Zi.Utilities.Constants;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -15,7 +12,8 @@ namespace Zi.DatabaseEntity.Seeders
             IList<Area> areas = new List<Area>();
 
             #region // Floors
-            areas.Add(new Area() { 
+            areas.Add(new Area()
+            {
                 AreaId = Guid.Parse(GuidConstants.AreaIdG),
                 Name = "Ground Floor",
                 ParentId = string.Empty

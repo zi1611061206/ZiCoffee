@@ -1,6 +1,6 @@
 ﻿using System;
 using Zi.LinqSqlLayer.Engines.Paginators;
-using Zi.LinqSqlLayer.Enumerators;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.LinqSqlLayer.Engines.Filters
 {

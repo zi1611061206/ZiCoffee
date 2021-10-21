@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Enumerators;
 using Zi.LinqToEntityLayer.Engines.Paginators;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.LinqToEntityLayer.Engines.Filters
 {

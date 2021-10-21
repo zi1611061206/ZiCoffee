@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.LinqSqlLayer.Enumerators
+namespace Zi.Utilities.Enumerators
 {
     public enum AccessLevels
     {

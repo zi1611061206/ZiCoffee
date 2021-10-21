@@ -1,8 +1,7 @@
 ﻿namespace Zi.DatabaseEntity.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    using Zi.DatabaseEntity.Enumerators;
+    using Zi.Utilities.Enumerators;
 
     public partial class ZiCoffeeDb : DbMigration
     {

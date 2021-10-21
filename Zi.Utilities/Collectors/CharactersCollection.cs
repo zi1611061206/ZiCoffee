@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.SalesModule.CustomControls
+namespace Zi.Utilities.Collectors
 {
     public class CharactersCollection
     {
@@ -25,7 +25,7 @@ namespace Zi.SalesModule.CustomControls
             LowerUnicodeChars = "aàảãáạăằẳẵắặâầẩẫấậdđeèẻẽéẹêềểễếệiìỉĩíịoòỏõóọôồổỗốộơờởỡớợuùủũúụưừửữứựyỳỷỹýỵ";
             UpperUnicodeChars = LowerUnicodeChars.ToUpper();
             UnicodeChars = LowerUnicodeChars + UpperUnicodeChars;
-            CommonSpecialChars = "!@#$%^&*()_+-/,.';[]`<>?:|{}\"\\";
+            CommonSpecialChars = @"\|!#$%&/()=?»«@£§€{}.-;'<>_,[]*+:@^`~" +'"';
             BackSpaceChars = " ";
         }
     }

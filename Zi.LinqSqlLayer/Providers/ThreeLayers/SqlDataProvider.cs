@@ -20,7 +20,7 @@ namespace Zi.LinqSqlLayer.Providers.ThreeLayers
         }
         #endregion
 
-        private string connectionString = @""/* + Properties.Resources.SqlConnectionString*/;
+        private readonly string connectionString = @""/* + Properties.Resources.SqlConnectionString*/;
 
         /// <summary>
         /// This function used to execute normally queries (select).

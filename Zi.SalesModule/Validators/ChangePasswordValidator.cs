@@ -2,8 +2,8 @@
 using System.Globalization;
 using System.Resources;
 using Zi.LinqSqlLayer.DAOs;
-using Zi.SalesModule.CustomControls;
 using Zi.SalesModule.GUIs;
+using Zi.Utilities.Collectors;
 
 namespace Zi.SalesModule.Validators
 {

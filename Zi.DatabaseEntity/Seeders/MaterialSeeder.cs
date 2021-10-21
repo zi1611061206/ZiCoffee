@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
+using Zi.Utilities.Constants;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -15,7 +12,8 @@ namespace Zi.DatabaseEntity.Seeders
             IList<Material> materials = new List<Material>();
 
             #region // Kg
-            materials.Add(new Material() {
+            materials.Add(new Material()
+            {
                 MaterialId = Guid.Parse(GuidConstants.MaterialId01),
                 Name = "Roasted Coffee Powder",
                 Unit = "Kg",

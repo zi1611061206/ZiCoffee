@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Constants;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -15,7 +12,8 @@ namespace Zi.DatabaseEntity.Seeders
         {
             IList<Category> categories = new List<Category>();
 
-            categories.Add(new Category() { 
+            categories.Add(new Category()
+            {
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdCoffee),
                 Name = "Coffees",
                 Description = string.Empty,
