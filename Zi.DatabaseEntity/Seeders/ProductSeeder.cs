@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Constants;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -27,7 +24,8 @@ namespace Zi.DatabaseEntity.Seeders
             #endregion
 
             #region // Traditional Coffee
-            products.Add(new Product() {
+            products.Add(new Product()
+            {
                 ProductId = Guid.Parse(GuidConstants.ProductId001),
                 Name = "Black Filter Coffee",
                 Description = string.Empty,

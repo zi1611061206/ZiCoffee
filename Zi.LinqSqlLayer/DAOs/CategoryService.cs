@@ -6,8 +6,8 @@ using Zi.LinqSqlLayer.DAOs.Interfaces;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
-using Zi.LinqSqlLayer.Enumerators;
 using Zi.LinqSqlLayer.Providers.LinqToSql;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.LinqSqlLayer.DAOs
 {

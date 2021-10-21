@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.DatabaseEntity.Constants
+namespace Zi.Utilities.Constants
 {
     public class GuidConstants
     {
@@ -150,16 +150,16 @@ namespace Zi.DatabaseEntity.Constants
         #endregion
 
         #region // Area Id List
-        public const string AreaIdG =  "501BF73A-BF64-4178-B948-9C3689B7BDAC";
+        public const string AreaIdG = "501BF73A-BF64-4178-B948-9C3689B7BDAC";
         public const string AreaIdGA = "870C9D34-7589-4C12-AD57-95BACB50EA68";
         public const string AreaIdGB = "8A75FBF1-2FEC-4563-BBED-39DC42806BD7";
         public const string AreaIdGC = "179062C3-8B85-4D45-BC01-E7BC444FB5BF";
-        public const string AreaId1 =  "EF69B64F-B7E1-4485-9168-D39139A5F721";
+        public const string AreaId1 = "EF69B64F-B7E1-4485-9168-D39139A5F721";
         public const string AreaId1A = "D12BA55A-6673-469E-A139-FC72C669AD3E";
         public const string AreaId1B = "F9633F76-1BDD-4111-AC75-9872B42D750A";
         public const string AreaId1C = "F4B50EC9-BEF6-484E-AC01-7C4CC3B998C1";
         public const string AreaId1D = "FC88A819-4C77-49A1-B290-62E6D146EA75";
-        public const string AreaId2 =  "DF9D3D7C-57E2-4A62-9A82-F418953F2B4E";
+        public const string AreaId2 = "DF9D3D7C-57E2-4A62-9A82-F418953F2B4E";
         public const string AreaId2A = "8BCF9ADF-6164-446A-8DAC-8E6D522F3026";
         public const string AreaId2B = "19EAD365-7FA6-4A3E-BAFD-7927661C9985";
         #endregion
@@ -228,7 +228,7 @@ namespace Zi.DatabaseEntity.Constants
         public const string MaterialId28 = "90AC724C-B8BB-4BF0-ACD8-A62EE010D93F";
         public const string MaterialId29 = "E888FC01-AFBE-438D-93BF-D9442DBA0462";
         public const string MaterialId30 = "0FE1C5DE-4F39-4ED6-94B8-3C1CD8EC21BB";
-        
+
         public const string MaterialId31 = "C7AFFBD2-7A9D-44B5-90DF-268D2D0B97D6";
         public const string MaterialId32 = "20DFF57A-7759-4211-B33D-A93A8C578713";
         #endregion

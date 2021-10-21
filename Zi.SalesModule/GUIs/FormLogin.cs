@@ -13,8 +13,8 @@ using Zi.LinqSqlLayer.DAOs;
 using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
-using Zi.SalesModule.CustomControls;
 using Zi.SalesModule.Validators;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.SalesModule.GUIs
 {

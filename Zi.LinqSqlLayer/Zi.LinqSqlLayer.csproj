@@ -100,15 +100,6 @@
     <Compile Include="Engines\Paginators\PaginatorConfiguration.cs" />
     <Compile Include="Engines\Searchers\Searcher.cs" />
     <Compile Include="Engines\Sorters\Sorter.cs" />
-    <Compile Include="Enumerators\AccessLevels.cs" />
-    <Compile Include="Enumerators\BillStatus.cs" />
-    <Compile Include="Enumerators\CategoryStatus.cs" />
-    <Compile Include="Enumerators\Genders.cs" />
-    <Compile Include="Enumerators\ProductStatus.cs" />
-    <Compile Include="Enumerators\PromotionActived.cs" />
-    <Compile Include="Enumerators\PromotionAutoApply.cs" />
-    <Compile Include="Enumerators\PromotionPercent.cs" />
-    <Compile Include="Enumerators\TableStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\LinqToSql\ZiCoffee.designer.cs">
@@ -208,6 +199,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zi.Utilities\Zi.Utilities.csproj">
+      <Project>{efcf4d2e-ec60-4afd-95cf-78bb7df6b4c2}</Project>
+      <Name>Zi.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

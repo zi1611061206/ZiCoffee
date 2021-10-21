@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Data;
-using Zi.LinqSqlLayer.Enumerators;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.LinqSqlLayer.DTOs
 {

@@ -1,13 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.Infrastructure.Annotations;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity.ModelConfiguration;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
 
 namespace Zi.DatabaseEntity.Configurators
 {
@@ -16,7 +8,7 @@ namespace Zi.DatabaseEntity.Configurators
         public UserConfigurations()
         {
             ToTable("Users");
-            HasKey(x=>x.UserId);
+            HasKey(x => x.UserId);
             Property(x => x.UserId)
                 .HasColumnType("UNIQUEIDENTIFIER");
             Property(x => x.FirstName)

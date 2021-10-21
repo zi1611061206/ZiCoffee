@@ -158,6 +158,10 @@
       <Project>{6e1ff32a-213d-4402-9f54-b66f8f981bc8}</Project>
       <Name>Zi.DatabaseEntity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Zi.Utilities\Zi.Utilities.csproj">
+      <Project>{EFCF4D2E-EC60-4AFD-95CF-78BB7DF6B4C2}</Project>
+      <Name>Zi.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\NoAvatar.jpg" />

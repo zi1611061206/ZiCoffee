@@ -8,8 +8,8 @@ using Zi.LinqSqlLayer.Engines.Convertors;
 using Zi.LinqSqlLayer.Engines.Encoders;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
-using Zi.LinqSqlLayer.Enumerators;
 using Zi.LinqSqlLayer.Providers.LinqToSql;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.LinqSqlLayer.DAOs
 {

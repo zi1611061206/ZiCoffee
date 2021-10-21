@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Constants;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Seeders
 {

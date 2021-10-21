@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.DatabaseEntity.Enumerators
+namespace Zi.Utilities.Enumerators
 {
-    public enum CategoryStatus
+    public enum BillStatus
     {
-        NotAvailabled,
-        Availabled
+        UnPay,
+        Paid
     }
 }

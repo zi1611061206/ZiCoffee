@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zi.DatabaseEntity.Enumerators
+namespace Zi.Utilities.Enumerators
 {
-    public enum Genders
+    public enum PromotionActived
     {
-        Male,
-        Female,
-        Other
+        NotActivated,
+        Activated
     }
 }

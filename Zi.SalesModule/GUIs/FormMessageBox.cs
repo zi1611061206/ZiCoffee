@@ -6,7 +6,7 @@ using System.IO;
 using System.Resources;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using Zi.SalesModule.CustomControls;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.SalesModule.GUIs
 {

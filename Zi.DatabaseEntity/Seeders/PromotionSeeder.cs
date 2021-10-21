@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DatabaseEntity.Constants;
 using Zi.DatabaseEntity.Entities;
-using Zi.DatabaseEntity.Enumerators;
+using Zi.Utilities.Constants;
+using Zi.Utilities.Enumerators;
 
 namespace Zi.DatabaseEntity.Seeders
 {
@@ -16,7 +13,8 @@ namespace Zi.DatabaseEntity.Seeders
             IList<Promotion> promotions = new List<Promotion>();
 
             #region // Discount
-            promotions.Add(new Promotion() { 
+            promotions.Add(new Promotion()
+            {
                 PromotionId = Guid.Parse(GuidConstants.PromotionId1),
                 Description = DateTime.Now.ToString("MMMM") + " Sale",
                 IsActived = PromotionActived.NotActivated,
@@ -86,7 +84,7 @@ namespace Zi.DatabaseEntity.Seeders
         private string CodeGenerator(int quantity = 5)
         {
             string codeList = string.Empty;
-            for(int i = 0; i < quantity; i++)
+            for (int i = 0; i < quantity; i++)
             {
                 string guidString = Guid.NewGuid().ToString().Replace("-", "");
                 if (i != quantity - 1)
@@ -96,6 +94,6 @@ namespace Zi.DatabaseEntity.Seeders
                 codeList += guidString;
             }
             return codeList;
-        } 
+        }
     }
 }

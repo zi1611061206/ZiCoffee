@@ -81,7 +81,6 @@
     <Compile Include="Configurators\TableConfigurations.cs" />
     <Compile Include="Configurators\UserConfigurations.cs" />
     <Compile Include="Configurators\UserRoleConfigurations.cs" />
-    <Compile Include="Constants\GuidConstants.cs" />
     <Compile Include="Entities\Area.cs" />
     <Compile Include="Entities\Bill.cs" />
     <Compile Include="Entities\BillDetail.cs" />
@@ -102,15 +101,6 @@
     <Compile Include="Entities\Table.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
-    <Compile Include="Enumerators\AccessLevels.cs" />
-    <Compile Include="Enumerators\BillStatus.cs" />
-    <Compile Include="Enumerators\CategoryStatus.cs" />
-    <Compile Include="Enumerators\Genders.cs" />
-    <Compile Include="Enumerators\ProductStatus.cs" />
-    <Compile Include="Enumerators\PromotionActived.cs" />
-    <Compile Include="Enumerators\PromotionAutoApply.cs" />
-    <Compile Include="Enumerators\PromotionPercent.cs" />
-    <Compile Include="Enumerators\TableStatus.cs" />
     <Compile Include="Migrations\202110121233035_ZiCoffeeDb.cs" />
     <Compile Include="Migrations\202110121233035_ZiCoffeeDb.designer.cs">
       <DependentUpon>202110121233035_ZiCoffeeDb.cs</DependentUpon>
@@ -166,7 +156,15 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Zi.Utilities\Zi.Utilities.csproj">
+      <Project>{efcf4d2e-ec60-4afd-95cf-78bb7df6b4c2}</Project>
+      <Name>Zi.Utilities</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
