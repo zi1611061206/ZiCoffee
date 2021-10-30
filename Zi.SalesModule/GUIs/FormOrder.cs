@@ -586,7 +586,7 @@ namespace Zi.SalesModule.GUIs
                 ListViewItem listViewItem = new ListViewItem(product.Name);
                 listViewItem.SubItems.Add(billDetail.Quantity.ToString());
                 listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
-                listViewItem.SubItems.Add(product.PromotionVulue.ToString());
+                listViewItem.SubItems.Add(billDetail.PromotionValue.ToString());
                 listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
                 listViewItem.Tag = product;
                 lsvBillDetail.Items.Add(listViewItem);
@@ -967,14 +967,14 @@ namespace Zi.SalesModule.GUIs
             }
 
             float intoMoneyIncreased = CurrentProduct.Price;
-            if (CurrentProduct.PromotionVulue > 0)
+            if (CurrentProduct.PromotionValue > 0)
             {
-                intoMoneyIncreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionVulue) / 100;
+                intoMoneyIncreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
             }
 
             foreach (BillDetailModel item in CurrentBillDetails)
             {
-                if (item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
+                if (item.ProductId.CompareTo(CurrentProduct.ProductId) == 0 && item.PromotionValue == CurrentProduct.PromotionValue)
                 {
                     item.Quantity++;
                     item.IntoMoney += intoMoneyIncreased;
@@ -987,6 +987,7 @@ namespace Zi.SalesModule.GUIs
             CurrentBillDetails.Add(new BillDetailModel(CurrentBill.BillId, CurrentProduct.ProductId)
             {
                 IntoMoney = intoMoneyIncreased,
+                PromotionValue = CurrentProduct.PromotionValue
             });
             CurrentBill.Total += intoMoneyIncreased;
             LoadBill();
@@ -1009,9 +1010,9 @@ namespace Zi.SalesModule.GUIs
             }
 
             float intoMoneyDecreased = CurrentProduct.Price;
-            if (CurrentProduct.PromotionVulue > 0)
+            if (CurrentProduct.PromotionValue > 0)
             {
-                intoMoneyDecreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionVulue) / 100;
+                intoMoneyDecreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
             }
 
             foreach (BillDetailModel item in CurrentBillDetails)

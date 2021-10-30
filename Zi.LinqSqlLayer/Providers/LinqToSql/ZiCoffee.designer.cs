@@ -2668,7 +2668,7 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 		
 		private float _Price;
 		
-		private float _PromotionVulue;
+		private float _PromotionValue;
 		
 		private System.Guid _CategoryId;
 		
@@ -2694,8 +2694,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
     partial void OnThumnailChanged();
     partial void OnPriceChanging(float value);
     partial void OnPriceChanged();
-    partial void OnPromotionVulueChanging(float value);
-    partial void OnPromotionVulueChanged();
+    partial void OnPromotionValueChanging(float value);
+    partial void OnPromotionValueChanged();
     partial void OnCategoryIdChanging(System.Guid value);
     partial void OnCategoryIdChanged();
     #endregion
@@ -2828,22 +2828,22 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromotionVulue", DbType="Real NOT NULL")]
-		public float PromotionVulue
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromotionValue", DbType="Real NOT NULL")]
+		public float PromotionValue
 		{
 			get
 			{
-				return this._PromotionVulue;
+				return this._PromotionValue;
 			}
 			set
 			{
-				if ((this._PromotionVulue != value))
+				if ((this._PromotionValue != value))
 				{
-					this.OnPromotionVulueChanging(value);
+					this.OnPromotionValueChanging(value);
 					this.SendPropertyChanging();
-					this._PromotionVulue = value;
-					this.SendPropertyChanged("PromotionVulue");
-					this.OnPromotionVulueChanged();
+					this._PromotionValue = value;
+					this.SendPropertyChanged("PromotionValue");
+					this.OnPromotionValueChanged();
 				}
 			}
 		}

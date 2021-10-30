@@ -12,7 +12,7 @@ namespace Zi.DatabaseEntity.Entities
         public ProductStatus Status { get; set; }
         public byte[] Thumnail { get; set; }
         public float Price { get; set; }
-        public float PromotionVulue { get; set; }
+        public float PromotionValue { get; set; }
         public Guid CategoryId { get; set; }
 
         //FK n-1

@@ -30,7 +30,7 @@ namespace Zi.DatabaseEntity.Configurators
                 .HasColumnType("VARBINARY(MAX)");
             Property(x => x.Price)
                 .IsRequired();
-            Property(x => x.PromotionVulue)
+            Property(x => x.PromotionValue)
                 .IsRequired();
             Property(x => x.CategoryId)
                 .HasColumnType("UNIQUEIDENTIFIER");

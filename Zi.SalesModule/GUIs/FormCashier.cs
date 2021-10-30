@@ -756,7 +756,7 @@ namespace Zi.SalesModule.GUIs
                 ListViewItem listViewItem = new ListViewItem(product.Name);
                 listViewItem.SubItems.Add(billDetail.Quantity.ToString());
                 listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
-                listViewItem.SubItems.Add(product.PromotionVulue.ToString());
+                listViewItem.SubItems.Add(billDetail.PromotionValue.ToString());
                 listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
                 lsvBillDetail.Items.Add(listViewItem);
                 if (listViewItem.Index % 2 == 0)
@@ -1724,7 +1724,7 @@ namespace Zi.SalesModule.GUIs
                 bool isMatched = false;
                 foreach (BillDetailModel destination in destinationBillDetail)
                 {
-                    if (source.ProductId.CompareTo(destination.ProductId) == 0)
+                    if (source.ProductId.CompareTo(destination.ProductId) == 0 && source.PromotionValue == destination.PromotionValue)
                     {
                         destination.Quantity += source.Quantity;
                         destination.IntoMoney += source.IntoMoney;

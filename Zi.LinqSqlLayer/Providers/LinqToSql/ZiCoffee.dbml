@@ -123,7 +123,7 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Thumnail" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Price" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
-      <Column Name="PromotionVulue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="PromotionValue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="CategoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="Product_BillDetail" Member="BillDetails" ThisKey="ProductId" OtherKey="ProductId" Type="BillDetail" />
       <Association Name="Product_Recipe" Member="Recipes" ThisKey="ProductId" OtherKey="ProductId" Type="Recipe" />

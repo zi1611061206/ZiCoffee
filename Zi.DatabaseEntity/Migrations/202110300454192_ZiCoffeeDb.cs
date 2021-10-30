@@ -77,7 +77,7 @@
                     Status = c.Int(nullable: false, defaultValue: (int)ProductStatus.Availabled),
                     Thumnail = c.Binary(nullable: false),
                     Price = c.Single(nullable: false, defaultValue: 0),
-                    PromotionVulue = c.Single(nullable: false, defaultValue: 0),
+                    PromotionValue = c.Single(nullable: false, defaultValue: 0),
                     CategoryId = c.Guid(nullable: false),
                 })
                 .PrimaryKey(t => t.ProductId)

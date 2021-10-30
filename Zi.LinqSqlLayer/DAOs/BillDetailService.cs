@@ -130,6 +130,11 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 query = query.Where(x => x.Quantity <= filter.QuantityMax);
             }
+            query = query.Where(x => x.PromotionValue >= filter.PromotionValueMin);
+            if (filter.PromotionValueMax > filter.PromotionValueMin)
+            {
+                query = query.Where(x => x.PromotionValue <= filter.PromotionValueMax);
+            }
             query = query.Where(x => x.IntoMoney >= filter.IntoMoneyMin);
             if (filter.IntoMoneyMax > filter.IntoMoneyMin)
             {

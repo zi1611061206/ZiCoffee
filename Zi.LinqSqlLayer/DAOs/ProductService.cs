@@ -41,7 +41,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     Status = (int)model.Status,
                     Thumnail = model.Thumnail,
                     Price = model.Price,
-                    PromotionVulue = model.PromotionVulue,
+                    PromotionValue = model.PromotionValue,
                     CategoryId = model.CategoryId
                 };
                 context.Products.InsertOnSubmit(product);
@@ -104,7 +104,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     Status = (ProductStatus)x.Status,
                     Thumnail = x.Thumnail.ToArray(),
                     Price = x.Price,
-                    PromotionVulue = x.PromotionVulue,
+                    PromotionValue = x.PromotionValue,
                     CategoryId = x.CategoryId
                 });
                 var result = new Paginator<ProductModel>()
@@ -143,10 +143,10 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 query = query.Where(x => x.Price <= filter.PriceMax);
             }
-            query = query.Where(x => x.PromotionVulue >= filter.PromotionVulueMin);
-            if (filter.PromotionVulueMax > filter.PriceMin)
+            query = query.Where(x => x.PromotionValue >= filter.PromotionValueMin);
+            if (filter.PromotionValueMax > filter.PriceMin)
             {
-                query = query.Where(x => x.PromotionVulue <= filter.PromotionVulueMax);
+                query = query.Where(x => x.PromotionValue <= filter.PromotionValueMax);
             }
             if (filter.CategoryId.CompareTo(Guid.Empty) != 0)
             {
@@ -215,7 +215,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 product.Status = (int)model.Status;
                 product.Thumnail = model.Thumnail;
                 product.Price = model.Price;
-                product.PromotionVulue = model.PromotionVulue;
+                product.PromotionValue = model.PromotionValue;
                 product.CategoryId = model.CategoryId;
 
                 try

@@ -60,7 +60,7 @@ namespace Zi.LinqToEntityLayer.Services
                     Status = x.Status,
                     Thumnail = x.Thumnail,
                     Price = x.Price,
-                    PromotionVulue = x.PromotionVulue,
+                    PromotionValue = x.PromotionValue,
                     CategoryId = x.CategoryId
                 });
                 var result = new Paginator<Product>()
@@ -95,10 +95,10 @@ namespace Zi.LinqToEntityLayer.Services
             {
                 query.Where(x => x.Price <= filter.PriceMax);
             }
-            query.Where(x => x.PromotionVulue >= filter.PromotionVulueMin);
+            query.Where(x => x.PromotionValue >= filter.PromotionVulueMin);
             if (filter.PromotionVulueMax > filter.PriceMin)
             {
-                query.Where(x => x.PromotionVulue <= filter.PromotionVulueMax);
+                query.Where(x => x.PromotionValue <= filter.PromotionVulueMax);
             }
             if (filter.CategoryId.CompareTo(Guid.Empty) != 0)
             {
@@ -160,7 +160,7 @@ namespace Zi.LinqToEntityLayer.Services
                 data.Status = product.Status;
                 data.Thumnail = product.Thumnail;
                 data.Price = product.Price;
-                data.PromotionVulue = product.PromotionVulue;
+                data.PromotionValue = product.PromotionValue;
                 data.CategoryId = product.CategoryId;
                 if (await context.SaveChangesAsync() <= 0)
                 {
