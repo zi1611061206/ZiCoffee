@@ -1084,6 +1084,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 		
 		private int _Quantity;
 		
+		private float _PromotionValue;
+		
 		private float _IntoMoney;
 		
 		private EntityRef<Bill> _Bill;
@@ -1100,6 +1102,8 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
     partial void OnProductIdChanged();
     partial void OnQuantityChanging(int value);
     partial void OnQuantityChanged();
+    partial void OnPromotionValueChanging(float value);
+    partial void OnPromotionValueChanged();
     partial void OnIntoMoneyChanging(float value);
     partial void OnIntoMoneyChanged();
     #endregion
@@ -1175,6 +1179,26 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 					this._Quantity = value;
 					this.SendPropertyChanged("Quantity");
 					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PromotionValue", DbType="Real NOT NULL")]
+		public float PromotionValue
+		{
+			get
+			{
+				return this._PromotionValue;
+			}
+			set
+			{
+				if ((this._PromotionValue != value))
+				{
+					this.OnPromotionValueChanging(value);
+					this.SendPropertyChanging();
+					this._PromotionValue = value;
+					this.SendPropertyChanged("PromotionValue");
+					this.OnPromotionValueChanged();
 				}
 			}
 		}

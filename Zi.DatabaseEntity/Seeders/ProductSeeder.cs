@@ -32,7 +32,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Status = ProductStatus.Availabled,
                 Thumnail = binaryArray,
                 Price = 20000,
-                PromotionVulue = 0,
+                PromotionVulue = 15,
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdTraditionalCoffee)
             });
             products.Add(new Product()
@@ -145,7 +145,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Status = ProductStatus.Availabled,
                 Thumnail = binaryArray,
                 Price = 35000,
-                PromotionVulue = 0,
+                PromotionVulue = 20,
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdOtherCoffee)
             });
             products.Add(new Product()
@@ -167,7 +167,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Status = ProductStatus.Availabled,
                 Thumnail = binaryArray,
                 Price = 35000,
-                PromotionVulue = 0,
+                PromotionVulue = 50,
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdOtherCoffee)
             });
             products.Add(new Product()
@@ -247,7 +247,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Status = ProductStatus.Availabled,
                 Thumnail = binaryArray,
                 Price = 25000,
-                PromotionVulue = 0,
+                PromotionVulue = 10,
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdMilk)
             });
             products.Add(new Product()
@@ -622,7 +622,7 @@ namespace Zi.DatabaseEntity.Seeders
                 Status = ProductStatus.Availabled,
                 Thumnail = binaryArray,
                 Price = 40000,
-                PromotionVulue = 0,
+                PromotionVulue = 25,
                 CategoryId = Guid.Parse(GuidConstants.CategoryIdFruit)
             });
             products.Add(new Product()

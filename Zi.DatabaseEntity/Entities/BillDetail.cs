@@ -11,6 +11,7 @@ namespace Zi.DatabaseEntity.Entities
         public Guid BillId { get; set; }
         public Guid ProductId { get; set; }
         public int Quantity { get; set; }
+        public float PromotionValue { get; set; }
         public float IntoMoney { get; set; }
 
         //FK m-n

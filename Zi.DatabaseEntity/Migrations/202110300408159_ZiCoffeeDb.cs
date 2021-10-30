@@ -58,6 +58,7 @@
                     BillId = c.Guid(nullable: false),
                     ProductId = c.Guid(nullable: false),
                     Quantity = c.Int(nullable: false, defaultValue: 1),
+                    PromotionValue = c.Single(nullable: false, defaultValue: 0),
                     IntoMoney = c.Single(nullable: false, defaultValue: 0),
                 })
                 .PrimaryKey(t => new { t.BillId, t.ProductId })

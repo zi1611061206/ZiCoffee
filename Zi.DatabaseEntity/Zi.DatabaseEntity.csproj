@@ -101,9 +101,9 @@
     <Compile Include="Entities\Table.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
-    <Compile Include="Migrations\202110121233035_ZiCoffeeDb.cs" />
-    <Compile Include="Migrations\202110121233035_ZiCoffeeDb.designer.cs">
-      <DependentUpon>202110121233035_ZiCoffeeDb.cs</DependentUpon>
+    <Compile Include="Migrations\202110300408159_ZiCoffeeDb.cs" />
+    <Compile Include="Migrations\202110300408159_ZiCoffeeDb.designer.cs">
+      <DependentUpon>202110300408159_ZiCoffeeDb.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -120,8 +120,8 @@
     <Compile Include="Seeders\UserRoleSeeder.cs" />
     <Compile Include="Seeders\UserSeeder.cs" />
     <Compile Include="ZiDbContext.cs" />
-    <EmbeddedResource Include="Migrations\202110121233035_ZiCoffeeDb.resx">
-      <DependentUpon>202110121233035_ZiCoffeeDb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110300408159_ZiCoffeeDb.resx">
+      <DependentUpon>202110300408159_ZiCoffeeDb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

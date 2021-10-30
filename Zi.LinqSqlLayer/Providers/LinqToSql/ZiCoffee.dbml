@@ -44,6 +44,7 @@
       <Column Name="BillId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromotionValue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="IntoMoney" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Association Name="Bill_BillDetail" Member="Bill" ThisKey="BillId" OtherKey="BillId" Type="Bill" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Product_BillDetail" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
