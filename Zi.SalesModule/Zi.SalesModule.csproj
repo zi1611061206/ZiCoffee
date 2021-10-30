@@ -60,11 +60,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\ProductItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ProductItem.Designer.cs">
+      <DependentUpon>ProductItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\RoundedIconButton.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CustomControls\RoundedIconButton.Designer.cs">
       <DependentUpon>RoundedIconButton.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoundedLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\RoundedLabel.Designer.cs">
+      <DependentUpon>RoundedLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\RoundedPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\RoundedPictureBox.Designer.cs">
+      <DependentUpon>RoundedPictureBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\TableItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\TableItem.Designer.cs">
+      <DependentUpon>TableItem.cs</DependentUpon>
     </Compile>
     <Compile Include="GUIs\FormCashier.cs">
       <SubType>Form</SubType>
@@ -131,6 +155,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CashierResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lang\ItemResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ItemResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Lang\LoginResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -140,6 +169,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MessageBoxResource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Lang\OrderResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OrderResource.resx</DependentUpon>
     </Compile>
     <Compile Include="Lang\ProfileResource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -155,6 +189,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Validators\ChangePasswordValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
+    <EmbeddedResource Include="CustomControls\ProductItem.resx">
+      <DependentUpon>ProductItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormCashier.resx">
       <DependentUpon>FormCashier.cs</DependentUpon>
     </EmbeddedResource>
@@ -163,6 +200,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormMessageBox.resx">
       <DependentUpon>FormMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GUIs\FormOrder.resx">
+      <DependentUpon>FormOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="GUIs\FormProfile.resx">
       <DependentUpon>FormProfile.cs</DependentUpon>
@@ -176,6 +216,12 @@
       <LastGenOutput>CashierResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\CashierResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\ItemResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\ItemResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ItemResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\ItemResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\LoginResource.en-US.resx" />
     <EmbeddedResource Include="Lang\LoginResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -188,6 +234,12 @@
       <LastGenOutput>MessageBoxResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\MessageBoxResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\OrderResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\OrderResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>OrderResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\OrderResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\ProfileResource.en-US.resx" />
     <EmbeddedResource Include="Lang\ProfileResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>

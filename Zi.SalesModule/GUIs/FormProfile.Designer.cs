@@ -35,9 +35,8 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle = new System.Windows.Forms.Label();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
-            this.pnlTitleRight = new System.Windows.Forms.Panel();
-            this.pnlTitleLeft = new System.Windows.Forms.Panel();
             this.pnlFooterBar = new System.Windows.Forms.Panel();
+            this.ibtnClose = new FontAwesome.Sharp.IconButton();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlInfo = new System.Windows.Forms.Panel();
@@ -91,8 +90,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeLeft = new System.Windows.Forms.Panel();
             this.pnlResizeRight = new System.Windows.Forms.Panel();
             this.pnlInfoDetail = new System.Windows.Forms.Panel();
-            this.pnlFormOptions = new System.Windows.Forms.Panel();
-            this.ibtnClose = new FontAwesome.Sharp.IconButton();
             this.pnlAddress = new System.Windows.Forms.Panel();
             this.pnlAddressCenter = new System.Windows.Forms.Panel();
             this.txbAddress = new System.Windows.Forms.TextBox();
@@ -153,6 +150,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
+            this.pnlFooterBar.SuspendLayout();
             this.pnlInfo.SuspendLayout();
             this.pnlOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicWorkCalendar)).BeginInit();
@@ -181,7 +179,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlOldPasswordStartIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicOldPasswordStartIcon)).BeginInit();
             this.pnlInfoDetail.SuspendLayout();
-            this.pnlFormOptions.SuspendLayout();
             this.pnlAddress.SuspendLayout();
             this.pnlAddressCenter.SuspendLayout();
             this.pnlAddressIcon.SuspendLayout();
@@ -218,11 +215,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar.Controls.Add(this.lbTitle);
             this.pnlTitleBar.Controls.Add(this.picLogo);
             this.pnlTitleBar.Controls.Add(this.ipicClose);
-            this.pnlTitleBar.Controls.Add(this.pnlTitleRight);
-            this.pnlTitleBar.Controls.Add(this.pnlTitleLeft);
             this.pnlTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
             this.pnlTitleBar.Name = "pnlTitleBar";
+            this.pnlTitleBar.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.pnlTitleBar.Size = new System.Drawing.Size(1200, 50);
             this.pnlTitleBar.TabIndex = 0;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
@@ -232,9 +228,9 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle.BackColor = System.Drawing.Color.Transparent;
             this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTitle.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitle.Location = new System.Drawing.Point(60, 0);
+            this.lbTitle.Location = new System.Drawing.Point(70, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(1080, 50);
+            this.lbTitle.Size = new System.Drawing.Size(1060, 50);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Title";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -245,7 +241,7 @@ namespace Zi.SalesModule.GUIs
             this.picLogo.BackColor = System.Drawing.Color.Transparent;
             this.picLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.picLogo.Image = global::Zi.SalesModule.Properties.Resources.zi_logo;
-            this.picLogo.Location = new System.Drawing.Point(10, 0);
+            this.picLogo.Location = new System.Drawing.Point(20, 0);
             this.picLogo.Name = "picLogo";
             this.picLogo.Padding = new System.Windows.Forms.Padding(5);
             this.picLogo.Size = new System.Drawing.Size(50, 50);
@@ -264,7 +260,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicClose.IconSize = 50;
-            this.ipicClose.Location = new System.Drawing.Point(1140, 0);
+            this.ipicClose.Location = new System.Drawing.Point(1130, 0);
             this.ipicClose.Name = "ipicClose";
             this.ipicClose.Size = new System.Drawing.Size(50, 50);
             this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -274,32 +270,42 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
-            // pnlTitleRight
-            // 
-            this.pnlTitleRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTitleRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTitleRight.Location = new System.Drawing.Point(1190, 0);
-            this.pnlTitleRight.Name = "pnlTitleRight";
-            this.pnlTitleRight.Size = new System.Drawing.Size(10, 50);
-            this.pnlTitleRight.TabIndex = 0;
-            // 
-            // pnlTitleLeft
-            // 
-            this.pnlTitleLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTitleLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlTitleLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitleLeft.Name = "pnlTitleLeft";
-            this.pnlTitleLeft.Size = new System.Drawing.Size(10, 50);
-            this.pnlTitleLeft.TabIndex = 0;
-            // 
             // pnlFooterBar
             // 
             this.pnlFooterBar.BackColor = System.Drawing.Color.Transparent;
+            this.pnlFooterBar.Controls.Add(this.ibtnClose);
             this.pnlFooterBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooterBar.Location = new System.Drawing.Point(0, 670);
+            this.pnlFooterBar.Location = new System.Drawing.Point(0, 650);
             this.pnlFooterBar.Name = "pnlFooterBar";
-            this.pnlFooterBar.Size = new System.Drawing.Size(1200, 30);
+            this.pnlFooterBar.Padding = new System.Windows.Forms.Padding(20, 10, 20, 10);
+            this.pnlFooterBar.Size = new System.Drawing.Size(1200, 50);
             this.pnlFooterBar.TabIndex = 0;
+            // 
+            // ibtnClose
+            // 
+            this.ibtnClose.BackColor = System.Drawing.Color.Transparent;
+            this.ibtnClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.ibtnClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ibtnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ibtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnClose.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ibtnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ibtnClose.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.ibtnClose.IconColor = System.Drawing.Color.Black;
+            this.ibtnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnClose.Location = new System.Drawing.Point(800, 10);
+            this.ibtnClose.Name = "ibtnClose";
+            this.ibtnClose.Size = new System.Drawing.Size(380, 30);
+            this.ibtnClose.TabIndex = 0;
+            this.ibtnClose.TabStop = false;
+            this.ibtnClose.Text = "Close";
+            this.ibtnClose.UseVisualStyleBackColor = false;
+            this.ibtnClose.Click += new System.EventHandler(this.IbtnClose_Click);
+            this.ibtnClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnClose.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnClose.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // pnlRight
             // 
@@ -307,7 +313,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRight.Location = new System.Drawing.Point(1180, 50);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(20, 620);
+            this.pnlRight.Size = new System.Drawing.Size(20, 600);
             this.pnlRight.TabIndex = 0;
             // 
             // pnlLeft
@@ -316,7 +322,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 50);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(20, 620);
+            this.pnlLeft.Size = new System.Drawing.Size(20, 600);
             this.pnlLeft.TabIndex = 0;
             // 
             // pnlInfo
@@ -334,7 +340,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlInfo.MaximumSize = new System.Drawing.Size(500, 0);
             this.pnlInfo.MinimumSize = new System.Drawing.Size(300, 0);
             this.pnlInfo.Name = "pnlInfo";
-            this.pnlInfo.Size = new System.Drawing.Size(380, 620);
+            this.pnlInfo.Size = new System.Drawing.Size(380, 600);
             this.pnlInfo.TabIndex = 0;
             this.pnlInfo.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             // 
@@ -502,7 +508,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlChangePassword.MaximumSize = new System.Drawing.Size(500, 0);
             this.pnlChangePassword.Name = "pnlChangePassword";
             this.pnlChangePassword.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlChangePassword.Size = new System.Drawing.Size(380, 620);
+            this.pnlChangePassword.Size = new System.Drawing.Size(380, 600);
             this.pnlChangePassword.TabIndex = 0;
             this.pnlChangePassword.Visible = false;
             this.pnlChangePassword.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
@@ -972,7 +978,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlResizeLeft.Location = new System.Drawing.Point(400, 50);
             this.pnlResizeLeft.Name = "pnlResizeLeft";
-            this.pnlResizeLeft.Size = new System.Drawing.Size(10, 620);
+            this.pnlResizeLeft.Size = new System.Drawing.Size(10, 600);
             this.pnlResizeLeft.TabIndex = 0;
             this.pnlResizeLeft.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
@@ -988,7 +994,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlResizeRight.Location = new System.Drawing.Point(790, 50);
             this.pnlResizeRight.Name = "pnlResizeRight";
-            this.pnlResizeRight.Size = new System.Drawing.Size(10, 620);
+            this.pnlResizeRight.Size = new System.Drawing.Size(10, 600);
             this.pnlResizeRight.TabIndex = 0;
             this.pnlResizeRight.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
@@ -1000,7 +1006,6 @@ namespace Zi.SalesModule.GUIs
             // pnlInfoDetail
             // 
             this.pnlInfoDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
-            this.pnlInfoDetail.Controls.Add(this.pnlFormOptions);
             this.pnlInfoDetail.Controls.Add(this.pnlAddress);
             this.pnlInfoDetail.Controls.Add(this.pnlCitizenId);
             this.pnlInfoDetail.Controls.Add(this.pnlGender);
@@ -1012,46 +1017,9 @@ namespace Zi.SalesModule.GUIs
             this.pnlInfoDetail.Location = new System.Drawing.Point(410, 50);
             this.pnlInfoDetail.Name = "pnlInfoDetail";
             this.pnlInfoDetail.Padding = new System.Windows.Forms.Padding(10);
-            this.pnlInfoDetail.Size = new System.Drawing.Size(380, 620);
+            this.pnlInfoDetail.Size = new System.Drawing.Size(380, 600);
             this.pnlInfoDetail.TabIndex = 0;
             this.pnlInfoDetail.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
-            // 
-            // pnlFormOptions
-            // 
-            this.pnlFormOptions.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFormOptions.Controls.Add(this.ibtnClose);
-            this.pnlFormOptions.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFormOptions.Location = new System.Drawing.Point(10, 535);
-            this.pnlFormOptions.Name = "pnlFormOptions";
-            this.pnlFormOptions.Padding = new System.Windows.Forms.Padding(0, 15, 0, 5);
-            this.pnlFormOptions.Size = new System.Drawing.Size(360, 75);
-            this.pnlFormOptions.TabIndex = 0;
-            // 
-            // ibtnClose
-            // 
-            this.ibtnClose.BackColor = System.Drawing.Color.Transparent;
-            this.ibtnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.ibtnClose.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ibtnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.ibtnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.ibtnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnClose.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ibtnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ibtnClose.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ibtnClose.IconColor = System.Drawing.Color.Black;
-            this.ibtnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnClose.Location = new System.Drawing.Point(0, 15);
-            this.ibtnClose.Name = "ibtnClose";
-            this.ibtnClose.Size = new System.Drawing.Size(360, 40);
-            this.ibtnClose.TabIndex = 0;
-            this.ibtnClose.TabStop = false;
-            this.ibtnClose.Text = "Close";
-            this.ibtnClose.UseVisualStyleBackColor = false;
-            this.ibtnClose.Click += new System.EventHandler(this.IbtnClose_Click);
-            this.ibtnClose.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
-            this.ibtnClose.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
-            this.ibtnClose.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // pnlAddress
             // 
@@ -1772,7 +1740,6 @@ namespace Zi.SalesModule.GUIs
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
-            this.CancelButton = this.ibtnClose;
             this.ClientSize = new System.Drawing.Size(1200, 700);
             this.Controls.Add(this.pnlInfoDetail);
             this.Controls.Add(this.pnlResizeRight);
@@ -1795,6 +1762,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
+            this.pnlFooterBar.ResumeLayout(false);
             this.pnlInfo.ResumeLayout(false);
             this.pnlOptions.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicWorkCalendar)).EndInit();
@@ -1826,7 +1794,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlOldPasswordStartIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicOldPasswordStartIcon)).EndInit();
             this.pnlInfoDetail.ResumeLayout(false);
-            this.pnlFormOptions.ResumeLayout(false);
             this.pnlAddress.ResumeLayout(false);
             this.pnlAddressCenter.ResumeLayout(false);
             this.pnlAddressCenter.PerformLayout();
@@ -1872,8 +1839,6 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.PictureBox picLogo;
         private FontAwesome.Sharp.IconPictureBox ipicClose;
-        private System.Windows.Forms.Panel pnlTitleRight;
-        private System.Windows.Forms.Panel pnlTitleLeft;
         private System.Windows.Forms.Panel pnlFooterBar;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlLeft;
@@ -1948,8 +1913,6 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlFullNameBorderLeft;
         private System.Windows.Forms.Panel pnlFullNameBorderBottom;
         private System.Windows.Forms.Label lbFullName;
-        private System.Windows.Forms.Panel pnlFormOptions;
-        private FontAwesome.Sharp.IconButton ibtnClose;
         private System.Windows.Forms.Label lbRole;
         private System.Windows.Forms.ToolTip ttNote;
         private System.Windows.Forms.Panel pnlOldPassword;
@@ -1987,5 +1950,6 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Label lbConfirmPassword;
         private System.Windows.Forms.Panel pnlChangePasswordOptions;
         private FontAwesome.Sharp.IconButton ibtnSave;
+        private FontAwesome.Sharp.IconButton ibtnClose;
     }
 }

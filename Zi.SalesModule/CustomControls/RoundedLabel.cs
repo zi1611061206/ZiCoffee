@@ -1,12 +1,11 @@
-﻿using FontAwesome.Sharp;
-using System;
+﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Zi.SalesModule.CustomControls
 {
-    public partial class RoundedIconButton : IconButton
+    public partial class RoundedLabel : Label
     {
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn

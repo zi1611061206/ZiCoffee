@@ -12,7 +12,7 @@ namespace Zi.SalesModule.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -338,13 +338,13 @@ namespace Zi.SalesModule.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
-        public global::System.Drawing.Size ProductItemSize {
+        [global::System.Configuration.DefaultSettingValueAttribute("400, 200")]
+        public global::System.Drawing.Size HorizontalProductItemSize {
             get {
-                return ((global::System.Drawing.Size)(this["ProductItemSize"]));
+                return ((global::System.Drawing.Size)(this["HorizontalProductItemSize"]));
             }
             set {
-                this["ProductItemSize"] = value;
+                this["HorizontalProductItemSize"] = value;
             }
         }
         
@@ -363,12 +363,12 @@ namespace Zi.SalesModule.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("28, 39, 49")]
-        public global::System.Drawing.Color ItemBackColor {
+        public global::System.Drawing.Color BaseItemColor {
             get {
-                return ((global::System.Drawing.Color)(this["ItemBackColor"]));
+                return ((global::System.Drawing.Color)(this["BaseItemColor"]));
             }
             set {
-                this["ItemBackColor"] = value;
+                this["BaseItemColor"] = value;
             }
         }
         
@@ -417,6 +417,66 @@ namespace Zi.SalesModule.Properties {
             }
             set {
                 this["AlertTimer"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("46, 61, 74")]
+        public global::System.Drawing.Color BaseBackColor {
+            get {
+                return ((global::System.Drawing.Color)(this["BaseBackColor"]));
+            }
+            set {
+                this["BaseBackColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 50")]
+        public global::System.Drawing.Size CategoryItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CategoryItemSize"]));
+            }
+            set {
+                this["CategoryItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
+        public global::System.Drawing.Size VerticalProductItemSize {
+            get {
+                return ((global::System.Drawing.Size)(this["VerticalProductItemSize"]));
+            }
+            set {
+                this["VerticalProductItemSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4, 119, 250")]
+        public global::System.Drawing.Color ItemSelectedColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ItemSelectedColor"]));
+            }
+            set {
+                this["ItemSelectedColor"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("33, 46, 58")]
+        public global::System.Drawing.Color ItemHoverColor {
+            get {
+                return ((global::System.Drawing.Color)(this["ItemHoverColor"]));
+            }
+            set {
+                this["ItemHoverColor"] = value;
             }
         }
     }

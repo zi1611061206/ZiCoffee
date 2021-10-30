@@ -48,7 +48,7 @@ namespace Zi.SalesModule.GUIs
         public TableModel CurrentTable { get; set; }
         public AreaModel CurrentArea { get; set; }
         public BillModel CurrentBill { get; set; }
-        public List<BillDetailModel> CurrentBillDetail { get; set; }
+        public List<BillDetailModel> CurrentBillDetails { get; set; }
         public AreaModel AreaContainTable { get; set; }
         public string CultureName { get; set; }
         public ResourceManager InterfaceRm { get; set; }
@@ -102,7 +102,7 @@ namespace Zi.SalesModule.GUIs
             {
                 BillId = Guid.Empty
             };
-            CurrentBillDetail = new List<BillDetailModel>();
+            CurrentBillDetails = new List<BillDetailModel>();
             OnResizeMode = false;
 
             DrawRoundedCorner();
@@ -236,25 +236,25 @@ namespace Zi.SalesModule.GUIs
             lsvBillDetail.Columns[0].Text = InterfaceRm.GetString("ColumnHeaderProduct", Culture);
             lsvBillDetail.Columns[1].Text = InterfaceRm.GetString("ColumnHeaderQuantity", Culture);
             lsvBillDetail.Columns[2].Text = InterfaceRm.GetString("ColumnHeaderPrice", Culture);
-            lsvBillDetail.Columns[3].Text = InterfaceRm.GetString("ColumnHeaderIntoMoney", Culture);
+            lsvBillDetail.Columns[3].Text = InterfaceRm.GetString("ColumnHeaderPromotion", Culture);
+            lsvBillDetail.Columns[4].Text = InterfaceRm.GetString("ColumnHeaderIntoMoney", Culture);
         }
 
         private void SetColor()
         {
+            BackColor = Properties.Settings.Default.BaseBackColor;
             // Header
             pnlTitleBar.BackColor = Properties.Settings.Default.HeaderBackColor;
             // Footer
             pnlFooterBar.BackColor = Properties.Settings.Default.FooterBackColor;
             // Side bar
             pnlNavigationBar.BackColor = Properties.Settings.Default.LeftSideBarBackColor;
-            pnlToolBar.BackColor
-                = pnlBill.BackColor
-                = Properties.Settings.Default.RightSideBarBackColor;
+            pnlToolBar.BackColor = Properties.Settings.Default.RightSideBarBackColor;
             // Body
-            BackColor = Properties.Settings.Default.LeftSideBarBackColor;
             pnlBill.BackColor = Properties.Settings.Default.BodyBackColor;
             fpnlAreaList.BackColor
-                = fpnlTableList.BackColor = Properties.Settings.Default.BodyBackColor;
+                = fpnlTableList.BackColor
+                = Properties.Settings.Default.BodyBackColor;
             // Icon
             ipicClose.IconColor
                 = ipicMinimize.IconColor
@@ -284,7 +284,7 @@ namespace Zi.SalesModule.GUIs
                 = ibtnProfile.IconColor
                 = ibtnLogOut.IconColor
                 = Properties.Settings.Default.BaseTextColor;
-            // Text
+            // Label
             lbTitle.ForeColor = Properties.Settings.Default.BaseTextColor;
             lbTotalTable.ForeColor
                 = lbVersion.ForeColor
@@ -296,7 +296,7 @@ namespace Zi.SalesModule.GUIs
             lbReadyPercent.ForeColor = Properties.Settings.Default.InfoTextColor;
             // ListView
             lsvBillDetail.BackColor = Properties.Settings.Default.BodyBackColor;
-            lsvBillDetail.ForeColor = Properties.Settings.Default.BaseHoverColor;
+            lsvBillDetail.ForeColor = Properties.Settings.Default.BaseTextColor;
         }
 
         private void SetAudio()
@@ -404,13 +404,14 @@ namespace Zi.SalesModule.GUIs
         private void LoadAreaList()
         {
             fpnlAreaList.Controls.Clear();
+
             IconButton btnAllArea = new IconButton()
             {
                 Size = Properties.Settings.Default.AreaItemSize,
                 FlatStyle = FlatStyle.Flat,
                 Text = InterfaceRm.GetString("BtnAllArea", Culture),
                 ForeColor = Properties.Settings.Default.BaseTextColor,
-                BackColor = Properties.Settings.Default.ItemBackColor,
+                BackColor = Properties.Settings.Default.BaseItemColor,
                 Margin = new Padding(10, 10, 10, 10),
                 Tag = new AreaModel()
             };
@@ -419,8 +420,8 @@ namespace Zi.SalesModule.GUIs
             btnAllArea.MouseLeave += BtnArea_MouseLeave;
             btnAllArea.MouseDown += AllBtn_MouseDown;
             btnAllArea.Click += BtnArea_Click;
-            fpnlAreaList.Controls.Add(btnAllArea);
             CurrentArea = btnAllArea.Tag as AreaModel;
+            fpnlAreaList.Controls.Add(btnAllArea);
 
             AreaFilter areaFilter = new AreaFilter();
             var areaReader = _areaService.Read(areaFilter, CultureName);
@@ -444,7 +445,7 @@ namespace Zi.SalesModule.GUIs
                     FlatStyle = FlatStyle.Flat,
                     Text = InterfaceRm.GetString("BtnArea", Culture) + " " + item.Name,
                     ForeColor = Properties.Settings.Default.BaseTextColor,
-                    BackColor = Properties.Settings.Default.ItemBackColor,
+                    BackColor = Properties.Settings.Default.BaseItemColor,
                     Margin = new Padding(10, 10, 10, 10),
                     Tag = item
                 };
@@ -455,42 +456,9 @@ namespace Zi.SalesModule.GUIs
                 btnArea.Click += BtnArea_Click;
                 fpnlAreaList.Controls.Add(btnArea);
             }
+
             LoadTableList();
             fpnlAreaList.Invalidate(fpnlAreaList.Region);
-        }
-
-        private void BtnArea_MouseLeave(object sender, EventArgs e)
-        {
-            IconButton btn = sender as IconButton;
-            btn.ForeColor = Properties.Settings.Default.BaseTextColor;
-
-            string id = (btn.Tag as AreaModel).AreaId.ToString();
-            if (id.ToLower().Equals(Guid.Empty.ToString().ToLower()))
-            {
-                foreach (Control child in fpnlAreaList.Controls)
-                {
-                    if (child is Button)
-                    {
-                        Button btnChild = child as Button;
-                        btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
-                    }
-                }
-            }
-            else
-            {
-                foreach (Control child in fpnlAreaList.Controls)
-                {
-                    if (child is IconButton)
-                    {
-                        IconButton btnChild = child as IconButton;
-                        AreaModel model = btnChild.Tag as AreaModel;
-                        if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
-                        {
-                            btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
-                        }
-                    }
-                }
-            }
         }
 
         private void BtnArea_MouseHover(object sender, EventArgs e)
@@ -527,36 +495,52 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void BtnArea_Click(object sender, EventArgs e)
+        private void BtnArea_MouseLeave(object sender, EventArgs e)
         {
-            LoadTableListByArea(sender);
-        }
+            IconButton btn = sender as IconButton;
+            btn.ForeColor = Properties.Settings.Default.BaseTextColor;
 
-        private void LoadTableListByArea(object sender)
-        {
-            Button btnArea = sender as Button;
-            CurrentArea = btnArea.Tag as AreaModel;
-            LoadTableList();
-        }
-
-        private void LoadTableList()
-        {
-            fpnlTableList.Controls.Clear();
-            Color usingColor = Properties.Settings.Default.ErrorTextColor;
-            Color pendingColor = Properties.Settings.Default.WarningTextColor;
-            Color readyColor = Properties.Settings.Default.SuccessTextColor;
-
-            List<AreaModel> areaBrowseList = new List<AreaModel>();
-            if (CurrentArea.AreaId.CompareTo(Guid.Empty) == 0)
+            string id = (btn.Tag as AreaModel).AreaId.ToString();
+            if (id.ToLower().Equals(Guid.Empty.ToString().ToLower()))
             {
-                AreaFilter areaFilter = new AreaFilter();
-                var areaReader = _areaService.Read(areaFilter, CultureName);
-                if (areaReader.Item1)
+                foreach (Control child in fpnlAreaList.Controls)
                 {
-                    areaBrowseList.AddRange((areaReader.Item2 as Paginator<AreaModel>).Item);
+                    if (child is Button)
+                    {
+                        Button btnChild = child as Button;
+                        btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
+                    }
                 }
             }
             else
+            {
+                foreach (Control child in fpnlAreaList.Controls)
+                {
+                    if (child is IconButton)
+                    {
+                        IconButton btnChild = child as IconButton;
+                        AreaModel model = btnChild.Tag as AreaModel;
+                        if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
+                        {
+                            btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void BtnArea_Click(object sender, EventArgs e)
+        {
+            Button btnArea = sender as Button;
+            CurrentArea = btnArea.Tag as AreaModel;
+            LoadTableListByArea();
+        }
+
+        private void LoadTableListByArea()
+        {
+            List<AreaModel> areaBrowseList = new List<AreaModel>();
+
+            if (CurrentArea.AreaId.CompareTo(Guid.Empty) != 0)
             {
                 areaBrowseList.Add(CurrentArea);
                 AreaFilter areaFilter = new AreaFilter
@@ -569,24 +553,38 @@ namespace Zi.SalesModule.GUIs
                     areaBrowseList.AddRange((areaReader.Item2 as Paginator<AreaModel>).Item);
                 }
             }
-            if (areaBrowseList.Count <= 0)
+
+            if (areaBrowseList.Count > 0)
             {
-                fpnlTableList.Controls.Add(new Label()
-                {
-                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
-                return;
+                LoadTableList(areaBrowseList);
+            }
+            else
+            {
+                LoadTableList();
+            }
+        }
+
+        private void LoadTableList(List<AreaModel> areaBrowseList = null)
+        {
+            List<TableModel> tableList = new List<TableModel>();
+            TableFilter tableFilter = new TableFilter();
+            if (areaBrowseList != null)
+            {
+                tableList = GetTablesByAreas(tableFilter, tableList, areaBrowseList);
+            }
+            else
+            {
+                tableList = GetAllTables(tableFilter, tableList);
             }
 
-            List<TableModel> tableList = new List<TableModel>();
+            DrawTableItems(tableList);
+        }
+
+        private List<TableModel> GetTablesByAreas(TableFilter tableFilter, List<TableModel> tableList, List<AreaModel> areaBrowseList)
+        {
             foreach (AreaModel item in areaBrowseList)
             {
-                TableFilter tableFilter = new TableFilter()
-                {
-                    AreaId = item.AreaId
-                };
+                tableFilter.AreaId = item.AreaId;
                 var tableReader = _tableService.Read(tableFilter, CultureName);
                 if (!tableReader.Item1)
                 {
@@ -597,54 +595,48 @@ namespace Zi.SalesModule.GUIs
                     tableList.AddRange((tableReader.Item2 as Paginator<TableModel>).Item);
                 }
             }
+            return tableList;
+        }
+
+        private List<TableModel> GetAllTables(TableFilter tableFilter, List<TableModel> tableList)
+        {
+            var tableReader = _tableService.Read(tableFilter, CultureName);
+            if (tableReader.Item1)
+            {
+                tableList.AddRange((tableReader.Item2 as Paginator<TableModel>).Item);
+            }
+            return tableList;
+        }
+
+        private void DrawTableItems(List<TableModel> tableList)
+        {
+            fpnlTableList.Controls.Clear();
             if (tableList.Count <= 0)
             {
                 fpnlTableList.Controls.Add(new Label()
                 {
-                    Text = "Not Found",
+                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
                     ForeColor = Properties.Settings.Default.ErrorTextColor,
+                    AutoSize = true,
                     Font = new Font("Arial", 9, FontStyle.Italic)
                 });
-                return;
             }
-
-            foreach (TableModel item in tableList)
+            else
             {
-                RoundedIconButton btnTable = new RoundedIconButton()
+                foreach (TableModel item in tableList)
                 {
-                    Size = Properties.Settings.Default.TableItemSize,
-                    FlatStyle = FlatStyle.Flat,
-                    Text = InterfaceRm.GetString("BtnTable", Culture) + " " + item.Name,
-                    Font = new Font("Arial", 12, FontStyle.Bold),
-                    IconChar = IconChar.Chair,
-                    TextImageRelation = TextImageRelation.ImageAboveText,
-                    BackColor = Properties.Settings.Default.ItemBackColor,
-                    Margin = new Padding(10, 10, 10, 10),
-                    Tag = item
-                };
-                btnTable.FlatAppearance.BorderSize = 0;
-                if (item.Status.CompareTo(TableStatus.Using) == 0)
-                {
-                    btnTable.ForeColor = usingColor;
-                    btnTable.IconColor = usingColor;
-                    btnTable.Text += Environment.NewLine + InterfaceRm.GetString("LbUsingTable", Culture);
+                    TableItem btnTable = new TableItem(item)
+                    {
+                        Size = Properties.Settings.Default.TableItemSize
+                    };
+                    btnTable.MouseDown += AllBtn_MouseDown;
+                    btnTable.MouseDown += BtnTable_MouseDown;
+                    btnTable.Click += BtnTable_Click;
+                    btnTable.MouseHover += BtnTable_MouseHover;
+                    btnTable.MouseLeave += BtnTable_MouseLeave;
+                    btnTable.ContextMenuStrip = cmsTableDropDown;
+                    fpnlTableList.Controls.Add(btnTable);
                 }
-                else if (item.Status.CompareTo(TableStatus.Pending) == 0)
-                {
-                    btnTable.ForeColor = pendingColor;
-                    btnTable.IconColor = pendingColor;
-                    btnTable.Text += Environment.NewLine + InterfaceRm.GetString("LbPendingTable", Culture);
-                }
-                else
-                {
-                    btnTable.ForeColor = readyColor;
-                    btnTable.IconColor = readyColor;
-                    btnTable.Text += Environment.NewLine + InterfaceRm.GetString("LbReadyTable", Culture);
-                }
-                btnTable.MouseDown += AllBtn_MouseDown;
-                btnTable.MouseDown += BtnTable_MouseDown;
-                btnTable.ContextMenuStrip = cmsTableDropDown;
-                fpnlTableList.Controls.Add(btnTable);
             }
             fpnlTableList.Invalidate(fpnlTableList.Region);
         }
@@ -663,10 +655,55 @@ namespace Zi.SalesModule.GUIs
                 AreaContainTable = (areaReader.Item2 as Paginator<AreaModel>).Item[0];
             }
             lbCurrentTable.Invalidate(lbCurrentTable.Region);
-            LoadBillList();
+            LoadBill();
         }
 
-        private void LoadBillList()
+        private void BtnTable_Click(object sender, EventArgs e)
+        {
+            ChangeItemColorToSelected(sender);
+        }
+
+        private void ChangeItemColorToSelected(object sender)
+        {
+            foreach (Control item in fpnlTableList.Controls)
+            {
+                if (item is TableItem && item != sender)
+                {
+                    (item as TableItem).BackColor = Properties.Settings.Default.BaseItemColor;
+                }
+            }
+            (sender as TableItem).BackColor = Properties.Settings.Default.ItemSelectedColor;
+        }
+
+        private void BtnTable_MouseHover(object sender, EventArgs e)
+        {
+            ChangeItemColorToHover(sender);
+        }
+
+        private void ChangeItemColorToHover(object sender)
+        {
+            TableItem item = sender as TableItem;
+            if ((item.Tag as TableModel).TableId.CompareTo(CurrentTable.TableId) != 0)
+            {
+                item.BackColor = Properties.Settings.Default.ItemHoverColor;
+            }
+        }
+
+        private void BtnTable_MouseLeave(object sender, EventArgs e)
+        {
+            ChangeItemColorToBase(sender);
+        }
+
+        private void ChangeItemColorToBase(object sender)
+        {
+            TableItem item = sender as TableItem;
+            if ((item.Tag as TableModel).TableId.CompareTo(CurrentTable.TableId) != 0)
+            {
+                item.BackColor = Properties.Settings.Default.BaseItemColor;
+            }
+        }
+
+        private void LoadBill()
         {
             lsvBillDetail.Items.Clear();
 
@@ -694,34 +731,11 @@ namespace Zi.SalesModule.GUIs
                 var billDetailReader = _billDetailService.Read(billDetailFilter, CultureName);
                 if (billDetailReader.Item1)
                 {
-                    int lineCounter = 0;
                     List<BillDetailModel> billDetails = (billDetailReader.Item2 as Paginator<BillDetailModel>).Item;
-                    CurrentBillDetail = billDetails;
+                    CurrentBillDetails = billDetails;
                     foreach (BillDetailModel billDetail in billDetails)
                     {
-                        ProductFilter productFilter = new ProductFilter()
-                        {
-                            ProductId = billDetail.ProductId
-                        };
-                        var productReader = _productService.Read(productFilter, CultureName);
-                        if (productReader.Item1)
-                        {
-                            ProductModel product = (productReader.Item2 as Paginator<ProductModel>).Item[0];
-                            ListViewItem listViewItem = new ListViewItem(product.Name);
-                            listViewItem.SubItems.Add(billDetail.Quantity.ToString());
-                            listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
-                            listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
-                            lsvBillDetail.Items.Add(listViewItem);
-                            lineCounter++;
-                            if (lineCounter % 2 == 0)
-                            {
-                                listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
-                            }
-                            else
-                            {
-                                listViewItem.ForeColor = Properties.Settings.Default.BaseTextColor;
-                            }
-                        }
+                        LoadBillDetails(billDetail);
                     }
                 }
 
@@ -729,11 +743,38 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
+        private void LoadBillDetails(BillDetailModel billDetail)
+        {
+            ProductFilter productFilter = new ProductFilter()
+            {
+                ProductId = billDetail.ProductId
+            };
+            var productReader = _productService.Read(productFilter, CultureName);
+            if (productReader.Item1)
+            {
+                ProductModel product = (productReader.Item2 as Paginator<ProductModel>).Item[0];
+                ListViewItem listViewItem = new ListViewItem(product.Name);
+                listViewItem.SubItems.Add(billDetail.Quantity.ToString());
+                listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
+                listViewItem.SubItems.Add(product.PromotionVulue.ToString());
+                listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
+                lsvBillDetail.Items.Add(listViewItem);
+                if (listViewItem.Index % 2 == 0)
+                {
+                    listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
+                }
+                else
+                {
+                    listViewItem.ForeColor = Properties.Settings.Default.BaseTextColor;
+                }
+            }
+        }
+
         private void SetToolState()
         {
             if (lsvBillDetail.Items.Count > 0)
             {
-                viewBillToolStripMenuItem.Enabled 
+                viewBillToolStripMenuItem.Enabled
                     = tableViewToolStripMenuItem.Enabled = true;
                 ipicCheckOut.Visible
                     = checkOutToolStripMenuItem.Enabled
@@ -754,7 +795,7 @@ namespace Zi.SalesModule.GUIs
             }
             else
             {
-                viewBillToolStripMenuItem.Enabled 
+                viewBillToolStripMenuItem.Enabled
                     = tableViewToolStripMenuItem.Enabled = false;
                 ipicCheckOut.Visible
                     = checkOutToolStripMenuItem.Enabled
@@ -1121,7 +1162,8 @@ namespace Zi.SalesModule.GUIs
             lsvBillDetail.Columns[1].Width = 50;
             lsvBillDetail.Columns[2].Width = 100;
             lsvBillDetail.Columns[3].Width = 100;
-            lsvBillDetail.Columns[0].Width = lsvBillDetail.Width - (100 + 100 + 50);
+            lsvBillDetail.Columns[4].Width = 100;
+            lsvBillDetail.Columns[0].Width = lsvBillDetail.Width - (100 + 100 + 100 + 50);
         }
         #endregion
 
@@ -1444,24 +1486,24 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            Form formBackground = new Form();
+            //Form formBackground = new Form();
             try
             {
-                using (FormOrder f = new FormOrder(CurrentTable, CurrentUser))
+                using (FormOrder f = new FormOrder(CurrentTable, CurrentUser, CurrentBill, CurrentBillDetails))
                 {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.Location = Location;
-                    formBackground.Size = Size;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .80d;
-                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    formBackground.TopMost = true;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
+                    //formBackground.StartPosition = FormStartPosition.Manual;
+                    //formBackground.Location = Location;
+                    //formBackground.Size = Size;
+                    //formBackground.FormBorderStyle = FormBorderStyle.None;
+                    //formBackground.Opacity = .80d;
+                    //formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
+                    //formBackground.TopMost = true;
+                    //formBackground.ShowInTaskbar = false;
+                    //formBackground.Show();
 
-                    f.Owner = formBackground;
+                    //f.Owner = formBackground;
                     f.ShowDialog();
-                    formBackground.Dispose();
+                    //formBackground.Dispose();
                 }
             }
             catch (Exception ex)
@@ -1470,7 +1512,7 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                formBackground.Dispose();
+                //formBackground.Dispose();
                 ReLoadTable();
                 LoadFooter();
             }
@@ -1677,7 +1719,7 @@ namespace Zi.SalesModule.GUIs
             CurrentTable.Status = TableStatus.Ready;
             List<BillDetailModel> notMatchList = new List<BillDetailModel>();
             float destinationBillTotal = destinationBill.Total;
-            foreach (BillDetailModel source in CurrentBillDetail)
+            foreach (BillDetailModel source in CurrentBillDetails)
             {
                 bool isMatched = false;
                 foreach (BillDetailModel destination in destinationBillDetail)
@@ -1768,7 +1810,7 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
-        #region Load table
+        #region Reload table
         private void IpicLoadTable_Click(object sender, EventArgs e)
         {
             ReLoadTable();
@@ -1780,6 +1822,7 @@ namespace Zi.SalesModule.GUIs
             AreaContainTable = new AreaModel();
             LoadTableList();
             CurrentBill = new BillModel();
+            CurrentBillDetails = new List<BillDetailModel>();
             lsvBillDetail.Items.Clear();
             lbCurrentTable.Invalidate(lbCurrentTable.Region);
         }
@@ -1788,10 +1831,10 @@ namespace Zi.SalesModule.GUIs
         #region View Bill
         private void IpicViewBill_Click(object sender, EventArgs e)
         {
-            ShowBillPanel();
+            ShowOrHideBillPanel();
         }
 
-        private void ShowBillPanel()
+        private void ShowOrHideBillPanel()
         {
             if (pnlBill.Visible)
             {
@@ -1938,7 +1981,7 @@ namespace Zi.SalesModule.GUIs
             }
             if (e.Alt && e.KeyCode == Keys.V)
             {
-                ShowBillPanel();
+                ShowOrHideBillPanel();
                 return;
             }
         }

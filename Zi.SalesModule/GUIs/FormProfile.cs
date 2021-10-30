@@ -70,7 +70,7 @@ namespace Zi.SalesModule.GUIs
             DrawRoundedCorner();
             LoadIcon();
             LoadSetting();
-            LoadContent();
+            LoadInformation();
             OnResizeMode = false;
             AlertTimer = Properties.Settings.Default.AlertTimer;
             txbConfirmPassword.GotFocus += TxbInput_Focus;
@@ -182,58 +182,23 @@ namespace Zi.SalesModule.GUIs
 
         private void SetColor()
         {
-            BackColor = Properties.Settings.Default.LeftSideBarBackColor;
-
+            BackColor = Properties.Settings.Default.BaseBackColor;
+            // Header
+            pnlTitleBar.BackColor = Properties.Settings.Default.HeaderBackColor;
+            // Footer
+            pnlFooterBar.BackColor = Properties.Settings.Default.FooterBackColor;
+            // SideBar
+            pnlLeft.BackColor = Properties.Settings.Default.LeftSideBarBackColor;
+            pnlRight.BackColor = Properties.Settings.Default.RightSideBarBackColor;
+            // Body
             pnlInfo.BackColor
                 = pnlInfoDetail.BackColor
                 = pnlChangePassword.BackColor
                 = Properties.Settings.Default.BodyBackColor;
-            txbAddress.BackColor
-                = txbCitizenId.BackColor
-                = txbDob.BackColor
-                = txbEmail.BackColor
-                = txbFullName.BackColor
-                = txbPhoneNumber.BackColor
-                = txbGender.BackColor
-                = txbNewPassword.BackColor
-                = txbOldPassword.BackColor
-                = txbConfirmPassword.BackColor
-                = Properties.Settings.Default.BodyBackColor;
-
-            lbTitle.ForeColor
-                = lbUserId.ForeColor
-                = lbUsername.ForeColor
-                = lbDisplayName.ForeColor
-                = lbCreatedDate.ForeColor
-                = lbRole.ForeColor
-                = lbFullName.ForeColor
-                = lbPhoneNumber.ForeColor
-                = lbEmail.ForeColor
-                = lbDob.ForeColor
-                = lbGender.ForeColor
-                = lbCitizenId.ForeColor
-                = lbAddress.ForeColor
-                = lbOldPassword.ForeColor
-                = lbNewPassword.ForeColor
-                = lbConfirmPassword.ForeColor
-                = Properties.Settings.Default.BaseTextColor;
-
-            txbFullName.ForeColor
-                = txbPhoneNumber.ForeColor
-                = txbEmail.ForeColor
-                = txbDob.ForeColor
-                = txbGender.ForeColor
-                = txbCitizenId.ForeColor
-                = txbAddress.ForeColor
-                = txbOldPassword.ForeColor
-                = txbNewPassword.ForeColor
-                = txbConfirmPassword.ForeColor
-                = Properties.Settings.Default.BaseTextColor;
-
+            // Icon
             ibtnClose.ForeColor
                 = ibtnSave.ForeColor
                 = Properties.Settings.Default.BaseBorderColor;
-
             ipicClose.IconColor
                 = ipicChangePassword.IconColor
                 = ipicSalaryTable.IconColor
@@ -252,7 +217,48 @@ namespace Zi.SalesModule.GUIs
                 = ipicConfirmPasswordStartIcon.IconColor
                 = ipicConfirmPasswordEndIcon.IconColor
                 = Properties.Settings.Default.BaseIconColor;
-
+            // TextBox
+            txbAddress.BackColor
+                = txbCitizenId.BackColor
+                = txbDob.BackColor
+                = txbEmail.BackColor
+                = txbFullName.BackColor
+                = txbPhoneNumber.BackColor
+                = txbGender.BackColor
+                = txbNewPassword.BackColor
+                = txbOldPassword.BackColor
+                = txbConfirmPassword.BackColor
+                = Properties.Settings.Default.BodyBackColor;
+            txbFullName.ForeColor
+                = txbPhoneNumber.ForeColor
+                = txbEmail.ForeColor
+                = txbDob.ForeColor
+                = txbGender.ForeColor
+                = txbCitizenId.ForeColor
+                = txbAddress.ForeColor
+                = txbOldPassword.ForeColor
+                = txbNewPassword.ForeColor
+                = txbConfirmPassword.ForeColor
+                = Properties.Settings.Default.BaseTextColor;
+            // Label
+            lbTitle.ForeColor
+                = lbUserId.ForeColor
+                = lbUsername.ForeColor
+                = lbDisplayName.ForeColor
+                = lbCreatedDate.ForeColor
+                = lbRole.ForeColor
+                = lbFullName.ForeColor
+                = lbPhoneNumber.ForeColor
+                = lbEmail.ForeColor
+                = lbDob.ForeColor
+                = lbGender.ForeColor
+                = lbCitizenId.ForeColor
+                = lbAddress.ForeColor
+                = lbOldPassword.ForeColor
+                = lbNewPassword.ForeColor
+                = lbConfirmPassword.ForeColor
+                = Properties.Settings.Default.BaseTextColor;
+            // Border
             pnlFullNameBorderBottom.BackColor
                 = pnlPhoneNumberBorderBottom.BackColor
                 = pnlEmailBorderBottom.BackColor
@@ -308,7 +314,7 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void LoadContent()
+        private void LoadInformation()
         {
             string id = CurrentUser.UserId.ToString().Substring(4, 12);
             lbUserId.Text = "*****" + id + "*****";
