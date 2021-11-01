@@ -51,7 +51,6 @@ namespace Zi.SalesModule.GUIs
         public UserModel CurrentUser { get; set; }
         public BillModel CurrentBill { get; set; }
         public List<BillDetailModel> CurrentBillDetails { get; set; }
-        public List<BillDetailModel> CurrentBillDetailsCopy { get; set; }
         public CategoryModel CurrentCategory { get; set; }
         public ProductModel CurrentProduct { get; set; }
         public string CultureName { get; set; }
@@ -84,7 +83,6 @@ namespace Zi.SalesModule.GUIs
             CurrentUser = currentUser;
             CurrentBill = currentBill;
             CurrentBillDetails = currentBillDetails;
-            CurrentBillDetailsCopy = currentBillDetails;
 
             _tableService = TableService.Instance;
             _billService = BillService.Instance;
@@ -414,7 +412,7 @@ namespace Zi.SalesModule.GUIs
                 }
             }
 
-            if(productFilter == null)
+            if (productFilter == null)
             {
                 productFilter = new ProductFilter();
             }
@@ -544,7 +542,7 @@ namespace Zi.SalesModule.GUIs
         private void ChangeItemColorToBase(object sender)
         {
             ProductItem item = sender as ProductItem;
-            if((item.Tag as ProductModel).ProductId.CompareTo(CurrentProduct.ProductId) != 0)
+            if ((item.Tag as ProductModel).ProductId.CompareTo(CurrentProduct.ProductId) != 0)
             {
                 item.BackColor = Properties.Settings.Default.BaseItemColor;
             }
@@ -954,6 +952,7 @@ namespace Zi.SalesModule.GUIs
 
         private void IncreaseOrder()
         {
+            // Check if any products have been selected
             if (CurrentProduct.ProductId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedProduct", Culture);
@@ -961,35 +960,40 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
+            // Check if the table already has an invoice
             if (CurrentBill.BillId.CompareTo(Guid.Empty) == 0)
             {
                 CurrentBill = new BillModel(CurrentUser.UserId, CurrentTable.TableId);
             }
 
-            float intoMoneyIncreased = CurrentProduct.Price;
+            // Calculate the money of a product unit
+            float promotionPrice = CurrentProduct.Price;
             if (CurrentProduct.PromotionValue > 0)
             {
-                intoMoneyIncreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
+                promotionPrice = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
             }
 
+            // If product already exists in invoice details, increment quantity by 1 unit, re-calculate & update to IntoMoney and bill total
             foreach (BillDetailModel item in CurrentBillDetails)
             {
-                if (item.ProductId.CompareTo(CurrentProduct.ProductId) == 0 && item.PromotionValue == CurrentProduct.PromotionValue)
+                if (item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
                 {
                     item.Quantity++;
-                    item.IntoMoney += intoMoneyIncreased;
-                    CurrentBill.Total += intoMoneyIncreased;
+                    item.IntoMoney = promotionPrice * item.Quantity;
+                    item.PromotionValue = CurrentProduct.PromotionValue;
+                    CalculateBillTotal();
                     LoadBill();
                     return;
                 }
             }
 
+            // Else, add a new invoice detail (quantity = 1, IntoMoney, PromotionValue)
             CurrentBillDetails.Add(new BillDetailModel(CurrentBill.BillId, CurrentProduct.ProductId)
             {
-                IntoMoney = intoMoneyIncreased,
+                IntoMoney = promotionPrice,
                 PromotionValue = CurrentProduct.PromotionValue
             });
-            CurrentBill.Total += intoMoneyIncreased;
+            CalculateBillTotal();
             LoadBill();
         }
         #endregion
@@ -1002,6 +1006,7 @@ namespace Zi.SalesModule.GUIs
 
         private void DecreaseOrder()
         {
+            // Check if any products have been selected
             if (CurrentProduct.ProductId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedProduct", Culture);
@@ -1009,12 +1014,14 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            float intoMoneyDecreased = CurrentProduct.Price;
+            // Calculate the money of a product unit
+            float promotionPrice = CurrentProduct.Price;
             if (CurrentProduct.PromotionValue > 0)
             {
-                intoMoneyDecreased = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
+                promotionPrice = CurrentProduct.Price * (100 - CurrentProduct.PromotionValue) / 100;
             }
 
+            // If product already exists in invoice details, decrement quantity by 1 unit, update to IntoMoney and bill total
             foreach (BillDetailModel item in CurrentBillDetails)
             {
                 if (item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
@@ -1022,16 +1029,32 @@ namespace Zi.SalesModule.GUIs
                     if (item.Quantity == 1)
                     {
                         CurrentBillDetails.Remove(item);
-                        LoadBill();
-                        return;
                     }
-                    item.Quantity--;
-                    item.IntoMoney -= intoMoneyDecreased;
-                    CurrentBill.Total -= intoMoneyDecreased;
+                    else if (item.PromotionValue == CurrentProduct.PromotionValue)
+                    {
+                        item.Quantity--;
+                        item.IntoMoney -= promotionPrice;
+                    }
+                    else
+                    {
+                        item.Quantity--;
+                        item.IntoMoney -= item.IntoMoney / (item.Quantity + 1);
+                    }
+                    CalculateBillTotal();
                     LoadBill();
                     return;
                 }
             }
+        }
+
+        private void CalculateBillTotal()
+        {
+            float total = 0;
+            foreach (BillDetailModel item in CurrentBillDetails)
+            {
+                total += item.IntoMoney;
+            }
+            CurrentBill.Total = total;
         }
         #endregion
 
@@ -1067,16 +1090,11 @@ namespace Zi.SalesModule.GUIs
         private void SaveOrder()
         {
             string msg = InterfaceRm.GetString("MsgSaveConfirmation", Culture);
-            if(FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo) == DialogResult.Yes)
+            if (FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo) == DialogResult.Yes)
             {
                 if (CurrentTable.Status.CompareTo(TableStatus.Using) == 0)
                 {
-                    _billService.Update(CurrentBill, CultureName);
-                    foreach (BillDetailModel item in CurrentBillDetailsCopy)
-                    {
-                        _billDetailService.Delete(item.BillId, item.ProductId, CultureName);
-                    }
-
+                    _billDetailService.DeleteOnBill(CurrentBill.BillId, CultureName);
                     if (CurrentBillDetails.Count <= 0)
                     {
                         _billService.Delete(CurrentBill.BillId, CultureName);
@@ -1085,6 +1103,7 @@ namespace Zi.SalesModule.GUIs
                     }
                     else
                     {
+                        _billService.Update(CurrentBill, CultureName);
                         foreach (BillDetailModel item in CurrentBillDetails)
                         {
                             _billDetailService.Create(item, CultureName);
@@ -1093,12 +1112,15 @@ namespace Zi.SalesModule.GUIs
                 }
                 else
                 {
-                    _billService.Create(CurrentBill, CultureName);
-                    CurrentTable.Status = TableStatus.Using;
-                    _tableService.Update(CurrentTable, CultureName);
-                    foreach (BillDetailModel item in CurrentBillDetails)
+                    if (CurrentBillDetails.Count > 0)
                     {
-                        _billDetailService.Create(item, CultureName);
+                        _billService.Create(CurrentBill, CultureName);
+                        CurrentTable.Status = TableStatus.Using;
+                        _tableService.Update(CurrentTable, CultureName);
+                        foreach (BillDetailModel item in CurrentBillDetails)
+                        {
+                            _billDetailService.Create(item, CultureName);
+                        }
                     }
                 }
                 CloseForm();
@@ -1125,12 +1147,12 @@ namespace Zi.SalesModule.GUIs
 
         private void FindToProductItem()
         {
-            foreach(Control item in fpnlProduct.Controls)
+            foreach (Control item in fpnlProduct.Controls)
             {
-                if(item is ProductItem)
+                if (item is ProductItem)
                 {
                     ProductItem productItem = item as ProductItem;
-                    if((productItem.Tag as ProductModel).ProductId.CompareTo(CurrentProduct.ProductId) == 0)
+                    if ((productItem.Tag as ProductModel).ProductId.CompareTo(CurrentProduct.ProductId) == 0)
                     {
                         ChangeItemColorToSelected(item);
                         Point point = fpnlProduct.PointToClient(productItem.Location);

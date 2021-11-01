@@ -65,13 +65,13 @@ namespace Zi.SalesModule.CustomControls
         {
             lbName.Text = Product.Name;
             rpicThumnail.Image = DataTypeConvertor.Instance.GetImageFromBytes(Product.Thumnail);
-            if (Product.PromotionVulue > 0)
+            if (Product.PromotionValue > 0)
             {
                 lbOriginalPrice.Show();
                 lbOriginalPrice.Font = new Font(lbOriginalPrice.Font, FontStyle.Strikeout);
                 lbOriginalPrice.Text = Product.Price.ToString();
-                float promotionPrice = Product.Price * (100 - Product.PromotionVulue) / 100;
-                lbPromotionPrice.Text = "(" + Product.PromotionVulue + "%) " + (int)promotionPrice;
+                float promotionPrice = Product.Price * (100 - Product.PromotionValue) / 100;
+                lbPromotionPrice.Text = "(" + Product.PromotionValue + "%) " + (int)promotionPrice;
             }
             else
             {

@@ -10,6 +10,6 @@ namespace Zi.LinqSqlLayer.DAOs.Interfaces
         Tuple<bool, object> Read(BillDetailFilter filter, string cultureName);
         Tuple<bool, object> Create(BillDetailModel model, string cultureName);
         Tuple<bool, object> Update(BillDetailModel model, string cultureName);
-        Tuple<bool, object> Delete(Guid billId, Guid productId, string cultureName);
+        Tuple<bool, object> Delete(BillDetailModel model, string cultureName);
     }
 }

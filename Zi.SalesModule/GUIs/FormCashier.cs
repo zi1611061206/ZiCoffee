@@ -90,19 +90,11 @@ namespace Zi.SalesModule.GUIs
         private void FormCashier_Load(object sender, EventArgs e)
         {
             // Init Attributes
-            CurrentTable = new TableModel()
-            {
-                TableId = Guid.Empty
-            };
-            CurrentArea = new AreaModel()
-            {
-                AreaId = Guid.Empty
-            };
-            CurrentBill = new BillModel()
-            {
-                BillId = Guid.Empty
-            };
+            CurrentTable = new TableModel();
+            CurrentArea = new AreaModel();
+            CurrentBill = new BillModel();
             CurrentBillDetails = new List<BillDetailModel>();
+            AreaContainTable = new AreaModel();
             OnResizeMode = false;
 
             DrawRoundedCorner();
@@ -631,7 +623,6 @@ namespace Zi.SalesModule.GUIs
                     };
                     btnTable.MouseDown += AllBtn_MouseDown;
                     btnTable.MouseDown += BtnTable_MouseDown;
-                    btnTable.Click += BtnTable_Click;
                     btnTable.MouseHover += BtnTable_MouseHover;
                     btnTable.MouseLeave += BtnTable_MouseLeave;
                     btnTable.ContextMenuStrip = cmsTableDropDown;
@@ -645,6 +636,8 @@ namespace Zi.SalesModule.GUIs
         {
             RoundedIconButton btnTable = sender as RoundedIconButton;
             CurrentTable = btnTable.Tag as TableModel;
+            ChangeItemColorToSelected(sender);
+
             AreaFilter filter = new AreaFilter()
             {
                 AreaId = CurrentTable.AreaId
@@ -654,13 +647,9 @@ namespace Zi.SalesModule.GUIs
             {
                 AreaContainTable = (areaReader.Item2 as Paginator<AreaModel>).Item[0];
             }
+
             lbCurrentTable.Invalidate(lbCurrentTable.Region);
             LoadBill();
-        }
-
-        private void BtnTable_Click(object sender, EventArgs e)
-        {
-            ChangeItemColorToSelected(sender);
         }
 
         private void ChangeItemColorToSelected(object sender)
@@ -709,6 +698,8 @@ namespace Zi.SalesModule.GUIs
 
             if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
             {
+                CurrentBill = new BillModel();
+                CurrentBillDetails = new List<BillDetailModel>();
                 SetToolState();
                 return;
             }
@@ -737,6 +728,10 @@ namespace Zi.SalesModule.GUIs
                     {
                         LoadBillDetails(billDetail);
                     }
+                }
+                else
+                {
+                    CurrentBillDetails = new List<BillDetailModel>();
                 }
 
                 SetToolState();
@@ -1353,6 +1348,12 @@ namespace Zi.SalesModule.GUIs
                             Tag = item,
                             ForeColor = Properties.Settings.Default.ErrorTextColor
                         };
+
+                        if ((toolStripMenuItem.Tag as TableModel).TableId.CompareTo(CurrentTable.TableId) == 0)
+                        {
+                            toolStripMenuItem.Visible = false;
+                        }
+
                         toolStripMenuItem.Click += MergeWithUsingTable_Click;
                         parentsItem.DropDownItems.Add(toolStripMenuItem);
                     }
@@ -1486,25 +1487,10 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            //Form formBackground = new Form();
             try
             {
-                using (FormOrder f = new FormOrder(CurrentTable, CurrentUser, CurrentBill, CurrentBillDetails))
-                {
-                    //formBackground.StartPosition = FormStartPosition.Manual;
-                    //formBackground.Location = Location;
-                    //formBackground.Size = Size;
-                    //formBackground.FormBorderStyle = FormBorderStyle.None;
-                    //formBackground.Opacity = .80d;
-                    //formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    //formBackground.TopMost = true;
-                    //formBackground.ShowInTaskbar = false;
-                    //formBackground.Show();
-
-                    //f.Owner = formBackground;
-                    f.ShowDialog();
-                    //formBackground.Dispose();
-                }
+                FormOrder f = new FormOrder(CurrentTable, CurrentUser, CurrentBill, CurrentBillDetails);
+                f.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1512,7 +1498,6 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                //formBackground.Dispose();
                 ReLoadTable();
                 LoadFooter();
             }
@@ -1664,6 +1649,12 @@ namespace Zi.SalesModule.GUIs
                             Tag = item,
                             ForeColor = Properties.Settings.Default.ErrorTextColor
                         };
+
+                        if ((toolStripMenuItem.Tag as TableModel).TableId.CompareTo(CurrentTable.TableId) == 0)
+                        {
+                            toolStripMenuItem.Visible = false;
+                        }
+
                         toolStripMenuItem.Click += MergeWithUsingTable_Click;
                         cmsUsingTableList.Items.Add(toolStripMenuItem);
                     }
@@ -1716,30 +1707,77 @@ namespace Zi.SalesModule.GUIs
             }
             List<BillDetailModel> destinationBillDetail = (destinationBillDetailReader.Item2 as Paginator<BillDetailModel>).Item;
 
-            CurrentTable.Status = TableStatus.Ready;
             List<BillDetailModel> notMatchList = new List<BillDetailModel>();
-            float destinationBillTotal = destinationBill.Total;
             foreach (BillDetailModel source in CurrentBillDetails)
             {
                 bool isMatched = false;
                 foreach (BillDetailModel destination in destinationBillDetail)
                 {
-                    if (source.ProductId.CompareTo(destination.ProductId) == 0 && source.PromotionValue == destination.PromotionValue)
+                    if (source.ProductId.CompareTo(destination.ProductId) == 0)
                     {
                         destination.Quantity += source.Quantity;
-                        destination.IntoMoney += source.IntoMoney;
-                        destinationBillTotal += source.IntoMoney;
                         isMatched = true;
+                        if (source.PromotionValue == destination.PromotionValue)
+                        {
+                            destination.IntoMoney += source.IntoMoney;
+                        }
+                        else
+                        {
+                            ProductFilter filter = new ProductFilter()
+                            {
+                                ProductId = source.ProductId
+                            };
+                            var product = (_productService.Read(filter, CultureName).Item2 as Paginator<ProductModel>).Item[0];
+                            string msg = "Giá trị khuyến mại của" + " "
+                                + product.Name + " "
+                                + "trong" + " "
+                                + CurrentTable.Name + " "
+                                + "&" + " "
+                                + destinationTable.Name + " "
+                                + "không khớp. Tiếp tục gộp với giá trị:"
+                                + Environment.NewLine
+                                + CurrentTable.Name + " "
+                                + "-" + " "
+                                + source.PromotionValue + " "
+                                + "chọn Yes."
+                                + Environment.NewLine
+                                + destinationTable.Name + " "
+                                + "-" + " "
+                                + destination.PromotionValue + " "
+                                + "chọn No."
+                                + Environment.NewLine
+                                + "Hủy bỏ tiến trình gộp: chọn Cancel"
+                                + Environment.NewLine
+                                + "Lưu ý: thao tác này không thể hoàn tác.";
+                            DialogResult pickResult = FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, CustomMessageBoxButton.YesNoCancel);
+                            if (pickResult == DialogResult.Yes)
+                            {
+                                destination.PromotionValue = source.PromotionValue;
+                                float promotionPrice = product.Price * (100 - source.PromotionValue) / 100;
+                                destination.IntoMoney = promotionPrice * destination.Quantity;
+                            }
+                            else if (pickResult == DialogResult.No)
+                            {
+                                destination.PromotionValue = destination.PromotionValue;
+                                float promotionPrice = product.Price * (100 - destination.PromotionValue) / 100;
+                                destination.IntoMoney = promotionPrice * destination.Quantity;
+                            }
+                            else
+                            {
+                                return;
+                            }
+                        }
                     }
                 }
+
                 if (!isMatched)
                 {
                     source.BillId = destinationBill.BillId;
                     notMatchList.Add(source);
-                    destinationBillTotal += source.IntoMoney;
                 }
             }
-            destinationBill.Total = destinationBillTotal;
+            destinationBill.Total = CalculateDestinationBillTotal(destinationBillDetail);
+            CurrentTable.Status = TableStatus.Ready;
 
             // Update
             UpdateBillDetailInDestination(destinationBillDetail);
@@ -1751,6 +1789,16 @@ namespace Zi.SalesModule.GUIs
             // After
             ReLoadTable();
             LoadFooter();
+        }
+
+        private float CalculateDestinationBillTotal(List<BillDetailModel> destinationBillDetail)
+        {
+            float total = 0;
+            foreach (BillDetailModel item in destinationBillDetail)
+            {
+                total += item.IntoMoney;
+            }
+            return total;
         }
 
         private void UpdateBillDetailInDestination(List<BillDetailModel> destinationBillDetail)

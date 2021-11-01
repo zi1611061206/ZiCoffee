@@ -37,6 +37,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     BillId = model.BillId,
                     ProductId = model.ProductId,
                     Quantity = model.Quantity,
+                    PromotionValue = model.PromotionValue,
                     IntoMoney = model.IntoMoney
                 };
                 context.BillDetails.InsertOnSubmit(billDetail);
@@ -53,15 +54,40 @@ namespace Zi.LinqSqlLayer.DAOs
             }
         }
 
-        public Tuple<bool, object> Delete(Guid billId, Guid productId, string cultureName)
+        public Tuple<bool, object> Delete(BillDetailModel model, string cultureName)
         {
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
                 var billDetail = context.BillDetails
-                    .Where(x => x.BillId.CompareTo(billId) == 0 && x.ProductId.CompareTo(productId) == 0)
+                    .Where(x => x.BillId.CompareTo(model.BillId) == 0 && x.ProductId.CompareTo(model.ProductId) == 0)
                     .FirstOrDefault();
                 context.BillDetails.DeleteOnSubmit(billDetail);
+
+                try
+                {
+                    context.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    return new Tuple<bool, object>(false, Rm.GetString("FailedDelete", culture) + ":" + ex.Message);
+                }
+                return new Tuple<bool, object>(true, null);
+            }
+        }
+
+        public Tuple<bool, object> DeleteOnBill(Guid billId, string cultureName)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
+            using (var context = new ZiCoffeeDataContext())
+            {
+                var billDetails = context.BillDetails
+                    .Where(x => x.BillId.CompareTo(billId) == 0)
+                    .ToList();
+                foreach(BillDetail item in billDetails)
+                {
+                    context.BillDetails.DeleteOnSubmit(item);
+                }
 
                 try
                 {
@@ -92,6 +118,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     BillId = x.BillId,
                     ProductId = x.ProductId,
                     Quantity = x.Quantity,
+                    PromotionValue = x.PromotionValue,
                     IntoMoney = x.IntoMoney
                 });
                 var result = new Paginator<BillDetailModel>()
@@ -191,6 +218,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     .Where(x => x.BillId.CompareTo(model.BillId) == 0 && x.ProductId.CompareTo(model.ProductId) == 0)
                     .FirstOrDefault();
                 billDetail.Quantity = model.Quantity;
+                billDetail.PromotionValue = model.PromotionValue;
                 billDetail.IntoMoney = model.IntoMoney;
 
                 try
