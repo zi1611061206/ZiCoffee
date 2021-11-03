@@ -154,16 +154,16 @@
     <value>Close</value>
   </data>
   <data name="IpicDown" xml:space="preserve">
-    <value>Down</value>
+    <value>Down (-)</value>
   </data>
   <data name="IpicMaximize" xml:space="preserve">
     <value>Maximize</value>
   </data>
   <data name="IpicUp" xml:space="preserve">
-    <value>Up</value>
+    <value>Up (+)</value>
   </data>
   <data name="IpicViewCart" xml:space="preserve">
-    <value>Show/Hide Card</value>
+    <value>Show/Hide Card (Alt + V)</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
     <value>Services</value>

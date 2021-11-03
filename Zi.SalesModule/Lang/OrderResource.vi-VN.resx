@@ -154,16 +154,16 @@
     <value>Đóng</value>
   </data>
   <data name="IpicDown" xml:space="preserve">
-    <value>Bớt</value>
+    <value>Bớt (-)</value>
   </data>
   <data name="IpicMaximize" xml:space="preserve">
     <value>Tăng tối đa</value>
   </data>
   <data name="IpicUp" xml:space="preserve">
-    <value>Thêm</value>
+    <value>Thêm (+)</value>
   </data>
   <data name="IpicViewCart" xml:space="preserve">
-    <value>Ẩn/Hiển thị giỏ hàng</value>
+    <value>Ẩn/Hiển thị giỏ hàng (Alt + V)</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
     <value>Dịch vụ</value>

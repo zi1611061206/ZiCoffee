@@ -350,6 +350,84 @@
   <ItemGroup>
     <None Include="Resources\NoAvatar.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Crickets.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Doorbell.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Liquid-Drip-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Monster-Ghoul-Roar-03.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sonar-Ping-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Sonar-Ping-Loop-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UFO-Door-Close-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UFO-Door-Open-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UFO-Launch-Lightspeed-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\UFO-Whoosh-by-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Whoosh.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bell-Ding-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Doorbell-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Appear-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Pop-Big-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Pop-Small-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Speedbump-Fast-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Whoosh-Big-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Whoosh-Small-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Toy-Train-Whistle-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bell-Alarm-Clock-Ring-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cartoon-Boing-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cartoon-Bonk-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cartoon-Bubble-Pop-01.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Dog-Bark-Short-02.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Synth-Zap-Small-01.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

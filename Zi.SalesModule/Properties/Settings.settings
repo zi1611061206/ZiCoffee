@@ -99,7 +99,7 @@
       <Value Profile="(Default)">23, 42, 70</Value>
     </Setting>
     <Setting Name="AlertTimer" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
+      <Value Profile="(Default)">2000</Value>
     </Setting>
     <Setting Name="BaseBackColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">46, 61, 74</Value>

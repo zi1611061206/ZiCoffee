@@ -71,6 +71,24 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Bell_Alarm_Clock_Ring_01 {
+            get {
+                return ResourceManager.GetStream("Bell_Alarm_Clock_Ring_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Bell_Ding_01 {
+            get {
+                return ResourceManager.GetStream("Bell_Ding_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Cart {
@@ -83,9 +101,72 @@ namespace Zi.SalesModule.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cartoon_Boing_01 {
+            get {
+                return ResourceManager.GetStream("Cartoon_Boing_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cartoon_Bonk_01 {
+            get {
+                return ResourceManager.GetStream("Cartoon_Bonk_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Cartoon_Bubble_Pop_01 {
+            get {
+                return ResourceManager.GetStream("Cartoon_Bubble_Pop_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Click {
             get {
                 return ResourceManager.GetStream("Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Crickets {
+            get {
+                return ResourceManager.GetStream("Crickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Dog_Bark_Short_02 {
+            get {
+                return ResourceManager.GetStream("Dog_Bark_Short_02", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Doorbell {
+            get {
+                return ResourceManager.GetStream("Doorbell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Doorbell_01 {
+            get {
+                return ResourceManager.GetStream("Doorbell_01", resourceCulture);
             }
         }
         
@@ -128,6 +209,15 @@ namespace Zi.SalesModule.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Liquid_Drip_01 {
+            get {
+                return ResourceManager.GetStream("Liquid_Drip_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Listening {
             get {
                 return ResourceManager.GetStream("Listening", resourceCulture);
@@ -141,6 +231,15 @@ namespace Zi.SalesModule.Properties {
             get {
                 object obj = ResourceManager.GetObject("LogOut", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Monster_Ghoul_Roar_03 {
+            get {
+                return ResourceManager.GetStream("Monster_Ghoul_Roar_03", resourceCulture);
             }
         }
         
@@ -175,6 +274,87 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Sonar_Ping_01 {
+            get {
+                return ResourceManager.GetStream("Sonar_Ping_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Sonar_Ping_Loop_01 {
+            get {
+                return ResourceManager.GetStream("Sonar_Ping_Loop_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Appear_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Appear_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Pop_Big_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Pop_Big_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Pop_Small_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Pop_Small_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Speedbump_Fast_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Speedbump_Fast_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Whoosh_Big_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Whoosh_Big_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Whoosh_Small_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Whoosh_Small_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Synth_Zap_Small_01 {
+            get {
+                return ResourceManager.GetStream("Synth_Zap_Small_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Table {
@@ -185,12 +365,66 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Toy_Train_Whistle_01 {
+            get {
+                return ResourceManager.GetStream("Toy_Train_Whistle_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream UFO_Door_Close_01 {
+            get {
+                return ResourceManager.GetStream("UFO_Door_Close_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream UFO_Door_Open_01 {
+            get {
+                return ResourceManager.GetStream("UFO_Door_Open_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream UFO_Launch_Lightspeed_01 {
+            get {
+                return ResourceManager.GetStream("UFO_Launch_Lightspeed_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream UFO_Whoosh_by_01 {
+            get {
+                return ResourceManager.GetStream("UFO_Whoosh_by_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap View {
             get {
                 object obj = ResourceManager.GetObject("View", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Whoosh {
+            get {
+                return ResourceManager.GetStream("Whoosh", resourceCulture);
             }
         }
         

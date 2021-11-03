@@ -42,7 +42,9 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.lbContent = new System.Windows.Forms.Label();
-            this.timerAppearence = new System.Windows.Forms.Timer(this.components);
+            this.timerDispose = new System.Windows.Forms.Timer(this.components);
+            this.timerAnimationShow = new System.Windows.Forms.Timer(this.components);
+            this.timerAnimationHide = new System.Windows.Forms.Timer(this.components);
             this.pnlIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMessageStatus)).BeginInit();
             this.pnlOptions.SuspendLayout();
@@ -198,10 +200,21 @@ namespace Zi.SalesModule.GUIs
             this.lbContent.TabIndex = 0;
             this.lbContent.Text = "Content Message";
             // 
-            // timerAppearence
+            // timerDispose
             // 
-            this.timerAppearence.Interval = 3000;
-            this.timerAppearence.Tick += new System.EventHandler(this.TimerAppearence_Tick);
+            this.timerDispose.Interval = 3000;
+            this.timerDispose.Tag = "";
+            this.timerDispose.Tick += new System.EventHandler(this.TimerDispose_Tick);
+            // 
+            // timerAnimationShow
+            // 
+            this.timerAnimationShow.Interval = 1;
+            this.timerAnimationShow.Tick += new System.EventHandler(this.TimerAnimationShow_Tick);
+            // 
+            // timerAnimationHide
+            // 
+            this.timerAnimationHide.Interval = 1;
+            this.timerAnimationHide.Tick += new System.EventHandler(this.TimerAnimationHide_Tick);
             // 
             // FormMessageBox
             // 
@@ -221,7 +234,6 @@ namespace Zi.SalesModule.GUIs
             this.Name = "FormMessageBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMessageBox";
-            this.TopMost = true;
             this.SizeChanged += new System.EventHandler(this.FormMessageBox_SizeChanged);
             this.pnlIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicMessageStatus)).EndInit();
@@ -248,6 +260,8 @@ namespace Zi.SalesModule.GUIs
         private FontAwesome.Sharp.IconPictureBox ipicMessageStatus;
         private FontAwesome.Sharp.IconPictureBox ipicButton2;
         private FontAwesome.Sharp.IconPictureBox ipicButton3;
-        private System.Windows.Forms.Timer timerAppearence;
+        private System.Windows.Forms.Timer timerDispose;
+        private System.Windows.Forms.Timer timerAnimationShow;
+        private System.Windows.Forms.Timer timerAnimationHide;
     }
 }

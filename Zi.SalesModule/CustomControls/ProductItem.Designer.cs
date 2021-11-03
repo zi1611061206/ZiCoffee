@@ -103,7 +103,7 @@ namespace Zi.SalesModule.CustomControls
             this.rpicThumnail.MouseLeave += new System.EventHandler(this.Zi_MouseLeave);
             this.rpicThumnail.MouseHover += new System.EventHandler(this.Zi_MouseHover);
             // 
-            // ProductHorizontalItem
+            // ProductItem
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -115,12 +115,13 @@ namespace Zi.SalesModule.CustomControls
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.Color.Gainsboro;
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "ProductHorizontalItem";
+            this.Name = "ProductItem";
             this.Padding = new System.Windows.Forms.Padding(10);
             this.Size = new System.Drawing.Size(500, 200);
             this.Load += new System.EventHandler(this.ProductHorizontalItem_Load);
             this.SizeChanged += new System.EventHandler(this.ProductHorizontalItem_SizeChanged);
             this.Click += new System.EventHandler(this.Zi_Click);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Zi_KeyDown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Zi_MouseDown);
             this.MouseLeave += new System.EventHandler(this.Zi_MouseLeave);
             this.MouseHover += new System.EventHandler(this.Zi_MouseHover);

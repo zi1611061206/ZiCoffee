@@ -204,6 +204,45 @@
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Selected table can not order now.</value>
   </data>
+  <data name="MsgMerge1" xml:space="preserve">
+    <value>The promotional value of</value>
+  </data>
+  <data name="MsgMerge2" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="MsgMerge3" xml:space="preserve">
+    <value>does not match. Continue to merge with the value:</value>
+  </data>
+  <data name="MsgMerge4" xml:space="preserve">
+    <value>select YES.</value>
+  </data>
+  <data name="MsgMerge5" xml:space="preserve">
+    <value>select NO.</value>
+  </data>
+  <data name="MsgMerge6" xml:space="preserve">
+    <value>To cancel the merge, select CANCEL.</value>
+  </data>
+  <data name="MsgMerge7" xml:space="preserve">
+    <value>Note: this action cannot be undone.</value>
+  </data>
+  <data name="MsgMergeConfirm1" xml:space="preserve">
+    <value>You definitely want to merge</value>
+  </data>
+  <data name="MsgMergeConfirm2" xml:space="preserve">
+    <value>into</value>
+  </data>
+  <data name="MsgMergeSuccess" xml:space="preserve">
+    <value>Successful merge.</value>
+  </data>
+  <data name="MsgMoveConfirm1" xml:space="preserve">
+    <value>You definitely want to move</value>
+  </data>
+  <data name="MsgMoveConfirm2" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="MsgMoveSuccess" xml:space="preserve">
+    <value>Successful move.</value>
+  </data>
   <data name="MsgNoSelectedTable" xml:space="preserve">
     <value>No tables have been selected yet.</value>
   </data>

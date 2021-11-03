@@ -438,6 +438,7 @@ namespace Zi.SalesModule.GUIs
             this.lsvBillDetail.View = System.Windows.Forms.View.Details;
             this.lsvBillDetail.SelectedIndexChanged += new System.EventHandler(this.LsvBillDetail_SelectedIndexChanged);
             this.lsvBillDetail.SizeChanged += new System.EventHandler(this.LsvBillDetail_SizeChanged);
+            this.lsvBillDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LsvBillDetail_KeyDown);
             // 
             // columnHeaderProduct
             // 

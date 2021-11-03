@@ -1423,13 +1423,13 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
             else if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
             {
                 string msg = InterfaceRm.GetString("MsgCannotCheckOut", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
 
@@ -1477,13 +1477,13 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
             else if (CurrentTable.Status.CompareTo(TableStatus.Pending) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgCannotOrder", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
 
@@ -1516,7 +1516,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
             }
             else
             {
@@ -1575,12 +1575,23 @@ namespace Zi.SalesModule.GUIs
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             TableModel destinationTable = item.Tag as TableModel;
             destinationTable.Status = TableStatus.Using;
+            string msgConfirm = InterfaceRm.GetString("MsgMoveConfirm1", Culture) + " "
+                + CurrentTable.Name + " "
+                + InterfaceRm.GetString("MsgMoveConfirm2", Culture) + " "
+                + destinationTable.Name + "?";
+            DialogResult result = FormMessageBox.Show(msgConfirm, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
             CurrentTable.Status = TableStatus.Ready;
             CurrentBill.TableId = destinationTable.TableId;
             // Update data
             MoveTableSaveChanged(destinationTable);
             // After
             ReLoadTable();
+            string msgSuccess = InterfaceRm.GetString("MsgMoveSuccess", Culture);
+            FormMessageBox.Show(msgSuccess, string.Empty, CustomMessageBoxIcon.Success, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
 
         private void MoveTableSaveChanged(TableModel destinationTable)
@@ -1618,7 +1629,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentTable.TableId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedTable", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
             }
             else
             {
@@ -1681,6 +1692,15 @@ namespace Zi.SalesModule.GUIs
             // Before
             ToolStripMenuItem item = sender as ToolStripMenuItem;
             TableModel destinationTable = item.Tag as TableModel;
+            string msgConfirm = InterfaceRm.GetString("MsgMergeConfirm1", Culture) + " "
+                + CurrentTable.Name + " "
+                + InterfaceRm.GetString("MsgMergeConfirm2", Culture) + " "
+                + destinationTable.Name + "?";
+            DialogResult result = FormMessageBox.Show(msgConfirm, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo);
+            if (result == DialogResult.No)
+            {
+                return;
+            }
 
             BillFilter destinationBillFilter = new BillFilter()
             {
@@ -1728,27 +1748,18 @@ namespace Zi.SalesModule.GUIs
                                 ProductId = source.ProductId
                             };
                             var product = (_productService.Read(filter, CultureName).Item2 as Paginator<ProductModel>).Item[0];
-                            string msg = "Giá trị khuyến mại của" + " "
-                                + product.Name + " "
-                                + "trong" + " "
-                                + CurrentTable.Name + " "
-                                + "&" + " "
-                                + destinationTable.Name + " "
-                                + "không khớp. Tiếp tục gộp với giá trị:"
+                            string msg = InterfaceRm.GetString("MsgMerge1", Culture) + " " + product.Name + " "
+                                + InterfaceRm.GetString("MsgMerge2", Culture) + " " + CurrentTable.Name + @" & " + destinationTable.Name + " "
+                                + InterfaceRm.GetString("MsgMerge3", Culture)
                                 + Environment.NewLine
-                                + CurrentTable.Name + " "
-                                + "-" + " "
-                                + source.PromotionValue + " "
-                                + "chọn Yes."
+                                + " - " + CurrentTable.Name + " - " + source.PromotionValue + "% " + InterfaceRm.GetString("MsgMerge4", Culture)
                                 + Environment.NewLine
-                                + destinationTable.Name + " "
-                                + "-" + " "
-                                + destination.PromotionValue + " "
-                                + "chọn No."
+                                + " - " + destinationTable.Name + " - " + destination.PromotionValue + "% " + InterfaceRm.GetString("MsgMerge5", Culture)
                                 + Environment.NewLine
-                                + "Hủy bỏ tiến trình gộp: chọn Cancel"
+                                + " - " + InterfaceRm.GetString("MsgMerge6", Culture)
                                 + Environment.NewLine
-                                + "Lưu ý: thao tác này không thể hoàn tác.";
+                                + InterfaceRm.GetString("MsgMerge7", Culture);
+
                             DialogResult pickResult = FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, CustomMessageBoxButton.YesNoCancel);
                             if (pickResult == DialogResult.Yes)
                             {
@@ -1789,6 +1800,8 @@ namespace Zi.SalesModule.GUIs
             // After
             ReLoadTable();
             LoadFooter();
+            string msgSuccess = InterfaceRm.GetString("MsgMergeSuccess", Culture);
+            FormMessageBox.Show(msgSuccess, string.Empty, CustomMessageBoxIcon.Success, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
 
         private float CalculateDestinationBillTotal(List<BillDetailModel> destinationBillDetail)
@@ -1976,61 +1989,42 @@ namespace Zi.SalesModule.GUIs
         #region Shortcut key
         private void FormCashier_KeyDown(object sender, KeyEventArgs e)
         {
-            // Set Shortcut Keys
-            if (e.Alt && e.KeyCode == Keys.P)
+            switch (e.KeyData)
             {
-                OpenFormProfile();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.C)
-            {
-                OpenFormCheckOut();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.R)
-            {
-                ReLoadTable();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.L)
-            {
-                LockTable();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.M)
-            {
-                MaximizeSwitch();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.W)
-            {
-                ShowMergeOptions();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.N)
-            {
-                MinimizeSwitch();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.Q)
-            {
-                ShowMoveOptions();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.O)
-            {
-                OpenFormOrder();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.S)
-            {
-                OpenFormSetting();
-                return;
-            }
-            if (e.Alt && e.KeyCode == Keys.V)
-            {
-                ShowOrHideBillPanel();
-                return;
+                case Keys.Alt | Keys.P:
+                    OpenFormProfile();
+                    break;
+                case Keys.Alt | Keys.C:
+                    OpenFormCheckOut();
+                    break;
+                case Keys.Alt | Keys.R:
+                    ReLoadTable();
+                    break;
+                case Keys.Alt | Keys.L:
+                    LockTable();
+                    break;
+                case Keys.Alt | Keys.M:
+                    MaximizeSwitch();
+                    break;
+                case Keys.Alt | Keys.W:
+                    ShowMergeOptions();
+                    break;
+                case Keys.Alt | Keys.N:
+                    MinimizeSwitch();
+                    break;
+                case Keys.Alt | Keys.Q:
+                    ShowMoveOptions();
+                    break;
+                case Keys.Alt | Keys.O:
+                    OpenFormOrder();
+                    break;
+                case Keys.Alt | Keys.S:
+                    OpenFormSetting();
+                    break;
+                case Keys.Alt | Keys.V:
+                    ShowOrHideBillPanel();
+                    break;
+                default: break;
             }
         }
 
@@ -2052,7 +2046,7 @@ namespace Zi.SalesModule.GUIs
         private void OpenShortcutEditor()
         {
             string msg = InterfaceRm.GetString("MsgNotAvailable", Culture);
-            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer);
+            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
         #endregion
     }

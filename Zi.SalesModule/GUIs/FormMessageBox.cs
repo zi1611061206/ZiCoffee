@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Media;
 using System.Resources;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -38,6 +39,7 @@ namespace Zi.SalesModule.GUIs
         public CultureInfo Culture { get; set; }
         public Stream InitStream { get; set; }
         public Stream ClickStream { get; set; }
+        public int StopPointX { get; set; }
         #endregion
 
         #region Instance
@@ -120,16 +122,6 @@ namespace Zi.SalesModule.GUIs
         private void FormMessageBox_SizeChanged(object sender, EventArgs e)
         {
             DrawRoundedCorner();
-            AutoLocating();
-        }
-        #endregion
-
-        #region Effects - Dispose form after a period of time
-        private void TimerAppearence_Tick(object sender, EventArgs e)
-        {
-            result = DialogResult.Cancel;
-            Dispose();
-            timerAppearence.Stop();
         }
         #endregion
 
@@ -145,13 +137,54 @@ namespace Zi.SalesModule.GUIs
             {
                 result = DialogResult.Cancel;
             }
-            Dispose();
-            timerAppearence.Stop();
+            Close();
+            timerDispose.Stop();
+        }
+        #endregion
+
+        #region Effects - Dispose form after a period of time
+        private void TimerDispose_Tick(object sender, EventArgs e)
+        {
+            timerAnimationHide.Start();
+        }
+        #endregion
+
+        #region Effects - Animation show
+        private void TimerAnimationShow_Tick(object sender, EventArgs e)
+        {
+            int x = Location.X;
+            int y = Location.Y;
+            if (x < StopPointX)
+            {
+                x += 5;
+                Location = new Point(x, y);
+            }
+            else
+            {
+                timerAnimationShow.Stop();
+            }
+        }
+        #endregion
+
+        #region Effects - Animation Hide
+        private void TimerAnimationHide_Tick(object sender, EventArgs e)
+        {
+            if (Opacity > 0)
+            {
+                Opacity -= .02;
+            }
+            else
+            {
+                result = DialogResult.Cancel;
+                timerAnimationHide.Stop();
+                timerDispose.Stop();
+                Dispose();
+            }
         }
         #endregion
 
         #region Show methods
-        public static DialogResult Show(string text, int timer = 0)
+        public static DialogResult Show(string text, int timer = 0, Tuple<Point, Size> owner = null)
         {
             form = new FormMessageBox();
             form.SetMessageBoxTitle(string.Empty);
@@ -159,11 +192,12 @@ namespace Zi.SalesModule.GUIs
             form.SetMessageBoxIcon(CustomMessageBoxIcon.None);
             form.SetMessageBoxButton(CustomMessageBoxButton.None);
             form.SetMessageBoxTimer(timer);
+            form.SetAppearenceLocation(owner);
             form.ShowDialog();
             return result;
         }
 
-        public static DialogResult Show(string text, string caption, int timer = 0)
+        public static DialogResult Show(string text, string caption, int timer = 0, Tuple<Point, Size> owner = null)
         {
             form = new FormMessageBox();
             form.SetMessageBoxTitle(caption);
@@ -171,11 +205,12 @@ namespace Zi.SalesModule.GUIs
             form.SetMessageBoxIcon(CustomMessageBoxIcon.None);
             form.SetMessageBoxButton(CustomMessageBoxButton.None);
             form.SetMessageBoxTimer(timer);
+            form.SetAppearenceLocation(owner);
             form.ShowDialog();
             return result;
         }
 
-        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, int timer = 0)
+        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, int timer = 0, Tuple<Point, Size> owner = null)
         {
             form = new FormMessageBox();
             form.SetMessageBoxTitle(caption);
@@ -183,11 +218,12 @@ namespace Zi.SalesModule.GUIs
             form.SetMessageBoxIcon(icon);
             form.SetMessageBoxButton(CustomMessageBoxButton.None);
             form.SetMessageBoxTimer(timer);
+            form.SetAppearenceLocation(owner);
             form.ShowDialog();
             return result;
         }
 
-        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, CustomMessageBoxButton buttons, int timer = 0)
+        public static DialogResult Show(string text, string caption, CustomMessageBoxIcon icon, CustomMessageBoxButton buttons, int timer = 0, Tuple<Point, Size> owner = null)
         {
             form = new FormMessageBox();
             form.SetMessageBoxTitle(caption);
@@ -195,6 +231,7 @@ namespace Zi.SalesModule.GUIs
             form.SetMessageBoxIcon(icon);
             form.SetMessageBoxButton(buttons);
             form.SetMessageBoxTimer(timer);
+            form.SetAppearenceLocation(owner);
             form.ShowDialog();
             return result;
         }
@@ -217,6 +254,7 @@ namespace Zi.SalesModule.GUIs
         {
             lbContent.Text = text;
             AutoSizing();
+            AutoLocating();
         }
 
         private void SetMessageBoxIcon(CustomMessageBoxIcon icon)
@@ -257,6 +295,48 @@ namespace Zi.SalesModule.GUIs
                     pnlIcon.Visible = false;
                     ipicMessageStatus.Visible = false;
                     break;
+            }
+            form.SetAppearenceAudio(icon);
+        }
+
+        private void SetAppearenceAudio(CustomMessageBoxIcon icon)
+        {
+            if (Properties.Settings.Default.AllowInitSound)
+            {
+                switch (icon)
+                {
+                    case CustomMessageBoxIcon.Error:
+                        InitStream = Properties.Resources.Cartoon_Boing_01;
+                        break;
+                    case CustomMessageBoxIcon.Question:
+                        InitStream = Properties.Resources.Synth_Speedbump_Fast_01;
+                        break;
+                    case CustomMessageBoxIcon.Warning:
+                        InitStream = Properties.Resources.Toy_Train_Whistle_01;
+                        break;
+                    case CustomMessageBoxIcon.Information:
+                        InitStream = Properties.Resources.Synth_Pop_Small_01;
+                        break;
+                    case CustomMessageBoxIcon.Success:
+                        InitStream = Properties.Resources.Bell_Ding_01;
+                        break;
+                    default:
+                        InitStream = Properties.Resources.Synth_Appear_01;
+                        break;
+                }
+            }
+            else
+            {
+                InitStream = null;
+            }
+
+            if (InitStream != null)
+            {
+                SoundPlayer sound = new SoundPlayer
+                {
+                    Stream = InitStream
+                };
+                sound.Play();
             }
         }
 
@@ -353,8 +433,25 @@ namespace Zi.SalesModule.GUIs
         {
             if (miliSeconds > 0)
             {
-                timerAppearence.Interval = miliSeconds;
-                timerAppearence.Start();
+                timerDispose.Interval = miliSeconds;
+                timerDispose.Start();
+            }
+        }
+
+        private void SetAppearenceLocation(Tuple<Point, Size> owner)
+        {
+            if (owner != null)
+            {
+                Point ownerPoint = owner.Item1;
+                Size ownerSize = owner.Item2;
+
+                int x = ownerPoint.X + ownerSize.Width - 90 - Width;
+                int y = ownerPoint.Y + ownerSize.Height - 70 - Height;
+
+                StartPosition = FormStartPosition.Manual;
+                Location = new Point(x - 100, y);
+                StopPointX = x;
+                timerAnimationShow.Start();
             }
         }
         #endregion

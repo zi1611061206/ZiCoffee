@@ -1,18 +1,13 @@
 ﻿using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Media;
 using System.Resources;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Zi.LinqSqlLayer.DAOs;
 using Zi.LinqSqlLayer.DTOs;
@@ -495,6 +490,8 @@ namespace Zi.SalesModule.GUIs
                     btnProduct.ZiClick += BtnProduct_ZiClick;
                     btnProduct.ZiMouseHover += BtnProduct_ZiMouseHover;
                     btnProduct.ZiMouseLeave += BtnProduct_ZiMouseLeave;
+                    btnProduct.ZiMouseLeave += BtnProduct_ZiMouseLeave;
+                    btnProduct.ZiKeyDown += BtnProduct_ZiKeyDown;
                     fpnlProduct.Controls.Add(btnProduct);
                 }
             }
@@ -545,6 +542,26 @@ namespace Zi.SalesModule.GUIs
             if ((item.Tag as ProductModel).ProductId.CompareTo(CurrentProduct.ProductId) != 0)
             {
                 item.BackColor = Properties.Settings.Default.BaseItemColor;
+            }
+        }
+
+        private void BtnProduct_ZiKeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Add:
+                    IncreaseOrder();
+                    break;
+                case Keys.Subtract:
+                    DecreaseOrder();
+                    break;
+                case Keys.Alt | Keys.V:
+                    ShowOrHideCartPanel();
+                    break;
+                case Keys.Escape:
+                    CloseForm();
+                    break;
+                default: break;
             }
         }
 
@@ -956,7 +973,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentProduct.ProductId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedProduct", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
 
@@ -1010,7 +1027,7 @@ namespace Zi.SalesModule.GUIs
             if (CurrentProduct.ProductId.CompareTo(Guid.Empty) == 0)
             {
                 string msg = InterfaceRm.GetString("MsgNoSelectedProduct", Culture);
-                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer);
+                FormMessageBox.Show(msg, WarningTitle, CustomMessageBoxIcon.Warning, AlertTimer, new Tuple<Point, Size>(Location, Size));
                 return;
             }
 
@@ -1090,7 +1107,8 @@ namespace Zi.SalesModule.GUIs
         private void SaveOrder()
         {
             string msg = InterfaceRm.GetString("MsgSaveConfirmation", Culture);
-            if (FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo) == DialogResult.Yes)
+            DialogResult result = FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo);
+            if (result == DialogResult.Yes)
             {
                 if (CurrentTable.Status.CompareTo(TableStatus.Using) == 0)
                 {
@@ -1124,6 +1142,10 @@ namespace Zi.SalesModule.GUIs
                     }
                 }
                 CloseForm();
+            }
+            else
+            {
+                return;
             }
         }
         #endregion
@@ -1196,6 +1218,42 @@ namespace Zi.SalesModule.GUIs
         {
             RoundedLabel tag = sender as RoundedLabel;
             txbSearch.Text = tag.Text;
+        }
+        #endregion
+
+        #region Delete bill details by delete key
+        private void LsvBillDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Delete)
+            {
+                DeleteBillDetailItem();
+            }
+        }
+
+        private void DeleteBillDetailItem()
+        {
+            if (lsvBillDetail.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    BillDetailModel billDetail = new BillDetailModel();
+                    foreach (BillDetailModel item in CurrentBillDetails)
+                    {
+                        if (item.BillId.CompareTo(CurrentBill.BillId) == 0 && item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
+                        {
+                            CurrentBillDetails.Remove(item);
+                            break;
+                        }
+                    }
+                    CalculateBillTotal();
+                    LoadBill();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
         }
         #endregion
     }

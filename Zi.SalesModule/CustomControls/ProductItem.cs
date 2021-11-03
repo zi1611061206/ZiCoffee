@@ -32,6 +32,7 @@ namespace Zi.SalesModule.CustomControls
         public event EventHandler ZiMouseHover;
         public event EventHandler ZiMouseLeave;
         public event MouseEventHandler ZiMouseDown;
+        public event KeyEventHandler ZiKeyDown;
         #endregion
 
         public ProductItem(ProductModel product)
@@ -108,17 +109,25 @@ namespace Zi.SalesModule.CustomControls
         {
             ZiClick?.Invoke(this, e);
         }
+
         public virtual void Zi_MouseHover(object sender, EventArgs e)
         {
             ZiMouseHover?.Invoke(this, e);
         }
+
         public virtual void Zi_MouseLeave(object sender, EventArgs e)
         {
             ZiMouseLeave?.Invoke(this, e);
         }
+
         public virtual void Zi_MouseDown(object sender, MouseEventArgs e)
         {
             ZiMouseDown?.Invoke(this, e);
+        }
+
+        public virtual void Zi_KeyDown(object sender, KeyEventArgs e)
+        {
+            ZiKeyDown?.Invoke(this, e);
         }
         #endregion
     }

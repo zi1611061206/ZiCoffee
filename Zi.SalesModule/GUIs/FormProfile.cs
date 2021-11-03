@@ -697,7 +697,7 @@ namespace Zi.SalesModule.GUIs
         private void OpenSalaryTable()
         {
             string msg = InterfaceRm.GetString("MsgNotAvailable", Culture);
-            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer);
+            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
         #endregion
 
@@ -710,7 +710,7 @@ namespace Zi.SalesModule.GUIs
         private void OpenWorkCalendar()
         {
             string msg = InterfaceRm.GetString("MsgNotAvailable", Culture);
-            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer);
+            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Information, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
         #endregion
 
@@ -737,7 +737,7 @@ namespace Zi.SalesModule.GUIs
                 FormMessageBox.Show(updater.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
             }
             string msg = InterfaceRm.GetString("MsgChangePasswordSuccess", Culture);
-            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, AlertTimer);
+            FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, AlertTimer, new Tuple<Point, Size>(Location, Size));
         }
         #endregion
     }
