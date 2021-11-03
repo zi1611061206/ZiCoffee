@@ -60,6 +60,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\AreaItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\AreaItem.Designer.cs">
+      <DependentUpon>AreaItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\CategoryItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\CategoryItem.Designer.cs">
+      <DependentUpon>CategoryItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\ProductItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

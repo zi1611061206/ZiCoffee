@@ -37,7 +37,8 @@ namespace Zi.LinqSqlLayer.DAOs
                     LogId = model.LogId,
                     EventId = model.EventId,
                     UserId = model.UserId,
-                    Content = model.Content
+                    Content = model.Content,
+                    Time = DateTime.Now
                 };
                 context.Logs.InsertOnSubmit(log);
 

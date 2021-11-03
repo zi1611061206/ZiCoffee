@@ -103,6 +103,7 @@ namespace Zi.SalesModule.GUIs
             LoadIcon();
             LoadSetting();
 
+            ActiveControl = txbSearch;
             AlertTimer = Properties.Settings.Default.AlertTimer;
         }
 
@@ -258,17 +259,8 @@ namespace Zi.SalesModule.GUIs
         {
             fpnlCategory.Controls.Clear();
 
-            IconButton btnAllCategory = new IconButton()
-            {
-                Size = Properties.Settings.Default.CategoryItemSize,
-                FlatStyle = FlatStyle.Flat,
-                Text = InterfaceRm.GetString("BtnAllCategory", Culture),
-                ForeColor = Properties.Settings.Default.BaseTextColor,
-                BackColor = Properties.Settings.Default.BaseItemColor,
-                Margin = new Padding(10, 10, 10, 10),
-                Tag = new CategoryModel()
-            };
-            btnAllCategory.FlatAppearance.BorderSize = 0;
+            int counterAll = _productService.CountAll();
+            CategoryItem btnAllCategory = new CategoryItem(new CategoryModel(), counterAll);
             btnAllCategory.MouseHover += BtnCategory_MouseHover;
             btnAllCategory.MouseLeave += BtnCategory_MouseLeave;
             btnAllCategory.MouseDown += AllBtn_MouseDown;
@@ -292,17 +284,8 @@ namespace Zi.SalesModule.GUIs
 
             foreach (CategoryModel item in categoryList)
             {
-                IconButton btnCategory = new IconButton()
-                {
-                    Size = Properties.Settings.Default.CategoryItemSize,
-                    FlatStyle = FlatStyle.Flat,
-                    Text = InterfaceRm.GetString("BtnCategory", Culture) + " " + item.Name,
-                    ForeColor = Properties.Settings.Default.BaseTextColor,
-                    BackColor = Properties.Settings.Default.BaseItemColor,
-                    Margin = new Padding(10, 10, 10, 10),
-                    Tag = item
-                };
-                btnCategory.FlatAppearance.BorderSize = 0;
+                int counter = _productService.CountByCategory(item.CategoryId);
+                CategoryItem btnCategory = new CategoryItem(item, counter);
                 btnCategory.MouseHover += BtnCategory_MouseHover;
                 btnCategory.MouseLeave += BtnCategory_MouseLeave;
                 btnCategory.MouseDown += AllBtn_MouseDown;
@@ -316,7 +299,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnCategory_MouseHover(object sender, EventArgs e)
         {
-            IconButton btn = sender as IconButton;
+            CategoryItem btn = sender as CategoryItem;
             btn.ForeColor = Properties.Settings.Default.BaseHoverColor;
 
             string id = (btn.Tag as CategoryModel).CategoryId.ToString();
@@ -324,9 +307,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlCategory.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is CategoryItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        CategoryItem btnChild = child as CategoryItem;
                         btnChild.ForeColor = Properties.Settings.Default.BaseHoverColor;
                     }
                 }
@@ -335,9 +318,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlCategory.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is CategoryItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        CategoryItem btnChild = child as CategoryItem;
                         CategoryModel model = btnChild.Tag as CategoryModel;
                         if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
                         {
@@ -350,7 +333,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnCategory_MouseLeave(object sender, EventArgs e)
         {
-            IconButton btn = sender as IconButton;
+            CategoryItem btn = sender as CategoryItem;
             btn.ForeColor = Properties.Settings.Default.BaseTextColor;
 
             string id = (btn.Tag as CategoryModel).CategoryId.ToString();
@@ -358,9 +341,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlCategory.Controls)
                 {
-                    if (child is Button)
+                    if (child is CategoryItem)
                     {
-                        Button btnChild = child as Button;
+                        CategoryItem btnChild = child as CategoryItem;
                         btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
                     }
                 }
@@ -369,9 +352,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlCategory.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is CategoryItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        CategoryItem btnChild = child as CategoryItem;
                         CategoryModel model = btnChild.Tag as CategoryModel;
                         if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
                         {
@@ -384,7 +367,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnCategory_Click(object sender, EventArgs e)
         {
-            Button btnCategory = sender as Button;
+            CategoryItem btnCategory = sender as CategoryItem;
             CurrentCategory = btnCategory.Tag as CategoryModel;
             LoadProductListByCategory();
         }

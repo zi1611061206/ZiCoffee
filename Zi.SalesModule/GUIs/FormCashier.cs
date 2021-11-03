@@ -397,17 +397,8 @@ namespace Zi.SalesModule.GUIs
         {
             fpnlAreaList.Controls.Clear();
 
-            IconButton btnAllArea = new IconButton()
-            {
-                Size = Properties.Settings.Default.AreaItemSize,
-                FlatStyle = FlatStyle.Flat,
-                Text = InterfaceRm.GetString("BtnAllArea", Culture),
-                ForeColor = Properties.Settings.Default.BaseTextColor,
-                BackColor = Properties.Settings.Default.BaseItemColor,
-                Margin = new Padding(10, 10, 10, 10),
-                Tag = new AreaModel()
-            };
-            btnAllArea.FlatAppearance.BorderSize = 0;
+            int counterAll = _tableService.CountAll();
+            AreaItem btnAllArea = new AreaItem(new AreaModel(), counterAll);
             btnAllArea.MouseHover += BtnArea_MouseHover;
             btnAllArea.MouseLeave += BtnArea_MouseLeave;
             btnAllArea.MouseDown += AllBtn_MouseDown;
@@ -431,17 +422,8 @@ namespace Zi.SalesModule.GUIs
 
             foreach (AreaModel item in areaList)
             {
-                IconButton btnArea = new IconButton()
-                {
-                    Size = Properties.Settings.Default.AreaItemSize,
-                    FlatStyle = FlatStyle.Flat,
-                    Text = InterfaceRm.GetString("BtnArea", Culture) + " " + item.Name,
-                    ForeColor = Properties.Settings.Default.BaseTextColor,
-                    BackColor = Properties.Settings.Default.BaseItemColor,
-                    Margin = new Padding(10, 10, 10, 10),
-                    Tag = item
-                };
-                btnArea.FlatAppearance.BorderSize = 0;
+                int counter = _tableService.CountByArea(item.AreaId);
+                AreaItem btnArea = new AreaItem(item, counter);
                 btnArea.MouseHover += BtnArea_MouseHover;
                 btnArea.MouseLeave += BtnArea_MouseLeave;
                 btnArea.MouseDown += AllBtn_MouseDown;
@@ -455,7 +437,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnArea_MouseHover(object sender, EventArgs e)
         {
-            IconButton btn = sender as IconButton;
+            AreaItem btn = sender as AreaItem;
             btn.ForeColor = Properties.Settings.Default.BaseHoverColor;
 
             string id = (btn.Tag as AreaModel).AreaId.ToString();
@@ -463,9 +445,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlAreaList.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is AreaItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        AreaItem btnChild = child as AreaItem;
                         btnChild.ForeColor = Properties.Settings.Default.BaseHoverColor;
                     }
                 }
@@ -474,9 +456,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlAreaList.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is AreaItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        AreaItem btnChild = child as AreaItem;
                         AreaModel model = btnChild.Tag as AreaModel;
                         if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
                         {
@@ -489,7 +471,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnArea_MouseLeave(object sender, EventArgs e)
         {
-            IconButton btn = sender as IconButton;
+            AreaItem btn = sender as AreaItem;
             btn.ForeColor = Properties.Settings.Default.BaseTextColor;
 
             string id = (btn.Tag as AreaModel).AreaId.ToString();
@@ -497,9 +479,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlAreaList.Controls)
                 {
-                    if (child is Button)
+                    if (child is AreaItem)
                     {
-                        Button btnChild = child as Button;
+                        AreaItem btnChild = child as AreaItem;
                         btnChild.ForeColor = Properties.Settings.Default.BaseTextColor;
                     }
                 }
@@ -508,9 +490,9 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (Control child in fpnlAreaList.Controls)
                 {
-                    if (child is IconButton)
+                    if (child is AreaItem)
                     {
-                        IconButton btnChild = child as IconButton;
+                        AreaItem btnChild = child as AreaItem;
                         AreaModel model = btnChild.Tag as AreaModel;
                         if (!string.IsNullOrEmpty(model.ParentId) && model.ParentId.ToLower().Equals(id.ToLower()))
                         {
@@ -523,7 +505,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnArea_Click(object sender, EventArgs e)
         {
-            Button btnArea = sender as Button;
+            AreaItem btnArea = sender as AreaItem;
             CurrentArea = btnArea.Tag as AreaModel;
             LoadTableListByArea();
         }
@@ -617,10 +599,8 @@ namespace Zi.SalesModule.GUIs
             {
                 foreach (TableModel item in tableList)
                 {
-                    TableItem btnTable = new TableItem(item)
-                    {
-                        Size = Properties.Settings.Default.TableItemSize
-                    };
+                    BillModel bill = GetBill(item);
+                    TableItem btnTable = new TableItem(item, bill.CreatedDate);
                     btnTable.MouseDown += AllBtn_MouseDown;
                     btnTable.MouseDown += BtnTable_MouseDown;
                     btnTable.MouseHover += BtnTable_MouseHover;
@@ -634,7 +614,7 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnTable_MouseDown(object sender, MouseEventArgs e)
         {
-            RoundedIconButton btnTable = sender as RoundedIconButton;
+            TableItem btnTable = sender as TableItem;
             CurrentTable = btnTable.Tag as TableModel;
             ChangeItemColorToSelected(sender);
 
@@ -704,17 +684,10 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            BillFilter billFilter = new BillFilter()
+            BillModel bill = GetBill(CurrentTable);
+            CurrentBill = bill;
+            if (bill != null)
             {
-                TableId = CurrentTable.TableId,
-                Status = BillStatus.UnPay
-            };
-            var billReader = _billService.Read(billFilter, CultureName);
-            if (billReader.Item1)
-            {
-                BillModel bill = (billReader.Item2 as Paginator<BillModel>).Item[0];
-                CurrentBill = bill;
-
                 BillDetailFilter billDetailFilter = new BillDetailFilter()
                 {
                     BillId = bill.BillId
@@ -736,6 +709,22 @@ namespace Zi.SalesModule.GUIs
 
                 SetToolState();
             }
+        }
+
+        private BillModel GetBill(TableModel table)
+        {
+            BillFilter billFilter = new BillFilter()
+            {
+                TableId = table.TableId,
+                Status = BillStatus.UnPay
+            };
+            var billReader = _billService.Read(billFilter, CultureName);
+            if (billReader.Item1)
+            {
+                BillModel bill = (billReader.Item2 as Paginator<BillModel>).Item[0];
+                return bill;
+            }
+            return new BillModel();
         }
 
         private void LoadBillDetails(BillDetailModel billDetail)

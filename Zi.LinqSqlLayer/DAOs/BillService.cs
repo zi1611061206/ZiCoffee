@@ -42,7 +42,9 @@ namespace Zi.LinqSqlLayer.DAOs
                     RealPay = model.RealPay,
                     Status = (int)model.Status,
                     UserId = model.UserId,
-                    TableId = model.TableId
+                    TableId = model.TableId,
+                    CreatedDate = DateTime.Now,
+                    LastedModify = DateTime.Now
                 };
                 context.Bills.InsertOnSubmit(bill);
 
@@ -239,7 +241,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 bill.AfterVat = model.AfterVat;
                 bill.RealPay = model.RealPay;
                 bill.Status = (int)model.Status;
-                bill.LastedModify = model.LastedModify;
+                bill.LastedModify = DateTime.Now;
                 bill.UserId = model.UserId;
                 bill.TableId = model.TableId;
 

@@ -218,5 +218,34 @@ namespace Zi.LinqSqlLayer.DAOs
                 return new Tuple<int, int, int, int>(totalTable, readyTable, usingTable, pendingTable);
             }
         }
+
+        public int CountAll()
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                return context.Tables.ToList().Count();
+            }
+        }
+
+        public int CountByArea(Guid areaId)
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                int counter = 0;
+                counter += context.Tables.Where(x => x.AreaId.CompareTo(areaId) == 0).ToList().Count;
+
+                var areaChildren = context.Areas.Where(x => x.ParentId.Equals(areaId.ToString().ToLower()))
+                    .Select(x => x.AreaId).ToList();
+                if (areaChildren.Count > 0)
+                {
+                    foreach (Guid id in areaChildren)
+                    {
+                        counter += context.Tables.Where(x => x.AreaId.CompareTo(id) == 0).ToList().Count;
+                    }
+                }
+
+                return counter;
+            }
+        }
     }
 }

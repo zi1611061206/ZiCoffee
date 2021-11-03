@@ -105,7 +105,7 @@
       <Value Profile="(Default)">46, 61, 74</Value>
     </Setting>
     <Setting Name="CategoryItemSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">200, 50</Value>
+      <Value Profile="(Default)">300, 50</Value>
     </Setting>
     <Setting Name="VerticalProductItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 400</Value>

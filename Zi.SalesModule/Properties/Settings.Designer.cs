@@ -434,7 +434,7 @@ namespace Zi.SalesModule.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200, 50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("300, 50")]
         public global::System.Drawing.Size CategoryItemSize {
             get {
                 return ((global::System.Drawing.Size)(this["CategoryItemSize"]));

@@ -35,7 +35,8 @@ namespace Zi.LinqSqlLayer.DAOs
                 var receipt = new Receipt()
                 {
                     ReceiptId = model.ReceiptId,
-                    SupplierId = model.SupplierId
+                    SupplierId = model.SupplierId,
+                    CreatedDate = DateTime.Now
                 };
                 context.Receipts.InsertOnSubmit(receipt);
 

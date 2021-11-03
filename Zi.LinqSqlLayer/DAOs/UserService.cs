@@ -46,7 +46,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     PhoneNumber = model.PhoneNumber,
                     Email = model.Email,
                     DateOfBirth = model.DateOfBirth,
-                    CreatedDate = model.CreatedDate,
+                    CreatedDate = DateTime.Now,
                     Gender = (int)model.Gender,
                     CitizenId = model.CitizenId,
                     Address = model.Address
