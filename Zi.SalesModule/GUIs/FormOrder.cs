@@ -59,7 +59,7 @@ namespace Zi.SalesModule.GUIs
         public string WarningTitle { get; set; }
         public int AlertTimer { get; set; }
         public int CurrentProductPageIndex { get; set; }
-        public int CurrentTotalPages { get; set; }
+        public int CurrentProductTotalPages { get; set; }
         public string CurrentKeyword { get; set; }
         #endregion
 
@@ -419,24 +419,19 @@ namespace Zi.SalesModule.GUIs
                 var result = GetProductsByCategories(productFilter, productList, categoryBrowseList);
                 productList = result.Item1;
                 productPaginator = result.Item2;
-                CurrentTotalPages = productPaginator.TotalPages;
+                CurrentProductTotalPages = productPaginator.TotalPages;
             }
             else
             {
                 var result = GetAllProducts(productFilter, productList);
                 productList = result.Item1;
                 productPaginator = result.Item2;
-                CurrentTotalPages = productPaginator.TotalPages;
+                CurrentProductTotalPages = productPaginator.TotalPages;
             }
 
             DrawProductItems(productList);
-            DrawPaginator(productPaginator);
-            ResetPageIndex();
-        }
-
-        private void ResetPageIndex()
-        {
-            CurrentProductPageIndex = 1;
+            DrawProductPaginator(productPaginator);
+            ResetProductPageIndex();
         }
 
         private Tuple<List<ProductModel>, Paginator<ProductModel>> GetProductsByCategories(ProductFilter productFilter, List<ProductModel> productList, List<CategoryModel> categoryBrowseList)
@@ -468,7 +463,7 @@ namespace Zi.SalesModule.GUIs
             var productReader = _productService.Read(productFilter, CultureName);
             if (productReader.Item1)
             {
-                paginatorCommon = (Paginator<ProductModel>)productReader.Item2;
+                paginatorCommon = productReader.Item2 as Paginator<ProductModel>;
                 productList.AddRange(paginatorCommon.Item);
             }
             return new Tuple<List<ProductModel>, Paginator<ProductModel>>(productList, paginatorCommon);
@@ -574,7 +569,7 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void DrawPaginator(Paginator<ProductModel> productPaginator)
+        private void DrawProductPaginator(Paginator<ProductModel> productPaginator)
         {
             fpnlPaginator.Controls.Clear();
 
@@ -642,8 +637,13 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnLastPage_Click(object sender, EventArgs e)
         {
-            CurrentProductPageIndex = CurrentTotalPages;
+            CurrentProductPageIndex = CurrentProductTotalPages;
             LoadProductListByCategory();
+        }
+
+        private void ResetProductPageIndex()
+        {
+            CurrentProductPageIndex = 1;
         }
 
         private void LoadBill()

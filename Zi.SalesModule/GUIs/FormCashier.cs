@@ -61,6 +61,8 @@ namespace Zi.SalesModule.GUIs
         public string ErrorTitle { get; set; }
         public string WarningTitle { get; set; }
         public int AlertTimer { get; set; }
+        public int CurrentTablePageIndex { get; set; }
+        public int CurrentTableTotalPages { get; set; }
         #endregion
 
         #region DI
@@ -96,6 +98,7 @@ namespace Zi.SalesModule.GUIs
             CurrentBillDetails = new List<BillDetailModel>();
             AreaContainTable = new AreaModel();
             OnResizeMode = false;
+            CurrentTablePageIndex = 1;
 
             DrawRoundedCorner();
             LoadIcon();
@@ -115,11 +118,12 @@ namespace Zi.SalesModule.GUIs
 
             pnlResizeNav.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeNav.Width, pnlResizeNav.Height, 20, 20));
             pnlResizeBill.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeBill.Width, pnlResizeBill.Height, 20, 20));
-            pnlResizeDivideBody.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeDivideBody.Width, pnlResizeDivideBody.Height, 20, 20));
+            pnlResizeTop.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeTop.Width, pnlResizeTop.Height, 20, 20));
 
             fpnlAreaList.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlAreaList.Width, fpnlAreaList.Height, 20, 20));
             fpnlTableList.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlTableList.Width, fpnlTableList.Height, 20, 20));
             pnlBill.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlBill.Width, pnlBill.Height, 20, 20));
+            fpnlPaginator.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlPaginator.Width, fpnlPaginator.Height, 20, 20));
 
             picAvatar.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, picAvatar.Width, picAvatar.Height, 50, 50));
         }
@@ -246,6 +250,7 @@ namespace Zi.SalesModule.GUIs
             pnlBill.BackColor = Properties.Settings.Default.BodyBackColor;
             fpnlAreaList.BackColor
                 = fpnlTableList.BackColor
+                = fpnlPaginator.BackColor
                 = Properties.Settings.Default.BodyBackColor;
             // Icon
             ipicClose.IconColor
@@ -541,21 +546,34 @@ namespace Zi.SalesModule.GUIs
         private void LoadTableList(List<AreaModel> areaBrowseList = null)
         {
             List<TableModel> tableList = new List<TableModel>();
-            TableFilter tableFilter = new TableFilter();
+            Paginator<TableModel> tablePaginator;
+            TableFilter tableFilter = new TableFilter()
+            {
+                CurrentPageIndex = CurrentTablePageIndex
+            };
             if (areaBrowseList != null)
             {
-                tableList = GetTablesByAreas(tableFilter, tableList, areaBrowseList);
+                var result = GetTablesByAreas(tableFilter, tableList, areaBrowseList);
+                tableList = result.Item1;
+                tablePaginator = result.Item2;
+                CurrentTableTotalPages = tablePaginator.TotalPages;
             }
             else
             {
-                tableList = GetAllTables(tableFilter, tableList);
+                var result = GetAllTables(tableFilter, tableList);
+                tableList = result.Item1;
+                tablePaginator = result.Item2;
+                CurrentTableTotalPages = tablePaginator.TotalPages;
             }
 
             DrawTableItems(tableList);
+            DrawTablePaginator(tablePaginator);
+            ResetTablePageIndex();
         }
 
-        private List<TableModel> GetTablesByAreas(TableFilter tableFilter, List<TableModel> tableList, List<AreaModel> areaBrowseList)
+        private Tuple<List<TableModel>, Paginator<TableModel>> GetTablesByAreas(TableFilter tableFilter, List<TableModel> tableList, List<AreaModel> areaBrowseList)
         {
+            Paginator<TableModel> paginatorCommon = new Paginator<TableModel>();
             foreach (AreaModel item in areaBrowseList)
             {
                 tableFilter.AreaId = item.AreaId;
@@ -566,20 +584,26 @@ namespace Zi.SalesModule.GUIs
                 }
                 else
                 {
-                    tableList.AddRange((tableReader.Item2 as Paginator<TableModel>).Item);
+                    Paginator<TableModel> paginator = tableReader.Item2 as Paginator<TableModel>;
+                    paginatorCommon.TotalRecords += paginator.TotalRecords;
+                    paginatorCommon.PageSize = paginator.PageSize;
+                    paginatorCommon.CurrentPageIndex = paginator.CurrentPageIndex;
+                    tableList.AddRange(paginator.Item);
                 }
             }
-            return tableList;
+            return new Tuple<List<TableModel>, Paginator<TableModel>>(tableList, paginatorCommon);
         }
 
-        private List<TableModel> GetAllTables(TableFilter tableFilter, List<TableModel> tableList)
+        private Tuple<List<TableModel>, Paginator<TableModel>> GetAllTables(TableFilter tableFilter, List<TableModel> tableList)
         {
+            Paginator<TableModel> paginatorCommon = new Paginator<TableModel>();
             var tableReader = _tableService.Read(tableFilter, CultureName);
             if (tableReader.Item1)
             {
-                tableList.AddRange((tableReader.Item2 as Paginator<TableModel>).Item);
+                paginatorCommon = tableReader.Item2 as Paginator<TableModel>;
+                tableList.AddRange(paginatorCommon.Item);
             }
-            return tableList;
+            return new Tuple<List<TableModel>, Paginator<TableModel>>(tableList, paginatorCommon);
         }
 
         private void DrawTableItems(List<TableModel> tableList)
@@ -670,6 +694,83 @@ namespace Zi.SalesModule.GUIs
             {
                 item.BackColor = Properties.Settings.Default.BaseItemColor;
             }
+        }
+
+        private void DrawTablePaginator(Paginator<TableModel> tablePaginator)
+        {
+            fpnlPaginator.Controls.Clear();
+
+            int startIndex = Math.Max(tablePaginator.CurrentPageIndex - 3, 1);
+            int finishIndex = Math.Min(tablePaginator.CurrentPageIndex + 3, tablePaginator.TotalPages);
+
+            if (tablePaginator.CurrentPageIndex - 3 > 1)
+            {
+                PageItem first = new PageItem("first");
+                first.Click += BtnFirstPage_Click;
+                PageItem previous = new PageItem("previous");
+                previous.Click += BtnPreviousPage_Click;
+                fpnlPaginator.Controls.Add(first);
+                fpnlPaginator.Controls.Add(previous);
+            }
+            for (int i = startIndex; i <= finishIndex; i++)
+            {
+                if (i == tablePaginator.CurrentPageIndex)
+                {
+                    PageItem page = new PageItem(i.ToString(), true);
+                    page.Click += BtnPage_Click;
+                    fpnlPaginator.Controls.Add(page);
+                }
+                else
+                {
+                    PageItem page = new PageItem(i.ToString());
+                    page.Click += BtnPage_Click;
+                    fpnlPaginator.Controls.Add(page);
+                }
+            }
+            if (tablePaginator.CurrentPageIndex + 3 < tablePaginator.TotalPages)
+            {
+                PageItem next = new PageItem("next");
+                next.Click += BtnNextPage_Click;
+                PageItem last = new PageItem("last");
+                last.Click += BtnLastPage_Click;
+                fpnlPaginator.Controls.Add(next);
+                fpnlPaginator.Controls.Add(last);
+            }
+        }
+
+        private void BtnFirstPage_Click(object sender, EventArgs e)
+        {
+            CurrentTablePageIndex = 1;
+            LoadTableListByArea();
+        }
+
+        private void BtnPreviousPage_Click(object sender, EventArgs e)
+        {
+            CurrentTablePageIndex--;
+            LoadTableListByArea();
+        }
+
+        private void BtnPage_Click(object sender, EventArgs e)
+        {
+            CurrentTablePageIndex = int.Parse((sender as PageItem).Text);
+            LoadTableListByArea();
+        }
+
+        private void BtnNextPage_Click(object sender, EventArgs e)
+        {
+            CurrentTablePageIndex++;
+            LoadTableListByArea();
+        }
+
+        private void BtnLastPage_Click(object sender, EventArgs e)
+        {
+            CurrentTablePageIndex = CurrentTableTotalPages;
+            LoadTableListByArea();
+        }
+
+        private void ResetTablePageIndex()
+        {
+            CurrentTablePageIndex = 1;
         }
 
         private void LoadBill()
@@ -1870,7 +1971,7 @@ namespace Zi.SalesModule.GUIs
         {
             CurrentTable = new TableModel();
             AreaContainTable = new AreaModel();
-            LoadTableList();
+            LoadTableListByArea();
             CurrentBill = new BillModel();
             CurrentBillDetails = new List<BillDetailModel>();
             lsvBillDetail.Items.Clear();
