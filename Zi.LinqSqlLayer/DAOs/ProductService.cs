@@ -93,6 +93,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
+                int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
                 // Use to mapping data
@@ -109,7 +110,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 });
                 var result = new Paginator<ProductModel>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = totalRecords,
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
@@ -243,13 +244,13 @@ namespace Zi.LinqSqlLayer.DAOs
             using (var context = new ZiCoffeeDataContext())
             {
                 int counter = 0;
-                counter += context.Products.Where(x=>x.CategoryId.CompareTo(categoryId) ==0).ToList().Count;
-                
+                counter += context.Products.Where(x => x.CategoryId.CompareTo(categoryId) == 0).ToList().Count;
+
                 var categoryChildren = context.Categories.Where(x => x.ParentId.Equals(categoryId.ToString().ToLower()))
-                    .Select(x=>x.CategoryId).ToList();
-                if(categoryChildren.Count > 0)
+                    .Select(x => x.CategoryId).ToList();
+                if (categoryChildren.Count > 0)
                 {
-                    foreach(Guid id in categoryChildren)
+                    foreach (Guid id in categoryChildren)
                     {
                         counter += context.Products.Where(x => x.CategoryId.CompareTo(id) == 0).ToList().Count;
                     }

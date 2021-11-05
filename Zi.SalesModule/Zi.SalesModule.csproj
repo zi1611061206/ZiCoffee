@@ -72,6 +72,12 @@
     <Compile Include="CustomControls\CategoryItem.Designer.cs">
       <DependentUpon>CategoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\PageItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PageItem.Designer.cs">
+      <DependentUpon>PageItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\ProductItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

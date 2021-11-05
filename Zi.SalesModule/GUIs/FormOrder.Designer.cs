@@ -40,9 +40,6 @@ namespace Zi.SalesModule.GUIs
             this.txbTotal = new System.Windows.Forms.TextBox();
             this.ibtnSave = new FontAwesome.Sharp.IconButton();
             this.ibtnCancel = new FontAwesome.Sharp.IconButton();
-            this.pnlFilter = new System.Windows.Forms.Panel();
-            this.fpnlSearchTag = new System.Windows.Forms.FlowLayoutPanel();
-            this.txbSearch = new System.Windows.Forms.TextBox();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.ipicUp = new FontAwesome.Sharp.IconPictureBox();
@@ -59,19 +56,25 @@ namespace Zi.SalesModule.GUIs
             this.columnHeaderPromotion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIntoMoney = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlResizeRight = new System.Windows.Forms.Panel();
-            this.fpnlProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
+            this.fpnlPaginator = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlDivideBottom = new System.Windows.Forms.Panel();
+            this.pnlFilter = new System.Windows.Forms.Panel();
+            this.fpnlSearchTag = new System.Windows.Forms.FlowLayoutPanel();
+            this.txbSearch = new System.Windows.Forms.TextBox();
+            this.pnlDivideTop = new System.Windows.Forms.Panel();
+            this.fpnlProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
             this.pnlFooterBar.SuspendLayout();
-            this.pnlFilter.SuspendLayout();
             this.pnlRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicViewCart)).BeginInit();
             this.pnlBill.SuspendLayout();
+            this.pnlFilter.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -162,12 +165,11 @@ namespace Zi.SalesModule.GUIs
             this.pnlFooterBar.Controls.Add(this.txbTotal);
             this.pnlFooterBar.Controls.Add(this.ibtnSave);
             this.pnlFooterBar.Controls.Add(this.ibtnCancel);
-            this.pnlFooterBar.Controls.Add(this.pnlFilter);
             this.pnlFooterBar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlFooterBar.Location = new System.Drawing.Point(0, 610);
+            this.pnlFooterBar.Location = new System.Drawing.Point(0, 650);
             this.pnlFooterBar.Name = "pnlFooterBar";
             this.pnlFooterBar.Padding = new System.Windows.Forms.Padding(20, 10, 50, 10);
-            this.pnlFooterBar.Size = new System.Drawing.Size(1200, 90);
+            this.pnlFooterBar.Size = new System.Drawing.Size(1200, 50);
             this.pnlFooterBar.TabIndex = 0;
             // 
             // txbTotal
@@ -178,11 +180,11 @@ namespace Zi.SalesModule.GUIs
             this.txbTotal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txbTotal.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbTotal.ForeColor = System.Drawing.Color.Red;
-            this.txbTotal.Location = new System.Drawing.Point(400, 50);
+            this.txbTotal.Location = new System.Drawing.Point(400, 10);
             this.txbTotal.Name = "txbTotal";
             this.txbTotal.ReadOnly = true;
             this.txbTotal.Size = new System.Drawing.Size(370, 33);
-            this.txbTotal.TabIndex = 5;
+            this.txbTotal.TabIndex = 0;
             this.txbTotal.TabStop = false;
             this.txbTotal.Text = "Total";
             this.txbTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -201,10 +203,10 @@ namespace Zi.SalesModule.GUIs
             this.ibtnSave.IconChar = FontAwesome.Sharp.IconChar.None;
             this.ibtnSave.IconColor = System.Drawing.Color.Black;
             this.ibtnSave.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnSave.Location = new System.Drawing.Point(20, 50);
+            this.ibtnSave.Location = new System.Drawing.Point(20, 10);
             this.ibtnSave.Name = "ibtnSave";
             this.ibtnSave.Size = new System.Drawing.Size(380, 30);
-            this.ibtnSave.TabIndex = 3;
+            this.ibtnSave.TabIndex = 1;
             this.ibtnSave.Text = "Save";
             this.ibtnSave.UseVisualStyleBackColor = false;
             this.ibtnSave.Click += new System.EventHandler(this.IbtnSave_Click);
@@ -226,10 +228,10 @@ namespace Zi.SalesModule.GUIs
             this.ibtnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
             this.ibtnCancel.IconColor = System.Drawing.Color.Black;
             this.ibtnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnCancel.Location = new System.Drawing.Point(770, 50);
+            this.ibtnCancel.Location = new System.Drawing.Point(770, 10);
             this.ibtnCancel.Name = "ibtnCancel";
             this.ibtnCancel.Size = new System.Drawing.Size(380, 30);
-            this.ibtnCancel.TabIndex = 4;
+            this.ibtnCancel.TabIndex = 2;
             this.ibtnCancel.Text = "Cancel";
             this.ibtnCancel.UseVisualStyleBackColor = false;
             this.ibtnCancel.Click += new System.EventHandler(this.IbtnCancel_Click);
@@ -237,49 +239,13 @@ namespace Zi.SalesModule.GUIs
             this.ibtnCancel.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
             this.ibtnCancel.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
-            // pnlFilter
-            // 
-            this.pnlFilter.Controls.Add(this.fpnlSearchTag);
-            this.pnlFilter.Controls.Add(this.txbSearch);
-            this.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlFilter.Location = new System.Drawing.Point(20, 10);
-            this.pnlFilter.Name = "pnlFilter";
-            this.pnlFilter.Size = new System.Drawing.Size(1130, 40);
-            this.pnlFilter.TabIndex = 0;
-            // 
-            // fpnlSearchTag
-            // 
-            this.fpnlSearchTag.AutoScroll = true;
-            this.fpnlSearchTag.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fpnlSearchTag.Location = new System.Drawing.Point(380, 0);
-            this.fpnlSearchTag.Margin = new System.Windows.Forms.Padding(0);
-            this.fpnlSearchTag.Name = "fpnlSearchTag";
-            this.fpnlSearchTag.Padding = new System.Windows.Forms.Padding(3);
-            this.fpnlSearchTag.Size = new System.Drawing.Size(750, 40);
-            this.fpnlSearchTag.TabIndex = 0;
-            // 
-            // txbSearch
-            // 
-            this.txbSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
-            this.txbSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbSearch.Dock = System.Windows.Forms.DockStyle.Left;
-            this.txbSearch.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearch.ForeColor = System.Drawing.Color.Gainsboro;
-            this.txbSearch.Location = new System.Drawing.Point(0, 0);
-            this.txbSearch.Name = "txbSearch";
-            this.txbSearch.Size = new System.Drawing.Size(380, 30);
-            this.txbSearch.TabIndex = 0;
-            this.txbSearch.Text = "Search";
-            this.txbSearch.Click += new System.EventHandler(this.TxbSearch_Click);
-            this.txbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxbSearch_KeyDown);
-            // 
             // pnlLeft
             // 
             this.pnlLeft.BackColor = System.Drawing.Color.Transparent;
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 50);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(20, 560);
+            this.pnlLeft.Size = new System.Drawing.Size(20, 600);
             this.pnlLeft.TabIndex = 0;
             // 
             // pnlRight
@@ -292,7 +258,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlRight.Location = new System.Drawing.Point(1150, 50);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(50, 560);
+            this.pnlRight.Size = new System.Drawing.Size(50, 600);
             this.pnlRight.TabIndex = 0;
             // 
             // ipicUp
@@ -305,7 +271,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicUp.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicUp.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicUp.IconSize = 50;
-            this.ipicUp.Location = new System.Drawing.Point(0, 390);
+            this.ipicUp.Location = new System.Drawing.Point(0, 430);
             this.ipicUp.Name = "ipicUp";
             this.ipicUp.Size = new System.Drawing.Size(50, 50);
             this.ipicUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -326,7 +292,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicDown.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicDown.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicDown.IconSize = 50;
-            this.ipicDown.Location = new System.Drawing.Point(0, 440);
+            this.ipicDown.Location = new System.Drawing.Point(0, 480);
             this.ipicDown.Name = "ipicDown";
             this.ipicDown.Size = new System.Drawing.Size(50, 50);
             this.ipicDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -344,7 +310,7 @@ namespace Zi.SalesModule.GUIs
             this.lbCartAmount.Font = new System.Drawing.Font("Arial", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbCartAmount.ForeColor = System.Drawing.Color.White;
             this.lbCartAmount.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbCartAmount.Location = new System.Drawing.Point(0, 490);
+            this.lbCartAmount.Location = new System.Drawing.Point(0, 530);
             this.lbCartAmount.Name = "lbCartAmount";
             this.lbCartAmount.Size = new System.Drawing.Size(50, 20);
             this.lbCartAmount.TabIndex = 0;
@@ -361,7 +327,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicViewCart.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicViewCart.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicViewCart.IconSize = 50;
-            this.ipicViewCart.Location = new System.Drawing.Point(0, 510);
+            this.ipicViewCart.Location = new System.Drawing.Point(0, 550);
             this.ipicViewCart.Name = "ipicViewCart";
             this.ipicViewCart.Size = new System.Drawing.Size(50, 50);
             this.ipicViewCart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -381,7 +347,7 @@ namespace Zi.SalesModule.GUIs
             this.fpnlCategory.MaximumSize = new System.Drawing.Size(500, 0);
             this.fpnlCategory.Name = "fpnlCategory";
             this.fpnlCategory.Padding = new System.Windows.Forms.Padding(10);
-            this.fpnlCategory.Size = new System.Drawing.Size(380, 560);
+            this.fpnlCategory.Size = new System.Drawing.Size(380, 600);
             this.fpnlCategory.TabIndex = 0;
             this.fpnlCategory.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
             this.fpnlCategory.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlCategoryList_Paint);
@@ -393,7 +359,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlResizeLeft.Location = new System.Drawing.Point(400, 50);
             this.pnlResizeLeft.Name = "pnlResizeLeft";
-            this.pnlResizeLeft.Size = new System.Drawing.Size(10, 560);
+            this.pnlResizeLeft.Size = new System.Drawing.Size(10, 600);
             this.pnlResizeLeft.TabIndex = 0;
             this.pnlResizeLeft.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
@@ -410,7 +376,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlBill.Location = new System.Drawing.Point(770, 50);
             this.pnlBill.MaximumSize = new System.Drawing.Size(500, 0);
             this.pnlBill.Name = "pnlBill";
-            this.pnlBill.Size = new System.Drawing.Size(380, 560);
+            this.pnlBill.Size = new System.Drawing.Size(380, 600);
             this.pnlBill.TabIndex = 0;
             this.pnlBill.Visible = false;
             this.pnlBill.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
@@ -432,7 +398,7 @@ namespace Zi.SalesModule.GUIs
             this.lsvBillDetail.HideSelection = false;
             this.lsvBillDetail.Location = new System.Drawing.Point(0, 0);
             this.lsvBillDetail.Name = "lsvBillDetail";
-            this.lsvBillDetail.Size = new System.Drawing.Size(380, 560);
+            this.lsvBillDetail.Size = new System.Drawing.Size(380, 600);
             this.lsvBillDetail.TabIndex = 0;
             this.lsvBillDetail.UseCompatibleStateImageBehavior = false;
             this.lsvBillDetail.View = System.Windows.Forms.View.Details;
@@ -475,7 +441,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeRight.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlResizeRight.Location = new System.Drawing.Point(760, 50);
             this.pnlResizeRight.Name = "pnlResizeRight";
-            this.pnlResizeRight.Size = new System.Drawing.Size(10, 560);
+            this.pnlResizeRight.Size = new System.Drawing.Size(10, 600);
             this.pnlResizeRight.TabIndex = 0;
             this.pnlResizeRight.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             this.pnlResizeRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
@@ -484,15 +450,91 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeRight_MouseMove);
             this.pnlResizeRight.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
+            // fpnlPaginator
+            // 
+            this.fpnlPaginator.AutoScroll = true;
+            this.fpnlPaginator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.fpnlPaginator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.fpnlPaginator.Location = new System.Drawing.Point(410, 590);
+            this.fpnlPaginator.Margin = new System.Windows.Forms.Padding(0);
+            this.fpnlPaginator.Name = "fpnlPaginator";
+            this.fpnlPaginator.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.fpnlPaginator.Size = new System.Drawing.Size(350, 60);
+            this.fpnlPaginator.TabIndex = 0;
+            this.fpnlPaginator.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
+            // 
+            // pnlDivideBottom
+            // 
+            this.pnlDivideBottom.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDivideBottom.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlDivideBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlDivideBottom.Location = new System.Drawing.Point(410, 580);
+            this.pnlDivideBottom.Name = "pnlDivideBottom";
+            this.pnlDivideBottom.Size = new System.Drawing.Size(350, 10);
+            this.pnlDivideBottom.TabIndex = 0;
+            // 
+            // pnlFilter
+            // 
+            this.pnlFilter.AutoSize = true;
+            this.pnlFilter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.pnlFilter.Controls.Add(this.fpnlSearchTag);
+            this.pnlFilter.Controls.Add(this.txbSearch);
+            this.pnlFilter.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlFilter.Location = new System.Drawing.Point(410, 50);
+            this.pnlFilter.Name = "pnlFilter";
+            this.pnlFilter.Padding = new System.Windows.Forms.Padding(10);
+            this.pnlFilter.Size = new System.Drawing.Size(350, 49);
+            this.pnlFilter.TabIndex = 0;
+            this.pnlFilter.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            // 
+            // fpnlSearchTag
+            // 
+            this.fpnlSearchTag.AutoScroll = true;
+            this.fpnlSearchTag.AutoSize = true;
+            this.fpnlSearchTag.BackColor = System.Drawing.Color.Transparent;
+            this.fpnlSearchTag.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlSearchTag.Location = new System.Drawing.Point(10, 33);
+            this.fpnlSearchTag.Margin = new System.Windows.Forms.Padding(0);
+            this.fpnlSearchTag.MaximumSize = new System.Drawing.Size(0, 50);
+            this.fpnlSearchTag.Name = "fpnlSearchTag";
+            this.fpnlSearchTag.Padding = new System.Windows.Forms.Padding(3);
+            this.fpnlSearchTag.Size = new System.Drawing.Size(330, 6);
+            this.fpnlSearchTag.TabIndex = 0;
+            // 
+            // txbSearch
+            // 
+            this.txbSearch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.txbSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbSearch.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txbSearch.Font = new System.Drawing.Font("Arial", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearch.ForeColor = System.Drawing.Color.Gainsboro;
+            this.txbSearch.Location = new System.Drawing.Point(10, 10);
+            this.txbSearch.Name = "txbSearch";
+            this.txbSearch.Size = new System.Drawing.Size(330, 23);
+            this.txbSearch.TabIndex = 0;
+            this.txbSearch.Text = "Search";
+            this.txbSearch.Click += new System.EventHandler(this.TxbSearch_Click);
+            this.txbSearch.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TxbSearch_KeyDown);
+            // 
+            // pnlDivideTop
+            // 
+            this.pnlDivideTop.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDivideTop.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlDivideTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlDivideTop.Location = new System.Drawing.Point(410, 99);
+            this.pnlDivideTop.Name = "pnlDivideTop";
+            this.pnlDivideTop.Size = new System.Drawing.Size(350, 10);
+            this.pnlDivideTop.TabIndex = 0;
+            // 
             // fpnlProduct
             // 
             this.fpnlProduct.AutoScroll = true;
             this.fpnlProduct.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.fpnlProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fpnlProduct.Location = new System.Drawing.Point(410, 50);
+            this.fpnlProduct.Location = new System.Drawing.Point(410, 109);
             this.fpnlProduct.Name = "fpnlProduct";
             this.fpnlProduct.Padding = new System.Windows.Forms.Padding(10);
-            this.fpnlProduct.Size = new System.Drawing.Size(350, 560);
+            this.fpnlProduct.Size = new System.Drawing.Size(350, 471);
             this.fpnlProduct.TabIndex = 0;
             this.fpnlProduct.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
             this.fpnlProduct.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlProductList_Paint);
@@ -504,6 +546,10 @@ namespace Zi.SalesModule.GUIs
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
             this.ClientSize = new System.Drawing.Size(1200, 700);
             this.Controls.Add(this.fpnlProduct);
+            this.Controls.Add(this.pnlDivideTop);
+            this.Controls.Add(this.pnlFilter);
+            this.Controls.Add(this.pnlDivideBottom);
+            this.Controls.Add(this.fpnlPaginator);
             this.Controls.Add(this.pnlResizeRight);
             this.Controls.Add(this.pnlBill);
             this.Controls.Add(this.pnlResizeLeft);
@@ -528,14 +574,15 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
             this.pnlFooterBar.ResumeLayout(false);
             this.pnlFooterBar.PerformLayout();
-            this.pnlFilter.ResumeLayout(false);
-            this.pnlFilter.PerformLayout();
             this.pnlRight.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicViewCart)).EndInit();
             this.pnlBill.ResumeLayout(false);
+            this.pnlFilter.ResumeLayout(false);
+            this.pnlFilter.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -552,7 +599,6 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlBill;
         private FontAwesome.Sharp.IconPictureBox ipicMaximize;
         private System.Windows.Forms.Panel pnlResizeRight;
-        private System.Windows.Forms.FlowLayoutPanel fpnlProduct;
         private System.Windows.Forms.Label lbTitle;
         private System.Windows.Forms.ListView lsvBillDetail;
         private System.Windows.Forms.ColumnHeader columnHeaderProduct;
@@ -568,8 +614,12 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.TextBox txbTotal;
         private FontAwesome.Sharp.IconButton ibtnSave;
         private FontAwesome.Sharp.IconButton ibtnCancel;
+        private System.Windows.Forms.FlowLayoutPanel fpnlPaginator;
+        private System.Windows.Forms.Panel pnlDivideBottom;
         private System.Windows.Forms.Panel pnlFilter;
         private System.Windows.Forms.FlowLayoutPanel fpnlSearchTag;
         private System.Windows.Forms.TextBox txbSearch;
+        private System.Windows.Forms.Panel pnlDivideTop;
+        private System.Windows.Forms.FlowLayoutPanel fpnlProduct;
     }
 }

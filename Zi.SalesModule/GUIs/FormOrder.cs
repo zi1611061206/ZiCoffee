@@ -58,6 +58,9 @@ namespace Zi.SalesModule.GUIs
         public string ErrorTitle { get; set; }
         public string WarningTitle { get; set; }
         public int AlertTimer { get; set; }
+        public int CurrentProductPageIndex { get; set; }
+        public int CurrentTotalPages { get; set; }
+        public string CurrentKeyword { get; set; }
         #endregion
 
         #region DI
@@ -89,15 +92,11 @@ namespace Zi.SalesModule.GUIs
         #region Initial
         private void FormOrder_Load(object sender, EventArgs e)
         {
-            CurrentCategory = new CategoryModel()
-            {
-                CategoryId = Guid.Empty
-            };
-            CurrentProduct = new ProductModel()
-            {
-                ProductId = Guid.Empty
-            };
+            CurrentCategory = new CategoryModel();
+            CurrentProduct = new ProductModel();
             OnResizeMode = false;
+            CurrentProductPageIndex = 1;
+            CurrentKeyword = string.Empty;
 
             DrawRoundedCorner();
             LoadIcon();
@@ -114,6 +113,9 @@ namespace Zi.SalesModule.GUIs
             fpnlCategory.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlCategory.Width, fpnlCategory.Height, 20, 20));
             fpnlProduct.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlProduct.Width, fpnlProduct.Height, 20, 20));
             pnlBill.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlBill.Width, pnlBill.Height, 20, 20));
+            pnlFilter.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlFilter.Width, pnlFilter.Height, 20, 20));
+            fpnlPaginator.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, fpnlPaginator.Width, fpnlPaginator.Height, 20, 20));
+
 
             pnlResizeLeft.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeLeft.Width, pnlResizeLeft.Height, 20, 20));
             pnlResizeRight.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, pnlResizeRight.Width, pnlResizeRight.Height, 20, 20));
@@ -195,6 +197,9 @@ namespace Zi.SalesModule.GUIs
             pnlBill.BackColor = Properties.Settings.Default.BodyBackColor;
             fpnlCategory.BackColor
                 = fpnlProduct.BackColor
+                = Properties.Settings.Default.BodyBackColor;
+            pnlFilter.BackColor
+                = fpnlPaginator.BackColor
                 = Properties.Settings.Default.BodyBackColor;
             // Icon
             ipicClose.IconColor
@@ -293,7 +298,7 @@ namespace Zi.SalesModule.GUIs
                 fpnlCategory.Controls.Add(btnCategory);
             }
 
-            LoadProductList(new ProductFilter());
+            LoadProductList();
             fpnlCategory.Invalidate(fpnlCategory.Region);
         }
 
@@ -372,7 +377,7 @@ namespace Zi.SalesModule.GUIs
             LoadProductListByCategory();
         }
 
-        private void LoadProductListByCategory(ProductFilter productFilter = null)
+        private void LoadProductListByCategory()
         {
             List<CategoryModel> categoryBrowseList = new List<CategoryModel>();
 
@@ -390,38 +395,53 @@ namespace Zi.SalesModule.GUIs
                 }
             }
 
-            if (productFilter == null)
-            {
-                productFilter = new ProductFilter();
-            }
-
             if (categoryBrowseList.Count > 0)
             {
-                LoadProductList(productFilter, categoryBrowseList);
+                LoadProductList(categoryBrowseList);
             }
             else
             {
-                LoadProductList(productFilter);
+                LoadProductList();
             }
         }
 
-        private void LoadProductList(ProductFilter productFilter, List<CategoryModel> categoryBrowseList = null)
+        private void LoadProductList(List<CategoryModel> categoryBrowseList = null)
         {
             List<ProductModel> productList = new List<ProductModel>();
+            Paginator<ProductModel> productPaginator;
+            ProductFilter productFilter = new ProductFilter()
+            {
+                CurrentPageIndex = CurrentProductPageIndex,
+                Keyword = CurrentKeyword
+            };
             if (categoryBrowseList != null)
             {
-                productList = GetProductsByCategories(productFilter, productList, categoryBrowseList);
+                var result = GetProductsByCategories(productFilter, productList, categoryBrowseList);
+                productList = result.Item1;
+                productPaginator = result.Item2;
+                CurrentTotalPages = productPaginator.TotalPages;
             }
             else
             {
-                productList = GetAllProducts(productFilter, productList);
+                var result = GetAllProducts(productFilter, productList);
+                productList = result.Item1;
+                productPaginator = result.Item2;
+                CurrentTotalPages = productPaginator.TotalPages;
             }
 
             DrawProductItems(productList);
+            DrawPaginator(productPaginator);
+            ResetPageIndex();
         }
 
-        private List<ProductModel> GetProductsByCategories(ProductFilter productFilter, List<ProductModel> productList, List<CategoryModel> categoryBrowseList)
+        private void ResetPageIndex()
         {
+            CurrentProductPageIndex = 1;
+        }
+
+        private Tuple<List<ProductModel>, Paginator<ProductModel>> GetProductsByCategories(ProductFilter productFilter, List<ProductModel> productList, List<CategoryModel> categoryBrowseList)
+        {
+            Paginator<ProductModel> paginatorCommon = new Paginator<ProductModel>();
             foreach (CategoryModel item in categoryBrowseList)
             {
                 productFilter.CategoryId = item.CategoryId;
@@ -432,20 +452,26 @@ namespace Zi.SalesModule.GUIs
                 }
                 else
                 {
-                    productList.AddRange((productReader.Item2 as Paginator<ProductModel>).Item);
+                    Paginator<ProductModel> paginator = productReader.Item2 as Paginator<ProductModel>;
+                    paginatorCommon.TotalRecords += paginator.TotalRecords;
+                    paginatorCommon.PageSize = paginator.PageSize;
+                    paginatorCommon.CurrentPageIndex = paginator.CurrentPageIndex;
+                    productList.AddRange(paginator.Item);
                 }
             }
-            return productList;
+            return new Tuple<List<ProductModel>, Paginator<ProductModel>>(productList, paginatorCommon);
         }
 
-        private List<ProductModel> GetAllProducts(ProductFilter productFilter, List<ProductModel> productList)
+        private Tuple<List<ProductModel>, Paginator<ProductModel>> GetAllProducts(ProductFilter productFilter, List<ProductModel> productList)
         {
+            Paginator<ProductModel> paginatorCommon = new Paginator<ProductModel>();
             var productReader = _productService.Read(productFilter, CultureName);
             if (productReader.Item1)
             {
-                productList.AddRange((productReader.Item2 as Paginator<ProductModel>).Item);
+                paginatorCommon = (Paginator<ProductModel>)productReader.Item2;
+                productList.AddRange(paginatorCommon.Item);
             }
-            return productList;
+            return new Tuple<List<ProductModel>, Paginator<ProductModel>>(productList, paginatorCommon);
         }
 
         private void DrawProductItems(List<ProductModel> productList)
@@ -546,6 +572,78 @@ namespace Zi.SalesModule.GUIs
                     break;
                 default: break;
             }
+        }
+
+        private void DrawPaginator(Paginator<ProductModel> productPaginator)
+        {
+            fpnlPaginator.Controls.Clear();
+
+            int startIndex = Math.Max(productPaginator.CurrentPageIndex - 3, 1);
+            int finishIndex = Math.Min(productPaginator.CurrentPageIndex + 3, productPaginator.TotalPages);
+
+            if (productPaginator.CurrentPageIndex - 3 > 1)
+            {
+                PageItem first = new PageItem("first");
+                first.Click += BtnFirstPage_Click;
+                PageItem previous = new PageItem("previous");
+                previous.Click += BtnPreviousPage_Click;
+                fpnlPaginator.Controls.Add(first);
+                fpnlPaginator.Controls.Add(previous);
+            }
+            for (int i = startIndex; i <= finishIndex; i++)
+            {
+                if (i == productPaginator.CurrentPageIndex)
+                {
+                    PageItem page = new PageItem(i.ToString(), true);
+                    page.Click += BtnPage_Click;
+                    fpnlPaginator.Controls.Add(page);
+                }
+                else
+                {
+                    PageItem page = new PageItem(i.ToString());
+                    page.Click += BtnPage_Click;
+                    fpnlPaginator.Controls.Add(page);
+                }
+            }
+            if (productPaginator.CurrentPageIndex + 3 < productPaginator.TotalPages)
+            {
+                PageItem next = new PageItem("next");
+                next.Click += BtnNextPage_Click;
+                PageItem last = new PageItem("last");
+                last.Click += BtnLastPage_Click;
+                fpnlPaginator.Controls.Add(next);
+                fpnlPaginator.Controls.Add(last);
+            }
+        }
+
+        private void BtnFirstPage_Click(object sender, EventArgs e)
+        {
+            CurrentProductPageIndex = 1;
+            LoadProductListByCategory();
+        }
+
+        private void BtnPreviousPage_Click(object sender, EventArgs e)
+        {
+            CurrentProductPageIndex--;
+            LoadProductListByCategory();
+        }
+
+        private void BtnPage_Click(object sender, EventArgs e)
+        {
+            CurrentProductPageIndex = int.Parse((sender as PageItem).Text);
+            LoadProductListByCategory();
+        }
+
+        private void BtnNextPage_Click(object sender, EventArgs e)
+        {
+            CurrentProductPageIndex++;
+            LoadProductListByCategory();
+        }
+
+        private void BtnLastPage_Click(object sender, EventArgs e)
+        {
+            CurrentProductPageIndex = CurrentTotalPages;
+            LoadProductListByCategory();
         }
 
         private void LoadBill()
@@ -1178,21 +1276,19 @@ namespace Zi.SalesModule.GUIs
         {
             if (e.KeyData == Keys.Enter)
             {
-                ProductFilter filter = new ProductFilter()
-                {
-                    Keyword = txbSearch.Text
-                };
-                LoadProductListByCategory(filter);
+                CurrentKeyword = txbSearch.Text;
+                LoadProductListByCategory();
 
                 RoundedLabel tag = new RoundedLabel()
                 {
                     Text = txbSearch.Text,
-                    BackColor = Properties.Settings.Default.BodyBackColor,
+                    BackColor = Properties.Settings.Default.BaseBackColor,
                     TextAlign = ContentAlignment.MiddleCenter
                 };
                 tag.Click += Tag_Click;
                 fpnlSearchTag.Controls.Add(tag);
 
+                CurrentKeyword = string.Empty;
                 txbSearch.Clear();
             }
         }
