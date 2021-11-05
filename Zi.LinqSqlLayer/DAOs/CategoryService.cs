@@ -90,6 +90,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
+                int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
@@ -103,7 +104,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 });
                 var result = new Paginator<CategoryModel>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = totalRecords,
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
@@ -163,8 +164,11 @@ namespace Zi.LinqSqlLayer.DAOs
 
         private IQueryable<Category> Paging(IQueryable<Category> query, CategoryFilter filter)
         {
-            int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            if (filter.PageSize != 0)
+            {
+                int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
+                query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            }
             return query;
         }
 

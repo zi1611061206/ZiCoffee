@@ -80,13 +80,13 @@
     <Setting Name="AreaItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 50</Value>
     </Setting>
-    <Setting Name="ProductItemSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">200, 400</Value>
+    <Setting Name="HorizontalProductItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">400, 200</Value>
     </Setting>
     <Setting Name="DropShadowDepth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="ItemBackColor" Type="System.Drawing.Color" Scope="User">
+    <Setting Name="BaseItemColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">28, 39, 49</Value>
     </Setting>
     <Setting Name="DropShadowColor" Type="System.Drawing.Color" Scope="User">
@@ -99,7 +99,22 @@
       <Value Profile="(Default)">23, 42, 70</Value>
     </Setting>
     <Setting Name="AlertTimer" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
+      <Value Profile="(Default)">2000</Value>
+    </Setting>
+    <Setting Name="BaseBackColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">46, 61, 74</Value>
+    </Setting>
+    <Setting Name="CategoryItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">300, 50</Value>
+    </Setting>
+    <Setting Name="VerticalProductItemSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">200, 400</Value>
+    </Setting>
+    <Setting Name="ItemSelectedColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">4, 119, 250</Value>
+    </Setting>
+    <Setting Name="ItemHoverColor" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">33, 46, 58</Value>
     </Setting>
   </Settings>
 </SettingsFile>

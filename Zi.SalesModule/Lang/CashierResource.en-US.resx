@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnAllArea" xml:space="preserve">
-    <value>All</value>
-  </data>
-  <data name="BtnArea" xml:space="preserve">
-    <value>Area</value>
-  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
@@ -156,6 +150,9 @@
   <data name="ColumnHeaderProduct" xml:space="preserve">
     <value>Product</value>
   </data>
+  <data name="ColumnHeaderPromotion" xml:space="preserve">
+    <value>Pro (%)</value>
+  </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
     <value>Qty</value>
   </data>
@@ -164,6 +161,9 @@
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Error</value>
+  </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Cashier</value>
   </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
@@ -200,6 +200,45 @@
   </data>
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Selected table can not order now.</value>
+  </data>
+  <data name="MsgMerge1" xml:space="preserve">
+    <value>The promotional value of</value>
+  </data>
+  <data name="MsgMerge2" xml:space="preserve">
+    <value>in</value>
+  </data>
+  <data name="MsgMerge3" xml:space="preserve">
+    <value>does not match. Continue to merge with the value:</value>
+  </data>
+  <data name="MsgMerge4" xml:space="preserve">
+    <value>select YES.</value>
+  </data>
+  <data name="MsgMerge5" xml:space="preserve">
+    <value>select NO.</value>
+  </data>
+  <data name="MsgMerge6" xml:space="preserve">
+    <value>To cancel the merge, select CANCEL.</value>
+  </data>
+  <data name="MsgMerge7" xml:space="preserve">
+    <value>Note: this action cannot be undone.</value>
+  </data>
+  <data name="MsgMergeConfirm1" xml:space="preserve">
+    <value>You definitely want to merge</value>
+  </data>
+  <data name="MsgMergeConfirm2" xml:space="preserve">
+    <value>into</value>
+  </data>
+  <data name="MsgMergeSuccess" xml:space="preserve">
+    <value>Successful merge.</value>
+  </data>
+  <data name="MsgMoveConfirm1" xml:space="preserve">
+    <value>You definitely want to move</value>
+  </data>
+  <data name="MsgMoveConfirm2" xml:space="preserve">
+    <value>to</value>
+  </data>
+  <data name="MsgMoveSuccess" xml:space="preserve">
+    <value>Successful move.</value>
   </data>
   <data name="MsgNoSelectedTable" xml:space="preserve">
     <value>No tables have been selected yet.</value>

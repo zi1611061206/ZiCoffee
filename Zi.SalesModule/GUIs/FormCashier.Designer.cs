@@ -37,8 +37,6 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize = new FontAwesome.Sharp.IconPictureBox();
             this.ipicMaximize = new FontAwesome.Sharp.IconPictureBox();
             this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
-            this.pnlTitleRight = new System.Windows.Forms.Panel();
-            this.pnlTitleLeft = new System.Windows.Forms.Panel();
             this.pnlFooterBar = new System.Windows.Forms.Panel();
             this.lbVersion = new System.Windows.Forms.Label();
             this.lbReadyPercent = new System.Windows.Forms.Label();
@@ -47,8 +45,6 @@ namespace Zi.SalesModule.GUIs
             this.lbUsingTable = new System.Windows.Forms.Label();
             this.lbTotalTable = new System.Windows.Forms.Label();
             this.lbCopyright = new System.Windows.Forms.Label();
-            this.pnlFooterRight = new System.Windows.Forms.Panel();
-            this.pnlFooterLeft = new System.Windows.Forms.Panel();
             this.pnlNavigationBar = new System.Windows.Forms.Panel();
             this.pnlAccountGroup = new System.Windows.Forms.Panel();
             this.ibtnAccount = new FontAwesome.Sharp.IconButton();
@@ -75,12 +71,12 @@ namespace Zi.SalesModule.GUIs
             this.columnHeaderProduct = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderQuantity = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderPromotion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIntoMoney = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlResizeNav = new System.Windows.Forms.Panel();
             this.pnlResizeBill = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
-            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlResizeDivideBody = new System.Windows.Forms.Panel();
+            this.pnlResizeTop = new System.Windows.Forms.Panel();
             this.fpnlAreaList = new System.Windows.Forms.FlowLayoutPanel();
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
             this.cmsShortcutKeyDropDown = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -102,9 +98,12 @@ namespace Zi.SalesModule.GUIs
             this.tableMoveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableMergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLockToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsReadyTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsUsingTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.tableViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fpnlPaginator = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlDivideBottom = new System.Windows.Forms.Panel();
+            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).BeginInit();
@@ -139,11 +138,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitleBar.Controls.Add(this.ipicMinimize);
             this.pnlTitleBar.Controls.Add(this.ipicMaximize);
             this.pnlTitleBar.Controls.Add(this.ipicClose);
-            this.pnlTitleBar.Controls.Add(this.pnlTitleRight);
-            this.pnlTitleBar.Controls.Add(this.pnlTitleLeft);
             this.pnlTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
             this.pnlTitleBar.Name = "pnlTitleBar";
+            this.pnlTitleBar.Padding = new System.Windows.Forms.Padding(20, 0, 20, 0);
             this.pnlTitleBar.Size = new System.Drawing.Size(1600, 50);
             this.pnlTitleBar.TabIndex = 0;
             this.pnlTitleBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
@@ -153,9 +151,9 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle.BackColor = System.Drawing.Color.Transparent;
             this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lbTitle.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitle.Location = new System.Drawing.Point(60, 0);
+            this.lbTitle.Location = new System.Drawing.Point(70, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(1380, 50);
+            this.lbTitle.Size = new System.Drawing.Size(1360, 50);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Title";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -166,7 +164,7 @@ namespace Zi.SalesModule.GUIs
             this.picLogo.BackColor = System.Drawing.Color.Transparent;
             this.picLogo.Dock = System.Windows.Forms.DockStyle.Left;
             this.picLogo.Image = global::Zi.SalesModule.Properties.Resources.zi_logo;
-            this.picLogo.Location = new System.Drawing.Point(10, 0);
+            this.picLogo.Location = new System.Drawing.Point(20, 0);
             this.picLogo.Name = "picLogo";
             this.picLogo.Padding = new System.Windows.Forms.Padding(5);
             this.picLogo.Size = new System.Drawing.Size(50, 50);
@@ -185,7 +183,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicMinimize.IconSize = 50;
-            this.ipicMinimize.Location = new System.Drawing.Point(1440, 0);
+            this.ipicMinimize.Location = new System.Drawing.Point(1430, 0);
             this.ipicMinimize.Name = "ipicMinimize";
             this.ipicMinimize.Size = new System.Drawing.Size(50, 50);
             this.ipicMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -205,7 +203,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMaximize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicMaximize.IconSize = 50;
-            this.ipicMaximize.Location = new System.Drawing.Point(1490, 0);
+            this.ipicMaximize.Location = new System.Drawing.Point(1480, 0);
             this.ipicMaximize.Name = "ipicMaximize";
             this.ipicMaximize.Size = new System.Drawing.Size(50, 50);
             this.ipicMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -225,7 +223,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicClose.IconSize = 50;
-            this.ipicClose.Location = new System.Drawing.Point(1540, 0);
+            this.ipicClose.Location = new System.Drawing.Point(1530, 0);
             this.ipicClose.Name = "ipicClose";
             this.ipicClose.Size = new System.Drawing.Size(50, 50);
             this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -234,26 +232,6 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.Click += new System.EventHandler(this.IpicClose_Click);
             this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
-            // 
-            // pnlTitleRight
-            // 
-            this.pnlTitleRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTitleRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTitleRight.Location = new System.Drawing.Point(1590, 0);
-            this.pnlTitleRight.Name = "pnlTitleRight";
-            this.pnlTitleRight.Size = new System.Drawing.Size(10, 50);
-            this.pnlTitleRight.TabIndex = 0;
-            this.pnlTitleRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
-            // 
-            // pnlTitleLeft
-            // 
-            this.pnlTitleLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTitleLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlTitleLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlTitleLeft.Name = "pnlTitleLeft";
-            this.pnlTitleLeft.Size = new System.Drawing.Size(10, 50);
-            this.pnlTitleLeft.TabIndex = 0;
-            this.pnlTitleLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
             // 
             // pnlFooterBar
             // 
@@ -265,11 +243,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlFooterBar.Controls.Add(this.lbUsingTable);
             this.pnlFooterBar.Controls.Add(this.lbTotalTable);
             this.pnlFooterBar.Controls.Add(this.lbCopyright);
-            this.pnlFooterBar.Controls.Add(this.pnlFooterRight);
-            this.pnlFooterBar.Controls.Add(this.pnlFooterLeft);
             this.pnlFooterBar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooterBar.Location = new System.Drawing.Point(0, 870);
             this.pnlFooterBar.Name = "pnlFooterBar";
+            this.pnlFooterBar.Padding = new System.Windows.Forms.Padding(50, 0, 50, 0);
             this.pnlFooterBar.Size = new System.Drawing.Size(1600, 30);
             this.pnlFooterBar.TabIndex = 0;
             // 
@@ -362,24 +339,6 @@ namespace Zi.SalesModule.GUIs
             this.lbCopyright.Text = "Copyright";
             this.lbCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // pnlFooterRight
-            // 
-            this.pnlFooterRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFooterRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlFooterRight.Location = new System.Drawing.Point(1550, 0);
-            this.pnlFooterRight.Name = "pnlFooterRight";
-            this.pnlFooterRight.Size = new System.Drawing.Size(50, 30);
-            this.pnlFooterRight.TabIndex = 0;
-            // 
-            // pnlFooterLeft
-            // 
-            this.pnlFooterLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlFooterLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlFooterLeft.Location = new System.Drawing.Point(0, 0);
-            this.pnlFooterLeft.Name = "pnlFooterLeft";
-            this.pnlFooterLeft.Size = new System.Drawing.Size(50, 30);
-            this.pnlFooterLeft.TabIndex = 0;
-            // 
             // pnlNavigationBar
             // 
             this.pnlNavigationBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(61)))), ((int)(((byte)(74)))));
@@ -462,7 +421,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 2999);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 5459);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -828,6 +787,7 @@ namespace Zi.SalesModule.GUIs
             this.columnHeaderProduct,
             this.columnHeaderQuantity,
             this.columnHeaderPrice,
+            this.columnHeaderPromotion,
             this.columnHeaderIntoMoney});
             this.lsvBillDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvBillDetail.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -857,6 +817,12 @@ namespace Zi.SalesModule.GUIs
             // 
             this.columnHeaderPrice.Text = "Price";
             this.columnHeaderPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeaderPromotion
+            // 
+            this.columnHeaderPromotion.Text = "Promotion (%)";
+            this.columnHeaderPromotion.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeaderPromotion.Width = 160;
             // 
             // columnHeaderIntoMoney
             // 
@@ -900,7 +866,9 @@ namespace Zi.SalesModule.GUIs
             // 
             this.pnlBody.BackColor = System.Drawing.Color.Transparent;
             this.pnlBody.Controls.Add(this.fpnlTableList);
-            this.pnlBody.Controls.Add(this.pnlResizeDivideBody);
+            this.pnlBody.Controls.Add(this.pnlDivideBottom);
+            this.pnlBody.Controls.Add(this.fpnlPaginator);
+            this.pnlBody.Controls.Add(this.pnlResizeTop);
             this.pnlBody.Controls.Add(this.fpnlAreaList);
             this.pnlBody.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlBody.Location = new System.Drawing.Point(260, 50);
@@ -908,33 +876,21 @@ namespace Zi.SalesModule.GUIs
             this.pnlBody.Size = new System.Drawing.Size(780, 820);
             this.pnlBody.TabIndex = 0;
             // 
-            // fpnlTableList
+            // pnlResizeTop
             // 
-            this.fpnlTableList.AutoScroll = true;
-            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
-            this.fpnlTableList.Name = "fpnlTableList";
-            this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
-            this.fpnlTableList.Size = new System.Drawing.Size(780, 642);
-            this.fpnlTableList.TabIndex = 0;
-            this.fpnlTableList.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
-            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
-            // 
-            // pnlResizeDivideBody
-            // 
-            this.pnlResizeDivideBody.BackColor = System.Drawing.Color.Transparent;
-            this.pnlResizeDivideBody.Cursor = System.Windows.Forms.Cursors.SizeNS;
-            this.pnlResizeDivideBody.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlResizeDivideBody.Location = new System.Drawing.Point(0, 168);
-            this.pnlResizeDivideBody.Name = "pnlResizeDivideBody";
-            this.pnlResizeDivideBody.Size = new System.Drawing.Size(780, 10);
-            this.pnlResizeDivideBody.TabIndex = 0;
-            this.pnlResizeDivideBody.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
-            this.pnlResizeDivideBody.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
-            this.pnlResizeDivideBody.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
-            this.pnlResizeDivideBody.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
-            this.pnlResizeDivideBody.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeDivideBody_MouseMove);
-            this.pnlResizeDivideBody.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
+            this.pnlResizeTop.BackColor = System.Drawing.Color.Transparent;
+            this.pnlResizeTop.Cursor = System.Windows.Forms.Cursors.SizeNS;
+            this.pnlResizeTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlResizeTop.Location = new System.Drawing.Point(0, 168);
+            this.pnlResizeTop.Name = "pnlResizeTop";
+            this.pnlResizeTop.Size = new System.Drawing.Size(780, 10);
+            this.pnlResizeTop.TabIndex = 0;
+            this.pnlResizeTop.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
+            this.pnlResizeTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
+            this.pnlResizeTop.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
+            this.pnlResizeTop.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
+            this.pnlResizeTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeDivideBody_MouseMove);
+            this.pnlResizeTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
             // fpnlAreaList
             // 
@@ -1105,6 +1061,13 @@ namespace Zi.SalesModule.GUIs
             this.tableLockToolStripMenuItem.Text = "Lock";
             this.tableLockToolStripMenuItem.Click += new System.EventHandler(this.IpicLockTable_Click);
             // 
+            // tableViewToolStripMenuItem
+            // 
+            this.tableViewToolStripMenuItem.Name = "tableViewToolStripMenuItem";
+            this.tableViewToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
+            this.tableViewToolStripMenuItem.Text = "View";
+            this.tableViewToolStripMenuItem.Click += new System.EventHandler(this.IpicViewBill_Click);
+            // 
             // cmsReadyTableList
             // 
             this.cmsReadyTableList.BackColor = System.Drawing.Color.Gainsboro;
@@ -1121,12 +1084,40 @@ namespace Zi.SalesModule.GUIs
             this.cmsUsingTableList.Name = "cmsAccountDropDown";
             this.cmsUsingTableList.Size = new System.Drawing.Size(61, 4);
             // 
-            // tableViewToolStripMenuItem
+            // fpnlPaginator
             // 
-            this.tableViewToolStripMenuItem.Name = "tableViewToolStripMenuItem";
-            this.tableViewToolStripMenuItem.Size = new System.Drawing.Size(158, 24);
-            this.tableViewToolStripMenuItem.Text = "View";
-            this.tableViewToolStripMenuItem.Click += new System.EventHandler(this.IpicViewBill_Click);
+            this.fpnlPaginator.AutoScroll = true;
+            this.fpnlPaginator.BackColor = System.Drawing.Color.Transparent;
+            this.fpnlPaginator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.fpnlPaginator.ForeColor = System.Drawing.Color.Gainsboro;
+            this.fpnlPaginator.Location = new System.Drawing.Point(0, 760);
+            this.fpnlPaginator.Name = "fpnlPaginator";
+            this.fpnlPaginator.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.fpnlPaginator.Size = new System.Drawing.Size(780, 60);
+            this.fpnlPaginator.TabIndex = 0;
+            this.fpnlPaginator.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
+            // 
+            // pnlDivideBottom
+            // 
+            this.pnlDivideBottom.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDivideBottom.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlDivideBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlDivideBottom.Location = new System.Drawing.Point(0, 750);
+            this.pnlDivideBottom.Name = "pnlDivideBottom";
+            this.pnlDivideBottom.Size = new System.Drawing.Size(780, 10);
+            this.pnlDivideBottom.TabIndex = 0;
+            // 
+            // fpnlTableList
+            // 
+            this.fpnlTableList.AutoScroll = true;
+            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
+            this.fpnlTableList.Name = "fpnlTableList";
+            this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
+            this.fpnlTableList.Size = new System.Drawing.Size(780, 572);
+            this.fpnlTableList.TabIndex = 0;
+            this.fpnlTableList.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
+            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
             // 
             // FormCashier
             // 
@@ -1185,14 +1176,10 @@ namespace Zi.SalesModule.GUIs
         #endregion
 
         private System.Windows.Forms.Panel pnlTitleBar;
-        private System.Windows.Forms.Panel pnlTitleRight;
-        private System.Windows.Forms.Panel pnlTitleLeft;
         private FontAwesome.Sharp.IconPictureBox ipicClose;
         private FontAwesome.Sharp.IconPictureBox ipicMinimize;
         private FontAwesome.Sharp.IconPictureBox ipicMaximize;
         private System.Windows.Forms.Panel pnlFooterBar;
-        private System.Windows.Forms.Panel pnlFooterRight;
-        private System.Windows.Forms.Panel pnlFooterLeft;
         private System.Windows.Forms.Label lbTotalTable;
         private System.Windows.Forms.Label lbCopyright;
         private System.Windows.Forms.Label lbReadyTable;
@@ -1247,9 +1234,8 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.ToolStripMenuItem tableMoveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tableMergeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tableLockToolStripMenuItem;
-        private System.Windows.Forms.Panel pnlResizeDivideBody;
+        private System.Windows.Forms.Panel pnlResizeTop;
         private System.Windows.Forms.FlowLayoutPanel fpnlAreaList;
-        private System.Windows.Forms.FlowLayoutPanel fpnlTableList;
         private System.Windows.Forms.ListView lsvBillDetail;
         private System.Windows.Forms.ColumnHeader columnHeaderProduct;
         private System.Windows.Forms.ColumnHeader columnHeaderQuantity;
@@ -1258,5 +1244,9 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.ContextMenuStrip cmsReadyTableList;
         private System.Windows.Forms.ContextMenuStrip cmsUsingTableList;
         private System.Windows.Forms.ToolStripMenuItem tableViewToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeaderPromotion;
+        private System.Windows.Forms.FlowLayoutPanel fpnlPaginator;
+        private System.Windows.Forms.FlowLayoutPanel fpnlTableList;
+        private System.Windows.Forms.Panel pnlDivideBottom;
     }
 }

@@ -123,6 +123,9 @@
   <data name="BtnLogin" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Đăng nhập</value>
+  </data>
   <data name="IpicClose" xml:space="preserve">
     <value>Đóng</value>
   </data>

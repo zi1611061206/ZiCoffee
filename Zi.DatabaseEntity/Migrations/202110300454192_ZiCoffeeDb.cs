@@ -58,6 +58,7 @@
                     BillId = c.Guid(nullable: false),
                     ProductId = c.Guid(nullable: false),
                     Quantity = c.Int(nullable: false, defaultValue: 1),
+                    PromotionValue = c.Single(nullable: false, defaultValue: 0),
                     IntoMoney = c.Single(nullable: false, defaultValue: 0),
                 })
                 .PrimaryKey(t => new { t.BillId, t.ProductId })
@@ -76,7 +77,7 @@
                     Status = c.Int(nullable: false, defaultValue: (int)ProductStatus.Availabled),
                     Thumnail = c.Binary(nullable: false),
                     Price = c.Single(nullable: false, defaultValue: 0),
-                    PromotionVulue = c.Single(nullable: false, defaultValue: 0),
+                    PromotionValue = c.Single(nullable: false, defaultValue: 0),
                     CategoryId = c.Guid(nullable: false),
                 })
                 .PrimaryKey(t => t.ProductId)

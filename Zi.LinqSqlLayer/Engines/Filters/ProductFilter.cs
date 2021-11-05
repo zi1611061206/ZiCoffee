@@ -10,8 +10,8 @@ namespace Zi.LinqSqlLayer.Engines.Filters
         public ProductStatus? Status { get; set; }
         public float PriceMin { get; set; }
         public float PriceMax { get; set; }
-        public float PromotionVulueMin { get; set; }
-        public float PromotionVulueMax { get; set; }
+        public float PromotionValueMin { get; set; }
+        public float PromotionValueMax { get; set; }
         public Guid CategoryId { get; set; }
 
         public ProductFilter()
@@ -20,8 +20,8 @@ namespace Zi.LinqSqlLayer.Engines.Filters
             Status = null;
             PriceMin = 0;
             PriceMax = 0;
-            PromotionVulueMin = 0;
-            PromotionVulueMax = 0;
+            PromotionValueMin = 0;
+            PromotionValueMax = 0;
             CategoryId = Guid.Empty;
         }
     }

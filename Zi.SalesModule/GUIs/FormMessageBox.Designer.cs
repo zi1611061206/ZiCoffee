@@ -42,7 +42,9 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle = new System.Windows.Forms.Label();
             this.pnlContent = new System.Windows.Forms.Panel();
             this.lbContent = new System.Windows.Forms.Label();
-            this.timerAppearence = new System.Windows.Forms.Timer(this.components);
+            this.timerDispose = new System.Windows.Forms.Timer(this.components);
+            this.timerAnimationShow = new System.Windows.Forms.Timer(this.components);
+            this.timerAnimationHide = new System.Windows.Forms.Timer(this.components);
             this.pnlIcon.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMessageStatus)).BeginInit();
             this.pnlOptions.SuspendLayout();
@@ -156,18 +158,18 @@ namespace Zi.SalesModule.GUIs
             this.pnlTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitle.Location = new System.Drawing.Point(50, 0);
             this.pnlTitle.Name = "pnlTitle";
-            this.pnlTitle.Size = new System.Drawing.Size(400, 30);
+            this.pnlTitle.Size = new System.Drawing.Size(400, 40);
             this.pnlTitle.TabIndex = 1;
             // 
             // lbTitle
             // 
             this.lbTitle.BackColor = System.Drawing.Color.Transparent;
             this.lbTitle.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbTitle.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTitle.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.Location = new System.Drawing.Point(0, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Padding = new System.Windows.Forms.Padding(5, 5, 0, 0);
-            this.lbTitle.Size = new System.Drawing.Size(400, 30);
+            this.lbTitle.Padding = new System.Windows.Forms.Padding(5, 10, 0, 0);
+            this.lbTitle.Size = new System.Drawing.Size(400, 40);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Title";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -179,35 +181,45 @@ namespace Zi.SalesModule.GUIs
             this.pnlContent.BackColor = System.Drawing.Color.Transparent;
             this.pnlContent.Controls.Add(this.lbContent);
             this.pnlContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlContent.Location = new System.Drawing.Point(50, 30);
+            this.pnlContent.Location = new System.Drawing.Point(50, 40);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(400, 60);
+            this.pnlContent.Size = new System.Drawing.Size(400, 50);
             this.pnlContent.TabIndex = 0;
             // 
             // lbContent
             // 
             this.lbContent.AutoSize = true;
             this.lbContent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbContent.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbContent.Font = new System.Drawing.Font("Arial", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbContent.Location = new System.Drawing.Point(0, 0);
-            this.lbContent.MaximumSize = new System.Drawing.Size(420, 0);
-            this.lbContent.MinimumSize = new System.Drawing.Size(0, 60);
+            this.lbContent.MaximumSize = new System.Drawing.Size(410, 0);
+            this.lbContent.MinimumSize = new System.Drawing.Size(0, 40);
             this.lbContent.Name = "lbContent";
-            this.lbContent.Padding = new System.Windows.Forms.Padding(5);
-            this.lbContent.Size = new System.Drawing.Size(155, 60);
+            this.lbContent.Padding = new System.Windows.Forms.Padding(5, 5, 5, 10);
+            this.lbContent.Size = new System.Drawing.Size(169, 40);
             this.lbContent.TabIndex = 0;
             this.lbContent.Text = "Content Message";
             // 
-            // timerAppearence
+            // timerDispose
             // 
-            this.timerAppearence.Interval = 3000;
-            this.timerAppearence.Tick += new System.EventHandler(this.TimerAppearence_Tick);
+            this.timerDispose.Interval = 3000;
+            this.timerDispose.Tag = "";
+            this.timerDispose.Tick += new System.EventHandler(this.TimerDispose_Tick);
+            // 
+            // timerAnimationShow
+            // 
+            this.timerAnimationShow.Interval = 1;
+            this.timerAnimationShow.Tick += new System.EventHandler(this.TimerAnimationShow_Tick);
+            // 
+            // timerAnimationHide
+            // 
+            this.timerAnimationHide.Interval = 1;
+            this.timerAnimationHide.Tick += new System.EventHandler(this.TimerAnimationHide_Tick);
             // 
             // FormMessageBox
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
             this.ClientSize = new System.Drawing.Size(500, 90);
             this.Controls.Add(this.pnlContent);
@@ -222,7 +234,7 @@ namespace Zi.SalesModule.GUIs
             this.Name = "FormMessageBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormMessageBox";
-            this.TopMost = true;
+            this.SizeChanged += new System.EventHandler(this.FormMessageBox_SizeChanged);
             this.pnlIcon.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.ipicMessageStatus)).EndInit();
             this.pnlOptions.ResumeLayout(false);
@@ -248,6 +260,8 @@ namespace Zi.SalesModule.GUIs
         private FontAwesome.Sharp.IconPictureBox ipicMessageStatus;
         private FontAwesome.Sharp.IconPictureBox ipicButton2;
         private FontAwesome.Sharp.IconPictureBox ipicButton3;
-        private System.Windows.Forms.Timer timerAppearence;
+        private System.Windows.Forms.Timer timerDispose;
+        private System.Windows.Forms.Timer timerAnimationShow;
+        private System.Windows.Forms.Timer timerAnimationHide;
     }
 }

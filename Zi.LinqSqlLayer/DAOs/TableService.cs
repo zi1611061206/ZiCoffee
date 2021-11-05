@@ -89,6 +89,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
+                int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
@@ -101,7 +102,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 });
                 var result = new Paginator<TableModel>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = totalRecords,
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
@@ -159,8 +160,11 @@ namespace Zi.LinqSqlLayer.DAOs
 
         private IQueryable<Table> Paging(IQueryable<Table> query, TableFilter filter)
         {
-            int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            if (filter.PageSize != 0)
+            {
+                int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
+                query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            }
             return query;
         }
 
@@ -216,6 +220,35 @@ namespace Zi.LinqSqlLayer.DAOs
                 var usingTable = query.Where(x => x.Status.Equals(TableStatus.Using)).Count();
                 var pendingTable = query.Where(x => x.Status.Equals(TableStatus.Pending)).Count();
                 return new Tuple<int, int, int, int>(totalTable, readyTable, usingTable, pendingTable);
+            }
+        }
+
+        public int CountAll()
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                return context.Tables.ToList().Count();
+            }
+        }
+
+        public int CountByArea(Guid areaId)
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                int counter = 0;
+                counter += context.Tables.Where(x => x.AreaId.CompareTo(areaId) == 0).ToList().Count;
+
+                var areaChildren = context.Areas.Where(x => x.ParentId.Equals(areaId.ToString().ToLower()))
+                    .Select(x => x.AreaId).ToList();
+                if (areaChildren.Count > 0)
+                {
+                    foreach (Guid id in areaChildren)
+                    {
+                        counter += context.Tables.Where(x => x.AreaId.CompareTo(id) == 0).ToList().Count;
+                    }
+                }
+
+                return counter;
             }
         }
     }

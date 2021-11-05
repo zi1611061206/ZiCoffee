@@ -66,5 +66,22 @@ namespace Zi.LinqSqlLayer.DAOs.Interfaces
         /// <param name="cultureName"></param>
         /// <returns></returns>
         Tuple<bool, object> Delete(Guid productId, string cultureName);
+
+        /// <summary>
+        /// This method count all products.
+        /// <para>RETURNS</para>
+        /// <para>- ProductTotal (int).</para>
+        /// </summary>
+        /// <returns></returns>
+        int CountAll();
+
+        /// <summary>
+        /// This method count all products of a category.
+        /// <para>RETURNS</para>
+        /// <para>- Amount of product in category (int).</para>
+        /// </summary>
+        /// <param name="categoryId"></param>
+        /// <returns></returns>
+        int CountByCategory(Guid categoryId);
     }
 }

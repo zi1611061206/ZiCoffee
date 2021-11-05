@@ -22,6 +22,8 @@ namespace Zi.DatabaseEntity.Configurators
                 .HasColumnType("UNIQUEIDENTIFIER");
             Property(x => x.Quantity)
                 .IsRequired();
+            Property(x => x.PromotionValue)
+                .IsRequired();
             Property(x => x.IntoMoney)
                 .IsRequired();
 

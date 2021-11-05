@@ -163,4 +163,82 @@
   <data name="NoAvatar" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NoAvatar.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Bell_Alarm_Clock_Ring_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bell-Alarm-Clock-Ring-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Bell_Ding_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Bell-Ding-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cartoon_Boing_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cartoon-Boing-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cartoon_Bonk_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cartoon-Bonk-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Cartoon_Bubble_Pop_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Cartoon-Bubble-Pop-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Crickets" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Crickets.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Dog_Bark_Short_02" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Dog-Bark-Short-02.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Doorbell" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Doorbell.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Doorbell_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Doorbell-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Liquid_Drip_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Liquid-Drip-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Monster_Ghoul_Roar_03" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Monster-Ghoul-Roar-03.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Sonar_Ping_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sonar-Ping-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Sonar_Ping_Loop_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Sonar-Ping-Loop-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Appear_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Appear-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Pop_Big_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Pop-Big-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Pop_Small_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Pop-Small-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Speedbump_Fast_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Speedbump-Fast-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Whoosh_Big_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Whoosh-Big-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Whoosh_Small_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Whoosh-Small-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Synth_Zap_Small_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Synth-Zap-Small-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Toy_Train_Whistle_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Toy-Train-Whistle-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UFO_Door_Close_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UFO-Door-Close-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UFO_Door_Open_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UFO-Door-Open-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UFO_Launch_Lightspeed_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UFO-Launch-Lightspeed-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="UFO_Whoosh_by_01" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\UFO-Whoosh-by-01.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Whoosh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Whoosh.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

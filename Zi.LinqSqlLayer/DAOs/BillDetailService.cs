@@ -37,6 +37,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     BillId = model.BillId,
                     ProductId = model.ProductId,
                     Quantity = model.Quantity,
+                    PromotionValue = model.PromotionValue,
                     IntoMoney = model.IntoMoney
                 };
                 context.BillDetails.InsertOnSubmit(billDetail);
@@ -53,15 +54,40 @@ namespace Zi.LinqSqlLayer.DAOs
             }
         }
 
-        public Tuple<bool, object> Delete(Guid billId, Guid productId, string cultureName)
+        public Tuple<bool, object> Delete(BillDetailModel model, string cultureName)
         {
             CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
             using (var context = new ZiCoffeeDataContext())
             {
                 var billDetail = context.BillDetails
-                    .Where(x => x.BillId.CompareTo(billId) == 0 && x.ProductId.CompareTo(productId) == 0)
+                    .Where(x => x.BillId.CompareTo(model.BillId) == 0 && x.ProductId.CompareTo(model.ProductId) == 0)
                     .FirstOrDefault();
                 context.BillDetails.DeleteOnSubmit(billDetail);
+
+                try
+                {
+                    context.SubmitChanges();
+                }
+                catch (Exception ex)
+                {
+                    return new Tuple<bool, object>(false, Rm.GetString("FailedDelete", culture) + ":" + ex.Message);
+                }
+                return new Tuple<bool, object>(true, null);
+            }
+        }
+
+        public Tuple<bool, object> DeleteOnBill(Guid billId, string cultureName)
+        {
+            CultureInfo culture = CultureInfo.CreateSpecificCulture(cultureName);
+            using (var context = new ZiCoffeeDataContext())
+            {
+                var billDetails = context.BillDetails
+                    .Where(x => x.BillId.CompareTo(billId) == 0)
+                    .ToList();
+                foreach (BillDetail item in billDetails)
+                {
+                    context.BillDetails.DeleteOnSubmit(item);
+                }
 
                 try
                 {
@@ -84,6 +110,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
+                int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
                 // Mapping data
@@ -92,11 +119,12 @@ namespace Zi.LinqSqlLayer.DAOs
                     BillId = x.BillId,
                     ProductId = x.ProductId,
                     Quantity = x.Quantity,
+                    PromotionValue = x.PromotionValue,
                     IntoMoney = x.IntoMoney
                 });
                 var result = new Paginator<BillDetailModel>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = totalRecords,
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
@@ -130,6 +158,11 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 query = query.Where(x => x.Quantity <= filter.QuantityMax);
             }
+            query = query.Where(x => x.PromotionValue >= filter.PromotionValueMin);
+            if (filter.PromotionValueMax > filter.PromotionValueMin)
+            {
+                query = query.Where(x => x.PromotionValue <= filter.PromotionValueMax);
+            }
             query = query.Where(x => x.IntoMoney >= filter.IntoMoneyMin);
             if (filter.IntoMoneyMax > filter.IntoMoneyMin)
             {
@@ -158,8 +191,11 @@ namespace Zi.LinqSqlLayer.DAOs
 
         private IQueryable<BillDetail> Paging(IQueryable<BillDetail> query, BillDetailFilter filter)
         {
-            int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            if (filter.PageSize != 0)
+            {
+                int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
+                query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            }
             return query;
         }
 
@@ -186,6 +222,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     .Where(x => x.BillId.CompareTo(model.BillId) == 0 && x.ProductId.CompareTo(model.ProductId) == 0)
                     .FirstOrDefault();
                 billDetail.Quantity = model.Quantity;
+                billDetail.PromotionValue = model.PromotionValue;
                 billDetail.IntoMoney = model.IntoMoney;
 
                 try

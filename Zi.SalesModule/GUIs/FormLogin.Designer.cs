@@ -35,15 +35,9 @@ namespace Zi.SalesModule.GUIs
             this.pnlWindowState = new System.Windows.Forms.Panel();
             this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
             this.ipicMinimize = new FontAwesome.Sharp.IconPictureBox();
-            this.pnlTopRight = new System.Windows.Forms.Panel();
-            this.pnlTopLeft = new System.Windows.Forms.Panel();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.pnlLogoCenter = new System.Windows.Forms.Panel();
             this.picLogo = new System.Windows.Forms.PictureBox();
-            this.pnlLogoRight = new System.Windows.Forms.Panel();
-            this.pnlLogoLeft = new System.Windows.Forms.Panel();
-            this.pnlLogoBottom = new System.Windows.Forms.Panel();
-            this.pnlLogoTop = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlBottom = new System.Windows.Forms.Panel();
@@ -111,8 +105,6 @@ namespace Zi.SalesModule.GUIs
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Transparent;
             this.pnlTop.Controls.Add(this.pnlWindowState);
-            this.pnlTop.Controls.Add(this.pnlTopRight);
-            this.pnlTop.Controls.Add(this.pnlTopLeft);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
@@ -127,9 +119,10 @@ namespace Zi.SalesModule.GUIs
             this.pnlWindowState.Controls.Add(this.ipicClose);
             this.pnlWindowState.Controls.Add(this.ipicMinimize);
             this.pnlWindowState.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlWindowState.Location = new System.Drawing.Point(200, 10);
+            this.pnlWindowState.Location = new System.Drawing.Point(0, 10);
             this.pnlWindowState.Name = "pnlWindowState";
-            this.pnlWindowState.Size = new System.Drawing.Size(100, 50);
+            this.pnlWindowState.Padding = new System.Windows.Forms.Padding(200, 0, 200, 0);
+            this.pnlWindowState.Size = new System.Drawing.Size(500, 50);
             this.pnlWindowState.TabIndex = 0;
             // 
             // ipicClose
@@ -142,7 +135,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicClose.IconSize = 50;
-            this.ipicClose.Location = new System.Drawing.Point(50, 0);
+            this.ipicClose.Location = new System.Drawing.Point(250, 0);
             this.ipicClose.Name = "ipicClose";
             this.ipicClose.Size = new System.Drawing.Size(50, 50);
             this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -162,7 +155,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
             this.ipicMinimize.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.ipicMinimize.IconSize = 50;
-            this.ipicMinimize.Location = new System.Drawing.Point(0, 0);
+            this.ipicMinimize.Location = new System.Drawing.Point(200, 0);
             this.ipicMinimize.Name = "ipicMinimize";
             this.ipicMinimize.Size = new System.Drawing.Size(50, 50);
             this.ipicMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -172,37 +165,14 @@ namespace Zi.SalesModule.GUIs
             this.ipicMinimize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicMinimize.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
-            // pnlTopRight
-            // 
-            this.pnlTopRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTopRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlTopRight.Location = new System.Drawing.Point(300, 10);
-            this.pnlTopRight.Name = "pnlTopRight";
-            this.pnlTopRight.Size = new System.Drawing.Size(200, 50);
-            this.pnlTopRight.TabIndex = 0;
-            this.pnlTopRight.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
-            // 
-            // pnlTopLeft
-            // 
-            this.pnlTopLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlTopLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlTopLeft.Location = new System.Drawing.Point(0, 10);
-            this.pnlTopLeft.Name = "pnlTopLeft";
-            this.pnlTopLeft.Size = new System.Drawing.Size(200, 50);
-            this.pnlTopLeft.TabIndex = 0;
-            this.pnlTopLeft.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTop_MouseDown);
-            // 
             // pnlLogo
             // 
             this.pnlLogo.BackColor = System.Drawing.Color.Transparent;
             this.pnlLogo.Controls.Add(this.pnlLogoCenter);
-            this.pnlLogo.Controls.Add(this.pnlLogoRight);
-            this.pnlLogo.Controls.Add(this.pnlLogoLeft);
-            this.pnlLogo.Controls.Add(this.pnlLogoBottom);
-            this.pnlLogo.Controls.Add(this.pnlLogoTop);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 60);
             this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Padding = new System.Windows.Forms.Padding(180, 30, 180, 30);
             this.pnlLogo.Size = new System.Drawing.Size(500, 200);
             this.pnlLogo.TabIndex = 0;
             // 
@@ -226,42 +196,6 @@ namespace Zi.SalesModule.GUIs
             this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picLogo.TabIndex = 0;
             this.picLogo.TabStop = false;
-            // 
-            // pnlLogoRight
-            // 
-            this.pnlLogoRight.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogoRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlLogoRight.Location = new System.Drawing.Point(320, 30);
-            this.pnlLogoRight.Name = "pnlLogoRight";
-            this.pnlLogoRight.Size = new System.Drawing.Size(180, 140);
-            this.pnlLogoRight.TabIndex = 0;
-            // 
-            // pnlLogoLeft
-            // 
-            this.pnlLogoLeft.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogoLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLogoLeft.Location = new System.Drawing.Point(0, 30);
-            this.pnlLogoLeft.Name = "pnlLogoLeft";
-            this.pnlLogoLeft.Size = new System.Drawing.Size(180, 140);
-            this.pnlLogoLeft.TabIndex = 0;
-            // 
-            // pnlLogoBottom
-            // 
-            this.pnlLogoBottom.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogoBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlLogoBottom.Location = new System.Drawing.Point(0, 170);
-            this.pnlLogoBottom.Name = "pnlLogoBottom";
-            this.pnlLogoBottom.Size = new System.Drawing.Size(500, 30);
-            this.pnlLogoBottom.TabIndex = 0;
-            // 
-            // pnlLogoTop
-            // 
-            this.pnlLogoTop.BackColor = System.Drawing.Color.Transparent;
-            this.pnlLogoTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogoTop.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogoTop.Name = "pnlLogoTop";
-            this.pnlLogoTop.Size = new System.Drawing.Size(500, 30);
-            this.pnlLogoTop.TabIndex = 0;
             // 
             // pnlLeft
             // 
@@ -806,15 +740,9 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.Panel pnlLogo;
         private System.Windows.Forms.Panel pnlLogoCenter;
         private System.Windows.Forms.PictureBox picLogo;
-        private System.Windows.Forms.Panel pnlLogoRight;
-        private System.Windows.Forms.Panel pnlLogoLeft;
-        private System.Windows.Forms.Panel pnlLogoBottom;
-        private System.Windows.Forms.Panel pnlLogoTop;
         private System.Windows.Forms.Panel pnlLeft;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlWindowState;
-        private System.Windows.Forms.Panel pnlTopRight;
-        private System.Windows.Forms.Panel pnlTopLeft;
         private FontAwesome.Sharp.IconPictureBox ipicClose;
         private FontAwesome.Sharp.IconPictureBox ipicMinimize;
         private System.Windows.Forms.Panel pnlBottom;

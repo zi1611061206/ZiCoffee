@@ -27,6 +27,7 @@ namespace Zi.LinqSqlLayer.Engines.Paginators
         {
             PageSize = pageSize;
             CurrentPageIndex = currentPageIndex;
+            TotalRecords = 0;
         }
     }
 }

@@ -78,5 +78,22 @@ namespace Zi.LinqSqlLayer.DAOs.Interfaces
         /// </summary>
         /// <returns></returns>
         Tuple<int, int, int, int> CountTable();
+
+        /// <summary>
+        /// This method count all tables.
+        /// <para>RETURNS</para>
+        /// <para>- TableTotal (int).</para>
+        /// </summary>
+        /// <returns></returns>
+        int CountAll();
+
+        /// <summary>
+        /// This method count all tables of an area.
+        /// <para>RETURNS</para>
+        /// <para>- Amount of table in area (int).</para>
+        /// </summary>
+        /// <param name="areaId"></param>
+        /// <returns></returns>
+        int CountByArea(Guid areaId);
     }
 }

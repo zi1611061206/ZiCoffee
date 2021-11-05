@@ -8,6 +8,7 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
         public Guid BillId { get; set; }
         public Guid ProductId { get; set; }
         public int Quantity { get; set; }
+        public float PromotionValue { get; set; }
         public float IntoMoney { get; set; }
 
         public BillDetailModel()
@@ -19,6 +20,7 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
             BillId = billId;
             ProductId = productId;
             Quantity = 1;
+            PromotionValue = 0;
             IntoMoney = 0;
         }
 
@@ -31,6 +33,7 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
             BillId = Guid.Parse(row["BillId"].ToString());
             ProductId = Guid.Parse(row["ProductId"].ToString());
             Quantity = (int)row["Quantity"];
+            PromotionValue = (float)row["PromotionValue"];
             IntoMoney = (float)row["IntoMoney"];
         }
     }

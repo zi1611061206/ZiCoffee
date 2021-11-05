@@ -41,7 +41,7 @@ namespace Zi.LinqSqlLayer.DAOs
                     Status = (int)model.Status,
                     Thumnail = model.Thumnail,
                     Price = model.Price,
-                    PromotionVulue = model.PromotionVulue,
+                    PromotionValue = model.PromotionValue,
                     CategoryId = model.CategoryId
                 };
                 context.Products.InsertOnSubmit(product);
@@ -93,6 +93,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
                 query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
+                int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
                 query = query.Count() > 1 ? Sorting(query, filter) : query;
                 // Use to mapping data
@@ -104,12 +105,12 @@ namespace Zi.LinqSqlLayer.DAOs
                     Status = (ProductStatus)x.Status,
                     Thumnail = x.Thumnail.ToArray(),
                     Price = x.Price,
-                    PromotionVulue = x.PromotionVulue,
+                    PromotionValue = x.PromotionValue,
                     CategoryId = x.CategoryId
                 });
                 var result = new Paginator<ProductModel>()
                 {
-                    TotalRecords = data.Count(),
+                    TotalRecords = totalRecords,
                     PageSize = filter.PageSize,
                     CurrentPageIndex = filter.CurrentPageIndex,
                     Item = data.ToList()
@@ -143,10 +144,10 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 query = query.Where(x => x.Price <= filter.PriceMax);
             }
-            query = query.Where(x => x.PromotionVulue >= filter.PromotionVulueMin);
-            if (filter.PromotionVulueMax > filter.PriceMin)
+            query = query.Where(x => x.PromotionValue >= filter.PromotionValueMin);
+            if (filter.PromotionValueMax > filter.PriceMin)
             {
-                query = query.Where(x => x.PromotionVulue <= filter.PromotionVulueMax);
+                query = query.Where(x => x.PromotionValue <= filter.PromotionValueMax);
             }
             if (filter.CategoryId.CompareTo(Guid.Empty) != 0)
             {
@@ -179,8 +180,11 @@ namespace Zi.LinqSqlLayer.DAOs
 
         private IQueryable<Product> Paging(IQueryable<Product> query, ProductFilter filter)
         {
-            int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            if (filter.PageSize != 0)
+            {
+                int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
+                query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            }
             return query;
         }
 
@@ -215,7 +219,7 @@ namespace Zi.LinqSqlLayer.DAOs
                 product.Status = (int)model.Status;
                 product.Thumnail = model.Thumnail;
                 product.Price = model.Price;
-                product.PromotionVulue = model.PromotionVulue;
+                product.PromotionValue = model.PromotionValue;
                 product.CategoryId = model.CategoryId;
 
                 try
@@ -227,6 +231,35 @@ namespace Zi.LinqSqlLayer.DAOs
                     return new Tuple<bool, object>(false, Rm.GetString("FailedUpdate", culture) + ":" + ex.Message);
                 }
                 return new Tuple<bool, object>(true, null);
+            }
+        }
+
+        public int CountAll()
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                return context.Products.ToList().Count();
+            }
+        }
+
+        public int CountByCategory(Guid categoryId)
+        {
+            using (var context = new ZiCoffeeDataContext())
+            {
+                int counter = 0;
+                counter += context.Products.Where(x => x.CategoryId.CompareTo(categoryId) == 0).ToList().Count;
+
+                var categoryChildren = context.Categories.Where(x => x.ParentId.Equals(categoryId.ToString().ToLower()))
+                    .Select(x => x.CategoryId).ToList();
+                if (categoryChildren.Count > 0)
+                {
+                    foreach (Guid id in categoryChildren)
+                    {
+                        counter += context.Products.Where(x => x.CategoryId.CompareTo(id) == 0).ToList().Count;
+                    }
+                }
+
+                return counter;
             }
         }
     }

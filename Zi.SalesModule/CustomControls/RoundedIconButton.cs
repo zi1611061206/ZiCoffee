@@ -23,7 +23,7 @@ namespace Zi.SalesModule.CustomControls
         {
             using (SolidBrush brush = new SolidBrush(BackColor))
                 e.Graphics.FillRectangle(brush, ClientRectangle);
-            Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
             base.OnPaint(e);
         }
     }

@@ -44,6 +44,7 @@
       <Column Name="BillId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="ProductId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PromotionValue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="IntoMoney" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Association Name="Bill_BillDetail" Member="Bill" ThisKey="BillId" OtherKey="BillId" Type="Bill" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Product_BillDetail" Member="Product" ThisKey="ProductId" OtherKey="ProductId" Type="Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
@@ -122,7 +123,7 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Thumnail" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" />
       <Column Name="Price" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
-      <Column Name="PromotionVulue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="PromotionValue" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
       <Column Name="CategoryId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
       <Association Name="Product_BillDetail" Member="BillDetails" ThisKey="ProductId" OtherKey="ProductId" Type="BillDetail" />
       <Association Name="Product_Recipe" Member="Recipes" ThisKey="ProductId" OtherKey="ProductId" Type="Recipe" />

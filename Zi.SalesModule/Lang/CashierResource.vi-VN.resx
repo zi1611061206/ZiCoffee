@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnAllArea" xml:space="preserve">
-    <value>Tất cả</value>
-  </data>
-  <data name="BtnArea" xml:space="preserve">
-    <value>Khu vực</value>
-  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Đăng xuất</value>
   </data>
@@ -156,6 +150,9 @@
   <data name="ColumnHeaderProduct" xml:space="preserve">
     <value>Sản phẩm</value>
   </data>
+  <data name="ColumnHeaderPromotion" xml:space="preserve">
+    <value>Km (%)</value>
+  </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
     <value>Số lượng</value>
   </data>
@@ -164,6 +161,9 @@
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Lỗi</value>
+  </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Thu ngân</value>
   </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
@@ -200,6 +200,45 @@
   </data>
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Bàn được chọn không thể gọi món lúc này.</value>
+  </data>
+  <data name="MsgMerge1" xml:space="preserve">
+    <value>Giá trị khuyến mại của</value>
+  </data>
+  <data name="MsgMerge2" xml:space="preserve">
+    <value>trong</value>
+  </data>
+  <data name="MsgMerge3" xml:space="preserve">
+    <value>không khớp. Tiếp tục gộp với giá trị:</value>
+  </data>
+  <data name="MsgMerge4" xml:space="preserve">
+    <value>chọn YES.</value>
+  </data>
+  <data name="MsgMerge5" xml:space="preserve">
+    <value>chọn NO.</value>
+  </data>
+  <data name="MsgMerge6" xml:space="preserve">
+    <value>Để hủy bỏ tiến trình gộp: chọn CANCEL.</value>
+  </data>
+  <data name="MsgMerge7" xml:space="preserve">
+    <value>Lưu ý: thao tác này không thể hoàn tác.</value>
+  </data>
+  <data name="MsgMergeConfirm1" xml:space="preserve">
+    <value>Bạn chắc chắn muốn gộp</value>
+  </data>
+  <data name="MsgMergeConfirm2" xml:space="preserve">
+    <value>vào</value>
+  </data>
+  <data name="MsgMergeSuccess" xml:space="preserve">
+    <value>Hợp nhất thành công.</value>
+  </data>
+  <data name="MsgMoveConfirm1" xml:space="preserve">
+    <value>Bạn chắc chắn muốn di chuyển</value>
+  </data>
+  <data name="MsgMoveConfirm2" xml:space="preserve">
+    <value>đến</value>
+  </data>
+  <data name="MsgMoveSuccess" xml:space="preserve">
+    <value>Di chuyển thành công.</value>
   </data>
   <data name="MsgNoSelectedTable" xml:space="preserve">
     <value>Chưa có bàn nào được chọn.</value>
