@@ -162,6 +162,9 @@
   <data name="ErrorTitle" xml:space="preserve">
     <value>Lỗi</value>
   </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Thu ngân</value>
+  </data>
   <data name="LbCopyright" xml:space="preserve">
     <value>Copyright © 2021 ZiTechDev</value>
   </data>

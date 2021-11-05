@@ -123,6 +123,9 @@
   <data name="Female" xml:space="preserve">
     <value>Nữ</value>
   </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Hồ sơ</value>
+  </data>
   <data name="IbtnCancel" xml:space="preserve">
     <value>Hủy</value>
   </data>

@@ -133,10 +133,13 @@
     <value>Số lượng</value>
   </data>
   <data name="CurrencySymbol" xml:space="preserve">
-    <value>đ</value>
+    <value>Đ</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Lỗi</value>
+  </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Dịch vụ</value>
   </data>
   <data name="IbtnCancel" xml:space="preserve">
     <value>Hủy</value>

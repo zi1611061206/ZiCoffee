@@ -138,6 +138,9 @@
   <data name="ErrorTitle" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Order</value>
+  </data>
   <data name="IbtnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>

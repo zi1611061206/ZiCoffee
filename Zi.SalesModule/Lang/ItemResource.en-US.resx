@@ -123,6 +123,9 @@
   <data name="BtnAllCategory" xml:space="preserve">
     <value>All Categories</value>
   </data>
+  <data name="CurrencySymbol" xml:space="preserve">
+    <value>$</value>
+  </data>
   <data name="Hour" xml:space="preserve">
     <value>h</value>
   </data>

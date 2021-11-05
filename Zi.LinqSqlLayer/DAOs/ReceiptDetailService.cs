@@ -163,8 +163,11 @@ namespace Zi.LinqSqlLayer.DAOs
 
         private IQueryable<ReceiptDetail> Paging(IQueryable<ReceiptDetail> query, ReceiptDetailFilter filter)
         {
-            int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
-            query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            if (filter.PageSize != 0)
+            {
+                int firstIndexOfPage = (filter.CurrentPageIndex - 1) * filter.PageSize;
+                query = query.Skip(firstIndexOfPage).Take(filter.PageSize);
+            }
             return query;
         }
 

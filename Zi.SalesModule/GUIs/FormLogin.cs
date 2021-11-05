@@ -106,6 +106,8 @@ namespace Zi.SalesModule.GUIs
 
         private void SetStaticText()
         {
+            Text = InterfaceRm.GetString("FormText", Culture);
+
             txbUsernameInput.Text = InterfaceRm.GetString("TxtUsername", Culture);
             txbPasswordInput.Text = InterfaceRm.GetString("TxtPassword", Culture);
             ibtnLogin.Text = InterfaceRm.GetString("BtnLogin", Culture);

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Drawing;
+using System.Globalization;
+using System.Resources;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using Zi.LinqSqlLayer.DTOs;
@@ -25,6 +27,10 @@ namespace Zi.SalesModule.CustomControls
 
         #region Attributes
         public ProductModel Product { get; set; }
+        public string CultureName { get; set; }
+        public ResourceManager InterfaceRm { get; set; }
+        public CultureInfo Culture { get; set; }
+        public NumberFormatInfo LocalFormat { get; set; }
         #endregion
 
         #region EventHandler
@@ -56,10 +62,33 @@ namespace Zi.SalesModule.CustomControls
 
         private void LoadSetting()
         {
+            SetCulture();
+            SetCurrencyFormat();
+            SetColor();
+        }
+
+        private void SetColor()
+        {
             BackColor = Properties.Settings.Default.BaseItemColor;
             lbName.ForeColor = Properties.Settings.Default.BaseTextColor;
             lbOriginalPrice.ForeColor = Properties.Settings.Default.ErrorTextColor;
             lbPromotionPrice.ForeColor = Properties.Settings.Default.SuccessTextColor;
+        }
+
+        private void SetCulture()
+        {
+            CultureName = Properties.Settings.Default.CultureName;
+            Culture = CultureInfo.CreateSpecificCulture(CultureName);
+            string BaseName = "Zi.SalesModule.Lang.ItemResource";
+            InterfaceRm = new ResourceManager(BaseName, typeof(ProductItem).Assembly);
+        }
+
+        private void SetCurrencyFormat()
+        {
+            LocalFormat = (NumberFormatInfo)NumberFormatInfo.CurrentInfo.Clone();
+            LocalFormat.CurrencySymbol = InterfaceRm.GetString("CurrencySymbol", Culture);
+            LocalFormat.CurrencyPositivePattern = 3;
+            LocalFormat.CurrencyDecimalDigits = 0;
         }
 
         private void LoadContent()
@@ -69,15 +98,15 @@ namespace Zi.SalesModule.CustomControls
             if (Product.PromotionValue > 0)
             {
                 lbOriginalPrice.Show();
-                lbOriginalPrice.Font = new Font(lbOriginalPrice.Font, FontStyle.Strikeout);
-                lbOriginalPrice.Text = Product.Price.ToString();
+                lbOriginalPrice.Font = new Font(lbOriginalPrice.Font, FontStyle.Strikeout | FontStyle.Italic);
+                lbOriginalPrice.Text = Product.Price.ToString("n0", LocalFormat);
                 float promotionPrice = Product.Price * (100 - Product.PromotionValue) / 100;
-                lbPromotionPrice.Text = "(" + Product.PromotionValue + "%) " + (int)promotionPrice;
+                lbPromotionPrice.Text = "(" + Product.PromotionValue + "%) " + ((int)promotionPrice).ToString("n0", LocalFormat);
             }
             else
             {
                 lbOriginalPrice.Hide();
-                lbPromotionPrice.Text = Product.Price.ToString();
+                lbPromotionPrice.Text = Product.Price.ToString("n0", LocalFormat);
             }
             if (Product.Status.CompareTo(ProductStatus.NotAvailabled) == 0)
             {

@@ -160,6 +160,8 @@ namespace Zi.SalesModule.GUIs
 
         private void SetStaticText()
         {
+            Text = InterfaceRm.GetString("FormText", Culture);
+
             ErrorTitle = InterfaceRm.GetString("ErrorTitle", Culture);
             WarningTitle = InterfaceRm.GetString("WarningTitle", Culture);
 
