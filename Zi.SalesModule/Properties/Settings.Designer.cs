@@ -479,5 +479,29 @@ namespace Zi.SalesModule.Properties {
                 this["ItemHoverColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public float DefaultTax {
+            get {
+                return ((float)(this["DefaultTax"]));
+            }
+            set {
+                this["DefaultTax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowScanDetectedSound {
+            get {
+                return ((bool)(this["AllowScanDetectedSound"]));
+            }
+            set {
+                this["AllowScanDetectedSound"] = value;
+            }
+        }
     }
 }

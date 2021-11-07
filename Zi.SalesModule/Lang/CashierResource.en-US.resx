@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnFirstPage" xml:space="preserve">
+    <value>First Page</value>
+  </data>
+  <data name="BtnIndexPage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="BtnLastPage" xml:space="preserve">
+    <value>Last Page</value>
+  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
   <data name="BtnManager" xml:space="preserve">
     <value>Manager</value>
+  </data>
+  <data name="BtnNextPage" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="BtnPreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
   </data>
   <data name="BtnProfile" xml:space="preserve">
     <value>Profile (Alt + P)</value>

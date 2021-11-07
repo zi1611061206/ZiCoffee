@@ -117,23 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnFirstPage" xml:space="preserve">
-    <value>First Page</value>
+  <data name="CkbTaxStatus" xml:space="preserve">
+    <value>Active</value>
   </data>
-  <data name="BtnIndexPage" xml:space="preserve">
-    <value>Page</value>
-  </data>
-  <data name="BtnLastPage" xml:space="preserve">
-    <value>Last Page</value>
-  </data>
-  <data name="BtnNextPage" xml:space="preserve">
-    <value>Next Page</value>
-  </data>
-  <data name="BtnPreviousPage" xml:space="preserve">
-    <value>Previous Page</value>
+  <data name="ColumnHeaderEndTime" xml:space="preserve">
+    <value>EndTime</value>
   </data>
   <data name="ColumnHeaderIntoMoney" xml:space="preserve">
     <value>Into Money</value>
+  </data>
+  <data name="ColumnHeaderIsPercent" xml:space="preserve">
+    <value>Calculation</value>
+  </data>
+  <data name="ColumnHeaderMinValue" xml:space="preserve">
+    <value>Min requirements</value>
   </data>
   <data name="ColumnHeaderPrice" xml:space="preserve">
     <value>Price</value>
@@ -144,8 +141,17 @@
   <data name="ColumnHeaderPromotion" xml:space="preserve">
     <value>Pro (%)</value>
   </data>
+  <data name="ColumnHeaderPromotionType" xml:space="preserve">
+    <value>Type</value>
+  </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
     <value>Qty</value>
+  </data>
+  <data name="ColumnHeaderStartTime" xml:space="preserve">
+    <value>Start Time</value>
+  </data>
+  <data name="ColumnHeaderValue" xml:space="preserve">
+    <value>Value</value>
   </data>
   <data name="CurrencySymbol" xml:space="preserve">
     <value>$</value>
@@ -154,49 +160,121 @@
     <value>Error</value>
   </data>
   <data name="FormText" xml:space="preserve">
-    <value>Order</value>
+    <value>Checkout</value>
+  </data>
+  <data name="GrbAfterTax" xml:space="preserve">
+    <value>After Tax</value>
+  </data>
+  <data name="GrbPromotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="GrbTax" xml:space="preserve">
+    <value>Tax (%)</value>
+  </data>
+  <data name="GrbTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="IbtnApply" xml:space="preserve">
+    <value>Apply</value>
   </data>
   <data name="IbtnCancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
-  <data name="IbtnSave" xml:space="preserve">
-    <value>Save</value>
+  <data name="IbtnCheck" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="IbtnCheckout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="IbtnPrintProvisionalInvoice" xml:space="preserve">
+    <value>Print Provisional</value>
+  </data>
+  <data name="IbtnScan" xml:space="preserve">
+    <value>Scan</value>
   </data>
   <data name="IpicClose" xml:space="preserve">
     <value>Close</value>
   </data>
-  <data name="IpicDown" xml:space="preserve">
-    <value>Down (-)</value>
-  </data>
   <data name="IpicMaximize" xml:space="preserve">
     <value>Maximize</value>
   </data>
-  <data name="IpicUp" xml:space="preserve">
-    <value>Up (+)</value>
-  </data>
-  <data name="IpicViewCart" xml:space="preserve">
-    <value>Show/Hide Card (Alt + V)</value>
+  <data name="IpicWindowCalculator" xml:space="preserve">
+    <value>Calculator</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
-    <value>Services</value>
+    <value>Checkout</value>
   </data>
-  <data name="MsgNoSelectedProduct" xml:space="preserve">
-    <value>No product is selected. Please select a specific product.</value>
+  <data name="MsgAutoApplyError" xml:space="preserve">
+    <value>The automatically applied program cannot be canceled. Please go to the admin page to set up.</value>
   </data>
-  <data name="MsgNotFound" xml:space="preserve">
-    <value>Can not found.</value>
+  <data name="MsgCode1" xml:space="preserve">
+    <value>Type:</value>
   </data>
-  <data name="MsgSaveConfirmation" xml:space="preserve">
-    <value>Make sure you want to save these changes.</value>
+  <data name="MsgCode10" xml:space="preserve">
+    <value>Code not available.</value>
+  </data>
+  <data name="MsgCode11" xml:space="preserve">
+    <value>Reason:</value>
+  </data>
+  <data name="MsgCode12" xml:space="preserve">
+    <value>This program is not currently active.</value>
+  </data>
+  <data name="MsgCode13" xml:space="preserve">
+    <value>Currently is not the applicable time.</value>
+  </data>
+  <data name="MsgCode14" xml:space="preserve">
+    <value>The invoice value does not reach the minimum value.</value>
+  </data>
+  <data name="MsgCode15" xml:space="preserve">
+    <value>This program has been applied on the invoice. Cannot be applied more than once.</value>
+  </data>
+  <data name="MsgCode16" xml:space="preserve">
+    <value>Code has been used.</value>
+  </data>
+  <data name="MsgCode2" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="MsgCode3" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="MsgCode4" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+  <data name="MsgCode5" xml:space="preserve">
+    <value>Minimum invoice value:</value>
+  </data>
+  <data name="MsgCode6" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="MsgCode7" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="MsgCode8" xml:space="preserve">
+    <value>Not activated</value>
+  </data>
+  <data name="MsgCode9" xml:space="preserve">
+    <value>Availability code.</value>
+  </data>
+  <data name="MsgCodeNotBlank" xml:space="preserve">
+    <value>No code is entered.</value>
+  </data>
+  <data name="MsgCodeNotExist" xml:space="preserve">
+    <value>This code does not exist.</value>
+  </data>
+  <data name="MsgFailApply" xml:space="preserve">
+    <value>Applying failed.</value>
+  </data>
+  <data name="MsgSuccessApply" xml:space="preserve">
+    <value>Successfully applied.</value>
+  </data>
+  <data name="MsgSuccessDelete" xml:space="preserve">
+    <value>Delete successfully.</value>
   </data>
   <data name="TtMaximize" xml:space="preserve">
     <value>Maximize</value>
   </data>
   <data name="TtNormal" xml:space="preserve">
     <value>Normal</value>
-  </data>
-  <data name="TxbSearch" xml:space="preserve">
-    <value>Enter search keywords</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
     <value>Warning</value>

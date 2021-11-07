@@ -17,6 +17,7 @@ namespace Zi.LinqSqlLayer.Engines.Filters
         public float MinValueFrom { get; set; }
         public float MinValueTo { get; set; }
         public Guid PromotionTypeId { get; set; }
+        public string Code { get; set; }
 
         public PromotionFilter()
         {
@@ -31,6 +32,7 @@ namespace Zi.LinqSqlLayer.Engines.Filters
             MinValueFrom = 0;
             MinValueTo = 0;
             PromotionTypeId = Guid.Empty;
+            Code = string.Empty;
         }
     }
 }

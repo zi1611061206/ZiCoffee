@@ -708,8 +708,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem first = new PageItem("first");
                 first.Click += BtnFirstPage_Click;
+                ttNote.SetToolTip(first, InterfaceRm.GetString("BtnFirstPage", Culture));
                 PageItem previous = new PageItem("previous");
                 previous.Click += BtnPreviousPage_Click;
+                ttNote.SetToolTip(previous, InterfaceRm.GetString("BtnPreviousPage", Culture));
                 fpnlPaginator.Controls.Add(first);
                 fpnlPaginator.Controls.Add(previous);
             }
@@ -719,12 +721,14 @@ namespace Zi.SalesModule.GUIs
                 {
                     PageItem page = new PageItem(i.ToString(), true);
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
                 else
                 {
                     PageItem page = new PageItem(i.ToString());
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
             }
@@ -732,8 +736,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem next = new PageItem("next");
                 next.Click += BtnNextPage_Click;
+                ttNote.SetToolTip(next, InterfaceRm.GetString("BtnNextPage", Culture));
                 PageItem last = new PageItem("last");
                 last.Click += BtnLastPage_Click;
+                ttNote.SetToolTip(last, InterfaceRm.GetString("BtnLastPage", Culture));
                 fpnlPaginator.Controls.Add(next);
                 fpnlPaginator.Controls.Add(last);
             }
@@ -1060,12 +1066,12 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void PnlResizeDivideBody_MouseMove(object sender, MouseEventArgs e)
+        private void PnlResizeTop_MouseMove(object sender, MouseEventArgs e)
         {
-            ResizeDivideBody();
+            ResizeCategoryPanel();
         }
 
-        private void ResizeDivideBody()
+        private void ResizeCategoryPanel()
         {
             int y = pnlBody.PointToClient(Cursor.Position).Y;
             float halfHeight = pnlBody.Height / 2;
@@ -1367,6 +1373,31 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
+        #region Effects - Change view mode for ListView
+        private void LsvBillDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Alt | Keys.NumPad0:
+                    lsvBillDetail.View = View.LargeIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad1:
+                    lsvBillDetail.View = View.Details;
+                    break;
+                case Keys.Alt | Keys.NumPad2:
+                    lsvBillDetail.View = View.SmallIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad3:
+                    lsvBillDetail.View = View.List;
+                    break;
+                case Keys.Alt | Keys.NumPad4:
+                    lsvBillDetail.View = View.Tile;
+                    break;
+                default: break;
+            }
+        }
+        #endregion
+
         #region Load ReadyTable and UsingTable for 2 ContextMenuStrips to drop down
         private void CmsTableDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -1524,25 +1555,10 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            Form formBackground = new Form();
             try
             {
-                using (FormCheckOut f = new FormCheckOut(CurrentTable, CurrentUser))
-                {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.Location = Location;
-                    formBackground.Size = Size;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .80d;
-                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    formBackground.TopMost = true;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
-
-                    f.Owner = formBackground;
-                    f.ShowDialog();
-                    formBackground.Dispose();
-                }
+                FormCheckout f = new FormCheckout(CurrentTable, CurrentBill, CurrentBillDetails);
+                f.ShowDialog();
             }
             catch (Exception ex)
             {
@@ -1550,7 +1566,6 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                formBackground.Dispose();
                 ReLoadTable();
                 LoadFooter();
             }

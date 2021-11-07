@@ -59,10 +59,6 @@ namespace Zi.LinqSqlLayer.DAOs
                 var discountDetail = context.DiscountDetails
                     .Where(x => x.BillId.CompareTo(billId) == 0 && x.PromotionId.CompareTo(promotionId) == 0)
                     .FirstOrDefault();
-                if (discountDetail == null)
-                {
-                    return new Tuple<bool, object>(false, Rm.GetString("NotFound", culture));
-                }
                 context.DiscountDetails.DeleteOnSubmit(discountDetail);
 
                 try

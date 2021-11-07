@@ -116,5 +116,11 @@
     <Setting Name="ItemHoverColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">33, 46, 58</Value>
     </Setting>
+    <Setting Name="DefaultTax" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="AllowScanDetectedSound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

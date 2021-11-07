@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnFirstPage" xml:space="preserve">
+    <value>Trang đầu</value>
+  </data>
+  <data name="BtnIndexPage" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="BtnLastPage" xml:space="preserve">
+    <value>Trang cuối</value>
+  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Đăng xuất</value>
   </data>
   <data name="BtnManager" xml:space="preserve">
     <value>Quản lý</value>
+  </data>
+  <data name="BtnNextPage" xml:space="preserve">
+    <value>Trang sau</value>
+  </data>
+  <data name="BtnPreviousPage" xml:space="preserve">
+    <value>Trang trước</value>
   </data>
   <data name="BtnProfile" xml:space="preserve">
     <value>Hồ sơ (Alt + P)</value>
