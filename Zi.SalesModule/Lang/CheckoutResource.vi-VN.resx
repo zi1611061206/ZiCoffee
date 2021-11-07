@@ -162,6 +162,9 @@
   <data name="GrbAfterTax" xml:space="preserve">
     <value>Giá trị sau thuế</value>
   </data>
+  <data name="GrbManualPromotions" xml:space="preserve">
+    <value>Khuyến mại tùy chọn</value>
+  </data>
   <data name="GrbPromotions" xml:space="preserve">
     <value>Khuyến mại</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="MsgFailApply" xml:space="preserve">
     <value>Áp dụng thất bại.</value>
+  </data>
+  <data name="MsgNotFound" xml:space="preserve">
+    <value>Không tìm thấy</value>
   </data>
   <data name="MsgSuccessApply" xml:space="preserve">
     <value>Áp dụng thành công.</value>

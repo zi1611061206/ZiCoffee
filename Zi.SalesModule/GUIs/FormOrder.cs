@@ -279,12 +279,7 @@ namespace Zi.SalesModule.GUIs
             var categoryReader = _categoryService.Read(categoryFilter, CultureName);
             if (!categoryReader.Item1)
             {
-                fpnlCategory.Controls.Add(new Label()
-                {
-                    Text = categoryReader.Item2.ToString(),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlCategory.Controls.Add(new ErrorLabel(categoryReader.Item2.ToString()));
                 return;
             }
             List<CategoryModel> categoryList = (categoryReader.Item2 as Paginator<CategoryModel>).Item;
@@ -476,13 +471,7 @@ namespace Zi.SalesModule.GUIs
             fpnlProduct.Controls.Clear();
             if (productList.Count <= 0)
             {
-                fpnlProduct.Controls.Add(new Label()
-                {
-                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    AutoSize = true,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlProduct.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
             }
             else
             {

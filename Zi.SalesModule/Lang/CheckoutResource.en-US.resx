@@ -162,6 +162,9 @@
   <data name="GrbAfterTax" xml:space="preserve">
     <value>After Tax</value>
   </data>
+  <data name="GrbManualPromotions" xml:space="preserve">
+    <value>Promotions applied manually</value>
+  </data>
   <data name="GrbPromotions" xml:space="preserve">
     <value>Promotions</value>
   </data>
@@ -260,6 +263,9 @@
   </data>
   <data name="MsgFailApply" xml:space="preserve">
     <value>Applying failed.</value>
+  </data>
+  <data name="MsgNotFound" xml:space="preserve">
+    <value>Not Found</value>
   </data>
   <data name="MsgSuccessApply" xml:space="preserve">
     <value>Successfully applied.</value>

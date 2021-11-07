@@ -80,6 +80,8 @@ namespace Zi.SalesModule.GUIs
             this.ipicMaximize = new FontAwesome.Sharp.IconPictureBox();
             this.picLogo = new System.Windows.Forms.PictureBox();
             this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
+            this.grbManualPromotions = new System.Windows.Forms.GroupBox();
+            this.fpnlManualPromotionList = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlTitleBar.SuspendLayout();
             this.pnlFooterBar.SuspendLayout();
             this.pnlRight.SuspendLayout();
@@ -99,6 +101,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
+            this.grbManualPromotions.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -270,7 +273,7 @@ namespace Zi.SalesModule.GUIs
             this.grbPromotions.Size = new System.Drawing.Size(360, 166);
             this.grbPromotions.TabIndex = 0;
             this.grbPromotions.TabStop = false;
-            this.grbPromotions.Text = "Promotion";
+            this.grbPromotions.Text = "Promotions";
             // 
             // lsvDiscountDetail
             // 
@@ -467,6 +470,7 @@ namespace Zi.SalesModule.GUIs
             // pnlHandler
             // 
             this.pnlHandler.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.pnlHandler.Controls.Add(this.grbManualPromotions);
             this.pnlHandler.Controls.Add(this.pnlResizeTop);
             this.pnlHandler.Controls.Add(this.grbCouponVoucher);
             this.pnlHandler.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -761,6 +765,31 @@ namespace Zi.SalesModule.GUIs
             this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
+            // grbManualPromotions
+            // 
+            this.grbManualPromotions.BackColor = System.Drawing.Color.Transparent;
+            this.grbManualPromotions.Controls.Add(this.fpnlManualPromotionList);
+            this.grbManualPromotions.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbManualPromotions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grbManualPromotions.ForeColor = System.Drawing.Color.Gainsboro;
+            this.grbManualPromotions.Location = new System.Drawing.Point(10, 239);
+            this.grbManualPromotions.Name = "grbManualPromotions";
+            this.grbManualPromotions.Padding = new System.Windows.Forms.Padding(10);
+            this.grbManualPromotions.Size = new System.Drawing.Size(530, 451);
+            this.grbManualPromotions.TabIndex = 0;
+            this.grbManualPromotions.TabStop = false;
+            this.grbManualPromotions.Text = "Manual Promotions";
+            // 
+            // fpnlManualPromotionList
+            // 
+            this.fpnlManualPromotionList.AutoScroll = true;
+            this.fpnlManualPromotionList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlManualPromotionList.Location = new System.Drawing.Point(10, 33);
+            this.fpnlManualPromotionList.Name = "fpnlManualPromotionList";
+            this.fpnlManualPromotionList.Padding = new System.Windows.Forms.Padding(20);
+            this.fpnlManualPromotionList.Size = new System.Drawing.Size(510, 408);
+            this.fpnlManualPromotionList.TabIndex = 0;
+            // 
             // FormCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -810,6 +839,7 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
+            this.grbManualPromotions.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -865,5 +895,7 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.ColumnHeader columnHeaderMinValue;
         private System.Windows.Forms.ColumnHeader columnHeaderAppliedTimeTime;
         private System.Windows.Forms.ColumnHeader columnHeaderCode;
+        private System.Windows.Forms.GroupBox grbManualPromotions;
+        private System.Windows.Forms.FlowLayoutPanel fpnlManualPromotionList;
     }
 }

@@ -87,6 +87,12 @@
     <Compile Include="CustomControls\CategoryItem.Designer.cs">
       <DependentUpon>CategoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ErrorLabel.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\ErrorLabel.Designer.cs">
+      <DependentUpon>ErrorLabel.cs</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\PageItem.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -98,6 +104,12 @@
     </Compile>
     <Compile Include="CustomControls\ProductItem.Designer.cs">
       <DependentUpon>ProductItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\PromotionItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomControls\PromotionItem.Designer.cs">
+      <DependentUpon>PromotionItem.cs</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\RoundedIconButton.cs">
       <SubType>Component</SubType>

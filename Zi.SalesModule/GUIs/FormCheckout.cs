@@ -16,6 +16,7 @@ using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.SalesModule.CustomControls;
 using Zi.Utilities.Constants;
 using Zi.Utilities.Enumerators;
 using ZXing;
@@ -182,6 +183,7 @@ namespace Zi.SalesModule.GUIs
             SetAudio();
             SetDefaultValue();
             LoadBill();
+            LoadManualPromotionList();
         }
 
         private void SetCulture()
@@ -241,6 +243,7 @@ namespace Zi.SalesModule.GUIs
             grbTax.Text = InterfaceRm.GetString("GrbTax", Culture);
             grbAfterTax.Text = InterfaceRm.GetString("GrbAfterTax", Culture);
             grbPromotions.Text = InterfaceRm.GetString("GrbPromotions", Culture);
+            grbManualPromotions.Text = InterfaceRm.GetString("GrbManualPromotions", Culture);
 
             ckbTaxStatus.Text = InterfaceRm.GetString("CkbTaxStatus", Culture);
         }
@@ -337,15 +340,15 @@ namespace Zi.SalesModule.GUIs
             float tax = Properties.Settings.Default.DefaultTax;
             nudTax.Value = (decimal)tax;
 
-            ImageList smallImageList = new ImageList();
-            smallImageList.ImageSize = new Size(35, 35);
-            smallImageList.Images.Add(Properties.Resources.Discount);
-            smallImageList.Images.Add(Properties.Resources.Voucher);
-            smallImageList.Images.Add(Properties.Resources.Coupon);
-            smallImageList.Images.Add(Properties.Resources.Point);
-            smallImageList.Images.Add(Properties.Resources.Cashback);
-            lsvDiscountDetail.SmallImageList = smallImageList;
-            lsvDiscountDetail.LargeImageList = smallImageList;
+            ImageList imageList = new ImageList();
+            imageList.ImageSize = new Size(35, 35);
+            imageList.Images.Add(Properties.Resources.Discount);
+            imageList.Images.Add(Properties.Resources.Voucher);
+            imageList.Images.Add(Properties.Resources.Coupon);
+            imageList.Images.Add(Properties.Resources.Point);
+            imageList.Images.Add(Properties.Resources.Cashback);
+            lsvDiscountDetail.SmallImageList = imageList;
+            lsvDiscountDetail.LargeImageList = imageList;
         }
 
         private void LoadBill()
@@ -491,6 +494,85 @@ namespace Zi.SalesModule.GUIs
                 }
             }
             return new Tuple<bool, float>(false, 0);
+        }
+
+        private void LoadManualPromotionList()
+        {
+            fpnlManualPromotionList.Controls.Clear();
+
+            PromotionFilter promotionFilter = new PromotionFilter()
+            {
+                IsActived = PromotionActived.Activated,
+                IsAutoApply = PromotionAutoApply.Manual
+            };
+            var promotionReader = _promotionService.Read(promotionFilter, CultureName);
+            if (!promotionReader.Item1)
+            {
+                fpnlManualPromotionList.Controls.Add(new ErrorLabel(promotionReader.Item2.ToString()));
+                return;
+            }
+            else
+            {
+                List<PromotionModel> promotions = (promotionReader.Item2 as Paginator<PromotionModel>).Item;
+                foreach(PromotionModel promotion in promotions)
+                {
+                    PromotionTypeModel promotionType = FindPromotionTypeById(promotion.PromotionTypeId);
+                    if(promotionType != null && CheckConditionToManualApply(promotion))
+                    {
+                        PromotionItem btnPromotion = new PromotionItem(promotion, promotionType) {
+                            MaximumSize = new Size(fpnlManualPromotionList.Size.Width, 0),
+                        };
+                        btnPromotion.MouseDown += AllBtn_MouseDown;
+                        btnPromotion.Click += BtnPromotion_Click;
+                        fpnlManualPromotionList.Controls.Add(btnPromotion);
+                    }
+                }
+                if(fpnlManualPromotionList.Controls.Count <= 0)
+                {
+                    fpnlManualPromotionList.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
+                }
+            }
+        }
+
+        private bool CheckConditionToManualApply(PromotionModel promotion)
+        {
+            bool conclude = true;
+
+            if (!string.IsNullOrEmpty(promotion.CodeList))
+            {
+                conclude = false;
+            }
+            else if (DateTime.Compare(promotion.StartTime, CurrentBill.CreatedDate) > 0 || DateTime.Compare(promotion.EndTime, CurrentBill.CreatedDate) < 0)
+            {
+                conclude = false;
+            }
+            else if (BillTotal < promotion.MinValue)
+            {
+                conclude = false;
+            }
+            else if (IsApplyOnce(promotion))
+            {
+                conclude = false;
+            }
+
+            return conclude;
+        }
+
+        private void BtnPromotion_Click(object sender, EventArgs e)
+        {
+            PromotionItem btn = sender as PromotionItem;
+            PromotionModel promotion = btn.Tag as PromotionModel;
+            Tuple<bool, string> result = AddDiscountDetail(promotion);
+            if (!result.Item1)
+            {
+                FormMessageBox.Show(result.Item2, ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
+            }
+            else
+            {
+                LoadPromotion();
+                LoadManualPromotionList();
+                FormMessageBox.Show(result.Item2, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+            }
         }
         #endregion
 
@@ -800,6 +882,7 @@ namespace Zi.SalesModule.GUIs
                         else
                         {
                             LoadPromotion();
+                            LoadManualPromotionList();
                             string msg = InterfaceRm.GetString("MsgSuccessDelete", Culture);
                             FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, AlertTimer, new Tuple<Point, Size>(Location, Size));
                         }

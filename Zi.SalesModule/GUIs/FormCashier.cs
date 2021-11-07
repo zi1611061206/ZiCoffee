@@ -416,12 +416,7 @@ namespace Zi.SalesModule.GUIs
             var areaReader = _areaService.Read(areaFilter, CultureName);
             if (!areaReader.Item1)
             {
-                fpnlAreaList.Controls.Add(new Label()
-                {
-                    Text = areaReader.Item2.ToString(),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlAreaList.Controls.Add(new ErrorLabel(areaReader.Item2.ToString()));
                 return;
             }
             List<AreaModel> areaList = (areaReader.Item2 as Paginator<AreaModel>).Item;
@@ -612,13 +607,7 @@ namespace Zi.SalesModule.GUIs
             fpnlTableList.Controls.Clear();
             if (tableList.Count <= 0)
             {
-                fpnlTableList.Controls.Add(new Label()
-                {
-                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    AutoSize = true,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlTableList.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
             }
             else
             {
@@ -783,6 +772,10 @@ namespace Zi.SalesModule.GUIs
         private void LoadBill()
         {
             lsvBillDetail.Items.Clear();
+            lsvBillDetail.SmallImageList = new ImageList();
+            lsvBillDetail.SmallImageList.ImageSize = new Size(20, 30);
+            lsvBillDetail.LargeImageList = new ImageList();
+            lsvBillDetail.LargeImageList.ImageSize = new Size(80, 120);
 
             if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
             {
@@ -850,7 +843,19 @@ namespace Zi.SalesModule.GUIs
                 listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
                 listViewItem.SubItems.Add(billDetail.PromotionValue.ToString());
                 listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
+                if (product.Thumnail.Length > 0)
+                {
+                    lsvBillDetail.SmallImageList.Images.Add(DataTypeConvertor.Instance.GetImageFromBytes(product.Thumnail));
+                    lsvBillDetail.LargeImageList.Images.Add(DataTypeConvertor.Instance.GetImageFromBytes(product.Thumnail));
+                }
+                else
+                {
+                    lsvBillDetail.SmallImageList.Images.Add(Properties.Resources.NoImage);
+                    lsvBillDetail.LargeImageList.Images.Add(Properties.Resources.NoImage);
+                }
+                listViewItem.ImageIndex = lsvBillDetail.SmallImageList.Images.Count - 1;
                 lsvBillDetail.Items.Add(listViewItem);
+
                 if (listViewItem.Index % 2 == 0)
                 {
                     listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
