@@ -82,6 +82,8 @@
     <Type Name="DiscountDetail">
       <Column Name="BillId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="PromotionId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="AppliedTime" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
       <Association Name="Bill_DiscountDetail" Member="Bill" ThisKey="BillId" OtherKey="BillId" Type="Bill" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Promotion_DiscountDetail" Member="Promotion" ThisKey="PromotionId" OtherKey="PromotionId" Type="Promotion" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>

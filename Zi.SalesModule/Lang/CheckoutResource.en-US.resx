@@ -120,14 +120,14 @@
   <data name="CkbTaxStatus" xml:space="preserve">
     <value>Active</value>
   </data>
-  <data name="ColumnHeaderEndTime" xml:space="preserve">
-    <value>EndTime</value>
+  <data name="ColumnHeaderAppliedTime" xml:space="preserve">
+    <value>Time of application</value>
+  </data>
+  <data name="ColumnHeaderCode" xml:space="preserve">
+    <value>Code</value>
   </data>
   <data name="ColumnHeaderIntoMoney" xml:space="preserve">
     <value>Into Money</value>
-  </data>
-  <data name="ColumnHeaderIsPercent" xml:space="preserve">
-    <value>Calculation</value>
   </data>
   <data name="ColumnHeaderMinValue" xml:space="preserve">
     <value>Min requirements</value>
@@ -146,9 +146,6 @@
   </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
     <value>Qty</value>
-  </data>
-  <data name="ColumnHeaderStartTime" xml:space="preserve">
-    <value>Start Time</value>
   </data>
   <data name="ColumnHeaderValue" xml:space="preserve">
     <value>Value</value>

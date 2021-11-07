@@ -58,6 +58,7 @@
     <Compile Include="Enumerators\PromotionActived.cs" />
     <Compile Include="Enumerators\PromotionAutoApply.cs" />
     <Compile Include="Enumerators\PromotionPercent.cs" />
+    <Compile Include="Enumerators\PromotionTypes.cs" />
     <Compile Include="Enumerators\TableStatus.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

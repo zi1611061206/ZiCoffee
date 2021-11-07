@@ -120,14 +120,14 @@
   <data name="CkbTaxStatus" xml:space="preserve">
     <value>Kích hoạt</value>
   </data>
-  <data name="ColumnHeaderEndTime" xml:space="preserve">
-    <value>Kết thúc áp dụng</value>
+  <data name="ColumnHeaderAppliedTime" xml:space="preserve">
+    <value>Thời điểm áp dụng</value>
+  </data>
+  <data name="ColumnHeaderCode" xml:space="preserve">
+    <value>Mã</value>
   </data>
   <data name="ColumnHeaderIntoMoney" xml:space="preserve">
     <value>Thành tiền</value>
-  </data>
-  <data name="ColumnHeaderIsPercent" xml:space="preserve">
-    <value>Cách tính</value>
   </data>
   <data name="ColumnHeaderMinValue" xml:space="preserve">
     <value>Yêu cầu tối thiểu</value>
@@ -146,9 +146,6 @@
   </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
     <value>Số lượng</value>
-  </data>
-  <data name="ColumnHeaderStartTime" xml:space="preserve">
-    <value>Bắt đầu áp dụng</value>
   </data>
   <data name="ColumnHeaderValue" xml:space="preserve">
     <value>Giá trị</value>

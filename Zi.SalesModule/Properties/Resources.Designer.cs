@@ -126,6 +126,16 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Cashback {
+            get {
+                object obj = ResourceManager.GetObject("Cashback", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Click {
@@ -135,11 +145,31 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Coupon {
+            get {
+                object obj = ResourceManager.GetObject("Coupon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Crickets {
             get {
                 return ResourceManager.GetStream("Crickets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Discount {
+            get {
+                object obj = ResourceManager.GetObject("Discount", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -249,6 +279,26 @@ namespace Zi.SalesModule.Properties {
         internal static System.Drawing.Bitmap NoAvatar {
             get {
                 object obj = ResourceManager.GetObject("NoAvatar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap NoImage {
+            get {
+                object obj = ResourceManager.GetObject("NoImage", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Point {
+            get {
+                object obj = ResourceManager.GetObject("Point", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -415,6 +465,16 @@ namespace Zi.SalesModule.Properties {
         internal static System.Drawing.Bitmap View {
             get {
                 object obj = ResourceManager.GetObject("View", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Voucher {
+            get {
+                object obj = ResourceManager.GetObject("Voucher", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -16,6 +16,7 @@ using Zi.LinqSqlLayer.DTOs;
 using Zi.LinqSqlLayer.DTOs.Relationship;
 using Zi.LinqSqlLayer.Engines.Filters;
 using Zi.LinqSqlLayer.Engines.Paginators;
+using Zi.Utilities.Constants;
 using Zi.Utilities.Enumerators;
 using ZXing;
 
@@ -232,10 +233,9 @@ namespace Zi.SalesModule.GUIs
 
             lsvDiscountDetail.Columns[0].Text = InterfaceRm.GetString("ColumnHeaderPromotionType", Culture);
             lsvDiscountDetail.Columns[1].Text = InterfaceRm.GetString("ColumnHeaderValue", Culture);
-            lsvDiscountDetail.Columns[2].Text = InterfaceRm.GetString("ColumnHeaderIsPercent", Culture);
-            lsvDiscountDetail.Columns[3].Text = InterfaceRm.GetString("ColumnHeaderMinValue", Culture);
-            lsvDiscountDetail.Columns[4].Text = InterfaceRm.GetString("ColumnHeaderStartTime", Culture);
-            lsvDiscountDetail.Columns[5].Text = InterfaceRm.GetString("ColumnHeaderEndTime", Culture);
+            lsvDiscountDetail.Columns[2].Text = InterfaceRm.GetString("ColumnHeaderMinValue", Culture);
+            lsvDiscountDetail.Columns[3].Text = InterfaceRm.GetString("ColumnHeaderAppliedTime", Culture);
+            lsvDiscountDetail.Columns[4].Text = InterfaceRm.GetString("ColumnHeaderCode", Culture);
 
             grbTotal.Text = InterfaceRm.GetString("GrbTotal", Culture);
             grbTax.Text = InterfaceRm.GetString("GrbTax", Culture);
@@ -336,6 +336,16 @@ namespace Zi.SalesModule.GUIs
         {
             float tax = Properties.Settings.Default.DefaultTax;
             nudTax.Value = (decimal)tax;
+
+            ImageList smallImageList = new ImageList();
+            smallImageList.ImageSize = new Size(35, 35);
+            smallImageList.Images.Add(Properties.Resources.Discount);
+            smallImageList.Images.Add(Properties.Resources.Voucher);
+            smallImageList.Images.Add(Properties.Resources.Coupon);
+            smallImageList.Images.Add(Properties.Resources.Point);
+            smallImageList.Images.Add(Properties.Resources.Cashback);
+            lsvDiscountDetail.SmallImageList = smallImageList;
+            lsvDiscountDetail.LargeImageList = smallImageList;
         }
 
         private void LoadBill()
@@ -397,6 +407,7 @@ namespace Zi.SalesModule.GUIs
         private void LoadPromotion()
         {
             lsvDiscountDetail.Items.Clear();
+
             float downValueTotal = 0;
 
             DiscountDetailFilter filter = new DiscountDetailFilter()
@@ -447,14 +458,26 @@ namespace Zi.SalesModule.GUIs
                 {
                     bool isPercent = promotion.IsPercent.CompareTo(PromotionPercent.Percent) == 0;
                     ListViewItem listViewItem = new ListViewItem(promotionType.Name);
-                    listViewItem.SubItems.Add(promotion.Value.ToString("n0", LocalFormat));
-                    listViewItem.SubItems.Add(isPercent ? "%" : string.Empty);
+                    listViewItem.SubItems.Add(promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty));
                     listViewItem.SubItems.Add(promotion.MinValue.ToString("n0", LocalFormat));
-                    listViewItem.SubItems.Add(promotion.StartTime.ToString("d", DateTimeFormat));
-                    listViewItem.SubItems.Add(promotion.EndTime.ToString("d", DateTimeFormat));
+                    listViewItem.SubItems.Add(discountDetail.AppliedTime.ToString("d", DateTimeFormat));
+                    listViewItem.SubItems.Add(discountDetail.Code);
                     listViewItem.Tag = promotion;
-                    listViewItem.ToolTipText = promotion.Description;
+                    listViewItem.ToolTipText = promotion.Description + Environment.NewLine 
+                        + "- " + InterfaceRm.GetString("ColumnHeaderValue", Culture) + ": " + promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderMinValue", Culture) + ": " + promotion.MinValue.ToString("n0", LocalFormat) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderAppliedTime", Culture) + ": " + discountDetail.AppliedTime.ToString("d", DateTimeFormat) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderCode", Culture) + ": " + discountDetail.Code + Environment.NewLine;
+                    if (string.IsNullOrEmpty(promotion.CodeList))
+                    {
+                        listViewItem.ImageIndex = (int)PromotionTypes.Discount;
+                    }
+                    else
+                    {
+                        listViewItem.ImageIndex = (int)PromotionTypes.Voucher;
+                    }
                     lsvDiscountDetail.Items.Add(listViewItem);
+
                     if (listViewItem.Index % 2 == 0)
                     {
                         listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
@@ -726,11 +749,10 @@ namespace Zi.SalesModule.GUIs
         private void AutoColumnWidthDiscountDetail()
         {
             lsvDiscountDetail.Columns[1].Width = 100;
-            lsvDiscountDetail.Columns[2].Width = 50;
+            lsvDiscountDetail.Columns[2].Width = 100;
             lsvDiscountDetail.Columns[3].Width = 100;
             lsvDiscountDetail.Columns[4].Width = 100;
-            lsvDiscountDetail.Columns[5].Width = 100;
-            lsvDiscountDetail.Columns[0].Width = lsvBillDetail.Width - (100 + 100 + +100 + 100 + 50);
+            lsvDiscountDetail.Columns[0].Width = lsvBillDetail.Width - (100 + 100 + +100 + 100);
         }
         #endregion
 

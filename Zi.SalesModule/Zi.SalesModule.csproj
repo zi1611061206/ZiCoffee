@@ -475,6 +475,24 @@
   <ItemGroup>
     <None Include="Resources\Synth-Zap-Small-01.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cashback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Coupon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Discount.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Point.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Voucher.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

@@ -35,7 +35,9 @@ namespace Zi.LinqSqlLayer.DAOs
                 var discountDetail = new DiscountDetail()
                 {
                     BillId = model.BillId,
-                    PromotionId = model.PromotionId
+                    PromotionId = model.PromotionId,
+                    Code = model.Code,
+                    AppliedTime = DateTime.Now
                 };
                 context.DiscountDetails.InsertOnSubmit(discountDetail);
 
@@ -80,6 +82,7 @@ namespace Zi.LinqSqlLayer.DAOs
             {
                 var query = context.DiscountDetails.Where(x => true);
                 query = query.Count() > 0 ? GettingBy(query, filter) : query;
+                query = query.Count() > 1 ? Filtering(query, filter) : query;
                 query = query.Count() > 1 ? Searching(query, filter) : query;
                 int totalRecords = query.Select(x => x).ToList().Count();
                 query = query.Count() > filter.PageSize ? Paging(query, filter) : query;
@@ -88,7 +91,9 @@ namespace Zi.LinqSqlLayer.DAOs
                 var data = query.Select(x => new DiscountDetailModel()
                 {
                     BillId = x.BillId,
-                    PromotionId = x.PromotionId
+                    PromotionId = x.PromotionId,
+                    Code = x.Code,
+                    AppliedTime = x.AppliedTime
                 });
                 var result = new Paginator<DiscountDetailModel>()
                 {
@@ -115,6 +120,20 @@ namespace Zi.LinqSqlLayer.DAOs
             if (filter.PromotionId.CompareTo(Guid.Empty) != 0)
             {
                 query = query.Where(x => x.PromotionId.CompareTo(filter.PromotionId) == 0);
+            }
+            return query;
+        }
+
+        private IQueryable<DiscountDetail> Filtering(IQueryable<DiscountDetail> query, DiscountDetailFilter filter)
+        {
+            query = query.Where(x => x.AppliedTime.CompareTo(filter.AppliedTimeFrom) >= 0);
+            if (DateTime.Compare(filter.AppliedTimeTo, filter.AppliedTimeFrom) > 0)
+            {
+                query = query.Where(x => x.AppliedTime.CompareTo(filter.AppliedTimeTo) <= 0);
+            }
+            if (!string.IsNullOrEmpty(filter.Code))
+            {
+                query = query.Where(x => x.Code.Equals(filter.Code));
             }
             return query;
         }

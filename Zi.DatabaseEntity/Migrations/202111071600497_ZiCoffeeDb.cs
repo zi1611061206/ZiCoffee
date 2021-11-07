@@ -178,6 +178,8 @@
                 {
                     BillId = c.Guid(nullable: false),
                     PromotionId = c.Guid(nullable: false),
+                    Code = c.String(maxLength: 100, unicode: false),
+                    AppliedTime = c.DateTime(nullable: false, precision: 7, storeType: "datetime2", defaultValueSql: "GetDate()"),
                 })
                 .PrimaryKey(t => new { t.BillId, t.PromotionId })
                 .ForeignKey("dbo.Bills", t => t.BillId, cascadeDelete: true)

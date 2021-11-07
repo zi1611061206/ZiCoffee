@@ -10,6 +10,8 @@ namespace Zi.DatabaseEntity.Entities
     {
         public Guid BillId { get; set; }
         public Guid PromotionId { get; set; }
+        public string Code { get; set; }
+        public DateTime AppliedTime { get; set; }
 
         //FK m-n
         public Bill Bill { get; set; }

@@ -33,16 +33,9 @@ namespace Zi.SalesModule.GUIs
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormCheckout));
             this.pnlTitleBar = new System.Windows.Forms.Panel();
             this.lbTitle = new System.Windows.Forms.Label();
-            this.ipicMaximize = new FontAwesome.Sharp.IconPictureBox();
-            this.picLogo = new System.Windows.Forms.PictureBox();
-            this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
             this.pnlFooterBar = new System.Windows.Forms.Panel();
-            this.ibtnCheckout = new FontAwesome.Sharp.IconButton();
-            this.ibtnPrintProvisionalInvoice = new FontAwesome.Sharp.IconButton();
-            this.ibtnCancel = new FontAwesome.Sharp.IconButton();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
-            this.ipicWindowCalculator = new FontAwesome.Sharp.IconPictureBox();
             this.pnlBill = new System.Windows.Forms.Panel();
             this.lsvBillDetail = new System.Windows.Forms.ListView();
             this.columnHeaderProduct = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -56,10 +49,9 @@ namespace Zi.SalesModule.GUIs
             this.lsvDiscountDetail = new System.Windows.Forms.ListView();
             this.columnHeaderPromotionType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderIsPercent = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderMinValue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderStartTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderEndTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderAppliedTimeTime = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.txbAfterPromotions = new System.Windows.Forms.TextBox();
             this.grbAfterTax = new System.Windows.Forms.GroupBox();
             this.txbAfterTax = new System.Windows.Forms.TextBox();
@@ -74,20 +66,23 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeTop = new System.Windows.Forms.Panel();
             this.grbCouponVoucher = new System.Windows.Forms.GroupBox();
             this.pnlScan = new System.Windows.Forms.Panel();
-            this.picFrame = new System.Windows.Forms.PictureBox();
             this.cbCameraDevice = new System.Windows.Forms.ComboBox();
             this.pnlOptions = new System.Windows.Forms.Panel();
-            this.ibtnCheck = new FontAwesome.Sharp.IconButton();
-            this.ibtnScan = new FontAwesome.Sharp.IconButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.timerCameraFrame = new System.Windows.Forms.Timer(this.components);
+            this.picFrame = new System.Windows.Forms.PictureBox();
+            this.ibtnCheck = new FontAwesome.Sharp.IconButton();
+            this.ibtnScan = new FontAwesome.Sharp.IconButton();
+            this.ipicWindowCalculator = new FontAwesome.Sharp.IconPictureBox();
+            this.ibtnCheckout = new FontAwesome.Sharp.IconButton();
+            this.ibtnPrintProvisionalInvoice = new FontAwesome.Sharp.IconButton();
+            this.ibtnCancel = new FontAwesome.Sharp.IconButton();
+            this.ipicMaximize = new FontAwesome.Sharp.IconPictureBox();
+            this.picLogo = new System.Windows.Forms.PictureBox();
+            this.ipicClose = new FontAwesome.Sharp.IconPictureBox();
             this.pnlTitleBar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
             this.pnlFooterBar.SuspendLayout();
             this.pnlRight.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).BeginInit();
             this.pnlBill.SuspendLayout();
             this.pnlInfo.SuspendLayout();
             this.grbPromotions.SuspendLayout();
@@ -98,8 +93,12 @@ namespace Zi.SalesModule.GUIs
             this.pnlHandler.SuspendLayout();
             this.grbCouponVoucher.SuspendLayout();
             this.pnlScan.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picFrame)).BeginInit();
             this.pnlOptions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFrame)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -130,60 +129,6 @@ namespace Zi.SalesModule.GUIs
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lbTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
             // 
-            // ipicMaximize
-            // 
-            this.ipicMaximize.BackColor = System.Drawing.Color.Transparent;
-            this.ipicMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ipicMaximize.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ipicMaximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicMaximize.IconChar = FontAwesome.Sharp.IconChar.Clock;
-            this.ipicMaximize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ipicMaximize.IconSize = 50;
-            this.ipicMaximize.Location = new System.Drawing.Point(1280, 0);
-            this.ipicMaximize.Name = "ipicMaximize";
-            this.ipicMaximize.Size = new System.Drawing.Size(50, 50);
-            this.ipicMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicMaximize.TabIndex = 1;
-            this.ipicMaximize.TabStop = false;
-            this.ipicMaximize.Click += new System.EventHandler(this.IpicMaximize_Click);
-            this.ipicMaximize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
-            this.ipicMaximize.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
-            // 
-            // picLogo
-            // 
-            this.picLogo.BackColor = System.Drawing.Color.Transparent;
-            this.picLogo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.picLogo.Image = global::Zi.SalesModule.Properties.Resources.zi_logo;
-            this.picLogo.Location = new System.Drawing.Point(20, 0);
-            this.picLogo.Name = "picLogo";
-            this.picLogo.Padding = new System.Windows.Forms.Padding(5);
-            this.picLogo.Size = new System.Drawing.Size(50, 50);
-            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picLogo.TabIndex = 0;
-            this.picLogo.TabStop = false;
-            this.picLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
-            // 
-            // ipicClose
-            // 
-            this.ipicClose.BackColor = System.Drawing.Color.Transparent;
-            this.ipicClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ipicClose.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ipicClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicClose.IconChar = FontAwesome.Sharp.IconChar.Clock;
-            this.ipicClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ipicClose.IconSize = 50;
-            this.ipicClose.Location = new System.Drawing.Point(1330, 0);
-            this.ipicClose.Name = "ipicClose";
-            this.ipicClose.Size = new System.Drawing.Size(50, 50);
-            this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicClose.TabIndex = 0;
-            this.ipicClose.TabStop = false;
-            this.ipicClose.Click += new System.EventHandler(this.IpicClose_Click);
-            this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
-            this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
-            // 
             // pnlFooterBar
             // 
             this.pnlFooterBar.BackColor = System.Drawing.Color.Transparent;
@@ -196,76 +141,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlFooterBar.Padding = new System.Windows.Forms.Padding(20, 10, 50, 10);
             this.pnlFooterBar.Size = new System.Drawing.Size(1400, 50);
             this.pnlFooterBar.TabIndex = 0;
-            // 
-            // ibtnCheckout
-            // 
-            this.ibtnCheckout.BackColor = System.Drawing.Color.Transparent;
-            this.ibtnCheckout.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnCheckout.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ibtnCheckout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.ibtnCheckout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.ibtnCheckout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnCheckout.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ibtnCheckout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ibtnCheckout.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ibtnCheckout.IconColor = System.Drawing.Color.Black;
-            this.ibtnCheckout.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnCheckout.Location = new System.Drawing.Point(400, 10);
-            this.ibtnCheckout.Name = "ibtnCheckout";
-            this.ibtnCheckout.Size = new System.Drawing.Size(570, 30);
-            this.ibtnCheckout.TabIndex = 2;
-            this.ibtnCheckout.Text = "Checkout";
-            this.ibtnCheckout.UseVisualStyleBackColor = false;
-            this.ibtnCheckout.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
-            this.ibtnCheckout.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
-            this.ibtnCheckout.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
-            // 
-            // ibtnPrintProvisionalInvoice
-            // 
-            this.ibtnPrintProvisionalInvoice.BackColor = System.Drawing.Color.Transparent;
-            this.ibtnPrintProvisionalInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnPrintProvisionalInvoice.Dock = System.Windows.Forms.DockStyle.Left;
-            this.ibtnPrintProvisionalInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.ibtnPrintProvisionalInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.ibtnPrintProvisionalInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnPrintProvisionalInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ibtnPrintProvisionalInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ibtnPrintProvisionalInvoice.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ibtnPrintProvisionalInvoice.IconColor = System.Drawing.Color.Black;
-            this.ibtnPrintProvisionalInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnPrintProvisionalInvoice.Location = new System.Drawing.Point(20, 10);
-            this.ibtnPrintProvisionalInvoice.Name = "ibtnPrintProvisionalInvoice";
-            this.ibtnPrintProvisionalInvoice.Size = new System.Drawing.Size(380, 30);
-            this.ibtnPrintProvisionalInvoice.TabIndex = 1;
-            this.ibtnPrintProvisionalInvoice.Text = "Print Provisional";
-            this.ibtnPrintProvisionalInvoice.UseVisualStyleBackColor = false;
-            this.ibtnPrintProvisionalInvoice.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
-            this.ibtnPrintProvisionalInvoice.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
-            this.ibtnPrintProvisionalInvoice.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
-            // 
-            // ibtnCancel
-            // 
-            this.ibtnCancel.BackColor = System.Drawing.Color.Transparent;
-            this.ibtnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnCancel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.ibtnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.ibtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.ibtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ibtnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ibtnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ibtnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.ibtnCancel.IconColor = System.Drawing.Color.Black;
-            this.ibtnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ibtnCancel.Location = new System.Drawing.Point(970, 10);
-            this.ibtnCancel.Name = "ibtnCancel";
-            this.ibtnCancel.Size = new System.Drawing.Size(380, 30);
-            this.ibtnCancel.TabIndex = 3;
-            this.ibtnCancel.Text = "Cancel";
-            this.ibtnCancel.UseVisualStyleBackColor = false;
-            this.ibtnCancel.Click += new System.EventHandler(this.IbtnCancel_Click);
-            this.ibtnCancel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
-            this.ibtnCancel.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
-            this.ibtnCancel.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
             // pnlLeft
             // 
@@ -285,26 +160,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(50, 700);
             this.pnlRight.TabIndex = 0;
-            // 
-            // ipicWindowCalculator
-            // 
-            this.ipicWindowCalculator.BackColor = System.Drawing.Color.Transparent;
-            this.ipicWindowCalculator.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ipicWindowCalculator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.ipicWindowCalculator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicWindowCalculator.IconChar = FontAwesome.Sharp.IconChar.Clock;
-            this.ipicWindowCalculator.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
-            this.ipicWindowCalculator.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.ipicWindowCalculator.IconSize = 50;
-            this.ipicWindowCalculator.Location = new System.Drawing.Point(0, 650);
-            this.ipicWindowCalculator.Name = "ipicWindowCalculator";
-            this.ipicWindowCalculator.Size = new System.Drawing.Size(50, 50);
-            this.ipicWindowCalculator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ipicWindowCalculator.TabIndex = 2;
-            this.ipicWindowCalculator.TabStop = false;
-            this.ipicWindowCalculator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
-            this.ipicWindowCalculator.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
-            this.ipicWindowCalculator.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
             // pnlBill
             // 
@@ -412,7 +267,7 @@ namespace Zi.SalesModule.GUIs
             this.grbPromotions.Location = new System.Drawing.Point(10, 229);
             this.grbPromotions.Name = "grbPromotions";
             this.grbPromotions.Padding = new System.Windows.Forms.Padding(10);
-            this.grbPromotions.Size = new System.Drawing.Size(360, 302);
+            this.grbPromotions.Size = new System.Drawing.Size(360, 166);
             this.grbPromotions.TabIndex = 0;
             this.grbPromotions.TabStop = false;
             this.grbPromotions.Text = "Promotion";
@@ -424,10 +279,9 @@ namespace Zi.SalesModule.GUIs
             this.lsvDiscountDetail.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderPromotionType,
             this.columnHeaderValue,
-            this.columnHeaderIsPercent,
             this.columnHeaderMinValue,
-            this.columnHeaderStartTime,
-            this.columnHeaderEndTime});
+            this.columnHeaderAppliedTimeTime,
+            this.columnHeaderCode});
             this.lsvDiscountDetail.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lsvDiscountDetail.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lsvDiscountDetail.ForeColor = System.Drawing.Color.Gainsboro;
@@ -436,16 +290,15 @@ namespace Zi.SalesModule.GUIs
             this.lsvDiscountDetail.Location = new System.Drawing.Point(10, 33);
             this.lsvDiscountDetail.Name = "lsvDiscountDetail";
             this.lsvDiscountDetail.ShowItemToolTips = true;
-            this.lsvDiscountDetail.Size = new System.Drawing.Size(340, 226);
+            this.lsvDiscountDetail.Size = new System.Drawing.Size(340, 90);
             this.lsvDiscountDetail.TabIndex = 0;
             this.lsvDiscountDetail.UseCompatibleStateImageBehavior = false;
-            this.lsvDiscountDetail.View = System.Windows.Forms.View.Details;
             this.lsvDiscountDetail.SizeChanged += new System.EventHandler(this.LsvDiscountDetail_SizeChanged);
             this.lsvDiscountDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LsvDiscountDetail_KeyDown);
             // 
             // columnHeaderPromotionType
             // 
-            this.columnHeaderPromotionType.Text = "PromotionType";
+            this.columnHeaderPromotionType.Text = "Type";
             this.columnHeaderPromotionType.Width = 50;
             // 
             // columnHeaderValue
@@ -454,28 +307,23 @@ namespace Zi.SalesModule.GUIs
             this.columnHeaderValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderValue.Width = 50;
             // 
-            // columnHeaderIsPercent
-            // 
-            this.columnHeaderIsPercent.Text = "Calculation";
-            this.columnHeaderIsPercent.Width = 50;
-            // 
             // columnHeaderMinValue
             // 
             this.columnHeaderMinValue.Text = "Min Invoice";
             this.columnHeaderMinValue.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.columnHeaderMinValue.Width = 50;
             // 
-            // columnHeaderStartTime
+            // columnHeaderAppliedTimeTime
             // 
-            this.columnHeaderStartTime.Text = "StartTime";
-            this.columnHeaderStartTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeaderStartTime.Width = 50;
+            this.columnHeaderAppliedTimeTime.Text = "Applied Time";
+            this.columnHeaderAppliedTimeTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeaderAppliedTimeTime.Width = 50;
             // 
-            // columnHeaderEndTime
+            // columnHeaderCode
             // 
-            this.columnHeaderEndTime.Text = "EndTime";
-            this.columnHeaderEndTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeaderEndTime.Width = 50;
+            this.columnHeaderCode.Text = "Code";
+            this.columnHeaderCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeaderCode.Width = 50;
             // 
             // txbAfterPromotions
             // 
@@ -485,7 +333,7 @@ namespace Zi.SalesModule.GUIs
             this.txbAfterPromotions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txbAfterPromotions.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbAfterPromotions.ForeColor = System.Drawing.Color.Red;
-            this.txbAfterPromotions.Location = new System.Drawing.Point(10, 259);
+            this.txbAfterPromotions.Location = new System.Drawing.Point(10, 123);
             this.txbAfterPromotions.Name = "txbAfterPromotions";
             this.txbAfterPromotions.ReadOnly = true;
             this.txbAfterPromotions.Size = new System.Drawing.Size(340, 33);
@@ -674,16 +522,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlScan.TabIndex = 0;
             this.pnlScan.Visible = false;
             // 
-            // picFrame
-            // 
-            this.picFrame.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picFrame.Location = new System.Drawing.Point(10, 41);
-            this.picFrame.Name = "picFrame";
-            this.picFrame.Size = new System.Drawing.Size(315, 95);
-            this.picFrame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picFrame.TabIndex = 1;
-            this.picFrame.TabStop = false;
-            // 
             // cbCameraDevice
             // 
             this.cbCameraDevice.Dock = System.Windows.Forms.DockStyle.Top;
@@ -706,6 +544,31 @@ namespace Zi.SalesModule.GUIs
             this.pnlOptions.Padding = new System.Windows.Forms.Padding(10);
             this.pnlOptions.Size = new System.Drawing.Size(175, 146);
             this.pnlOptions.TabIndex = 0;
+            // 
+            // txbCode
+            // 
+            this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txbCode.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txbCode.Location = new System.Drawing.Point(10, 33);
+            this.txbCode.Name = "txbCode";
+            this.txbCode.Size = new System.Drawing.Size(510, 30);
+            this.txbCode.TabIndex = 0;
+            this.txbCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // timerCameraFrame
+            // 
+            this.timerCameraFrame.Interval = 1000;
+            this.timerCameraFrame.Tick += new System.EventHandler(this.TimerCameraFrame_Tick);
+            // 
+            // picFrame
+            // 
+            this.picFrame.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picFrame.Location = new System.Drawing.Point(10, 41);
+            this.picFrame.Name = "picFrame";
+            this.picFrame.Size = new System.Drawing.Size(315, 95);
+            this.picFrame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFrame.TabIndex = 1;
+            this.picFrame.TabStop = false;
             // 
             // ibtnCheck
             // 
@@ -754,20 +617,149 @@ namespace Zi.SalesModule.GUIs
             this.ibtnScan.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
             this.ibtnScan.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
             // 
-            // txbCode
+            // ipicWindowCalculator
             // 
-            this.txbCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txbCode.Dock = System.Windows.Forms.DockStyle.Top;
-            this.txbCode.Location = new System.Drawing.Point(10, 33);
-            this.txbCode.Name = "txbCode";
-            this.txbCode.Size = new System.Drawing.Size(510, 30);
-            this.txbCode.TabIndex = 0;
-            this.txbCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ipicWindowCalculator.BackColor = System.Drawing.Color.Transparent;
+            this.ipicWindowCalculator.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ipicWindowCalculator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.ipicWindowCalculator.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicWindowCalculator.IconChar = FontAwesome.Sharp.IconChar.Clock;
+            this.ipicWindowCalculator.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicWindowCalculator.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ipicWindowCalculator.IconSize = 50;
+            this.ipicWindowCalculator.Location = new System.Drawing.Point(0, 650);
+            this.ipicWindowCalculator.Name = "ipicWindowCalculator";
+            this.ipicWindowCalculator.Size = new System.Drawing.Size(50, 50);
+            this.ipicWindowCalculator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ipicWindowCalculator.TabIndex = 2;
+            this.ipicWindowCalculator.TabStop = false;
+            this.ipicWindowCalculator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ipicWindowCalculator.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
+            this.ipicWindowCalculator.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
-            // timerCameraFrame
+            // ibtnCheckout
             // 
-            this.timerCameraFrame.Interval = 1000;
-            this.timerCameraFrame.Tick += new System.EventHandler(this.TimerCameraFrame_Tick);
+            this.ibtnCheckout.BackColor = System.Drawing.Color.Transparent;
+            this.ibtnCheckout.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnCheckout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ibtnCheckout.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnCheckout.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ibtnCheckout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnCheckout.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ibtnCheckout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ibtnCheckout.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.ibtnCheckout.IconColor = System.Drawing.Color.Black;
+            this.ibtnCheckout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnCheckout.Location = new System.Drawing.Point(400, 10);
+            this.ibtnCheckout.Name = "ibtnCheckout";
+            this.ibtnCheckout.Size = new System.Drawing.Size(570, 30);
+            this.ibtnCheckout.TabIndex = 2;
+            this.ibtnCheckout.Text = "Checkout";
+            this.ibtnCheckout.UseVisualStyleBackColor = false;
+            this.ibtnCheckout.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnCheckout.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnCheckout.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
+            // 
+            // ibtnPrintProvisionalInvoice
+            // 
+            this.ibtnPrintProvisionalInvoice.BackColor = System.Drawing.Color.Transparent;
+            this.ibtnPrintProvisionalInvoice.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnPrintProvisionalInvoice.Dock = System.Windows.Forms.DockStyle.Left;
+            this.ibtnPrintProvisionalInvoice.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnPrintProvisionalInvoice.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ibtnPrintProvisionalInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnPrintProvisionalInvoice.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ibtnPrintProvisionalInvoice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ibtnPrintProvisionalInvoice.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.ibtnPrintProvisionalInvoice.IconColor = System.Drawing.Color.Black;
+            this.ibtnPrintProvisionalInvoice.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnPrintProvisionalInvoice.Location = new System.Drawing.Point(20, 10);
+            this.ibtnPrintProvisionalInvoice.Name = "ibtnPrintProvisionalInvoice";
+            this.ibtnPrintProvisionalInvoice.Size = new System.Drawing.Size(380, 30);
+            this.ibtnPrintProvisionalInvoice.TabIndex = 1;
+            this.ibtnPrintProvisionalInvoice.Text = "Print Provisional";
+            this.ibtnPrintProvisionalInvoice.UseVisualStyleBackColor = false;
+            this.ibtnPrintProvisionalInvoice.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnPrintProvisionalInvoice.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnPrintProvisionalInvoice.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
+            // 
+            // ibtnCancel
+            // 
+            this.ibtnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.ibtnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ibtnCancel.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ibtnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.ibtnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.ibtnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ibtnCancel.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ibtnCancel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ibtnCancel.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.ibtnCancel.IconColor = System.Drawing.Color.Black;
+            this.ibtnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ibtnCancel.Location = new System.Drawing.Point(970, 10);
+            this.ibtnCancel.Name = "ibtnCancel";
+            this.ibtnCancel.Size = new System.Drawing.Size(380, 30);
+            this.ibtnCancel.TabIndex = 3;
+            this.ibtnCancel.Text = "Cancel";
+            this.ibtnCancel.UseVisualStyleBackColor = false;
+            this.ibtnCancel.Click += new System.EventHandler(this.IbtnCancel_Click);
+            this.ibtnCancel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
+            this.ibtnCancel.MouseLeave += new System.EventHandler(this.Ibtn_MouseLeave);
+            this.ibtnCancel.MouseHover += new System.EventHandler(this.Ibtn_MouseHover);
+            // 
+            // ipicMaximize
+            // 
+            this.ipicMaximize.BackColor = System.Drawing.Color.Transparent;
+            this.ipicMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ipicMaximize.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ipicMaximize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicMaximize.IconChar = FontAwesome.Sharp.IconChar.Clock;
+            this.ipicMaximize.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicMaximize.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ipicMaximize.IconSize = 50;
+            this.ipicMaximize.Location = new System.Drawing.Point(1280, 0);
+            this.ipicMaximize.Name = "ipicMaximize";
+            this.ipicMaximize.Size = new System.Drawing.Size(50, 50);
+            this.ipicMaximize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ipicMaximize.TabIndex = 1;
+            this.ipicMaximize.TabStop = false;
+            this.ipicMaximize.Click += new System.EventHandler(this.IpicMaximize_Click);
+            this.ipicMaximize.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
+            this.ipicMaximize.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
+            // 
+            // picLogo
+            // 
+            this.picLogo.BackColor = System.Drawing.Color.Transparent;
+            this.picLogo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.picLogo.Image = global::Zi.SalesModule.Properties.Resources.zi_logo;
+            this.picLogo.Location = new System.Drawing.Point(20, 0);
+            this.picLogo.Name = "picLogo";
+            this.picLogo.Padding = new System.Windows.Forms.Padding(5);
+            this.picLogo.Size = new System.Drawing.Size(50, 50);
+            this.picLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picLogo.TabIndex = 0;
+            this.picLogo.TabStop = false;
+            this.picLogo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlTitleBar_MouseDown);
+            // 
+            // ipicClose
+            // 
+            this.ipicClose.BackColor = System.Drawing.Color.Transparent;
+            this.ipicClose.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.ipicClose.Dock = System.Windows.Forms.DockStyle.Right;
+            this.ipicClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicClose.IconChar = FontAwesome.Sharp.IconChar.Clock;
+            this.ipicClose.IconColor = System.Drawing.Color.FromArgb(((int)(((byte)(79)))), ((int)(((byte)(202)))), ((int)(((byte)(178)))));
+            this.ipicClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.ipicClose.IconSize = 50;
+            this.ipicClose.Location = new System.Drawing.Point(1330, 0);
+            this.ipicClose.Name = "ipicClose";
+            this.ipicClose.Size = new System.Drawing.Size(50, 50);
+            this.ipicClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ipicClose.TabIndex = 0;
+            this.ipicClose.TabStop = false;
+            this.ipicClose.Click += new System.EventHandler(this.IpicClose_Click);
+            this.ipicClose.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
+            this.ipicClose.MouseHover += new System.EventHandler(this.Ipic_MouseHover);
             // 
             // FormCheckout
             // 
@@ -795,12 +787,8 @@ namespace Zi.SalesModule.GUIs
             this.Load += new System.EventHandler(this.FormCheckout_Load);
             this.SizeChanged += new System.EventHandler(this.FormCheckout_SizeChanged);
             this.pnlTitleBar.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
             this.pnlFooterBar.ResumeLayout(false);
             this.pnlRight.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).EndInit();
             this.pnlBill.ResumeLayout(false);
             this.pnlInfo.ResumeLayout(false);
             this.grbPromotions.ResumeLayout(false);
@@ -816,8 +804,12 @@ namespace Zi.SalesModule.GUIs
             this.grbCouponVoucher.ResumeLayout(false);
             this.grbCouponVoucher.PerformLayout();
             this.pnlScan.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.picFrame)).EndInit();
             this.pnlOptions.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.picFrame)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLogo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ipicClose)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -870,9 +862,8 @@ namespace Zi.SalesModule.GUIs
         private System.Windows.Forms.ListView lsvDiscountDetail;
         private System.Windows.Forms.ColumnHeader columnHeaderPromotionType;
         private System.Windows.Forms.ColumnHeader columnHeaderValue;
-        private System.Windows.Forms.ColumnHeader columnHeaderIsPercent;
         private System.Windows.Forms.ColumnHeader columnHeaderMinValue;
-        private System.Windows.Forms.ColumnHeader columnHeaderStartTime;
-        private System.Windows.Forms.ColumnHeader columnHeaderEndTime;
+        private System.Windows.Forms.ColumnHeader columnHeaderAppliedTimeTime;
+        private System.Windows.Forms.ColumnHeader columnHeaderCode;
     }
 }
