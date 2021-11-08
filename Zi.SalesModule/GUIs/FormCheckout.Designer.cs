@@ -52,14 +52,6 @@ namespace Zi.SalesModule.GUIs
             this.columnHeaderIntoMoney = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlResizeLeft = new System.Windows.Forms.Panel();
             this.pnlInfo = new System.Windows.Forms.Panel();
-            this.grbGiveChange = new System.Windows.Forms.GroupBox();
-            this.lbChange = new System.Windows.Forms.Label();
-            this.txbChange = new System.Windows.Forms.TextBox();
-            this.nudCustomerMoney = new System.Windows.Forms.NumericUpDown();
-            this.lbCustomerMoney = new System.Windows.Forms.Label();
-            this.grbLastTotal = new System.Windows.Forms.GroupBox();
-            this.txbLastTotal = new System.Windows.Forms.TextBox();
-            this.ckbAutoRounding = new System.Windows.Forms.CheckBox();
             this.grbPromotions = new System.Windows.Forms.GroupBox();
             this.lsvDiscountDetail = new System.Windows.Forms.ListView();
             this.columnHeaderPromotionType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -89,6 +81,14 @@ namespace Zi.SalesModule.GUIs
             this.ibtnScan = new FontAwesome.Sharp.IconButton();
             this.txbCode = new System.Windows.Forms.TextBox();
             this.timerCameraFrame = new System.Windows.Forms.Timer(this.components);
+            this.grbLastTotal = new System.Windows.Forms.GroupBox();
+            this.txbLastTotal = new System.Windows.Forms.TextBox();
+            this.ckbAutoRounding = new System.Windows.Forms.CheckBox();
+            this.grbGiveChange = new System.Windows.Forms.GroupBox();
+            this.lbChange = new System.Windows.Forms.Label();
+            this.txbChange = new System.Windows.Forms.TextBox();
+            this.nudCustomerMoney = new System.Windows.Forms.NumericUpDown();
+            this.lbCustomerMoney = new System.Windows.Forms.Label();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMaximize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
@@ -98,9 +98,6 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).BeginInit();
             this.pnlBill.SuspendLayout();
             this.pnlInfo.SuspendLayout();
-            this.grbGiveChange.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCustomerMoney)).BeginInit();
-            this.grbLastTotal.SuspendLayout();
             this.grbPromotions.SuspendLayout();
             this.grbTax.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudTax)).BeginInit();
@@ -111,6 +108,9 @@ namespace Zi.SalesModule.GUIs
             this.pnlScan.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picFrame)).BeginInit();
             this.pnlOptions.SuspendLayout();
+            this.grbLastTotal.SuspendLayout();
+            this.grbGiveChange.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCustomerMoney)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTitleBar
@@ -414,125 +414,6 @@ namespace Zi.SalesModule.GUIs
             this.pnlInfo.TabIndex = 0;
             this.pnlInfo.SizeChanged += new System.EventHandler(this.PnlRoundedCorner_SizeChanged);
             // 
-            // grbGiveChange
-            // 
-            this.grbGiveChange.BackColor = System.Drawing.Color.Transparent;
-            this.grbGiveChange.Controls.Add(this.lbChange);
-            this.grbGiveChange.Controls.Add(this.txbChange);
-            this.grbGiveChange.Controls.Add(this.nudCustomerMoney);
-            this.grbGiveChange.Controls.Add(this.lbCustomerMoney);
-            this.grbGiveChange.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.grbGiveChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.grbGiveChange.ForeColor = System.Drawing.Color.Gainsboro;
-            this.grbGiveChange.Location = new System.Drawing.Point(10, 502);
-            this.grbGiveChange.Name = "grbGiveChange";
-            this.grbGiveChange.Padding = new System.Windows.Forms.Padding(10);
-            this.grbGiveChange.Size = new System.Drawing.Size(360, 188);
-            this.grbGiveChange.TabIndex = 0;
-            this.grbGiveChange.TabStop = false;
-            this.grbGiveChange.Text = "Give change";
-            // 
-            // lbChange
-            // 
-            this.lbChange.AutoSize = true;
-            this.lbChange.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.lbChange.Location = new System.Drawing.Point(10, 112);
-            this.lbChange.Margin = new System.Windows.Forms.Padding(3);
-            this.lbChange.Name = "lbChange";
-            this.lbChange.Padding = new System.Windows.Forms.Padding(5);
-            this.lbChange.Size = new System.Drawing.Size(87, 33);
-            this.lbChange.TabIndex = 0;
-            this.lbChange.Text = "Change";
-            // 
-            // txbChange
-            // 
-            this.txbChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
-            this.txbChange.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbChange.Cursor = System.Windows.Forms.Cursors.No;
-            this.txbChange.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txbChange.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbChange.ForeColor = System.Drawing.Color.Red;
-            this.txbChange.Location = new System.Drawing.Point(10, 145);
-            this.txbChange.Name = "txbChange";
-            this.txbChange.ReadOnly = true;
-            this.txbChange.Size = new System.Drawing.Size(340, 33);
-            this.txbChange.TabIndex = 0;
-            this.txbChange.TabStop = false;
-            this.txbChange.Text = "Change";
-            this.txbChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // nudCustomerMoney
-            // 
-            this.nudCustomerMoney.Dock = System.Windows.Forms.DockStyle.Top;
-            this.nudCustomerMoney.Location = new System.Drawing.Point(10, 66);
-            this.nudCustomerMoney.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.nudCustomerMoney.Name = "nudCustomerMoney";
-            this.nudCustomerMoney.Size = new System.Drawing.Size(340, 30);
-            this.nudCustomerMoney.TabIndex = 0;
-            this.nudCustomerMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lbCustomerMoney
-            // 
-            this.lbCustomerMoney.AutoSize = true;
-            this.lbCustomerMoney.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lbCustomerMoney.Location = new System.Drawing.Point(10, 33);
-            this.lbCustomerMoney.Margin = new System.Windows.Forms.Padding(3);
-            this.lbCustomerMoney.Name = "lbCustomerMoney";
-            this.lbCustomerMoney.Padding = new System.Windows.Forms.Padding(5);
-            this.lbCustomerMoney.Size = new System.Drawing.Size(184, 33);
-            this.lbCustomerMoney.TabIndex = 0;
-            this.lbCustomerMoney.Text = "Customer\'s Money";
-            // 
-            // grbLastTotal
-            // 
-            this.grbLastTotal.BackColor = System.Drawing.Color.Transparent;
-            this.grbLastTotal.Controls.Add(this.txbLastTotal);
-            this.grbLastTotal.Controls.Add(this.ckbAutoRounding);
-            this.grbLastTotal.Dock = System.Windows.Forms.DockStyle.Top;
-            this.grbLastTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.grbLastTotal.ForeColor = System.Drawing.Color.Gainsboro;
-            this.grbLastTotal.Location = new System.Drawing.Point(10, 395);
-            this.grbLastTotal.Name = "grbLastTotal";
-            this.grbLastTotal.Padding = new System.Windows.Forms.Padding(10);
-            this.grbLastTotal.Size = new System.Drawing.Size(360, 107);
-            this.grbLastTotal.TabIndex = 0;
-            this.grbLastTotal.TabStop = false;
-            this.grbLastTotal.Text = "Last Total";
-            // 
-            // txbLastTotal
-            // 
-            this.txbLastTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
-            this.txbLastTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txbLastTotal.Cursor = System.Windows.Forms.Cursors.No;
-            this.txbLastTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txbLastTotal.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbLastTotal.ForeColor = System.Drawing.Color.Red;
-            this.txbLastTotal.Location = new System.Drawing.Point(10, 64);
-            this.txbLastTotal.Name = "txbLastTotal";
-            this.txbLastTotal.ReadOnly = true;
-            this.txbLastTotal.Size = new System.Drawing.Size(340, 33);
-            this.txbLastTotal.TabIndex = 0;
-            this.txbLastTotal.TabStop = false;
-            this.txbLastTotal.Text = "Last Total";
-            this.txbLastTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // ckbAutoRounding
-            // 
-            this.ckbAutoRounding.AutoSize = true;
-            this.ckbAutoRounding.Checked = true;
-            this.ckbAutoRounding.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbAutoRounding.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ckbAutoRounding.Location = new System.Drawing.Point(10, 33);
-            this.ckbAutoRounding.Name = "ckbAutoRounding";
-            this.ckbAutoRounding.Size = new System.Drawing.Size(340, 27);
-            this.ckbAutoRounding.TabIndex = 0;
-            this.ckbAutoRounding.Text = "Auto Rounding";
-            this.ckbAutoRounding.UseVisualStyleBackColor = true;
-            // 
             // grbPromotions
             // 
             this.grbPromotions.BackColor = System.Drawing.Color.Transparent;
@@ -544,7 +425,7 @@ namespace Zi.SalesModule.GUIs
             this.grbPromotions.Location = new System.Drawing.Point(10, 229);
             this.grbPromotions.Name = "grbPromotions";
             this.grbPromotions.Padding = new System.Windows.Forms.Padding(10);
-            this.grbPromotions.Size = new System.Drawing.Size(360, 166);
+            this.grbPromotions.Size = new System.Drawing.Size(360, 146);
             this.grbPromotions.TabIndex = 0;
             this.grbPromotions.TabStop = false;
             this.grbPromotions.Text = "Promotions";
@@ -567,7 +448,7 @@ namespace Zi.SalesModule.GUIs
             this.lsvDiscountDetail.Location = new System.Drawing.Point(10, 33);
             this.lsvDiscountDetail.Name = "lsvDiscountDetail";
             this.lsvDiscountDetail.ShowItemToolTips = true;
-            this.lsvDiscountDetail.Size = new System.Drawing.Size(340, 90);
+            this.lsvDiscountDetail.Size = new System.Drawing.Size(340, 70);
             this.lsvDiscountDetail.TabIndex = 0;
             this.lsvDiscountDetail.UseCompatibleStateImageBehavior = false;
             this.lsvDiscountDetail.SizeChanged += new System.EventHandler(this.LsvDiscountDetail_SizeChanged);
@@ -610,7 +491,7 @@ namespace Zi.SalesModule.GUIs
             this.txbAfterPromotions.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txbAfterPromotions.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbAfterPromotions.ForeColor = System.Drawing.Color.Red;
-            this.txbAfterPromotions.Location = new System.Drawing.Point(10, 123);
+            this.txbAfterPromotions.Location = new System.Drawing.Point(10, 103);
             this.txbAfterPromotions.Name = "txbAfterPromotions";
             this.txbAfterPromotions.ReadOnly = true;
             this.txbAfterPromotions.Size = new System.Drawing.Size(340, 33);
@@ -658,6 +539,7 @@ namespace Zi.SalesModule.GUIs
             // nudTax
             // 
             this.nudTax.Dock = System.Windows.Forms.DockStyle.Top;
+            this.nudTax.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudTax.Location = new System.Drawing.Point(10, 60);
             this.nudTax.Maximum = new decimal(new int[] {
             1000,
@@ -665,7 +547,7 @@ namespace Zi.SalesModule.GUIs
             0,
             0});
             this.nudTax.Name = "nudTax";
-            this.nudTax.Size = new System.Drawing.Size(340, 30);
+            this.nudTax.Size = new System.Drawing.Size(340, 36);
             this.nudTax.TabIndex = 0;
             this.nudTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.nudTax.ValueChanged += new System.EventHandler(this.NudTax_ValueChanged);
@@ -910,6 +792,129 @@ namespace Zi.SalesModule.GUIs
             this.timerCameraFrame.Interval = 1000;
             this.timerCameraFrame.Tick += new System.EventHandler(this.TimerCameraFrame_Tick);
             // 
+            // grbLastTotal
+            // 
+            this.grbLastTotal.BackColor = System.Drawing.Color.Transparent;
+            this.grbLastTotal.Controls.Add(this.txbLastTotal);
+            this.grbLastTotal.Controls.Add(this.ckbAutoRounding);
+            this.grbLastTotal.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grbLastTotal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grbLastTotal.ForeColor = System.Drawing.Color.Gainsboro;
+            this.grbLastTotal.Location = new System.Drawing.Point(10, 375);
+            this.grbLastTotal.Name = "grbLastTotal";
+            this.grbLastTotal.Padding = new System.Windows.Forms.Padding(10);
+            this.grbLastTotal.Size = new System.Drawing.Size(360, 134);
+            this.grbLastTotal.TabIndex = 0;
+            this.grbLastTotal.TabStop = false;
+            this.grbLastTotal.Text = "Last Total";
+            // 
+            // txbLastTotal
+            // 
+            this.txbLastTotal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.txbLastTotal.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbLastTotal.Cursor = System.Windows.Forms.Cursors.No;
+            this.txbLastTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txbLastTotal.Font = new System.Drawing.Font("Arial Black", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbLastTotal.ForeColor = System.Drawing.Color.Red;
+            this.txbLastTotal.Location = new System.Drawing.Point(10, 67);
+            this.txbLastTotal.Name = "txbLastTotal";
+            this.txbLastTotal.ReadOnly = true;
+            this.txbLastTotal.Size = new System.Drawing.Size(340, 57);
+            this.txbLastTotal.TabIndex = 0;
+            this.txbLastTotal.TabStop = false;
+            this.txbLastTotal.Text = "Last Total";
+            this.txbLastTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txbLastTotal.TextChanged += new System.EventHandler(this.TxbLastTotal_TextChanged);
+            // 
+            // ckbAutoRounding
+            // 
+            this.ckbAutoRounding.AutoSize = true;
+            this.ckbAutoRounding.Checked = true;
+            this.ckbAutoRounding.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbAutoRounding.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ckbAutoRounding.Location = new System.Drawing.Point(10, 33);
+            this.ckbAutoRounding.Name = "ckbAutoRounding";
+            this.ckbAutoRounding.Size = new System.Drawing.Size(340, 27);
+            this.ckbAutoRounding.TabIndex = 0;
+            this.ckbAutoRounding.Text = "Auto Rounding";
+            this.ckbAutoRounding.UseVisualStyleBackColor = true;
+            this.ckbAutoRounding.CheckedChanged += new System.EventHandler(this.CkbAutoRounding_CheckedChanged);
+            // 
+            // grbGiveChange
+            // 
+            this.grbGiveChange.BackColor = System.Drawing.Color.Transparent;
+            this.grbGiveChange.Controls.Add(this.lbChange);
+            this.grbGiveChange.Controls.Add(this.txbChange);
+            this.grbGiveChange.Controls.Add(this.nudCustomerMoney);
+            this.grbGiveChange.Controls.Add(this.lbCustomerMoney);
+            this.grbGiveChange.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.grbGiveChange.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grbGiveChange.ForeColor = System.Drawing.Color.Gainsboro;
+            this.grbGiveChange.Location = new System.Drawing.Point(10, 509);
+            this.grbGiveChange.Name = "grbGiveChange";
+            this.grbGiveChange.Padding = new System.Windows.Forms.Padding(10);
+            this.grbGiveChange.Size = new System.Drawing.Size(360, 181);
+            this.grbGiveChange.TabIndex = 1;
+            this.grbGiveChange.TabStop = false;
+            this.grbGiveChange.Text = "Give change";
+            // 
+            // lbChange
+            // 
+            this.lbChange.AutoSize = true;
+            this.lbChange.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.lbChange.Location = new System.Drawing.Point(10, 109);
+            this.lbChange.Margin = new System.Windows.Forms.Padding(0);
+            this.lbChange.Name = "lbChange";
+            this.lbChange.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.lbChange.Size = new System.Drawing.Size(80, 29);
+            this.lbChange.TabIndex = 0;
+            this.lbChange.Text = "Change";
+            // 
+            // txbChange
+            // 
+            this.txbChange.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(49)))), ((int)(((byte)(61)))));
+            this.txbChange.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txbChange.Cursor = System.Windows.Forms.Cursors.No;
+            this.txbChange.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txbChange.Font = new System.Drawing.Font("Arial Black", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbChange.ForeColor = System.Drawing.Color.Red;
+            this.txbChange.Location = new System.Drawing.Point(10, 138);
+            this.txbChange.Name = "txbChange";
+            this.txbChange.ReadOnly = true;
+            this.txbChange.Size = new System.Drawing.Size(340, 33);
+            this.txbChange.TabIndex = 0;
+            this.txbChange.TabStop = false;
+            this.txbChange.Text = "Change";
+            this.txbChange.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // nudCustomerMoney
+            // 
+            this.nudCustomerMoney.Dock = System.Windows.Forms.DockStyle.Top;
+            this.nudCustomerMoney.Font = new System.Drawing.Font("Arial Black", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCustomerMoney.Location = new System.Drawing.Point(10, 62);
+            this.nudCustomerMoney.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.nudCustomerMoney.Name = "nudCustomerMoney";
+            this.nudCustomerMoney.Size = new System.Drawing.Size(340, 36);
+            this.nudCustomerMoney.TabIndex = 0;
+            this.nudCustomerMoney.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudCustomerMoney.ValueChanged += new System.EventHandler(this.NudCustomerMoney_ValueChanged);
+            // 
+            // lbCustomerMoney
+            // 
+            this.lbCustomerMoney.AutoSize = true;
+            this.lbCustomerMoney.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbCustomerMoney.Location = new System.Drawing.Point(10, 33);
+            this.lbCustomerMoney.Margin = new System.Windows.Forms.Padding(0);
+            this.lbCustomerMoney.Name = "lbCustomerMoney";
+            this.lbCustomerMoney.Padding = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            this.lbCustomerMoney.Size = new System.Drawing.Size(177, 29);
+            this.lbCustomerMoney.TabIndex = 0;
+            this.lbCustomerMoney.Text = "Customer\'s Money";
+            // 
             // FormCheckout
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 23F);
@@ -944,11 +949,6 @@ namespace Zi.SalesModule.GUIs
             ((System.ComponentModel.ISupportInitialize)(this.ipicWindowCalculator)).EndInit();
             this.pnlBill.ResumeLayout(false);
             this.pnlInfo.ResumeLayout(false);
-            this.grbGiveChange.ResumeLayout(false);
-            this.grbGiveChange.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nudCustomerMoney)).EndInit();
-            this.grbLastTotal.ResumeLayout(false);
-            this.grbLastTotal.PerformLayout();
             this.grbPromotions.ResumeLayout(false);
             this.grbPromotions.PerformLayout();
             this.grbTax.ResumeLayout(false);
@@ -963,6 +963,11 @@ namespace Zi.SalesModule.GUIs
             this.pnlScan.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picFrame)).EndInit();
             this.pnlOptions.ResumeLayout(false);
+            this.grbLastTotal.ResumeLayout(false);
+            this.grbLastTotal.PerformLayout();
+            this.grbGiveChange.ResumeLayout(false);
+            this.grbGiveChange.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCustomerMoney)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -66,6 +66,7 @@ namespace Zi.SalesModule.GUIs
         public float BillTotal { get; set; }
         public float AfterTax { get; set; }
         public float AfterPromotion { get; set; }
+        public float LastTotal { get; set; }
         public FilterInfoCollection FilterInfoCollection { get; set; }
         public VideoCaptureDevice VideoCaptureDevice { get; set; }
         #endregion
@@ -1283,18 +1284,30 @@ namespace Zi.SalesModule.GUIs
         #region Rounding number
         private void TxbAfterPromotions_TextChanged(object sender, EventArgs e)
         {
-            RoundingNumber(AfterPromotion);
+            CalculateLastTotal();
         }
 
-        private void RoundingNumber(float number)
+        private void CalculateLastTotal()
+        {
+            float lastTotal = AfterPromotion;
+            if (ckbAutoRounding.Checked)
+            {
+                lastTotal = RoundingNumber(AfterPromotion);
+            }
+            LastTotal = lastTotal;
+            txbLastTotal.Text = lastTotal.ToString("n0", LocalFormat);
+        }
+
+        private float RoundingNumber(float number)
         {
             int roundingTo = Properties.Settings.Default.RoundingTo;
+            number = (int)number;
             if (ckbAutoRounding.Checked)
             {
                 for(int i = 10; i<= roundingTo; i *= 10)
                 {
                     int tail = (int)number % i;
-                    if (tail >= 5*i)
+                    if (tail >= 5*i/10)
                     {
                         number += i - tail;
                     }
@@ -1305,7 +1318,25 @@ namespace Zi.SalesModule.GUIs
                     }
                 }
             }
-            txbLastTotal.Text = number.ToString("n0", LocalFormat);
+            return number;
+        }
+
+        private void CkbAutoRounding_CheckedChanged(object sender, EventArgs e)
+        {
+            CalculateLastTotal();
+        }
+        #endregion
+
+        #region Give Change
+        private void TxbLastTotal_TextChanged(object sender, EventArgs e)
+        {
+            nudCustomerMoney.Value = (decimal)LastTotal;
+        }
+
+        private void NudCustomerMoney_ValueChanged(object sender, EventArgs e)
+        {
+            float change = (float)nudCustomerMoney.Value - LastTotal;
+            txbChange.Text = change.ToString("n0", LocalFormat);
         }
         #endregion
     }
