@@ -637,6 +637,7 @@ namespace Zi.SalesModule.GUIs
             this.ipicWindowCalculator.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ipicWindowCalculator.TabIndex = 2;
             this.ipicWindowCalculator.TabStop = false;
+            this.ipicWindowCalculator.Click += new System.EventHandler(this.IpicWindowCalculator_Click);
             this.ipicWindowCalculator.MouseDown += new System.Windows.Forms.MouseEventHandler(this.AllBtn_MouseDown);
             this.ipicWindowCalculator.MouseLeave += new System.EventHandler(this.Ipic_MouseLeave);
             this.ipicWindowCalculator.MouseHover += new System.EventHandler(this.Ipic_MouseHover);

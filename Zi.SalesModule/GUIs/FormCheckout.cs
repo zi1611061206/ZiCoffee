@@ -3,6 +3,7 @@ using AForge.Video.DirectShow;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
@@ -516,21 +517,27 @@ namespace Zi.SalesModule.GUIs
                 List<PromotionModel> promotions = (promotionReader.Item2 as Paginator<PromotionModel>).Item;
                 foreach(PromotionModel promotion in promotions)
                 {
-                    PromotionTypeModel promotionType = FindPromotionTypeById(promotion.PromotionTypeId);
-                    if(promotionType != null && CheckConditionToManualApply(promotion))
-                    {
-                        PromotionItem btnPromotion = new PromotionItem(promotion, promotionType) {
-                            MaximumSize = new Size(fpnlManualPromotionList.Size.Width, 0),
-                        };
-                        btnPromotion.MouseDown += AllBtn_MouseDown;
-                        btnPromotion.Click += BtnPromotion_Click;
-                        fpnlManualPromotionList.Controls.Add(btnPromotion);
-                    }
+                    DrawManualPromotionItem(promotion);
                 }
                 if(fpnlManualPromotionList.Controls.Count <= 0)
                 {
                     fpnlManualPromotionList.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
                 }
+            }
+        }
+
+        private void DrawManualPromotionItem(PromotionModel promotion)
+        {
+            PromotionTypeModel promotionType = FindPromotionTypeById(promotion.PromotionTypeId);
+            if (promotionType != null && CheckConditionToManualApply(promotion))
+            {
+                PromotionItem btnPromotion = new PromotionItem(promotion, promotionType)
+                {
+                    MaximumSize = new Size(fpnlManualPromotionList.Size.Width, 0),
+                };
+                btnPromotion.MouseDown += AllBtn_MouseDown;
+                btnPromotion.Click += BtnPromotion_Click;
+                fpnlManualPromotionList.Controls.Add(btnPromotion);
             }
         }
 
@@ -559,6 +566,11 @@ namespace Zi.SalesModule.GUIs
         }
 
         private void BtnPromotion_Click(object sender, EventArgs e)
+        {
+            ApplyManualPromotion(sender);
+        }
+
+        private void ApplyManualPromotion(object sender)
         {
             PromotionItem btn = sender as PromotionItem;
             PromotionModel promotion = btn.Tag as PromotionModel;
@@ -921,6 +933,48 @@ namespace Zi.SalesModule.GUIs
                     lsvBillDetail.View = View.Tile;
                     break;
                 default: break;
+            }
+        }
+        #endregion
+
+        #region Effects - Open calculator of window by CMD
+        private void IpicWindowCalculator_Click(object sender, EventArgs e)
+        {
+            OpenWindowCalculator();
+        }
+
+        /// <summary>
+        /// <para> * How to use CMD in C#</para>
+        /// <para> - Library declaration: using System.Diagnostics;</para>
+        /// <para> - Process Initialization: Process process = new Process();</para>
+        /// <para> - Parameter setting (Ex):</para>
+        /// <para> + Set fileName (May be path) of command-line windows program: process.StartInfo.FileName = "cmd.exe";</para>
+        /// <para> + Set parammeters for excute: process.StartInfo.Arguments = "{param} {content}";</para>
+        /// <para> ++ {param}: /c (Run command and close program)</para>
+        /// <para> ++ {param}: /k (Run command and keep program)</para>
+        /// <para> ++ {content}: a direct command</para>
+        /// <para> ++ {content}: a set of commands - CMD/BAT file path (files containing scripts)</para>
+        /// <para> + Allow to use the operating system shell to start the process: process.StartInfo.UseShellExecute = false;</para>
+        /// <para> + Allow to start the process in a new window: process.StartInfo.CreateNoWindow = true;</para>
+        /// <para> + Allow the textual output is written to the StandardOutput stream: process.StartInfo.RedirectStandardOutput = true;</para>
+        /// <para> + Sets the window state to use when the process is started: process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;</para>
+        /// <para> - Run the process: process.Start();</para>
+        /// <para> - Gets a stream used to read the textual output: Stream data = process.StandardOutput.BaseStream;</para>
+        /// </summary>
+        private void OpenWindowCalculator()
+        {
+            try
+            {
+                Process process = new Process();
+                process.StartInfo.FileName = "cmd.exe";
+                process.StartInfo.Arguments = "/c start calc";
+                process.StartInfo.UseShellExecute = false;
+                process.StartInfo.WindowStyle = ProcessWindowStyle.Hidden;
+                process.Start();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
         #endregion
