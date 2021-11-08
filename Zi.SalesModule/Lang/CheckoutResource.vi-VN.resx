@@ -162,6 +162,12 @@
   <data name="GrbAfterTax" xml:space="preserve">
     <value>Giá trị sau thuế</value>
   </data>
+  <data name="GrbGiveChange" xml:space="preserve">
+    <value>Tiền thừa</value>
+  </data>
+  <data name="GrbLastTotal" xml:space="preserve">
+    <value>Tổng cuối</value>
+  </data>
   <data name="GrbManualPromotions" xml:space="preserve">
     <value>Khuyến mại tùy chọn</value>
   </data>
@@ -200,6 +206,12 @@
   </data>
   <data name="IpicWindowCalculator" xml:space="preserve">
     <value>Máy tính tay</value>
+  </data>
+  <data name="LbChange" xml:space="preserve">
+    <value>Hoàn lại</value>
+  </data>
+  <data name="LbCustomerMoney" xml:space="preserve">
+    <value>Tiền khách đưa</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
     <value>Thanh toán</value>

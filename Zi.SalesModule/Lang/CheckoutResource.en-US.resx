@@ -162,6 +162,12 @@
   <data name="GrbAfterTax" xml:space="preserve">
     <value>After Tax</value>
   </data>
+  <data name="GrbGiveChange" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="GrbLastTotal" xml:space="preserve">
+    <value>Last total</value>
+  </data>
   <data name="GrbManualPromotions" xml:space="preserve">
     <value>Promotions applied manually</value>
   </data>
@@ -200,6 +206,12 @@
   </data>
   <data name="IpicWindowCalculator" xml:space="preserve">
     <value>Calculator</value>
+  </data>
+  <data name="LbChange" xml:space="preserve">
+    <value>Give change</value>
+  </data>
+  <data name="LbCustomerMoney" xml:space="preserve">
+    <value>Customer's money</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
     <value>Checkout</value>

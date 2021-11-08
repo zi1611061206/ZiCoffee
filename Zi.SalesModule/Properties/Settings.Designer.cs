@@ -503,5 +503,17 @@ namespace Zi.SalesModule.Properties {
                 this["AllowScanDetectedSound"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int RoundingTo {
+            get {
+                return ((int)(this["RoundingTo"]));
+            }
+            set {
+                this["RoundingTo"] = value;
+            }
+        }
     }
 }

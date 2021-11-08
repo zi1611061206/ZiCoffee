@@ -216,6 +216,8 @@ namespace Zi.SalesModule.GUIs
             WarningTitle = InterfaceRm.GetString("WarningTitle", Culture);
 
             lbTitle.Text = InterfaceRm.GetString("LbTitle", Culture) + " - " + CurrentTable.Name;
+            lbCustomerMoney.Text = InterfaceRm.GetString("LbCustomerMoney", Culture);
+            lbChange.Text = InterfaceRm.GetString("LbChange", Culture);
 
             ibtnPrintProvisionalInvoice.Text = InterfaceRm.GetString("IbtnPrintProvisionalInvoice", Culture);
             ibtnCheckout.Text = InterfaceRm.GetString("IbtnCheckout", Culture);
@@ -242,9 +244,10 @@ namespace Zi.SalesModule.GUIs
 
             grbTotal.Text = InterfaceRm.GetString("GrbTotal", Culture);
             grbTax.Text = InterfaceRm.GetString("GrbTax", Culture);
-            grbAfterTax.Text = InterfaceRm.GetString("GrbAfterTax", Culture);
             grbPromotions.Text = InterfaceRm.GetString("GrbPromotions", Culture);
             grbManualPromotions.Text = InterfaceRm.GetString("GrbManualPromotions", Culture);
+            grbLastTotal.Text = InterfaceRm.GetString("GrbLastTotal", Culture);
+            grbGiveChange.Text = InterfaceRm.GetString("GrbGiveChange", Culture);
 
             ckbTaxStatus.Text = InterfaceRm.GetString("CkbTaxStatus", Culture);
         }
@@ -276,7 +279,9 @@ namespace Zi.SalesModule.GUIs
                 = ibtnCheck.ForeColor
                 = Properties.Settings.Default.BaseBorderColor;
             // Label
-            lbTitle.ForeColor = Properties.Settings.Default.BaseTextColor;
+            lbTitle.ForeColor 
+                = lbChange.ForeColor
+                = Properties.Settings.Default.BaseTextColor;
             // ListView
             lsvBillDetail.BackColor
                 = lsvDiscountDetail.BackColor
@@ -287,11 +292,22 @@ namespace Zi.SalesModule.GUIs
             // GroupBox
             grbTotal.ForeColor
                 = grbTax.ForeColor
-                = grbAfterTax.ForeColor
                 = grbPromotions.ForeColor
+                = grbLastTotal.ForeColor
+                = grbGiveChange.ForeColor
                 = Properties.Settings.Default.BaseTextColor;
             // Checkbox
-            ckbTaxStatus.ForeColor = Properties.Settings.Default.BaseTextColor;
+            ckbTaxStatus.ForeColor 
+                = ckbAutoRounding.ForeColor
+                = Properties.Settings.Default.BaseTextColor;
+            // TextBox
+            txbTotal.ForeColor
+                = txbAfterTax.ForeColor
+                = txbAfterPromotions.ForeColor
+                = txbLastTotal.ForeColor
+                = txbChange.ForeColor
+                = Properties.Settings.Default.ErrorTextColor;
+            // NumericUpDown
         }
 
         private void SetAudio()
@@ -365,7 +381,6 @@ namespace Zi.SalesModule.GUIs
 
             BillTotal = total;
             txbTotal.Text = BillTotal.ToString("n0", LocalFormat);
-            CalculateAfterTax();
         }
 
         private void LoadBillDetails(BillDetailModel billDetail)
@@ -394,107 +409,6 @@ namespace Zi.SalesModule.GUIs
                     listViewItem.ForeColor = Properties.Settings.Default.BaseTextColor;
                 }
             }
-        }
-
-        private void CalculateAfterTax()
-        {
-            float afterTax = BillTotal;
-            if (ckbTaxStatus.Checked)
-            {
-                afterTax += BillTotal * (float)nudTax.Value / 100;
-            }
-            AfterTax = afterTax;
-            txbAfterTax.Text = afterTax.ToString("n0", LocalFormat);
-            LoadPromotion();
-        }
-
-        private void LoadPromotion()
-        {
-            lsvDiscountDetail.Items.Clear();
-
-            float downValueTotal = 0;
-
-            DiscountDetailFilter filter = new DiscountDetailFilter()
-            {
-                BillId = CurrentBill.BillId
-            };
-            var reader = _discountDetailService.Read(filter, CultureName);
-            if (reader.Item1)
-            {
-                CurrentDiscountDetails = (reader.Item2 as Paginator<DiscountDetailModel>).Item;
-                foreach (DiscountDetailModel discountDetail in CurrentDiscountDetails)
-                {
-                    Tuple<bool, float> result = LoadDiscountDetails(discountDetail);
-                    if (result.Item1)
-                    {
-                        downValueTotal += AfterTax * result.Item2 / 100;
-                    }
-                    else
-                    {
-                        downValueTotal += result.Item2;
-                    }
-                }
-            }
-
-            if (AfterTax <= downValueTotal)
-            {
-                AfterPromotion = 0;
-            }
-            else
-            {
-                AfterPromotion = AfterTax - downValueTotal;
-            }
-            txbAfterPromotions.Text = AfterPromotion.ToString("n0", LocalFormat);
-        }
-
-        private Tuple<bool, float> LoadDiscountDetails(DiscountDetailModel discountDetail)
-        {
-            PromotionFilter promotionFilter = new PromotionFilter()
-            {
-                PromotionId = discountDetail.PromotionId
-            };
-            var promotionReader = _promotionService.Read(promotionFilter, CultureName);
-            if (promotionReader.Item1)
-            {
-                PromotionModel promotion = (promotionReader.Item2 as Paginator<PromotionModel>).Item[0];
-                PromotionTypeModel promotionType = FindPromotionTypeById(promotion.PromotionTypeId);
-                if (promotionType != null)
-                {
-                    bool isPercent = promotion.IsPercent.CompareTo(PromotionPercent.Percent) == 0;
-                    ListViewItem listViewItem = new ListViewItem(promotionType.Name);
-                    listViewItem.SubItems.Add(promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty));
-                    listViewItem.SubItems.Add(promotion.MinValue.ToString("n0", LocalFormat));
-                    listViewItem.SubItems.Add(discountDetail.AppliedTime.ToString("d", DateTimeFormat));
-                    listViewItem.SubItems.Add(discountDetail.Code);
-                    listViewItem.Tag = promotion;
-                    listViewItem.ToolTipText = promotion.Description + Environment.NewLine 
-                        + "- " + InterfaceRm.GetString("ColumnHeaderValue", Culture) + ": " + promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty) + Environment.NewLine
-                        + "- " + InterfaceRm.GetString("ColumnHeaderMinValue", Culture) + ": " + promotion.MinValue.ToString("n0", LocalFormat) + Environment.NewLine
-                        + "- " + InterfaceRm.GetString("ColumnHeaderAppliedTime", Culture) + ": " + discountDetail.AppliedTime.ToString("d", DateTimeFormat) + Environment.NewLine
-                        + "- " + InterfaceRm.GetString("ColumnHeaderCode", Culture) + ": " + discountDetail.Code + Environment.NewLine;
-                    if (string.IsNullOrEmpty(promotion.CodeList))
-                    {
-                        listViewItem.ImageIndex = (int)PromotionTypes.Discount;
-                    }
-                    else
-                    {
-                        listViewItem.ImageIndex = (int)PromotionTypes.Voucher;
-                    }
-                    lsvDiscountDetail.Items.Add(listViewItem);
-
-                    if (listViewItem.Index % 2 == 0)
-                    {
-                        listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
-                    }
-                    else
-                    {
-                        listViewItem.ForeColor = Properties.Settings.Default.BaseTextColor;
-                    }
-
-                    return new Tuple<bool, float>(isPercent, promotion.Value);
-                }
-            }
-            return new Tuple<bool, float>(false, 0);
         }
 
         private void LoadManualPromotionList()
@@ -980,6 +894,11 @@ namespace Zi.SalesModule.GUIs
         #endregion
 
         #region Tax
+        private void TxbTotal_TextChanged(object sender, EventArgs e)
+        {
+            CalculateAfterTax();
+        }
+
         private void CkbTaxStatus_CheckedChanged(object sender, EventArgs e)
         {
             CalculateAfterTax();
@@ -988,6 +907,17 @@ namespace Zi.SalesModule.GUIs
         private void NudTax_ValueChanged(object sender, EventArgs e)
         {
             CalculateAfterTax();
+        }
+
+        private void CalculateAfterTax()
+        {
+            float afterTax = BillTotal;
+            if (ckbTaxStatus.Checked)
+            {
+                afterTax += BillTotal * (float)nudTax.Value / 100;
+            }
+            AfterTax = afterTax;
+            txbAfterTax.Text = afterTax.ToString("n0", LocalFormat);
         }
         #endregion
 
@@ -1251,6 +1181,131 @@ namespace Zi.SalesModule.GUIs
                 return new Tuple<bool, string>(creator.Item1, msg);
             }
             return new Tuple<bool, string>(false, InterfaceRm.GetString("MsgFailApply", Culture));
+        }
+        #endregion
+
+        #region Promotion Detail
+        private void TxbAfterTax_TextChanged(object sender, EventArgs e)
+        {
+            LoadPromotion();
+        }
+
+        private void LoadPromotion()
+        {
+            lsvDiscountDetail.Items.Clear();
+
+            float downValueTotal = 0;
+
+            DiscountDetailFilter filter = new DiscountDetailFilter()
+            {
+                BillId = CurrentBill.BillId
+            };
+            var reader = _discountDetailService.Read(filter, CultureName);
+            if (reader.Item1)
+            {
+                CurrentDiscountDetails = (reader.Item2 as Paginator<DiscountDetailModel>).Item;
+                foreach (DiscountDetailModel discountDetail in CurrentDiscountDetails)
+                {
+                    Tuple<bool, float> result = LoadDiscountDetails(discountDetail);
+                    if (result.Item1)
+                    {
+                        downValueTotal += AfterTax * result.Item2 / 100;
+                    }
+                    else
+                    {
+                        downValueTotal += result.Item2;
+                    }
+                }
+            }
+
+            if (AfterTax <= downValueTotal)
+            {
+                AfterPromotion = 0;
+            }
+            else
+            {
+                AfterPromotion = AfterTax - downValueTotal;
+            }
+            txbAfterPromotions.Text = AfterPromotion.ToString("n0", LocalFormat);
+        }
+
+        private Tuple<bool, float> LoadDiscountDetails(DiscountDetailModel discountDetail)
+        {
+            PromotionFilter promotionFilter = new PromotionFilter()
+            {
+                PromotionId = discountDetail.PromotionId
+            };
+            var promotionReader = _promotionService.Read(promotionFilter, CultureName);
+            if (promotionReader.Item1)
+            {
+                PromotionModel promotion = (promotionReader.Item2 as Paginator<PromotionModel>).Item[0];
+                PromotionTypeModel promotionType = FindPromotionTypeById(promotion.PromotionTypeId);
+                if (promotionType != null)
+                {
+                    bool isPercent = promotion.IsPercent.CompareTo(PromotionPercent.Percent) == 0;
+                    ListViewItem listViewItem = new ListViewItem(promotionType.Name);
+                    listViewItem.SubItems.Add(promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty));
+                    listViewItem.SubItems.Add(promotion.MinValue.ToString("n0", LocalFormat));
+                    listViewItem.SubItems.Add(discountDetail.AppliedTime.ToString("d", DateTimeFormat));
+                    listViewItem.SubItems.Add(discountDetail.Code);
+                    listViewItem.Tag = promotion;
+                    listViewItem.ToolTipText = promotion.Description + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderValue", Culture) + ": " + promotion.Value.ToString("n0", LocalFormat) + (isPercent ? "%" : string.Empty) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderMinValue", Culture) + ": " + promotion.MinValue.ToString("n0", LocalFormat) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderAppliedTime", Culture) + ": " + discountDetail.AppliedTime.ToString("d", DateTimeFormat) + Environment.NewLine
+                        + "- " + InterfaceRm.GetString("ColumnHeaderCode", Culture) + ": " + discountDetail.Code + Environment.NewLine;
+                    if (string.IsNullOrEmpty(promotion.CodeList))
+                    {
+                        listViewItem.ImageIndex = (int)PromotionTypes.Discount;
+                    }
+                    else
+                    {
+                        listViewItem.ImageIndex = (int)PromotionTypes.Voucher;
+                    }
+                    lsvDiscountDetail.Items.Add(listViewItem);
+
+                    if (listViewItem.Index % 2 == 0)
+                    {
+                        listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
+                    }
+                    else
+                    {
+                        listViewItem.ForeColor = Properties.Settings.Default.BaseTextColor;
+                    }
+
+                    return new Tuple<bool, float>(isPercent, promotion.Value);
+                }
+            }
+            return new Tuple<bool, float>(false, 0);
+        }
+        #endregion
+
+        #region Rounding number
+        private void TxbAfterPromotions_TextChanged(object sender, EventArgs e)
+        {
+            RoundingNumber(AfterPromotion);
+        }
+
+        private void RoundingNumber(float number)
+        {
+            int roundingTo = Properties.Settings.Default.RoundingTo;
+            if (ckbAutoRounding.Checked)
+            {
+                for(int i = 10; i<= roundingTo; i *= 10)
+                {
+                    int tail = (int)number % i;
+                    if (tail >= 5*i)
+                    {
+                        number += i - tail;
+                    }
+                    else
+                    {
+
+                        number -= tail;
+                    }
+                }
+            }
+            txbLastTotal.Text = number.ToString("n0", LocalFormat);
         }
         #endregion
     }
