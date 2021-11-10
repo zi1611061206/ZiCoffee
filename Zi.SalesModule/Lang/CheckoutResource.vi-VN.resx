@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bye" xml:space="preserve">
+    <value>Hân hạnh được phục vụ quý khách!</value>
+  </data>
+  <data name="Cashier" xml:space="preserve">
+    <value>Thu ngân</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Hoàn lại</value>
+  </data>
   <data name="CkbTaxStatus" xml:space="preserve">
     <value>Kích hoạt</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="CurrencySymbol" xml:space="preserve">
     <value>Đ</value>
+  </data>
+  <data name="CustomerMoney" xml:space="preserve">
+    <value>Nhận của khách</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Lỗi</value>
@@ -198,6 +210,9 @@
   <data name="IbtnScan" xml:space="preserve">
     <value>Quét</value>
   </data>
+  <data name="IntoMoney" xml:space="preserve">
+    <value>Thành</value>
+  </data>
   <data name="IpicClose" xml:space="preserve">
     <value>Đóng</value>
   </data>
@@ -206,6 +221,9 @@
   </data>
   <data name="IpicWindowCalculator" xml:space="preserve">
     <value>Máy tính tay</value>
+  </data>
+  <data name="LastTotal" xml:space="preserve">
+    <value>Tổng cuối</value>
   </data>
   <data name="LbChange" xml:space="preserve">
     <value>Hoàn lại</value>
@@ -218,6 +236,9 @@
   </data>
   <data name="MsgAutoApplyError" xml:space="preserve">
     <value>Không thể hủy chương trình được áp dụng tự động. Vui lòng đến trang quản trị để thiết lập.</value>
+  </data>
+  <data name="MsgCheckoutConfirm" xml:space="preserve">
+    <value>Hãy kiểm tra các lựa chọn về thuế, chương trình khuyến mại, làm tròn ... và chắc chắn bạn muốn thực hiện thanh toán.</value>
   </data>
   <data name="MsgCode1" xml:space="preserve">
     <value>Loại:</value>
@@ -284,6 +305,27 @@
   </data>
   <data name="MsgSuccessDelete" xml:space="preserve">
     <value>Xóa thành công.</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>SP</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Khuyến mại</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>SL</value>
+  </data>
+  <data name="Rounded" xml:space="preserve">
+    <value>Đã làm tròn</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Thuế</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Thời gian</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Tổng</value>
   </data>
   <data name="TtMaximize" xml:space="preserve">
     <value>Tăng tối đa</value>

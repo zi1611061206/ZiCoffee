@@ -186,6 +186,9 @@
   <data name="MsgNotFound" xml:space="preserve">
     <value>Can not found.</value>
   </data>
+  <data name="MsgNothingChange" xml:space="preserve">
+    <value>There are no changes to save.</value>
+  </data>
   <data name="MsgSaveConfirmation" xml:space="preserve">
     <value>Make sure you want to save these changes.</value>
   </data>

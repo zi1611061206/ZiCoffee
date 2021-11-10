@@ -216,6 +216,9 @@
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Selected table can not order now.</value>
   </data>
+  <data name="MsgCheckoutSuccess" xml:space="preserve">
+    <value>Payment success!</value>
+  </data>
   <data name="MsgMerge1" xml:space="preserve">
     <value>The promotional value of</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Not Found</value>
+  </data>
+  <data name="MsgOrderSuccess" xml:space="preserve">
+    <value>Order successfully!</value>
   </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Check Out (Alt + C)</value>

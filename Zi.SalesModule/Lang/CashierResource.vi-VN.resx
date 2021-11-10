@@ -216,6 +216,9 @@
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Bàn được chọn không thể gọi món lúc này.</value>
   </data>
+  <data name="MsgCheckoutSuccess" xml:space="preserve">
+    <value>Thanh toán thành công!</value>
+  </data>
   <data name="MsgMerge1" xml:space="preserve">
     <value>Giá trị khuyến mại của</value>
   </data>
@@ -263,6 +266,9 @@
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Không tìm thấy</value>
+  </data>
+  <data name="MsgOrderSuccess" xml:space="preserve">
+    <value>Gọi món thành công!</value>
   </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Thanh toán (Alt + C)</value>

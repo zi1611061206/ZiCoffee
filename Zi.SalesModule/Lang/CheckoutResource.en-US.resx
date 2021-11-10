@@ -117,6 +117,15 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bye" xml:space="preserve">
+    <value>Pleased to serve you!</value>
+  </data>
+  <data name="Cashier" xml:space="preserve">
+    <value>Cashier</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
   <data name="CkbTaxStatus" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -152,6 +161,9 @@
   </data>
   <data name="CurrencySymbol" xml:space="preserve">
     <value>$</value>
+  </data>
+  <data name="CustomerMoney" xml:space="preserve">
+    <value>Customer's Money</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Error</value>
@@ -198,6 +210,9 @@
   <data name="IbtnScan" xml:space="preserve">
     <value>Scan</value>
   </data>
+  <data name="IntoMoney" xml:space="preserve">
+    <value>Into</value>
+  </data>
   <data name="IpicClose" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -206,6 +221,9 @@
   </data>
   <data name="IpicWindowCalculator" xml:space="preserve">
     <value>Calculator</value>
+  </data>
+  <data name="LastTotal" xml:space="preserve">
+    <value>Last Total</value>
   </data>
   <data name="LbChange" xml:space="preserve">
     <value>Give change</value>
@@ -218,6 +236,9 @@
   </data>
   <data name="MsgAutoApplyError" xml:space="preserve">
     <value>The automatically applied program cannot be canceled. Please go to the admin page to set up.</value>
+  </data>
+  <data name="MsgCheckoutConfirm" xml:space="preserve">
+    <value>Double check your tax options, promotions, rounding... and be sure you want to make the payment.</value>
   </data>
   <data name="MsgCode1" xml:space="preserve">
     <value>Type:</value>
@@ -284,6 +305,27 @@
   </data>
   <data name="MsgSuccessDelete" xml:space="preserve">
     <value>Delete successfully.</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="Rounded" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="TtMaximize" xml:space="preserve">
     <value>Maximize</value>

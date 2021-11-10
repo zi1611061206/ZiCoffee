@@ -1560,10 +1560,12 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
+            bool isPaid = false;
             try
             {
-                FormCheckout f = new FormCheckout(CurrentTable, CurrentBill, CurrentBillDetails);
+                FormCheckout f = new FormCheckout(CurrentTable, CurrentBill, CurrentBillDetails, CurrentUser);
                 f.ShowDialog();
+                isPaid = f.IsPaid;
             }
             catch (Exception ex)
             {
@@ -1571,8 +1573,13 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                ReLoadTable();
-                LoadFooter();
+                if (isPaid)
+                {
+                    ReLoadTable();
+                    LoadFooter();
+                    string msg = InterfaceRm.GetString("MsgCheckoutSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion

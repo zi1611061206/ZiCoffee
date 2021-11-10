@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -47,8 +48,10 @@ namespace Zi.SalesModule.GUIs
         #endregion
 
         #region Attributes
+        public bool IsPaid { get; set; }
         public TableModel CurrentTable { get; set; }
         public BillModel CurrentBill { get; set; }
+        public UserModel CurrentUser { get; set; }
         public List<BillDetailModel> CurrentBillDetails { get; set; }
         public List<DiscountDetailModel> CurrentDiscountDetails { get; set; }
         public string CultureName { get; set; }
@@ -83,11 +86,13 @@ namespace Zi.SalesModule.GUIs
 
         public FormCheckout(TableModel currentTable,
             BillModel currentBill,
-            List<BillDetailModel> currentBillDetails)
+            List<BillDetailModel> currentBillDetails,
+            UserModel currentUser)
         {
             InitializeComponent();
             CurrentTable = currentTable;
             CurrentBill = currentBill;
+            CurrentUser = currentUser;
             CurrentBillDetails = currentBillDetails;
 
             _tableService = TableService.Instance;
@@ -102,6 +107,7 @@ namespace Zi.SalesModule.GUIs
         #region Initial
         private void FormCheckout_Load(object sender, EventArgs e)
         {
+            IsPaid = false;
             CurrentDiscountDetails = new List<DiscountDetailModel>();
             OnResizeMode = false;
 
@@ -280,7 +286,7 @@ namespace Zi.SalesModule.GUIs
                 = ibtnCheck.ForeColor
                 = Properties.Settings.Default.BaseBorderColor;
             // Label
-            lbTitle.ForeColor 
+            lbTitle.ForeColor
                 = lbChange.ForeColor
                 = Properties.Settings.Default.BaseTextColor;
             // ListView
@@ -298,7 +304,7 @@ namespace Zi.SalesModule.GUIs
                 = grbGiveChange.ForeColor
                 = Properties.Settings.Default.BaseTextColor;
             // Checkbox
-            ckbTaxStatus.ForeColor 
+            ckbTaxStatus.ForeColor
                 = ckbAutoRounding.ForeColor
                 = Properties.Settings.Default.BaseTextColor;
             // TextBox
@@ -430,11 +436,11 @@ namespace Zi.SalesModule.GUIs
             else
             {
                 List<PromotionModel> promotions = (promotionReader.Item2 as Paginator<PromotionModel>).Item;
-                foreach(PromotionModel promotion in promotions)
+                foreach (PromotionModel promotion in promotions)
                 {
                     DrawManualPromotionItem(promotion);
                 }
-                if(fpnlManualPromotionList.Controls.Count <= 0)
+                if (fpnlManualPromotionList.Controls.Count <= 0)
                 {
                     fpnlManualPromotionList.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
                 }
@@ -1304,10 +1310,10 @@ namespace Zi.SalesModule.GUIs
             number = (int)number;
             if (ckbAutoRounding.Checked)
             {
-                for(int i = 10; i<= roundingTo; i *= 10)
+                for (int i = 10; i <= roundingTo; i *= 10)
                 {
                     int tail = (int)number % i;
-                    if (tail >= 5*i/10)
+                    if (tail >= 5 * i / 10)
                     {
                         number += i - tail;
                     }
@@ -1337,6 +1343,274 @@ namespace Zi.SalesModule.GUIs
         {
             float change = (float)nudCustomerMoney.Value - LastTotal;
             txbChange.Text = change.ToString("n0", LocalFormat);
+        }
+        #endregion
+
+        #region Print Invoice
+        private void IbtnPrintProvisionalInvoice_Click(object sender, EventArgs e)
+        {
+            PrintInvoice();
+        }
+
+        private void PrintInvoice()
+        {
+            PrintDialog printDialog = new PrintDialog();
+            PrintDocument printDocument = new PrintDocument();
+            printDialog.Document = printDocument;
+            printDocument.PrintPage += new PrintPageEventHandler(InvoiceTemplate_PrintPage);
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+        }
+
+        /// <summary>
+        /// Thermal receipt paper has two common paper sizes (paper roll height):
+        ///  - 57mm (k57) ~ 215 pixel
+        ///  - 80mm (k80) ~ 302 pixel
+        /// to fit two popular thermal printers on the market, k80 and k58 bill printers.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void InvoiceTemplate_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            SolidBrush brush = new SolidBrush(Color.Black);
+            Font font1 = new Font("Courier New", 6, FontStyle.Regular);
+            Font font2 = new Font("Courier New", 12, FontStyle.Bold);
+            Font font3 = new Font("Courier New", 6, FontStyle.Bold);
+            StringFormat stringFormatRightAlign = new StringFormat() { Alignment = StringAlignment.Far };
+            StringFormat stringFormatLeftAlign = new StringFormat() { Alignment = StringAlignment.Near };
+            StringFormat stringFormatCenterAlign = new StringFormat() { Alignment = StringAlignment.Center };
+
+            int margin, x, y, offset, lineSpace, pageWidth;
+            x = y = margin = offset = lineSpace = 5;
+            pageWidth = 215 - 2 * margin;
+            int logoSize = 30;
+            float columnWidth1 = 100;
+            float columnWidth2 = 30;
+            float columnWidth3 = pageWidth - columnWidth1 - columnWidth2;
+
+            #region Logo
+            graphics.DrawImage(Properties.Resources.zi_logo, (pageWidth - logoSize) / 2, y, logoSize, logoSize);
+            offset += logoSize + lineSpace;
+            #endregion
+            #region Brand Name
+            string brandName = Properties.Settings.Default.BrandName.ToUpper();
+            float cellHeight = DrawPageStringItem(graphics, brush, font2, brandName, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+            #endregion
+
+            #region Cashier's Name
+            string cashierName = InterfaceRm.GetString("Cashier", Culture) + ": " + CurrentUser.FullName;
+            cellHeight = DrawPageStringItem(graphics, brush, font1, cashierName, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+            #endregion
+
+            #region Time To Export
+            string time = InterfaceRm.GetString("Time", Culture) + ": " + DateTime.Now.ToString();
+            cellHeight = DrawPageStringItem(graphics, brush, font1, time, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+            #endregion
+
+            #region Name Of Bill Detail Header Columns
+            string headerColumnProduct = InterfaceRm.GetString("Product", Culture);
+            string headerColumnQuantity = InterfaceRm.GetString("Quantity", Culture);
+            string headerColumnIntoMoney = InterfaceRm.GetString("IntoMoney", Culture);
+            float cellHeight1 = DrawPageStringItem(graphics, brush, font1, headerColumnProduct, x, y + offset, columnWidth1, stringFormatLeftAlign);
+            float cellHeight2 = DrawPageStringItem(graphics, brush, font1, headerColumnQuantity, x + columnWidth1, y + offset, columnWidth2, stringFormatCenterAlign);
+            float cellHeight3 = DrawPageStringItem(graphics, brush, font1, headerColumnIntoMoney, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+            offset += (int)Math.Max(Math.Max(cellHeight1, cellHeight2), cellHeight3) + lineSpace;
+            #endregion
+
+            #region Divide Line
+            graphics.DrawLine(new Pen(brush), x, y + offset, x + pageWidth, y + offset);
+            offset += lineSpace;
+            #endregion
+
+            #region Bill Detail Rows
+            foreach (ListViewItem item in lsvBillDetail.Items)
+            {
+                string product = item.Text + Environment.NewLine + item.SubItems[2].Text;
+                if (!item.SubItems[3].Text.Equals("0"))
+                {
+                    product += Environment.NewLine + "(-" + item.SubItems[3].Text + "%)";
+                }
+                string quantity = item.SubItems[1].Text;
+                string intoMoney = item.SubItems[4].Text;
+
+                cellHeight1 = DrawPageStringItem(graphics, brush, font1, product, x, y + offset, columnWidth1, stringFormatLeftAlign);
+                cellHeight2 = DrawPageStringItem(graphics, brush, font1, quantity, x + columnWidth1, y + offset, columnWidth2, stringFormatCenterAlign);
+                cellHeight3 = DrawPageStringItem(graphics, brush, font1, intoMoney, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+                offset += (int)Math.Max(Math.Max(cellHeight1, cellHeight2), cellHeight3) + lineSpace;
+            }
+            #endregion
+
+            #region Divide Line
+            graphics.DrawLine(new Pen(brush), x, y + offset, x + pageWidth, y + offset);
+            offset += lineSpace;
+            #endregion
+
+            #region Bill Total
+            string total = InterfaceRm.GetString("Total", Culture) + ":";
+            string totalValue = txbTotal.Text;
+
+            cellHeight1 = DrawPageStringItem(graphics, brush, font1, total, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+            cellHeight2 = DrawPageStringItem(graphics, brush, font1, totalValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+            offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+            #endregion
+
+            #region Tax
+            if (ckbTaxStatus.Checked)
+            {
+                string tax = InterfaceRm.GetString("Tax", Culture) + " (" + nudTax.Value + "%):";
+                string afterTaxValue = txbAfterTax.Text;
+
+                cellHeight1 = DrawPageStringItem(graphics, brush, font1, tax, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+                cellHeight2 = DrawPageStringItem(graphics, brush, font1, afterTaxValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+                offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+            }
+            #endregion
+
+            #region Promotions
+            if (lsvDiscountDetail.Items.Count > 0)
+            {
+                string promotion = InterfaceRm.GetString("Promotion", Culture) + ":";
+                string afterPromotionValue = txbAfterPromotions.Text;
+
+                cellHeight1 = DrawPageStringItem(graphics, brush, font1, promotion, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+                cellHeight2 = DrawPageStringItem(graphics, brush, font1, afterPromotionValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+                offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+            }
+            #endregion
+
+            #region Last Total
+            string lastTotal = InterfaceRm.GetString("LastTotal", Culture)
+                + (ckbAutoRounding.Checked ? "(" + InterfaceRm.GetString("Rounded", Culture) + ")" : string.Empty) + ":";
+            string lastTotalValue = txbLastTotal.Text;
+
+            cellHeight1 = DrawPageStringItem(graphics, brush, font3, lastTotal, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+            cellHeight2 = DrawPageStringItem(graphics, brush, font3, lastTotalValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+            offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+            #endregion
+
+            #region Give Change
+            string customerMoney = InterfaceRm.GetString("CustomerMoney", Culture) + ":";
+            string customerMoneyValue = nudCustomerMoney.Value.ToString("n0", LocalFormat);
+
+            cellHeight1 = DrawPageStringItem(graphics, brush, font1, customerMoney, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+            cellHeight2 = DrawPageStringItem(graphics, brush, font1, customerMoneyValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+            offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+
+            string change = InterfaceRm.GetString("Change", Culture) + ":";
+            string changeValue = txbChange.Text;
+
+            cellHeight1 = DrawPageStringItem(graphics, brush, font1, change, x, y + offset, columnWidth1 + columnWidth2, stringFormatLeftAlign);
+            cellHeight2 = DrawPageStringItem(graphics, brush, font1, changeValue, x + columnWidth1 + columnWidth2, y + offset, columnWidth3, stringFormatRightAlign);
+
+            offset += (int)Math.Max(cellHeight1, cellHeight2) + lineSpace;
+            #endregion
+
+            #region Shop Info
+            string address = Properties.Settings.Default.ShopAddress;
+            string phone = Properties.Settings.Default.ShopPhone;
+            string email = Properties.Settings.Default.ShopEmail;
+            string site = Properties.Settings.Default.ShopSite;
+
+            cellHeight = DrawPageStringItem(graphics, brush, font1, address, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+
+            cellHeight = DrawPageStringItem(graphics, brush, font1, phone, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+
+            cellHeight = DrawPageStringItem(graphics, brush, font1, email, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+
+            cellHeight = DrawPageStringItem(graphics, brush, font1, site, x, y + offset, pageWidth, stringFormatCenterAlign);
+            offset += (int)cellHeight + lineSpace;
+            #endregion
+
+            #region Bye
+            string bye = InterfaceRm.GetString("Bye", Culture);
+            DrawPageStringItem(graphics, brush, font1, bye, x, y + offset, pageWidth, stringFormatCenterAlign);
+
+            font1.Dispose();
+            font2.Dispose();
+            font3.Dispose();
+            brush.Dispose();
+            graphics.Dispose();
+            #endregion
+        }
+
+        private float DrawPageStringItem(Graphics graphics, Brush brush, Font font, string text, float x, float y, float w, StringFormat stringFormat)
+        {
+            float testHeight = 500;
+            SizeF stringSize = GetStringSize(text, font, graphics, new SizeF(w, testHeight));
+            RectangleF cell = new RectangleF(new PointF(x, y), new SizeF(w, stringSize.Height));
+            graphics.DrawString(text, font, brush, cell, stringFormat);
+            return cell.Height;
+        }
+
+        private SizeF GetStringSize(string text, Font font, Graphics graphics, SizeF layoutSize)
+        {
+            if (layoutSize != SizeF.Empty)
+            {
+                return graphics.MeasureString(text, font, layoutSize);
+            }
+            return graphics.MeasureString(text, font);
+        }
+        #endregion
+
+        #region Checkout
+        private void IbtnCheckout_Click(object sender, EventArgs e)
+        {
+            Checkout();
+        }
+
+        private void Checkout()
+        {
+            string msg = InterfaceRm.GetString("MsgCheckoutConfirm", Culture);
+            DialogResult result = FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Question, CustomMessageBoxButton.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                UpdateBill();
+                UpdateTable();
+                PrintInvoice();
+                CloseForm();
+                IsPaid = true;
+            }
+        }
+
+        private void UpdateBill()
+        {
+            if (ckbTaxStatus.Checked)
+            {
+                CurrentBill.Vat = (float)nudTax.Value;
+            }
+            CurrentBill.AfterVat = AfterTax;
+            CurrentBill.RealPay = LastTotal;
+            CurrentBill.Status = BillStatus.Paid;
+            var updater = _billService.Update(CurrentBill, CultureName);
+            if (!updater.Item1)
+            {
+                FormMessageBox.Show(updater.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
+            }
+        }
+
+        private void UpdateTable()
+        {
+            CurrentTable.Status = TableStatus.Ready;
+            var updater = _tableService.Update(CurrentTable, CultureName);
+            if (!updater.Item1)
+            {
+                FormMessageBox.Show(updater.Item2.ToString(), ErrorTitle, CustomMessageBoxIcon.Error, CustomMessageBoxButton.OK);
+            }
         }
         #endregion
     }

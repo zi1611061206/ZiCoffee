@@ -186,6 +186,9 @@
   <data name="MsgNotFound" xml:space="preserve">
     <value>Không tìm thấy.</value>
   </data>
+  <data name="MsgNothingChange" xml:space="preserve">
+    <value>Không có bất kỳ sự thay đổi nào để lưu.</value>
+  </data>
   <data name="MsgSaveConfirmation" xml:space="preserve">
     <value>Hãy chắc chắn bạn muốn lưu những thay đổi này.</value>
   </data>
