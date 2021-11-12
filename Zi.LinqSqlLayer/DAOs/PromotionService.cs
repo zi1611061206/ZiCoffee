@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Resources;
@@ -174,6 +175,29 @@ namespace Zi.LinqSqlLayer.DAOs
             if (filter.PromotionTypeId.CompareTo(Guid.Empty) != 0)
             {
                 query = query.Where(x => x.PromotionTypeId.CompareTo(filter.PromotionTypeId) == 0);
+            }
+            if (!string.IsNullOrEmpty(filter.Code))
+            {
+                bool isFinded = false;
+                List<Promotion> promotionList = query.Where(x => !(x.CodeList == null || x.CodeList == string.Empty)).Select(x=>x).ToList();
+                foreach (Promotion item in promotionList)
+                {
+                    string[] codeList = item.CodeList.Split(',');
+                    foreach (string code in codeList)
+                    {
+                        if (code.Equals(filter.Code))
+                        {
+                            query = query.Where(x => x.PromotionId.CompareTo(item.PromotionId) == 0);
+                            isFinded = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (!isFinded)
+                {
+                    query = query.Skip(0).Take(0);
+                }
             }
             return query;
         }

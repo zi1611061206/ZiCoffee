@@ -117,91 +117,223 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BtnFirstPage" xml:space="preserve">
-    <value>Trang đầu</value>
+  <data name="Bye" xml:space="preserve">
+    <value>Pleased to serve you!</value>
   </data>
-  <data name="BtnIndexPage" xml:space="preserve">
-    <value>Trang</value>
+  <data name="Cashier" xml:space="preserve">
+    <value>Cashier</value>
   </data>
-  <data name="BtnLastPage" xml:space="preserve">
-    <value>Trang cuối</value>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
   </data>
-  <data name="BtnNextPage" xml:space="preserve">
-    <value>Trang sau</value>
+  <data name="CkbTaxStatus" xml:space="preserve">
+    <value>Active</value>
   </data>
-  <data name="BtnPreviousPage" xml:space="preserve">
-    <value>Trang trước</value>
+  <data name="ColumnHeaderAppliedTime" xml:space="preserve">
+    <value>Time of application</value>
+  </data>
+  <data name="ColumnHeaderCode" xml:space="preserve">
+    <value>Code</value>
   </data>
   <data name="ColumnHeaderIntoMoney" xml:space="preserve">
-    <value>Thành tiền</value>
+    <value>Into Money</value>
+  </data>
+  <data name="ColumnHeaderMinValue" xml:space="preserve">
+    <value>Min requirements</value>
   </data>
   <data name="ColumnHeaderPrice" xml:space="preserve">
-    <value>Đơn giá</value>
+    <value>Price</value>
   </data>
   <data name="ColumnHeaderProduct" xml:space="preserve">
-    <value>Sản phẩm</value>
+    <value>Product</value>
   </data>
   <data name="ColumnHeaderPromotion" xml:space="preserve">
-    <value>Km (%)</value>
+    <value>Pro (%)</value>
+  </data>
+  <data name="ColumnHeaderPromotionType" xml:space="preserve">
+    <value>Type</value>
   </data>
   <data name="ColumnHeaderQuantity" xml:space="preserve">
-    <value>Số lượng</value>
+    <value>Qty</value>
+  </data>
+  <data name="ColumnHeaderValue" xml:space="preserve">
+    <value>Value</value>
   </data>
   <data name="CurrencySymbol" xml:space="preserve">
-    <value>Đ</value>
+    <value>$</value>
+  </data>
+  <data name="CustomerMoney" xml:space="preserve">
+    <value>Customer's Money</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Lỗi</value>
+    <value>Error</value>
   </data>
   <data name="FormText" xml:space="preserve">
-    <value>Dịch vụ</value>
+    <value>Checkout</value>
+  </data>
+  <data name="GrbAfterTax" xml:space="preserve">
+    <value>After Tax</value>
+  </data>
+  <data name="GrbGiveChange" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="GrbLastTotal" xml:space="preserve">
+    <value>Last total</value>
+  </data>
+  <data name="GrbManualPromotions" xml:space="preserve">
+    <value>Promotions applied manually</value>
+  </data>
+  <data name="GrbPromotions" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="GrbTax" xml:space="preserve">
+    <value>Tax (%)</value>
+  </data>
+  <data name="GrbTotal" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="IbtnApply" xml:space="preserve">
+    <value>Apply</value>
   </data>
   <data name="IbtnCancel" xml:space="preserve">
-    <value>Hủy</value>
+    <value>Cancel</value>
   </data>
-  <data name="IbtnSave" xml:space="preserve">
-    <value>Lưu</value>
+  <data name="IbtnCheck" xml:space="preserve">
+    <value>Check</value>
+  </data>
+  <data name="IbtnCheckout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="IbtnPrintProvisionalInvoice" xml:space="preserve">
+    <value>Print Provisional</value>
+  </data>
+  <data name="IbtnScan" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="IntoMoney" xml:space="preserve">
+    <value>Into</value>
   </data>
   <data name="IpicClose" xml:space="preserve">
-    <value>Đóng</value>
-  </data>
-  <data name="IpicDown" xml:space="preserve">
-    <value>Bớt (-)</value>
+    <value>Close</value>
   </data>
   <data name="IpicMaximize" xml:space="preserve">
-    <value>Tăng tối đa</value>
+    <value>Maximize</value>
   </data>
-  <data name="IpicUp" xml:space="preserve">
-    <value>Thêm (+)</value>
+  <data name="IpicWindowCalculator" xml:space="preserve">
+    <value>Calculator</value>
   </data>
-  <data name="IpicViewCart" xml:space="preserve">
-    <value>Ẩn/Hiển thị giỏ hàng (Alt + V)</value>
+  <data name="LastTotal" xml:space="preserve">
+    <value>Last Total</value>
+  </data>
+  <data name="LbChange" xml:space="preserve">
+    <value>Give change</value>
+  </data>
+  <data name="LbCustomerMoney" xml:space="preserve">
+    <value>Customer's money</value>
   </data>
   <data name="LbTitle" xml:space="preserve">
-    <value>Dịch vụ</value>
+    <value>Checkout</value>
   </data>
-  <data name="MsgNoSelectedProduct" xml:space="preserve">
-    <value>Chưa có sản phẩm được chọn. Vui lòng chọn một sản phẩm cụ thể.</value>
+  <data name="MsgAutoApplyError" xml:space="preserve">
+    <value>The automatically applied program cannot be canceled. Please go to the admin page to set up.</value>
+  </data>
+  <data name="MsgCheckoutConfirm" xml:space="preserve">
+    <value>Double check your tax options, promotions, rounding... and be sure you want to make the payment.</value>
+  </data>
+  <data name="MsgCode1" xml:space="preserve">
+    <value>Type:</value>
+  </data>
+  <data name="MsgCode10" xml:space="preserve">
+    <value>Code not available.</value>
+  </data>
+  <data name="MsgCode11" xml:space="preserve">
+    <value>Reason:</value>
+  </data>
+  <data name="MsgCode12" xml:space="preserve">
+    <value>This program is not currently active.</value>
+  </data>
+  <data name="MsgCode13" xml:space="preserve">
+    <value>Currently is not the applicable time.</value>
+  </data>
+  <data name="MsgCode14" xml:space="preserve">
+    <value>The invoice value does not reach the minimum value.</value>
+  </data>
+  <data name="MsgCode15" xml:space="preserve">
+    <value>This program has been applied on the invoice. Cannot be applied more than once.</value>
+  </data>
+  <data name="MsgCode16" xml:space="preserve">
+    <value>Code has been used.</value>
+  </data>
+  <data name="MsgCode2" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="MsgCode3" xml:space="preserve">
+    <value>Value:</value>
+  </data>
+  <data name="MsgCode4" xml:space="preserve">
+    <value>Time:</value>
+  </data>
+  <data name="MsgCode5" xml:space="preserve">
+    <value>Minimum invoice value:</value>
+  </data>
+  <data name="MsgCode6" xml:space="preserve">
+    <value>Status:</value>
+  </data>
+  <data name="MsgCode7" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="MsgCode8" xml:space="preserve">
+    <value>Not activated</value>
+  </data>
+  <data name="MsgCode9" xml:space="preserve">
+    <value>Availability code.</value>
+  </data>
+  <data name="MsgCodeNotBlank" xml:space="preserve">
+    <value>No code is entered.</value>
+  </data>
+  <data name="MsgCodeNotExist" xml:space="preserve">
+    <value>This code does not exist.</value>
+  </data>
+  <data name="MsgFailApply" xml:space="preserve">
+    <value>Applying failed.</value>
   </data>
   <data name="MsgNotFound" xml:space="preserve">
-    <value>Không tìm thấy.</value>
+    <value>Not Found</value>
   </data>
-  <data name="MsgNothingChange" xml:space="preserve">
-    <value>Không có bất kỳ sự thay đổi nào để lưu.</value>
+  <data name="MsgSuccessApply" xml:space="preserve">
+    <value>Successfully applied.</value>
   </data>
-  <data name="MsgSaveConfirmation" xml:space="preserve">
-    <value>Hãy chắc chắn bạn muốn lưu những thay đổi này.</value>
+  <data name="MsgSuccessDelete" xml:space="preserve">
+    <value>Delete successfully.</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Promotion" xml:space="preserve">
+    <value>Promotions</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Qty</value>
+  </data>
+  <data name="Rounded" xml:space="preserve">
+    <value>Rounded</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>Tax</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="TtMaximize" xml:space="preserve">
-    <value>Tăng tối đa</value>
+    <value>Maximize</value>
   </data>
   <data name="TtNormal" xml:space="preserve">
-    <value>Kích thước bình thường</value>
-  </data>
-  <data name="TxbSearch" xml:space="preserve">
-    <value>Nhập từ khóa tìm kiếm</value>
+    <value>Normal</value>
   </data>
   <data name="WarningTitle" xml:space="preserve">
-    <value>Cảnh báo</value>
+    <value>Warning</value>
   </data>
 </root>

@@ -279,12 +279,7 @@ namespace Zi.SalesModule.GUIs
             var categoryReader = _categoryService.Read(categoryFilter, CultureName);
             if (!categoryReader.Item1)
             {
-                fpnlCategory.Controls.Add(new Label()
-                {
-                    Text = categoryReader.Item2.ToString(),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlCategory.Controls.Add(new ErrorLabel(categoryReader.Item2.ToString()));
                 return;
             }
             List<CategoryModel> categoryList = (categoryReader.Item2 as Paginator<CategoryModel>).Item;
@@ -476,13 +471,7 @@ namespace Zi.SalesModule.GUIs
             fpnlProduct.Controls.Clear();
             if (productList.Count <= 0)
             {
-                fpnlProduct.Controls.Add(new Label()
-                {
-                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    AutoSize = true,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlProduct.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
             }
             else
             {
@@ -582,8 +571,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem first = new PageItem("first");
                 first.Click += BtnFirstPage_Click;
+                ttNote.SetToolTip(first, InterfaceRm.GetString("BtnFirstPage", Culture));
                 PageItem previous = new PageItem("previous");
                 previous.Click += BtnPreviousPage_Click;
+                ttNote.SetToolTip(previous, InterfaceRm.GetString("BtnPreviousPage", Culture));
                 fpnlPaginator.Controls.Add(first);
                 fpnlPaginator.Controls.Add(previous);
             }
@@ -593,12 +584,14 @@ namespace Zi.SalesModule.GUIs
                 {
                     PageItem page = new PageItem(i.ToString(), true);
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
                 else
                 {
                     PageItem page = new PageItem(i.ToString());
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
             }
@@ -606,8 +599,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem next = new PageItem("next");
                 next.Click += BtnNextPage_Click;
+                ttNote.SetToolTip(next, InterfaceRm.GetString("BtnNextPage", Culture));
                 PageItem last = new PageItem("last");
                 last.Click += BtnLastPage_Click;
+                ttNote.SetToolTip(last, InterfaceRm.GetString("BtnLastPage", Culture));
                 fpnlPaginator.Controls.Add(next);
                 fpnlPaginator.Controls.Add(last);
             }
@@ -1044,6 +1039,60 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
+        #region Effects - Change view mode for ListView & Delete bill details by delete key
+        private void LsvBillDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Alt | Keys.NumPad0:
+                    lsvBillDetail.View = View.LargeIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad1:
+                    lsvBillDetail.View = View.Details;
+                    break;
+                case Keys.Alt | Keys.NumPad2:
+                    lsvBillDetail.View = View.SmallIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad3:
+                    lsvBillDetail.View = View.List;
+                    break;
+                case Keys.Alt | Keys.NumPad4:
+                    lsvBillDetail.View = View.Tile;
+                    break;
+                case Keys.Delete:
+                    DeleteBillDetailItem();
+                    break;
+                default: break;
+            }
+        }
+
+        private void DeleteBillDetailItem()
+        {
+            if (lsvBillDetail.SelectedItems.Count > 0)
+            {
+                try
+                {
+                    BillDetailModel billDetail = new BillDetailModel();
+                    foreach (BillDetailModel item in CurrentBillDetails)
+                    {
+                        if (item.BillId.CompareTo(CurrentBill.BillId) == 0 && item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
+                        {
+                            CurrentBillDetails.Remove(item);
+                            break;
+                        }
+                    }
+                    CalculateBillTotal();
+                    LoadBill();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    return;
+                }
+            }
+        }
+        #endregion
+
         #region Increase order
         private void IpicUp_Click(object sender, EventArgs e)
         {
@@ -1299,42 +1348,6 @@ namespace Zi.SalesModule.GUIs
         {
             RoundedLabel tag = sender as RoundedLabel;
             txbSearch.Text = tag.Text;
-        }
-        #endregion
-
-        #region Delete bill details by delete key
-        private void LsvBillDetail_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Delete)
-            {
-                DeleteBillDetailItem();
-            }
-        }
-
-        private void DeleteBillDetailItem()
-        {
-            if (lsvBillDetail.SelectedItems.Count > 0)
-            {
-                try
-                {
-                    BillDetailModel billDetail = new BillDetailModel();
-                    foreach (BillDetailModel item in CurrentBillDetails)
-                    {
-                        if (item.BillId.CompareTo(CurrentBill.BillId) == 0 && item.ProductId.CompareTo(CurrentProduct.ProductId) == 0)
-                        {
-                            CurrentBillDetails.Remove(item);
-                            break;
-                        }
-                    }
-                    CalculateBillTotal();
-                    LoadBill();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    return;
-                }
-            }
         }
         #endregion
     }

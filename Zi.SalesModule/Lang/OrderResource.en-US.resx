@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnFirstPage" xml:space="preserve">
+    <value>First Page</value>
+  </data>
+  <data name="BtnIndexPage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="BtnLastPage" xml:space="preserve">
+    <value>Last Page</value>
+  </data>
+  <data name="BtnNextPage" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="BtnPreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
+  </data>
   <data name="ColumnHeaderIntoMoney" xml:space="preserve">
     <value>Into Money</value>
   </data>
@@ -170,6 +185,9 @@
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Can not found.</value>
+  </data>
+  <data name="MsgNothingChange" xml:space="preserve">
+    <value>There are no changes to save.</value>
   </data>
   <data name="MsgSaveConfirmation" xml:space="preserve">
     <value>Make sure you want to save these changes.</value>

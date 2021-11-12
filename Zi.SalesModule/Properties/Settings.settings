@@ -116,5 +116,29 @@
     <Setting Name="ItemHoverColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">33, 46, 58</Value>
     </Setting>
+    <Setting Name="DefaultTax" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="AllowScanDetectedSound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="RoundingTo" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="BrandName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">ZiCoffee</Value>
+    </Setting>
+    <Setting Name="ShopAddress" Type="System.String" Scope="User">
+      <Value Profile="(Default)">21bis Điện Biên Phủ - P.25 - Bình Thạnh - TP.HCM</Value>
+    </Setting>
+    <Setting Name="ShopPhone" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0943144178</Value>
+    </Setting>
+    <Setting Name="ShopEmail" Type="System.String" Scope="User">
+      <Value Profile="(Default)">zitech.dev@gmail.com</Value>
+    </Setting>
+    <Setting Name="ShopSite" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://zitechdev.com</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

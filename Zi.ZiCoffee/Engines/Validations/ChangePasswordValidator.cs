@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Zi.DataAccessLayer.DAOs;
 using Zi.ZiCoffee.GUIs;
 
 namespace Zi.ZiCoffee.Engines.Validations
@@ -113,7 +109,7 @@ namespace Zi.ZiCoffee.Engines.Validations
 
         private bool CheckLowerChar(FormProfile form, string newPass, string latinLowerChar)
         {
-            foreach(char c in newPass.ToCharArray())
+            foreach (char c in newPass.ToCharArray())
             {
                 if (latinLowerChar.Contains(c))
                 {
@@ -146,7 +142,7 @@ namespace Zi.ZiCoffee.Engines.Validations
                 form.ctxbOldPass.ZiValidate.Visible = true;
                 allCondition = false;
             }
-            return allCondition; 
+            return allCondition;
         }
 
         private bool CheckBlank(FormProfile form, string oldPass, string newPass, string reEnter)

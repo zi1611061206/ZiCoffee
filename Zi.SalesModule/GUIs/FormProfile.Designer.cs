@@ -285,7 +285,6 @@ namespace Zi.SalesModule.GUIs
             // 
             this.ibtnClose.BackColor = System.Drawing.Color.Transparent;
             this.ibtnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.ibtnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.ibtnClose.Dock = System.Windows.Forms.DockStyle.Right;
             this.ibtnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.ibtnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;

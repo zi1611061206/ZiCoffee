@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnFirstPage" xml:space="preserve">
+    <value>First Page</value>
+  </data>
+  <data name="BtnIndexPage" xml:space="preserve">
+    <value>Page</value>
+  </data>
+  <data name="BtnLastPage" xml:space="preserve">
+    <value>Last Page</value>
+  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Log Out</value>
   </data>
   <data name="BtnManager" xml:space="preserve">
     <value>Manager</value>
+  </data>
+  <data name="BtnNextPage" xml:space="preserve">
+    <value>Next Page</value>
+  </data>
+  <data name="BtnPreviousPage" xml:space="preserve">
+    <value>Previous Page</value>
   </data>
   <data name="BtnProfile" xml:space="preserve">
     <value>Profile (Alt + P)</value>
@@ -201,6 +216,9 @@
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Selected table can not order now.</value>
   </data>
+  <data name="MsgCheckoutSuccess" xml:space="preserve">
+    <value>Payment success!</value>
+  </data>
   <data name="MsgMerge1" xml:space="preserve">
     <value>The promotional value of</value>
   </data>
@@ -248,6 +266,9 @@
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Not Found</value>
+  </data>
+  <data name="MsgOrderSuccess" xml:space="preserve">
+    <value>Order successfully!</value>
   </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Check Out (Alt + C)</value>

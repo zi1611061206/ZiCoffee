@@ -117,11 +117,26 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BtnFirstPage" xml:space="preserve">
+    <value>Trang đầu</value>
+  </data>
+  <data name="BtnIndexPage" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="BtnLastPage" xml:space="preserve">
+    <value>Trang cuối</value>
+  </data>
   <data name="BtnLogOut" xml:space="preserve">
     <value>Đăng xuất</value>
   </data>
   <data name="BtnManager" xml:space="preserve">
     <value>Quản lý</value>
+  </data>
+  <data name="BtnNextPage" xml:space="preserve">
+    <value>Trang sau</value>
+  </data>
+  <data name="BtnPreviousPage" xml:space="preserve">
+    <value>Trang trước</value>
   </data>
   <data name="BtnProfile" xml:space="preserve">
     <value>Hồ sơ (Alt + P)</value>
@@ -201,6 +216,9 @@
   <data name="MsgCannotOrder" xml:space="preserve">
     <value>Bàn được chọn không thể gọi món lúc này.</value>
   </data>
+  <data name="MsgCheckoutSuccess" xml:space="preserve">
+    <value>Thanh toán thành công!</value>
+  </data>
   <data name="MsgMerge1" xml:space="preserve">
     <value>Giá trị khuyến mại của</value>
   </data>
@@ -248,6 +266,9 @@
   </data>
   <data name="MsgNotFound" xml:space="preserve">
     <value>Không tìm thấy</value>
+  </data>
+  <data name="MsgOrderSuccess" xml:space="preserve">
+    <value>Gọi món thành công!</value>
   </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Thanh toán (Alt + C)</value>

@@ -479,5 +479,101 @@ namespace Zi.SalesModule.Properties {
                 this["ItemHoverColor"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public float DefaultTax {
+            get {
+                return ((float)(this["DefaultTax"]));
+            }
+            set {
+                this["DefaultTax"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AllowScanDetectedSound {
+            get {
+                return ((bool)(this["AllowScanDetectedSound"]));
+            }
+            set {
+                this["AllowScanDetectedSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1000")]
+        public int RoundingTo {
+            get {
+                return ((int)(this["RoundingTo"]));
+            }
+            set {
+                this["RoundingTo"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ZiCoffee")]
+        public string BrandName {
+            get {
+                return ((string)(this["BrandName"]));
+            }
+            set {
+                this["BrandName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("21bis Điện Biên Phủ - P.25 - Bình Thạnh - TP.HCM")]
+        public string ShopAddress {
+            get {
+                return ((string)(this["ShopAddress"]));
+            }
+            set {
+                this["ShopAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0943144178")]
+        public string ShopPhone {
+            get {
+                return ((string)(this["ShopPhone"]));
+            }
+            set {
+                this["ShopPhone"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("zitech.dev@gmail.com")]
+        public string ShopEmail {
+            get {
+                return ((string)(this["ShopEmail"]));
+            }
+            set {
+                this["ShopEmail"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://zitechdev.com")]
+        public string ShopSite {
+            get {
+                return ((string)(this["ShopSite"]));
+            }
+            set {
+                this["ShopSite"] = value;
+            }
+        }
     }
 }

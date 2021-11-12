@@ -20,6 +20,12 @@ namespace Zi.DatabaseEntity.Configurators
             Property(x => x.PromotionId)
                 .IsRequired()
                 .HasColumnType("UNIQUEIDENTIFIER");
+            Property(x => x.Code)
+                .IsUnicode(false)
+                .HasMaxLength(100);
+            Property(x => x.AppliedTime)
+                .IsRequired()
+                .HasColumnType("DATETIME2");
 
             //FK
             HasRequired(s => s.Bill)

@@ -1924,6 +1924,10 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 		
 		private System.Guid _PromotionId;
 		
+		private string _Code;
+		
+		private System.DateTime _AppliedTime;
+		
 		private EntityRef<Bill> _Bill;
 		
 		private EntityRef<Promotion> _Promotion;
@@ -1936,6 +1940,10 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
     partial void OnBillIdChanged();
     partial void OnPromotionIdChanging(System.Guid value);
     partial void OnPromotionIdChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnAppliedTimeChanging(System.DateTime value);
+    partial void OnAppliedTimeChanged();
     #endregion
 		
 		public DiscountDetail()
@@ -1989,6 +1997,46 @@ namespace Zi.LinqSqlLayer.Providers.LinqToSql
 					this._PromotionId = value;
 					this.SendPropertyChanged("PromotionId");
 					this.OnPromotionIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="VarChar(100)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AppliedTime", DbType="DateTime2 NOT NULL")]
+		public System.DateTime AppliedTime
+		{
+			get
+			{
+				return this._AppliedTime;
+			}
+			set
+			{
+				if ((this._AppliedTime != value))
+				{
+					this.OnAppliedTimeChanging(value);
+					this.SendPropertyChanging();
+					this._AppliedTime = value;
+					this.SendPropertyChanged("AppliedTime");
+					this.OnAppliedTimeChanged();
 				}
 			}
 		}

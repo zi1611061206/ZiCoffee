@@ -7,6 +7,8 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
     {
         public Guid BillId { get; set; }
         public Guid PromotionId { get; set; }
+        public string Code { get; set; }
+        public DateTime AppliedTime { get; set; }
 
         public DiscountDetailModel()
         {
@@ -16,6 +18,7 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
         {
             BillId = billId;
             PromotionId = promotionId;
+            Code = string.Empty;
         }
 
         /// <summary>
@@ -26,6 +29,11 @@ namespace Zi.LinqSqlLayer.DTOs.Relationship
         {
             BillId = Guid.Parse(row["BillId"].ToString());
             PromotionId = Guid.Parse(row["PromotionId"].ToString());
+            Code = row["Code"].ToString();
+            if (DateTime.TryParse(row["AppliedTime"].ToString(), out DateTime result1))
+            {
+                AppliedTime = result1;
+            }
         }
     }
 }

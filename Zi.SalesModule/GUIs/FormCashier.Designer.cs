@@ -76,6 +76,9 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeNav = new System.Windows.Forms.Panel();
             this.pnlResizeBill = new System.Windows.Forms.Panel();
             this.pnlBody = new System.Windows.Forms.Panel();
+            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
+            this.pnlDivideBottom = new System.Windows.Forms.Panel();
+            this.fpnlPaginator = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlResizeTop = new System.Windows.Forms.Panel();
             this.fpnlAreaList = new System.Windows.Forms.FlowLayoutPanel();
             this.ttNote = new System.Windows.Forms.ToolTip(this.components);
@@ -101,9 +104,6 @@ namespace Zi.SalesModule.GUIs
             this.tableViewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmsReadyTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmsUsingTableList = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.fpnlPaginator = new System.Windows.Forms.FlowLayoutPanel();
-            this.pnlDivideBottom = new System.Windows.Forms.Panel();
-            this.fpnlTableList = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlTitleBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ipicMinimize)).BeginInit();
@@ -421,7 +421,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 5459);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 6279);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -801,6 +801,7 @@ namespace Zi.SalesModule.GUIs
             this.lsvBillDetail.UseCompatibleStateImageBehavior = false;
             this.lsvBillDetail.View = System.Windows.Forms.View.Details;
             this.lsvBillDetail.SizeChanged += new System.EventHandler(this.LsvBillDetail_SizeChanged);
+            this.lsvBillDetail.KeyDown += new System.Windows.Forms.KeyEventHandler(this.LsvBillDetail_KeyDown);
             // 
             // columnHeaderProduct
             // 
@@ -876,6 +877,41 @@ namespace Zi.SalesModule.GUIs
             this.pnlBody.Size = new System.Drawing.Size(780, 820);
             this.pnlBody.TabIndex = 0;
             // 
+            // fpnlTableList
+            // 
+            this.fpnlTableList.AutoScroll = true;
+            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
+            this.fpnlTableList.Name = "fpnlTableList";
+            this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
+            this.fpnlTableList.Size = new System.Drawing.Size(780, 572);
+            this.fpnlTableList.TabIndex = 0;
+            this.fpnlTableList.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
+            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
+            // 
+            // pnlDivideBottom
+            // 
+            this.pnlDivideBottom.BackColor = System.Drawing.Color.Transparent;
+            this.pnlDivideBottom.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlDivideBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlDivideBottom.Location = new System.Drawing.Point(0, 750);
+            this.pnlDivideBottom.Name = "pnlDivideBottom";
+            this.pnlDivideBottom.Size = new System.Drawing.Size(780, 10);
+            this.pnlDivideBottom.TabIndex = 0;
+            // 
+            // fpnlPaginator
+            // 
+            this.fpnlPaginator.AutoScroll = true;
+            this.fpnlPaginator.BackColor = System.Drawing.Color.Transparent;
+            this.fpnlPaginator.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.fpnlPaginator.ForeColor = System.Drawing.Color.Gainsboro;
+            this.fpnlPaginator.Location = new System.Drawing.Point(0, 760);
+            this.fpnlPaginator.Name = "fpnlPaginator";
+            this.fpnlPaginator.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
+            this.fpnlPaginator.Size = new System.Drawing.Size(780, 60);
+            this.fpnlPaginator.TabIndex = 0;
+            this.fpnlPaginator.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
+            // 
             // pnlResizeTop
             // 
             this.pnlResizeTop.BackColor = System.Drawing.Color.Transparent;
@@ -889,7 +925,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlResizeTop.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseDown);
             this.pnlResizeTop.MouseLeave += new System.EventHandler(this.PnlResize_MouseLeave);
             this.pnlResizeTop.MouseHover += new System.EventHandler(this.PnlResize_MouseHover);
-            this.pnlResizeTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeDivideBody_MouseMove);
+            this.pnlResizeTop.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PnlResizeTop_MouseMove);
             this.pnlResizeTop.MouseUp += new System.Windows.Forms.MouseEventHandler(this.PnlResize_MouseUp);
             // 
             // fpnlAreaList
@@ -1083,41 +1119,6 @@ namespace Zi.SalesModule.GUIs
             this.cmsUsingTableList.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.cmsUsingTableList.Name = "cmsAccountDropDown";
             this.cmsUsingTableList.Size = new System.Drawing.Size(61, 4);
-            // 
-            // fpnlPaginator
-            // 
-            this.fpnlPaginator.AutoScroll = true;
-            this.fpnlPaginator.BackColor = System.Drawing.Color.Transparent;
-            this.fpnlPaginator.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.fpnlPaginator.ForeColor = System.Drawing.Color.Gainsboro;
-            this.fpnlPaginator.Location = new System.Drawing.Point(0, 760);
-            this.fpnlPaginator.Name = "fpnlPaginator";
-            this.fpnlPaginator.Padding = new System.Windows.Forms.Padding(10, 5, 10, 5);
-            this.fpnlPaginator.Size = new System.Drawing.Size(780, 60);
-            this.fpnlPaginator.TabIndex = 0;
-            this.fpnlPaginator.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
-            // 
-            // pnlDivideBottom
-            // 
-            this.pnlDivideBottom.BackColor = System.Drawing.Color.Transparent;
-            this.pnlDivideBottom.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlDivideBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlDivideBottom.Location = new System.Drawing.Point(0, 750);
-            this.pnlDivideBottom.Name = "pnlDivideBottom";
-            this.pnlDivideBottom.Size = new System.Drawing.Size(780, 10);
-            this.pnlDivideBottom.TabIndex = 0;
-            // 
-            // fpnlTableList
-            // 
-            this.fpnlTableList.AutoScroll = true;
-            this.fpnlTableList.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.fpnlTableList.Location = new System.Drawing.Point(0, 178);
-            this.fpnlTableList.Name = "fpnlTableList";
-            this.fpnlTableList.Padding = new System.Windows.Forms.Padding(20);
-            this.fpnlTableList.Size = new System.Drawing.Size(780, 572);
-            this.fpnlTableList.TabIndex = 0;
-            this.fpnlTableList.SizeChanged += new System.EventHandler(this.FpnlRoundedCorner_SizeChanged);
-            this.fpnlTableList.Paint += new System.Windows.Forms.PaintEventHandler(this.FpnlTableList_Paint);
             // 
             // FormCashier
             // 

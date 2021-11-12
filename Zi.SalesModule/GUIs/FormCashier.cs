@@ -416,12 +416,7 @@ namespace Zi.SalesModule.GUIs
             var areaReader = _areaService.Read(areaFilter, CultureName);
             if (!areaReader.Item1)
             {
-                fpnlAreaList.Controls.Add(new Label()
-                {
-                    Text = areaReader.Item2.ToString(),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlAreaList.Controls.Add(new ErrorLabel(areaReader.Item2.ToString()));
                 return;
             }
             List<AreaModel> areaList = (areaReader.Item2 as Paginator<AreaModel>).Item;
@@ -612,13 +607,7 @@ namespace Zi.SalesModule.GUIs
             fpnlTableList.Controls.Clear();
             if (tableList.Count <= 0)
             {
-                fpnlTableList.Controls.Add(new Label()
-                {
-                    Text = InterfaceRm.GetString("MsgNotFound", Culture),
-                    ForeColor = Properties.Settings.Default.ErrorTextColor,
-                    AutoSize = true,
-                    Font = new Font("Arial", 9, FontStyle.Italic)
-                });
+                fpnlTableList.Controls.Add(new ErrorLabel(InterfaceRm.GetString("MsgNotFound", Culture)));
             }
             else
             {
@@ -708,8 +697,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem first = new PageItem("first");
                 first.Click += BtnFirstPage_Click;
+                ttNote.SetToolTip(first, InterfaceRm.GetString("BtnFirstPage", Culture));
                 PageItem previous = new PageItem("previous");
                 previous.Click += BtnPreviousPage_Click;
+                ttNote.SetToolTip(previous, InterfaceRm.GetString("BtnPreviousPage", Culture));
                 fpnlPaginator.Controls.Add(first);
                 fpnlPaginator.Controls.Add(previous);
             }
@@ -719,12 +710,14 @@ namespace Zi.SalesModule.GUIs
                 {
                     PageItem page = new PageItem(i.ToString(), true);
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
                 else
                 {
                     PageItem page = new PageItem(i.ToString());
                     page.Click += BtnPage_Click;
+                    ttNote.SetToolTip(page, InterfaceRm.GetString("BtnIndexPage", Culture) + " " + i);
                     fpnlPaginator.Controls.Add(page);
                 }
             }
@@ -732,8 +725,10 @@ namespace Zi.SalesModule.GUIs
             {
                 PageItem next = new PageItem("next");
                 next.Click += BtnNextPage_Click;
+                ttNote.SetToolTip(next, InterfaceRm.GetString("BtnNextPage", Culture));
                 PageItem last = new PageItem("last");
                 last.Click += BtnLastPage_Click;
+                ttNote.SetToolTip(last, InterfaceRm.GetString("BtnLastPage", Culture));
                 fpnlPaginator.Controls.Add(next);
                 fpnlPaginator.Controls.Add(last);
             }
@@ -777,6 +772,10 @@ namespace Zi.SalesModule.GUIs
         private void LoadBill()
         {
             lsvBillDetail.Items.Clear();
+            lsvBillDetail.SmallImageList = new ImageList();
+            lsvBillDetail.SmallImageList.ImageSize = new Size(20, 30);
+            lsvBillDetail.LargeImageList = new ImageList();
+            lsvBillDetail.LargeImageList.ImageSize = new Size(80, 120);
 
             if (CurrentTable.Status.CompareTo(TableStatus.Using) != 0)
             {
@@ -844,7 +843,19 @@ namespace Zi.SalesModule.GUIs
                 listViewItem.SubItems.Add(product.Price.ToString("n0", LocalFormat));
                 listViewItem.SubItems.Add(billDetail.PromotionValue.ToString());
                 listViewItem.SubItems.Add(billDetail.IntoMoney.ToString("n0", LocalFormat));
+                if (product.Thumnail.Length > 0)
+                {
+                    lsvBillDetail.SmallImageList.Images.Add(DataTypeConvertor.Instance.GetImageFromBytes(product.Thumnail));
+                    lsvBillDetail.LargeImageList.Images.Add(DataTypeConvertor.Instance.GetImageFromBytes(product.Thumnail));
+                }
+                else
+                {
+                    lsvBillDetail.SmallImageList.Images.Add(Properties.Resources.NoImage);
+                    lsvBillDetail.LargeImageList.Images.Add(Properties.Resources.NoImage);
+                }
+                listViewItem.ImageIndex = lsvBillDetail.SmallImageList.Images.Count - 1;
                 lsvBillDetail.Items.Add(listViewItem);
+
                 if (listViewItem.Index % 2 == 0)
                 {
                     listViewItem.ForeColor = Properties.Settings.Default.BaseHoverColor;
@@ -1060,12 +1071,12 @@ namespace Zi.SalesModule.GUIs
             }
         }
 
-        private void PnlResizeDivideBody_MouseMove(object sender, MouseEventArgs e)
+        private void PnlResizeTop_MouseMove(object sender, MouseEventArgs e)
         {
-            ResizeDivideBody();
+            ResizeCategoryPanel();
         }
 
-        private void ResizeDivideBody()
+        private void ResizeCategoryPanel()
         {
             int y = pnlBody.PointToClient(Cursor.Position).Y;
             float halfHeight = pnlBody.Height / 2;
@@ -1367,6 +1378,31 @@ namespace Zi.SalesModule.GUIs
         }
         #endregion
 
+        #region Effects - Change view mode for ListView
+        private void LsvBillDetail_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyData)
+            {
+                case Keys.Alt | Keys.NumPad0:
+                    lsvBillDetail.View = View.LargeIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad1:
+                    lsvBillDetail.View = View.Details;
+                    break;
+                case Keys.Alt | Keys.NumPad2:
+                    lsvBillDetail.View = View.SmallIcon;
+                    break;
+                case Keys.Alt | Keys.NumPad3:
+                    lsvBillDetail.View = View.List;
+                    break;
+                case Keys.Alt | Keys.NumPad4:
+                    lsvBillDetail.View = View.Tile;
+                    break;
+                default: break;
+            }
+        }
+        #endregion
+
         #region Load ReadyTable and UsingTable for 2 ContextMenuStrips to drop down
         private void CmsTableDropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -1524,25 +1560,12 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
-            Form formBackground = new Form();
+            bool isPaid = false;
             try
             {
-                using (FormCheckOut f = new FormCheckOut(CurrentTable, CurrentUser))
-                {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.Location = Location;
-                    formBackground.Size = Size;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .80d;
-                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    formBackground.TopMost = true;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
-
-                    f.Owner = formBackground;
-                    f.ShowDialog();
-                    formBackground.Dispose();
-                }
+                FormCheckout f = new FormCheckout(CurrentTable, CurrentBill, CurrentBillDetails, CurrentUser);
+                f.ShowDialog();
+                isPaid = f.IsPaid;
             }
             catch (Exception ex)
             {
@@ -1550,9 +1573,13 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                formBackground.Dispose();
-                ReLoadTable();
-                LoadFooter();
+                if (isPaid)
+                {
+                    ReLoadTable();
+                    LoadFooter();
+                    string msg = InterfaceRm.GetString("MsgCheckoutSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion

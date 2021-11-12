@@ -94,7 +94,16 @@ namespace Zi.SalesModule.CustomControls
         private void LoadContent()
         {
             lbName.Text = Product.Name;
-            rpicThumnail.Image = DataTypeConvertor.Instance.GetImageFromBytes(Product.Thumnail);
+
+            if(Product.Thumnail.Length <= 0)
+            {
+                rpicThumnail.Image = Properties.Resources.NoImage;
+            }
+            else
+            {
+                rpicThumnail.Image = DataTypeConvertor.Instance.GetImageFromBytes(Product.Thumnail);
+            }
+
             if (Product.PromotionValue > 0)
             {
                 lbOriginalPrice.Show();
@@ -108,6 +117,7 @@ namespace Zi.SalesModule.CustomControls
                 lbOriginalPrice.Hide();
                 lbPromotionPrice.Text = Product.Price.ToString("n0", LocalFormat);
             }
+
             if (Product.Status.CompareTo(ProductStatus.NotAvailabled) == 0)
             {
                 Enabled = false;
@@ -115,6 +125,7 @@ namespace Zi.SalesModule.CustomControls
                 lbName.Font = new Font(lbName.Font, FontStyle.Strikeout);
                 lbName.ForeColor = Properties.Settings.Default.ErrorTextColor;
             }
+
             Tag = Product;
         }
         #endregion
