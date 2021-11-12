@@ -92,7 +92,6 @@ namespace Zi.SalesModule.GUIs
         #region Initial
         private void FormOrder_Load(object sender, EventArgs e)
         {
-            HasChange = false;
             CurrentCategory = new CategoryModel();
             CurrentProduct = new ProductModel();
             OnResizeMode = false;
