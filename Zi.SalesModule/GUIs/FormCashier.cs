@@ -1155,15 +1155,15 @@ namespace Zi.SalesModule.GUIs
         #region Effects - Change color of button when mouse hover/leave
         private void BtnNav_MouseHover(object sender, EventArgs e)
         {
-            ChangeButtonColorToHover(sender);
+            ChangeNavButtonColorToHover(sender);
         }
 
         private void PicAvatar_MouseHover(object sender, EventArgs e)
         {
-            ChangeButtonColorToHover(ibtnAccount);
+            ChangeNavButtonColorToHover(ibtnAccount);
         }
 
-        private void ChangeButtonColorToHover(object sender)
+        private void ChangeNavButtonColorToHover(object sender)
         {
             IconButton ibtn = sender as IconButton;
             ibtn.BackColor = Properties.Settings.Default.BodyBackColor;
@@ -1173,15 +1173,15 @@ namespace Zi.SalesModule.GUIs
 
         private void BtnNav_MouseLeave(object sender, EventArgs e)
         {
-            ChangeButtonColorToBase(sender);
+            ChangeNavButtonColorToBase(sender);
         }
 
         private void PicAvatar_MouseLeave(object sender, EventArgs e)
         {
-            ChangeButtonColorToBase(ibtnAccount);
+            ChangeNavButtonColorToBase(ibtnAccount);
         }
 
-        private void ChangeButtonColorToBase(object sender)
+        private void ChangeNavButtonColorToBase(object sender)
         {
             IconButton ibtn = sender as IconButton;
             ibtn.BackColor = Color.Transparent;
@@ -1506,25 +1506,12 @@ namespace Zi.SalesModule.GUIs
 
         private void OpenFormSetting()
         {
-            Form formBackground = new Form();
+            bool hasChange = true;
             try
             {
-                using (FormSetting f = new FormSetting())
-                {
-                    formBackground.StartPosition = FormStartPosition.Manual;
-                    formBackground.Location = Location;
-                    formBackground.Size = Size;
-                    formBackground.FormBorderStyle = FormBorderStyle.None;
-                    formBackground.Opacity = .80d;
-                    formBackground.BackColor = Properties.Settings.Default.BodyBackColor;
-                    formBackground.TopMost = true;
-                    formBackground.ShowInTaskbar = false;
-                    formBackground.Show();
-
-                    f.Owner = formBackground;
-                    f.ShowDialog();
-                    formBackground.Dispose();
-                }
+                FormSetting f = new FormSetting(CurrentRole);
+                f.ShowDialog();
+                hasChange = f.HasChange;
             }
             catch (Exception ex)
             {
@@ -1532,9 +1519,12 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                formBackground.Dispose();
-                LoadSetting();
-                //LoadBody();
+                if (hasChange)
+                {
+                    LoadSetting();
+                    string msg = InterfaceRm.GetString("MsgSettingSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion
@@ -1605,10 +1595,12 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
+            bool hasChange = true;
             try
             {
                 FormOrder f = new FormOrder(CurrentTable, CurrentUser, CurrentBill, CurrentBillDetails);
                 f.ShowDialog();
+                hasChange = f.HasChange;
             }
             catch (Exception ex)
             {
@@ -1616,8 +1608,13 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                ReLoadTable();
-                LoadFooter();
+                if (hasChange)
+                {
+                    ReLoadTable();
+                    LoadFooter();
+                    string msg = InterfaceRm.GetString("MsgOrderSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion

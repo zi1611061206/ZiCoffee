@@ -270,6 +270,9 @@
   <data name="MsgOrderSuccess" xml:space="preserve">
     <value>Gọi món thành công!</value>
   </data>
+  <data name="MsgSettingSuccess" xml:space="preserve">
+    <value>Thiết lập thành công!</value>
+  </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Thanh toán (Alt + C)</value>
   </data>

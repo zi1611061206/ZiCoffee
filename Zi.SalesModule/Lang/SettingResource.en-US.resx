@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Adult" xml:space="preserve">
+    <value>Adult</value>
+  </data>
+  <data name="AreaModel" xml:space="preserve">
+    <value>Area</value>
+  </data>
+  <data name="CategoryModel" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Child</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
+  </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="GrbAreaItem" xml:space="preserve">
+    <value>Area Item</value>
+  </data>
+  <data name="GrbBackColor" xml:space="preserve">
+    <value>Background Color</value>
+  </data>
+  <data name="GrbCategoryItem" xml:space="preserve">
+    <value>Table Item</value>
+  </data>
+  <data name="GrbForeColor" xml:space="preserve">
+    <value>Text Color</value>
+  </data>
+  <data name="GrbInterface" xml:space="preserve">
+    <value>Inteface (items)</value>
+  </data>
+  <data name="GrbInvoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="GrbItemColor" xml:space="preserve">
+    <value>Item Color</value>
+  </data>
+  <data name="GrbLanguages" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="GrbOtherColor" xml:space="preserve">
+    <value>Other Color</value>
+  </data>
+  <data name="GrbProductItem" xml:space="preserve">
+    <value>Product Item</value>
+  </data>
+  <data name="GrbSounds" xml:space="preserve">
+    <value>Sounds</value>
+  </data>
+  <data name="GrbTableItem" xml:space="preserve">
+    <value>Category Item</value>
+  </data>
+  <data name="GrbTexts" xml:space="preserve">
+    <value>Texts</value>
+  </data>
+  <data name="GrbTimer" xml:space="preserve">
+    <value>Timer</value>
+  </data>
+  <data name="GrbVoice" xml:space="preserve">
+    <value>Voices</value>
+  </data>
+  <data name="IbtnCancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="IbtnColor" xml:space="preserve">
+    <value>Colors</value>
+  </data>
+  <data name="IbtnLanguage" xml:space="preserve">
+    <value>Languages</value>
+  </data>
+  <data name="IbtnParameter" xml:space="preserve">
+    <value>Parameters</value>
+  </data>
+  <data name="IbtnSave" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="IbtnSetDefault" xml:space="preserve">
+    <value>Set To Default</value>
+  </data>
+  <data name="IbtnSize" xml:space="preserve">
+    <value>Sizes</value>
+  </data>
+  <data name="IbtnSound" xml:space="preserve">
+    <value>Sounds</value>
+  </data>
+  <data name="IbtnText" xml:space="preserve">
+    <value>Texts</value>
+  </data>
+  <data name="IpicReset" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="LbAlertTimer" xml:space="preserve">
+    <value>Message box display time (miliseconds)</value>
+  </data>
+  <data name="LbAppearanceSound" xml:space="preserve">
+    <value>Appearance</value>
+  </data>
+  <data name="LbBaseBackColor" xml:space="preserve">
+    <value>Base Backcolor</value>
+  </data>
+  <data name="LbBaseHoverColor" xml:space="preserve">
+    <value>Base Hover Color</value>
+  </data>
+  <data name="LbBaseItemColor" xml:space="preserve">
+    <value>Base Item Color</value>
+  </data>
+  <data name="LbBaseTextColor" xml:space="preserve">
+    <value>Base Text Color</value>
+  </data>
+  <data name="LbBlurTextColor" xml:space="preserve">
+    <value>Blur Text Color</value>
+  </data>
+  <data name="LbBodyColor" xml:space="preserve">
+    <value>Body Color</value>
+  </data>
+  <data name="LbBrandName" xml:space="preserve">
+    <value>Brand Name</value>
+  </data>
+  <data name="LbButtonTextColor" xml:space="preserve">
+    <value>Button Text Color</value>
+  </data>
+  <data name="LbClickSound" xml:space="preserve">
+    <value>Click</value>
+  </data>
+  <data name="LbCornerRadius" xml:space="preserve">
+    <value>Angular Curvature</value>
+  </data>
+  <data name="LbDefaultTax" xml:space="preserve">
+    <value>Default Tax (%)</value>
+  </data>
+  <data name="LbDropShadowDepth" xml:space="preserve">
+    <value>Shadow Depth (pixel)</value>
+  </data>
+  <data name="LbErrorTextColor" xml:space="preserve">
+    <value>Error Text color</value>
+  </data>
+  <data name="LbFooterColor" xml:space="preserve">
+    <value>Footer Color</value>
+  </data>
+  <data name="LbHeaderColor" xml:space="preserve">
+    <value>Header Color</value>
+  </data>
+  <data name="LbHoverItemColor" xml:space="preserve">
+    <value>Item Hover Color</value>
+  </data>
+  <data name="LbIconColor" xml:space="preserve">
+    <value>Icon Color</value>
+  </data>
+  <data name="LbInfoTextColor" xml:space="preserve">
+    <value>Info Text Color</value>
+  </data>
+  <data name="LbItemHeight" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="LbItemWidth" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="LbLanguages" xml:space="preserve">
+    <value>Supported Languages</value>
+  </data>
+  <data name="LbLeftSideBarColor" xml:space="preserve">
+    <value>Left Side Bar Color</value>
+  </data>
+  <data name="LbNotificationColor" xml:space="preserve">
+    <value>Notification Box Color</value>
+  </data>
+  <data name="LbRightSideBarColor" xml:space="preserve">
+    <value>Right Side Bar Color</value>
+  </data>
+  <data name="LbRoundingTo" xml:space="preserve">
+    <value>Rounding To</value>
+  </data>
+  <data name="LbSayBye" xml:space="preserve">
+    <value>Say Bye</value>
+  </data>
+  <data name="LbScanSound" xml:space="preserve">
+    <value>Scan</value>
+  </data>
+  <data name="LbSelectedItemColor" xml:space="preserve">
+    <value>Selected Item Color</value>
+  </data>
+  <data name="LbShadowColor" xml:space="preserve">
+    <value>Shadow Color</value>
+  </data>
+  <data name="LbShopAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="LbShopEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LbShopPhone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="LbShopSite" xml:space="preserve">
+    <value>Site</value>
+  </data>
+  <data name="LbSoundtrack" xml:space="preserve">
+    <value>Soundtrack</value>
+  </data>
+  <data name="LbSoundtrackFileName" xml:space="preserve">
+    <value>Soundtrack File Name</value>
+  </data>
+  <data name="LbSuccessTextColor" xml:space="preserve">
+    <value>Success Text Color</value>
+  </data>
+  <data name="LbTitle" xml:space="preserve">
+    <value>Setting</value>
+  </data>
+  <data name="LbVoiceAge" xml:space="preserve">
+    <value>Voice Age</value>
+  </data>
+  <data name="LbVoiceGender" xml:space="preserve">
+    <value>Voice Gender</value>
+  </data>
+  <data name="LbVoiceRate" xml:space="preserve">
+    <value>Voice Rate</value>
+  </data>
+  <data name="LbVoiceVolumn" xml:space="preserve">
+    <value>Voice Volumn</value>
+  </data>
+  <data name="LbWarningTextColor" xml:space="preserve">
+    <value>Warning Text Color</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="MsgSaveSettingConfirm" xml:space="preserve">
+    <value>Are you sure you want to save this setting?</value>
+  </data>
+  <data name="MsgSetDefaultConfirm" xml:space="preserve">
+    <value>Are you sure you want to go back to default settings?</value>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>Neutral</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>Not Set</value>
+  </data>
+  <data name="ProductModel" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="RdEnglish" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="RdVietnamese" xml:space="preserve">
+    <value>Vietnamese</value>
+  </data>
+  <data name="Senior" xml:space="preserve">
+    <value>Senior</value>
+  </data>
+  <data name="TableModel" xml:space="preserve">
+    <value>Table</value>
+  </data>
+  <data name="Teen" xml:space="preserve">
+    <value>Teen</value>
+  </data>
+  <data name="TtClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="TtMaximize" xml:space="preserve">
+    <value>Maximize</value>
+  </data>
+  <data name="TtNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+</root>

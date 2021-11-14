@@ -270,6 +270,9 @@
   <data name="MsgOrderSuccess" xml:space="preserve">
     <value>Order successfully!</value>
   </data>
+  <data name="MsgSettingSuccess" xml:space="preserve">
+    <value>Successful setup!</value>
+  </data>
   <data name="TtCheckOut" xml:space="preserve">
     <value>Check Out (Alt + C)</value>
   </data>

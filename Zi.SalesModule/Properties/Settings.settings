@@ -80,7 +80,7 @@
     <Setting Name="AreaItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">200, 50</Value>
     </Setting>
-    <Setting Name="HorizontalProductItemSize" Type="System.Drawing.Size" Scope="User">
+    <Setting Name="ProductItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">400, 200</Value>
     </Setting>
     <Setting Name="DropShadowDepth" Type="System.Int32" Scope="User">
@@ -106,9 +106,6 @@
     </Setting>
     <Setting Name="CategoryItemSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">300, 50</Value>
-    </Setting>
-    <Setting Name="VerticalProductItemSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">200, 400</Value>
     </Setting>
     <Setting Name="ItemSelectedColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">4, 119, 250</Value>
@@ -139,6 +136,12 @@
     </Setting>
     <Setting Name="ShopSite" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://zitechdev.com</Value>
+    </Setting>
+    <Setting Name="VoiceGender" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="VoiceAge" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
     </Setting>
   </Settings>
 </SettingsFile>
