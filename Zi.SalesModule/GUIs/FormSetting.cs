@@ -43,6 +43,7 @@ namespace Zi.SalesModule.GUIs
         #endregion
 
         #region Attributes
+        public bool HasChange { get; set; }
         public RoleModel CurrentRole { get; set; }
         public string CultureName { get; set; }
         public ResourceManager InterfaceRm { get; set; }
@@ -60,6 +61,7 @@ namespace Zi.SalesModule.GUIs
         {
             InitializeComponent();
             CurrentRole = currentRole;
+            HasChange = true;
         }
 
         #region Initial
@@ -251,11 +253,13 @@ namespace Zi.SalesModule.GUIs
         #region Effects - Windows state switch & Log out
         private void IpicClose_Click(object sender, EventArgs e)
         {
+            HasChange = false;
             CloseForm();
         }
 
         private void IbtnCancel_Click(object sender, EventArgs e)
         {
+            HasChange = false;
             CloseForm();
         }
 

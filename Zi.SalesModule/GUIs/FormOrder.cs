@@ -42,6 +42,7 @@ namespace Zi.SalesModule.GUIs
         #endregion
 
         #region Attributes
+        public bool HasChange { get; set; }
         public TableModel CurrentTable { get; set; }
         public UserModel CurrentUser { get; set; }
         public BillModel CurrentBill { get; set; }
@@ -87,6 +88,8 @@ namespace Zi.SalesModule.GUIs
             _billDetailService = BillDetailService.Instance;
             _categoryService = CategoryService.Instance;
             _productService = ProductService.Instance;
+
+            HasChange = true;
         }
 
         #region Initial
@@ -738,11 +741,13 @@ namespace Zi.SalesModule.GUIs
         #region Effects - Windows state switch & Close
         private void IpicClose_Click(object sender, EventArgs e)
         {
+            HasChange = false;
             CloseForm();
         }
 
         private void IbtnCancel_Click(object sender, EventArgs e)
         {
+            HasChange = false;
             CloseForm();
         }
 

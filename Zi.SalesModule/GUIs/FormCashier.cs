@@ -1506,10 +1506,12 @@ namespace Zi.SalesModule.GUIs
 
         private void OpenFormSetting()
         {
+            bool hasChange = true;
             try
             {
                 FormSetting f = new FormSetting(CurrentRole);
                 f.ShowDialog();
+                hasChange = f.HasChange;
             }
             catch (Exception ex)
             {
@@ -1517,7 +1519,12 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                LoadSetting();
+                if (hasChange)
+                {
+                    LoadSetting();
+                    string msg = InterfaceRm.GetString("MsgSettingSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion
@@ -1588,10 +1595,12 @@ namespace Zi.SalesModule.GUIs
                 return;
             }
 
+            bool hasChange = true;
             try
             {
                 FormOrder f = new FormOrder(CurrentTable, CurrentUser, CurrentBill, CurrentBillDetails);
                 f.ShowDialog();
+                hasChange = f.HasChange;
             }
             catch (Exception ex)
             {
@@ -1599,8 +1608,13 @@ namespace Zi.SalesModule.GUIs
             }
             finally
             {
-                ReLoadTable();
-                LoadFooter();
+                if (hasChange)
+                {
+                    ReLoadTable();
+                    LoadFooter();
+                    string msg = InterfaceRm.GetString("MsgOrderSuccess", Culture);
+                    FormMessageBox.Show(msg, string.Empty, CustomMessageBoxIcon.Success, CustomMessageBoxButton.None, AlertTimer, new Tuple<Point, Size>(Location, Size));
+                }
             }
         }
         #endregion
