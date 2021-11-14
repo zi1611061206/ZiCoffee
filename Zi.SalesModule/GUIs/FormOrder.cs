@@ -479,7 +479,7 @@ namespace Zi.SalesModule.GUIs
                 {
                     ProductItem btnProduct = new ProductItem(item)
                     {
-                        Size = Properties.Settings.Default.HorizontalProductItemSize
+                        Size = Properties.Settings.Default.ProductItemSize
                     };
                     btnProduct.ZiMouseDown += AllBtn_MouseDown;
                     btnProduct.ZiClick += BtnProduct_ZiClick;

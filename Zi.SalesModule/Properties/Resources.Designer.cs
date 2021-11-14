@@ -201,6 +201,16 @@ namespace Zi.SalesModule.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap EnglishFlag {
+            get {
+                object obj = ResourceManager.GetObject("EnglishFlag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
         internal static System.IO.UnmanagedMemoryStream Error {
@@ -456,6 +466,16 @@ namespace Zi.SalesModule.Properties {
         internal static System.IO.UnmanagedMemoryStream UFO_Whoosh_by_01 {
             get {
                 return ResourceManager.GetStream("UFO_Whoosh_by_01", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap VietnameseFlag {
+            get {
+                object obj = ResourceManager.GetObject("VietnameseFlag", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

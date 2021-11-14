@@ -57,7 +57,8 @@ namespace Zi.SalesModule.CustomControls
 
         private void DrawRoundedCorner()
         {
-            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, 20, 20));
+            int cornerRadius = Properties.Settings.Default.CornerRadius;
+            Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Width, Height, cornerRadius, cornerRadius));
         }
 
         private void LoadSetting()

@@ -1,0 +1,393 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Adult" xml:space="preserve">
+    <value>Người lớn</value>
+  </data>
+  <data name="AreaModel" xml:space="preserve">
+    <value>Khu vực</value>
+  </data>
+  <data name="CategoryModel" xml:space="preserve">
+    <value>Danh mục</value>
+  </data>
+  <data name="Child" xml:space="preserve">
+    <value>Trẻ em</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Lỗi</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Nữ</value>
+  </data>
+  <data name="FormText" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="GrbAreaItem" xml:space="preserve">
+    <value>Item khu vực</value>
+  </data>
+  <data name="GrbBackColor" xml:space="preserve">
+    <value>Màu nền</value>
+  </data>
+  <data name="GrbCategoryItem" xml:space="preserve">
+    <value>Item bàn</value>
+  </data>
+  <data name="GrbForeColor" xml:space="preserve">
+    <value>Màu chữ</value>
+  </data>
+  <data name="GrbInterface" xml:space="preserve">
+    <value>Giao diện (items)</value>
+  </data>
+  <data name="GrbInvoice" xml:space="preserve">
+    <value>Hóa đơn</value>
+  </data>
+  <data name="GrbItemColor" xml:space="preserve">
+    <value>Màu items</value>
+  </data>
+  <data name="GrbLanguages" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="GrbOtherColor" xml:space="preserve">
+    <value>Màu khác</value>
+  </data>
+  <data name="GrbProductItem" xml:space="preserve">
+    <value>Item sản phẩm</value>
+  </data>
+  <data name="GrbSounds" xml:space="preserve">
+    <value>Âm thanh</value>
+  </data>
+  <data name="GrbTableItem" xml:space="preserve">
+    <value>Item danh mục</value>
+  </data>
+  <data name="GrbTexts" xml:space="preserve">
+    <value>Văn bản</value>
+  </data>
+  <data name="GrbTimer" xml:space="preserve">
+    <value>Bộ đếm</value>
+  </data>
+  <data name="GrbVoice" xml:space="preserve">
+    <value>Giọng nói</value>
+  </data>
+  <data name="IbtnCancel" xml:space="preserve">
+    <value>Hủy</value>
+  </data>
+  <data name="IbtnColor" xml:space="preserve">
+    <value>Màu sắc</value>
+  </data>
+  <data name="IbtnLanguage" xml:space="preserve">
+    <value>Ngôn ngữ</value>
+  </data>
+  <data name="IbtnParameter" xml:space="preserve">
+    <value>Thông số</value>
+  </data>
+  <data name="IbtnSave" xml:space="preserve">
+    <value>Lưu</value>
+  </data>
+  <data name="IbtnSetDefault" xml:space="preserve">
+    <value>Đặt lại mặc định</value>
+  </data>
+  <data name="IbtnSize" xml:space="preserve">
+    <value>Kích thước</value>
+  </data>
+  <data name="IbtnSound" xml:space="preserve">
+    <value>Âm thanh</value>
+  </data>
+  <data name="IbtnText" xml:space="preserve">
+    <value>Văn bản</value>
+  </data>
+  <data name="IpicReset" xml:space="preserve">
+    <value>Đặt lại</value>
+  </data>
+  <data name="LbAlertTimer" xml:space="preserve">
+    <value>Thời gian hiển thị hộp thông báo (mili giây)</value>
+  </data>
+  <data name="LbAppearanceSound" xml:space="preserve">
+    <value>Xuất hiện</value>
+  </data>
+  <data name="LbBaseBackColor" xml:space="preserve">
+    <value>Màu nền cơ bản</value>
+  </data>
+  <data name="LbBaseHoverColor" xml:space="preserve">
+    <value>Màu hightlight cơ bản</value>
+  </data>
+  <data name="LbBaseItemColor" xml:space="preserve">
+    <value>Màu item cơ bản</value>
+  </data>
+  <data name="LbBaseTextColor" xml:space="preserve">
+    <value>Màu chữ cơ bản</value>
+  </data>
+  <data name="LbBlurTextColor" xml:space="preserve">
+    <value>Màu chữ làm mờ</value>
+  </data>
+  <data name="LbBodyColor" xml:space="preserve">
+    <value>Màu nền phần thân</value>
+  </data>
+  <data name="LbBrandName" xml:space="preserve">
+    <value>Tên thương hiệu</value>
+  </data>
+  <data name="LbButtonTextColor" xml:space="preserve">
+    <value>Màu chữ trên nút</value>
+  </data>
+  <data name="LbClickSound" xml:space="preserve">
+    <value>Nhấn chuột</value>
+  </data>
+  <data name="LbCornerRadius" xml:space="preserve">
+    <value>Độ cong góc</value>
+  </data>
+  <data name="LbDefaultTax" xml:space="preserve">
+    <value>Mức thuế mặc định (%)</value>
+  </data>
+  <data name="LbDropShadowDepth" xml:space="preserve">
+    <value>Độ sâu bóng đổ (pixel)</value>
+  </data>
+  <data name="LbErrorTextColor" xml:space="preserve">
+    <value>Màu chữ báo lỗi</value>
+  </data>
+  <data name="LbFooterColor" xml:space="preserve">
+    <value>Màu thanh chân trang</value>
+  </data>
+  <data name="LbHeaderColor" xml:space="preserve">
+    <value>Màu thanh tiêu đề</value>
+  </data>
+  <data name="LbHoverItemColor" xml:space="preserve">
+    <value>Màu hightlight items</value>
+  </data>
+  <data name="LbIconColor" xml:space="preserve">
+    <value>Màu icon</value>
+  </data>
+  <data name="LbInfoTextColor" xml:space="preserve">
+    <value>Màu chữ báo thông tin</value>
+  </data>
+  <data name="LbItemHeight" xml:space="preserve">
+    <value>Chiều cao</value>
+  </data>
+  <data name="LbItemWidth" xml:space="preserve">
+    <value>Chiều rộng</value>
+  </data>
+  <data name="LbLanguages" xml:space="preserve">
+    <value>Các ngôn ngữ được hỗ trợ</value>
+  </data>
+  <data name="LbLeftSideBarColor" xml:space="preserve">
+    <value>Màu thanh bên (trái)</value>
+  </data>
+  <data name="LbNotificationColor" xml:space="preserve">
+    <value>Màu nền hộp thông báo</value>
+  </data>
+  <data name="LbRightSideBarColor" xml:space="preserve">
+    <value>Màu thanh bên (phải)</value>
+  </data>
+  <data name="LbRoundingTo" xml:space="preserve">
+    <value>Làm trong đến phần</value>
+  </data>
+  <data name="LbSayBye" xml:space="preserve">
+    <value>Nói lời chào tạm biệt</value>
+  </data>
+  <data name="LbScanSound" xml:space="preserve">
+    <value>Quét</value>
+  </data>
+  <data name="LbSelectedItemColor" xml:space="preserve">
+    <value>Màu item (khi được chọn)</value>
+  </data>
+  <data name="LbShadowColor" xml:space="preserve">
+    <value>Màu đổ bóng item</value>
+  </data>
+  <data name="LbShopAddress" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="LbShopEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="LbShopPhone" xml:space="preserve">
+    <value>Điện thoại</value>
+  </data>
+  <data name="LbShopSite" xml:space="preserve">
+    <value>Trang</value>
+  </data>
+  <data name="LbSoundtrack" xml:space="preserve">
+    <value>Nhạc nền</value>
+  </data>
+  <data name="LbSoundtrackFileName" xml:space="preserve">
+    <value>Đường dẫn nhạc nền</value>
+  </data>
+  <data name="LbSuccessTextColor" xml:space="preserve">
+    <value>Màu chữ báo thành công</value>
+  </data>
+  <data name="LbTitle" xml:space="preserve">
+    <value>Cài đặt</value>
+  </data>
+  <data name="LbVoiceAge" xml:space="preserve">
+    <value>Độ tuổi giọng nói</value>
+  </data>
+  <data name="LbVoiceGender" xml:space="preserve">
+    <value>Giới tính giọng nói</value>
+  </data>
+  <data name="LbVoiceRate" xml:space="preserve">
+    <value>Tỷ lệ giọng nói</value>
+  </data>
+  <data name="LbVoiceVolumn" xml:space="preserve">
+    <value>Âm lượng giọng nói</value>
+  </data>
+  <data name="LbWarningTextColor" xml:space="preserve">
+    <value>Màu chữ cảnh báo</value>
+  </data>
+  <data name="Male" xml:space="preserve">
+    <value>Nam</value>
+  </data>
+  <data name="MsgSaveSettingConfirm" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn lưu cài đặt này không?</value>
+  </data>
+  <data name="MsgSetDefaultConfirm" xml:space="preserve">
+    <value>Bạn có chắc chắn muốn quay về cài đặt mặc định không?</value>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>Trung lập</value>
+  </data>
+  <data name="NotSet" xml:space="preserve">
+    <value>Không thiết lập</value>
+  </data>
+  <data name="ProductModel" xml:space="preserve">
+    <value>Sản phẩm</value>
+  </data>
+  <data name="RdEnglish" xml:space="preserve">
+    <value>Tiêng Anh</value>
+  </data>
+  <data name="RdVietnamese" xml:space="preserve">
+    <value>Tiếng Việt</value>
+  </data>
+  <data name="Senior" xml:space="preserve">
+    <value>Người cao tuổi</value>
+  </data>
+  <data name="TableModel" xml:space="preserve">
+    <value>Bàn</value>
+  </data>
+  <data name="Teen" xml:space="preserve">
+    <value>Vị thành niên</value>
+  </data>
+  <data name="TtClose" xml:space="preserve">
+    <value>Đóng</value>
+  </data>
+  <data name="TtMaximize" xml:space="preserve">
+    <value>Tăng tối đa</value>
+  </data>
+  <data name="TtNormal" xml:space="preserve">
+    <value>Kích thước bình thường</value>
+  </data>
+  <data name="WarningTitle" xml:space="preserve">
+    <value>Cảnh báo</value>
+  </data>
+</root>

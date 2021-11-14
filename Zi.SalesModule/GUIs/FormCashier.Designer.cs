@@ -421,7 +421,7 @@ namespace Zi.SalesModule.GUIs
             this.pnlAccountChilren.BackColor = System.Drawing.Color.Transparent;
             this.pnlAccountChilren.Controls.Add(this.ibtnLogOut);
             this.pnlAccountChilren.Controls.Add(this.ibtnProfile);
-            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 6279);
+            this.pnlAccountChilren.Location = new System.Drawing.Point(10, 7099);
             this.pnlAccountChilren.Name = "pnlAccountChilren";
             this.pnlAccountChilren.Size = new System.Drawing.Size(240, 124);
             this.pnlAccountChilren.TabIndex = 0;
@@ -540,6 +540,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnShortcutKey.Name = "ibtnShortcutKey";
             this.ibtnShortcutKey.Size = new System.Drawing.Size(240, 50);
             this.ibtnShortcutKey.TabIndex = 2;
+            this.ibtnShortcutKey.Text = "Shortcut Keys";
             this.ibtnShortcutKey.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnShortcutKey.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnShortcutKey.UseVisualStyleBackColor = false;
@@ -566,6 +567,7 @@ namespace Zi.SalesModule.GUIs
             this.ibtnManager.Name = "ibtnManager";
             this.ibtnManager.Size = new System.Drawing.Size(240, 50);
             this.ibtnManager.TabIndex = 1;
+            this.ibtnManager.Text = "Manager";
             this.ibtnManager.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ibtnManager.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.ibtnManager.UseVisualStyleBackColor = false;

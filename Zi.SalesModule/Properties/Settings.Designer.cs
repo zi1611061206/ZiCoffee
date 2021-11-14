@@ -339,12 +339,12 @@ namespace Zi.SalesModule.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("400, 200")]
-        public global::System.Drawing.Size HorizontalProductItemSize {
+        public global::System.Drawing.Size ProductItemSize {
             get {
-                return ((global::System.Drawing.Size)(this["HorizontalProductItemSize"]));
+                return ((global::System.Drawing.Size)(this["ProductItemSize"]));
             }
             set {
-                this["HorizontalProductItemSize"] = value;
+                this["ProductItemSize"] = value;
             }
         }
         
@@ -441,18 +441,6 @@ namespace Zi.SalesModule.Properties {
             }
             set {
                 this["CategoryItemSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("200, 400")]
-        public global::System.Drawing.Size VerticalProductItemSize {
-            get {
-                return ((global::System.Drawing.Size)(this["VerticalProductItemSize"]));
-            }
-            set {
-                this["VerticalProductItemSize"] = value;
             }
         }
         
@@ -573,6 +561,30 @@ namespace Zi.SalesModule.Properties {
             }
             set {
                 this["ShopSite"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int VoiceGender {
+            get {
+                return ((int)(this["VoiceGender"]));
+            }
+            set {
+                this["VoiceGender"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int VoiceAge {
+            get {
+                return ((int)(this["VoiceAge"]));
+            }
+            set {
+                this["VoiceAge"] = value;
             }
         }
     }

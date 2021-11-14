@@ -237,7 +237,9 @@ namespace Zi.SalesModule.GUIs
                 Volume = Properties.Settings.Default.VoiceBotVolumn,
                 Rate = Properties.Settings.Default.VoiceBotSpeakerRate
             };
-            speaker.SelectVoiceByHints(VoiceGender.Male, VoiceAge.Child);
+            VoiceGender voiceGender = (VoiceGender)Properties.Settings.Default.VoiceGender;
+            VoiceAge voiceAge = (VoiceAge)Properties.Settings.Default.VoiceAge;
+            speaker.SelectVoiceByHints(voiceGender, voiceAge);
             speaker.Speak(InterfaceRm.GetString("SentenceBye", Culture));
         }
 

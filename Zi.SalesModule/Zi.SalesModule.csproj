@@ -183,18 +183,6 @@
     <Compile Include="GUIs\FormSetting.Designer.cs">
       <DependentUpon>FormSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="GUIs\FormStart.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUIs\FormStart.Designer.cs">
-      <DependentUpon>FormStart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="GUIs\FormStocker.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="GUIs\FormStocker.Designer.cs">
-      <DependentUpon>FormStocker.cs</DependentUpon>
-    </Compile>
     <Compile Include="Lang\CashierResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -230,13 +218,55 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProfileResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="Lang\SettingResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SettingResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Lang\ValidateResource.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ValidateResource.resx</DependentUpon>
     </Compile>
+    <Compile Include="PartialForms\FormColor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormColor.Designer.cs">
+      <DependentUpon>FormColor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialForms\FormLanguage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormLanguage.Designer.cs">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialForms\FormParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormParameter.Designer.cs">
+      <DependentUpon>FormParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialForms\FormSize.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormSize.Designer.cs">
+      <DependentUpon>FormSize.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialForms\FormSound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormSound.Designer.cs">
+      <DependentUpon>FormSound.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PartialForms\FormText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PartialForms\FormText.Designer.cs">
+      <DependentUpon>FormText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\BackupSetting.cs" />
     <Compile Include="Validators\ChangePasswordValidator.cs" />
     <Compile Include="Validators\LoginValidator.cs" />
     <EmbeddedResource Include="CustomControls\ProductItem.resx">
@@ -260,8 +290,8 @@
     <EmbeddedResource Include="GUIs\FormProfile.resx">
       <DependentUpon>FormProfile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GUIs\FormStart.resx">
-      <DependentUpon>FormStart.cs</DependentUpon>
+    <EmbeddedResource Include="GUIs\FormSetting.resx">
+      <DependentUpon>FormSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\CashierResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\CashierResource.resx">
@@ -305,12 +335,36 @@
       <LastGenOutput>ProfileResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\ProfileResource.vi-VN.resx" />
+    <EmbeddedResource Include="Lang\SettingResource.en-US.resx" />
+    <EmbeddedResource Include="Lang\SettingResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lang\SettingResource.vi-VN.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.en-US.resx" />
     <EmbeddedResource Include="Lang\ValidateResource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>ValidateResource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Lang\ValidateResource.vi-VN.resx" />
+    <EmbeddedResource Include="PartialForms\FormColor.resx">
+      <DependentUpon>FormColor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartialForms\FormLanguage.resx">
+      <DependentUpon>FormLanguage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartialForms\FormParameter.resx">
+      <DependentUpon>FormParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartialForms\FormSize.resx">
+      <DependentUpon>FormSize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartialForms\FormSound.resx">
+      <DependentUpon>FormSound.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PartialForms\FormText.resx">
+      <DependentUpon>FormText.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -504,6 +558,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Voucher.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\VietnameseFlag.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EnglishFlag.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
