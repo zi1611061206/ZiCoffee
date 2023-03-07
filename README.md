@@ -25,5 +25,3 @@
  - HasValue: DateTime?, EnumTypes?
  - IsNullOrEmpty: String
  - Operators: Others
-
- - jhgbkjasfbvkjabf
